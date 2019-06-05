@@ -47,7 +47,6 @@ import android.text.SpannableStringBuilder;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.Display;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
@@ -62,7 +61,7 @@ import java.util.Locale;
 
 import chimple.DownloadExpansionFile;
 
-import static chimple.DownloadExpansionFile.xAPKS;
+import static chimple.DownloadExpansionFile.xAPKs;
 
 public class AppActivity extends Cocos2dxActivity {
     public static final String TAG = "GOA";
@@ -386,31 +385,29 @@ public class AppActivity extends Cocos2dxActivity {
         SharedPreferences sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
         String flagFilePath = "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/.success.txt";
         File flagFile = new File(flagFilePath);
+        boolean extractionRequired = false;
         int defaultfileVersion = 0;
         if (!flagFile.exists()) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.mainFileVersion), 0);
             editor.putInt(getString(R.string.patchFileVersion), 0);
             editor.commit();
-            Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
-            startActivity(intent);
-            finish();
         }
-        else{
+        else {
             int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultfileVersion);
             int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultfileVersion);
-            boolean extractionRequired = false;
-            for (DownloadExpansionFile.XAPKFile xf : xAPKS){
-                if((xf.mIsMain && (xf.mFileVersion != mainFileVersion)) || (!xf.mIsMain && (xf.mFileVersion != patchFileVersion))){
+            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
+                if ((xf.mIsMain && (xf.mFileVersion != mainFileVersion)) || (!xf.mIsMain && (xf.mFileVersion != patchFileVersion))) {
                     extractionRequired = true;
                     break;
                 }
             }
-            if(extractionRequired){
-                Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
-                startActivity(intent);
-                finish();
-            }
+
+        }
+        if (!flagFile.exists() || extractionRequired) {
+            Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         super.onCreate(savedInstanceState);
@@ -423,7 +420,7 @@ public class AppActivity extends Cocos2dxActivity {
         getGLSurfaceView().setMultipleTouchEnabled(false);
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         width = (int) (display.getWidth() * 0.5);
-        height = (int)(display.getHeight() * 0.5);
+        height = (int) (display.getHeight() * 0.5);
 
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 

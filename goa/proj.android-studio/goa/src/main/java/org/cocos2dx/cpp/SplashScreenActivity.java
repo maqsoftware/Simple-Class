@@ -26,7 +26,7 @@ import java.util.zip.ZipFile;
 import chimple.DownloadExpansionFile;
 import utils.Zip;
 
-import static chimple.DownloadExpansionFile.xAPKS;
+import static chimple.DownloadExpansionFile.xAPKs;
 
 public class SplashScreenActivity extends Activity {
 
@@ -88,15 +88,15 @@ public class SplashScreenActivity extends Activity {
             // Retrieve the stored values of main and patch file version
             mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
             patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
-            for (DownloadExpansionFile.XAPKFile xf : xAPKS) {
+            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 // If main or patch file is updated set isExtractionRequired to true
                 if ((xf.mIsMain && (xf.mFileVersion != mainFileVersion)) || (!xf.mIsMain && (xf.mFileVersion != patchFileVersion))) {
                     extractionRequired = true;
                     break;
                 }
             }
-                // If main or patch file is updated, the extraction process needs to be
-                // performed again
+            // If main or patch file is updated, the extraction process needs to be
+            // performed again
             if (extractionRequired) {
                 new DownloadFile().execute(null, null, null);
             }
@@ -116,9 +116,8 @@ public class SplashScreenActivity extends Activity {
         mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
         patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
         try {
-            for (DownloadExpansionFile.XAPKFile xf : xAPKS) {
-                if ((xf.mIsMain && (xf.mFileVersion != mainFileVersion)) || (!xf.mIsMain && (xf.mFileVersion != patchFileVersion))) {
-
+            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
+                if ((xf.mIsMain && (xf.mFileVersion != mainFileVersion)) || (!xf.mIsMain)) {
                     expansionFilePath = getExpansionFilePath(xf.mIsMain, xf.mFileVersion);
                     expansionFile = new File(expansionFilePath);
                     expansionZipFile = new ZipFile(expansionFile);
@@ -153,9 +152,9 @@ public class SplashScreenActivity extends Activity {
         int totalExpansionFileSize = 0;
         ZipFile zipFile;
         try {
-            for (DownloadExpansionFile.XAPKFile xf : xAPKS) {
+            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 expansionFilePath = getExpansionFilePath(xf.mIsMain, xf.mFileVersion);
-                ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE },
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                         99);
                 expansionFile = new File(expansionFilePath);
                 zipFile = new ZipFile(expansionFile);

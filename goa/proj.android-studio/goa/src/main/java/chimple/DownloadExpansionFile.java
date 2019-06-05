@@ -53,17 +53,17 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
      * application is using LVL for licensing, it may make sense to eliminate
      * these checks and to just rely on the server.
      */
-    public static final XAPKFile[] xAPKS = {
-        new XAPKFile(
-        true, // true signifies a main file
-        5, // the version of the APK that the file was uploaded
-        1721206904L  // the length of the file in bytes
-        ),
-        new XAPKFile(
-       false, // false signifies a patch file
-       9, // the version of the patch that is being uploaded
-       528657L  // the length of the file in bytes
-        )
+    public static final XAPKFile[] xAPKs = {
+            new XAPKFile(
+                    true, // false signifies a patch file
+                    5, // the version of the patch that is being uploaded
+                    1721206904L  // the length of the file in bytes
+            ),
+            new XAPKFile(
+                    false, // false signifies a patch file
+                    13, // the version of the patch that is being uploaded
+                    842558L  // the length of the file in bytes
+            )
     };
     /* expansion service*/
     private static final String LOG_TAG = "LVLDownloader";
@@ -279,14 +279,14 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
      * @return true if they are present.
      */
     boolean expansionFilesDelivered() {
-        for (XAPKFile xf : xAPKS) {
+        for (XAPKFile xf : xAPKs) {
             String fileName = Helpers.getExpansionAPKFileName(this, xf.mIsMain, xf.mFileVersion);
             if (Helpers.doesFileExist(this, fileName, xf.mFileSize, false)) {
                 return true;
             }
         }
         return false;
-   }
+    }
 
     @Override
     public void onServiceConnected(Messenger m) {
@@ -384,15 +384,15 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
      * @return true if XAPKZipFile is successful
      */
     void validateXAPKZipFiles() {
-         AsyncTask<Object, DownloadProgressInfo, Boolean> validationTask = new AsyncTask<Object, DownloadProgressInfo, Boolean>() {
+        AsyncTask<Object, DownloadProgressInfo, Boolean> validationTask = new AsyncTask<Object, DownloadProgressInfo, Boolean>() {
 
             @Override
             protected Boolean doInBackground(Object... params) {
-                for (XAPKFile xf : xAPKS) {
+                for (XAPKFile xf : xAPKs) {
                     String fileName = Helpers.getExpansionAPKFileName(DownloadExpansionFile.this, xf.mIsMain, xf.mFileVersion);
-                    if (!Helpers.doesFileExist(DownloadExpansionFile.this, fileName, xf.mFileSize, false)){
+                    if (!Helpers.doesFileExist(DownloadExpansionFile.this, fileName, xf.mFileSize, false)) {
                         return false;
-                    } 
+                    }
                     fileName = Helpers.generateSaveFileName(DownloadExpansionFile.this, fileName);
                     ZipResourceFile zrf;
                     byte[] buf = new byte[1024 * 256];
@@ -547,7 +547,7 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
         progress.mOverallTotal = progress.mOverallTotal;
         mPB.setMax((int) (progress.mOverallTotal >> 8));
         mPB.setProgress((int) (progress.mOverallProgress >> 8));
-        mProgressPercent.setText(Long.toString(progress.mOverallProgress * 100 / progress.mOverallTotal) + "%");
+        mProgressPercent.setText(progress.mOverallProgress * 100 / progress.mOverallTotal + "%");
         mProgressFraction.setText(Helpers.getDownloadProgressString
                 (progress.mOverallProgress,
                         progress.mOverallTotal));

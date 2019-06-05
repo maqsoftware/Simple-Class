@@ -16,7 +16,9 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import static chimple.DownloadExpansionFile.xAPKS;
+import chimple.DownloadExpansionFile;
+
+import static chimple.DownloadExpansionFile.xAPKs;
 import static org.cocos2dx.cpp.AppActivity.sharedPref;
 
 public class Zip {
@@ -120,7 +122,12 @@ public class Zip {
         if (isExtractionSuccessful) {
             flagFile = new File(extractPath + ".success.txt");
             flagFile.createNewFile();
-
+            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt(String.valueOf(R.string.mainFileVersion), xf.mFileVersion);
+                editor.apply();
+                break;
+            }
         }
     }
 }
