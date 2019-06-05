@@ -242,6 +242,10 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
     {
         backButton->setScaleX(0.70);
     }
+    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+    {
+        backButton->setScaleX(0.82);
+    }
     
     
     rapidjson::Document d;

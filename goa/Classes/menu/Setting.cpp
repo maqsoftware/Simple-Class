@@ -42,6 +42,10 @@ void Setting::onEnterTransitionDidFinish()
     {
         _closeButton->setScaleX(0.70);
     }
+    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+    {
+        _closeButton->setScaleX(0.82);
+    }
 	_closeButton->setPosition(Vec2(visibleSize.width - _closeButton->getContentSize().width, visibleSize.height - _closeButton->getContentSize().height));
 	_calcLayer->addChild(_closeButton, 5);
 

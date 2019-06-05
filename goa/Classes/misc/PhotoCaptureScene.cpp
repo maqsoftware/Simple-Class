@@ -111,6 +111,10 @@ bool PhotoCaptureScene::init()
     {
         this->photoButton->setScaleX(0.70);
     }
+    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+    {
+        this->photoButton->setScaleX(0.82);
+    }
     addChild(this->photoButton);
     
     return true;

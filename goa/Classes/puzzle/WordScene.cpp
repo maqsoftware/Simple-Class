@@ -255,6 +255,10 @@ void WordScene::createHandWritingButton() {
     {
         _handWritingDialogButton->setScaleX(0.70);
     }
+    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+    {
+        _handWritingDialogButton->setScaleX(0.82);
+    }
     _handWritingDialogButton->setPosition(Vec2(visibleSize.width/2, 400));
     _handWritingDialogButton->addTouchEventListener(CC_CALLBACK_2(WordScene::showHandWritingDialog, this));
     addChild(_handWritingDialogButton, 2);
