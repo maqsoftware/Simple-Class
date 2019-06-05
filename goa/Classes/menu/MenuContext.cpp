@@ -1848,6 +1848,12 @@ void MenuContext::showAnswer(std::string type, std::string header)
 	_closeButton = Button::create("menu/close.png", "menu/close.png", "menu/close.png", Widget::TextureResType::LOCAL);
 	_closeButton->addTouchEventListener(CC_CALLBACK_2(MenuContext::closeAnswerLayer, this));
 	_closeButton->setAnchorPoint(Vec2(0, 1));
+    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+    if (aspectRatio >= 2.0) 
+    {
+        _closeButton->setScaleX(0.70);
+    }
 	_closeButton->setPosition(Vec2(0, visibleSize.height));
 	_showAnswerLayer->addChild(_closeButton);
 

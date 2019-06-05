@@ -249,6 +249,12 @@ void WordScene::createHandWritingButton() {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     _handWritingDialogButton = ui::Button::create(buttonNormalIcon, buttonNormalIcon, buttonDisabledIcon);
+    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+    if (aspectRatio >= 2.0) 
+    {
+        _handWritingDialogButton->setScaleX(0.70);
+    }
     _handWritingDialogButton->setPosition(Vec2(visibleSize.width/2, 400));
     _handWritingDialogButton->addTouchEventListener(CC_CALLBACK_2(WordScene::showHandWritingDialog, this));
     addChild(_handWritingDialogButton, 2);

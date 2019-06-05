@@ -36,6 +36,12 @@ void Setting::onEnterTransitionDidFinish()
 	this->addChild(_calcLayer, 4);
 
 	cocos2d::ui::Button *_closeButton = cocos2d::ui::Button::create("menu/close.png", "menu/close.png", "menu/close.png", cocos2d::ui::Widget::TextureResType::LOCAL);
+	Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+    if (aspectRatio >= 2.0) 
+    {
+        _closeButton->setScaleX(0.70);
+    }
 	_closeButton->setPosition(Vec2(visibleSize.width - _closeButton->getContentSize().width, visibleSize.height - _closeButton->getContentSize().height));
 	_calcLayer->addChild(_closeButton, 5);
 
