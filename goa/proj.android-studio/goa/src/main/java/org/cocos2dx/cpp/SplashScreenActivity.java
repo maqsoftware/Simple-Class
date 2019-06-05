@@ -117,12 +117,6 @@ public class SplashScreenActivity extends Activity {
                     }
                     _zip.unzip(unzipFilePath, totalZipSize);
                     _zip.close();
-                    if (xf.mIsMain) {
-                        editor.putInt(getString(R.string.mainFileVersion), xf.mFileVersion);
-                    } else {
-                        editor.putInt(getString(R.string.patchFileVersion), xf.mFileVersion);
-                    }
-                    editor.apply();
                 }
             }
             toCallApplication();
