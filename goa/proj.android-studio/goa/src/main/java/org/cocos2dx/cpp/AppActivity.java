@@ -26,16 +26,17 @@
  ****************************************************************************/
 package org.cocos2dx.cpp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.arch.lifecycle.LiveData;
 import android.bluetooth.BluetoothAdapter;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -43,13 +44,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
-import android.text.SpannableStringBuilder;
-import android.text.style.RelativeSizeSpan;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.maq.xprize.bali.db.entity.User;
+import com.maq.xprize.bali.repo.UserRepo;
 import com.maq.xprize.chimple.hindi.R;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
@@ -370,6 +371,16 @@ public class AppActivity extends Cocos2dxActivity {
         }
     }
 
+    int mCoins;
+
+    public int getCoins() {
+        return mCoins;
+    }
+
+    public void setCoins(int mCoins) {
+        this.mCoins = mCoins;
+    }
+
     public static native void updateInformation(String jsonInfo);
 
     public static native void launchGameWithPeer(String connectionInfo);
@@ -378,18 +389,23 @@ public class AppActivity extends Cocos2dxActivity {
         context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(appUrl)));
     }
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
         String flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
         int currentVersionObb = sharedPref.getInt(String.valueOf(R.string.mainFileVersion), 0);
         File flagFile = new File(flagFilePath);
-        if (!flagFile.exists() || currentVersionObb != xAPK.mFileVersion) {
+        if (!flagFile.exists() || (currentVersionObb != xAPK.mFileVersion)) {
             Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
             startActivity(intent);
             finish();
         }
         super.onCreate(savedInstanceState);
+
+        //BaliApplication Code which was run by the launcher of Bali
+        LiveData<User> userLiveData = UserRepo.getCurrentLiveUser(this);
+
         _appActivity = this;
         _activity = this;
         _context = this;
@@ -433,23 +449,6 @@ public class AppActivity extends Cocos2dxActivity {
                 BluetoothAdapter.getDefaultAdapter().isEnabled()) {
             blueToothSupport = BlueToothSupport.getInstance(this, null);
             blueToothSupport.setBluetoothChatService();
-        }
-
-        mOutStringBuffer = new StringBuffer();
-
-        String baliPackageName = "com.maq.xprize.bali";
-        PackageManager packageManager = _context.getPackageManager();
-        try {
-            packageManager.getPackageInfo(baliPackageName, 0);
-        } catch (PackageManager.NameNotFoundException pnf) {
-            // Redirect to play store to download Bali application
-            redirectToPlayStore(AppActivity.this, googlePlayUrl + baliPackageName);
-            // Render large font size in toast message to download Bali application
-            String baliInstallMessage = _context.getResources().getString(R.string.bali_install_message);
-            SpannableStringBuilder largerText = new SpannableStringBuilder(baliInstallMessage);
-            largerText.setSpan(new RelativeSizeSpan(2.0f), 0, baliInstallMessage.length(), 0);
-            Toast downloadToast = Toast.makeText(getApplicationContext(), largerText, Toast.LENGTH_LONG);
-            downloadToast.show();
         }
     }
 
