@@ -165,11 +165,6 @@ bool MenuContext::init(Node* main) {
     {
         _menuButton->setScaleX(0.70);
     }
-    else if (frameSize.height >= 900)
-    {
-        _menuButton->setScaleX(0.82);
-    }
-    __android_log_print(ANDROID_LOG_INFO, "MyTag", "///////// setting menu size //////");
     
     _pointMeter = Slider::create();
     _pointMeter->loadBarTexture("menu/blank.png");
@@ -277,11 +272,6 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
                         _helpMenu->setScaleX(0.70);
                         _mapMenu->setScaleX(0.70);
                     }
-                    else if (frameSize.height >= 900)
-                    {
-                        _helpMenu->setScaleX(0.82);
-                        _mapMenu->setScaleX(0.82);
-                    }
                 }
                 else if(gameName == "story-catalogue") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
@@ -289,10 +279,6 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
                     if (aspectRatio >= 2.0) 
                     {
                         _gamesMenu->setScaleX(0.70);
-                    }
-                    else if (frameSize.height >= 900)
-                    {
-                        _gamesMenu->setScaleX(0.82);
                     }
                 } else if(gameName == "StoryCoverPage" || isStories!=std::string::npos) {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
@@ -307,12 +293,6 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
                         _gamesMenu->setScaleX(0.70);
                         _bookMenu->setScaleX(0.70);
                     }
-                    else if (frameSize.height >= 900)
-                    {
-                        _helpMenu->setScaleX(0.82);
-                        _gamesMenu->setScaleX(0.82);
-                        _bookMenu->setScaleX(0.82);
-                    }
                     
                 } else if(gameName == "map") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
@@ -321,20 +301,12 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
                     {
                         _gamesMenu->setScaleX(0.70);
                     }
-                    else if (frameSize.height >= 900)
-                    {
-                        _gamesMenu->setScaleX(0.82);
-                    }
                 } else if(gameName == "levelMenu") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showGamesMenu, this));
                     if (aspectRatio >= 2.0) 
                     {
                         _gamesMenu->setScaleX(0.70);
-                    }
-                    else if (frameSize.height >= 900)
-                    {
-                        _gamesMenu->setScaleX(0.82);
                     }
                 } else if(gameName == "ChooseCharacterScene") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
@@ -343,20 +315,12 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
                     {
                         _gamesMenu->setScaleX(0.70);
                     }
-                    else if (frameSize.height >= 900)
-                    {
-                        _gamesMenu->setScaleX(0.82);
-                    }
                 } else if(gameName == "Award") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMainHomeMenu, this));
                     if (aspectRatio >= 2.0) 
                     {
                         _gamesMenu->setScaleX(0.70);
-                    }
-                    else if (frameSize.height >= 900)
-                    {
-                        _gamesMenu->setScaleX(0.82);
                     }
                 } else {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
@@ -369,11 +333,6 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
                     {
                         _gamesMenu->setScaleX(0.70);
                         _helpMenu->setScaleX(0.70);
-                    }
-                    else if (frameSize.height >= 900)
-                    {
-                        _gamesMenu->setScaleX(0.82);
-                        _helpMenu->setScaleX(0.82);
                     }
                 }
 //                _photoMenu = this->createAvatarMenuItem("", "", "", 6 * POINTS_TO_LEFT);
@@ -438,10 +397,6 @@ cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(const std::string norma
     if (aspectRatio >= 2.0) 
     {
         stencil->setScaleX(0.70);
-    }
-    else if (frameSize.height >= 900)
-    {
-        stencil->setScale(0.85);
     }
     
     std::string cachedCharacterInformation;
@@ -820,10 +775,6 @@ void MenuContext::happyFace() {
     {
         _menuButton->setScaleX(0.70);
     }
-    else if (frameSize.height >= 900) 
-    {
-        _menuButton->setScaleX(0.82);
-    }
 }
 
 void MenuContext::sadFace() {
@@ -834,10 +785,6 @@ void MenuContext::sadFace() {
     {
         _menuButton->setScaleX(0.70);
     }
-    else if (frameSize.height >= 900)
-    {
-        _menuButton->setScaleX(0.82);
-    }
 }
 
 void MenuContext::normalFace() {
@@ -847,10 +794,6 @@ void MenuContext::normalFace() {
     if (aspectRatio >= 2.0)
     {
         _menuButton->setScaleX(0.70);
-    }
-    else if (frameSize.height >= 900)
-    {
-        _menuButton->setScaleX(0.82);
     }
 }
 

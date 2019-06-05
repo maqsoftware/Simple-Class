@@ -238,8 +238,10 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
 
     Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
     float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
-    if (aspectRatio >= 2.0) backButton->setScaleX(0.70);
-    else if (frameSize.height >= 900) backButton->setScaleX(0.82);
+    if (aspectRatio >= 2.0) 
+    {
+        backButton->setScaleX(0.70);
+    }
     
     
     rapidjson::Document d;
