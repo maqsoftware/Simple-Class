@@ -84,7 +84,6 @@ public class SplashScreenActivity extends Activity {
             // Permission is not granted
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         } else {
-            sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
             new DownloadFile().execute(null, null, null);
         }
     }
