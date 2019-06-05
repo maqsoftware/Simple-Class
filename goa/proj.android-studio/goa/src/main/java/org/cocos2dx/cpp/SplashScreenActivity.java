@@ -85,21 +85,7 @@ public class SplashScreenActivity extends Activity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
         } else {
             sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-            // Retrieve the stored values of main and patch file version
-            mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
-            patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
-            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
-                // If main or patch file is updated set isExtractionRequired to true
-                if ((xf.mIsMain && (xf.mFileVersion != mainFileVersion)) || (!xf.mIsMain && (xf.mFileVersion != patchFileVersion))) {
-                    extractionRequired = true;
-                    break;
-                }
-            }
-            // If main or patch file is updated, the extraction process needs to be
-            // performed again
-            if (extractionRequired) {
-                new DownloadFile().execute(null, null, null);
-            }
+            new DownloadFile().execute(null, null, null);
         }
     }
 
@@ -117,7 +103,7 @@ public class SplashScreenActivity extends Activity {
         patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
-                if ((xf.mIsMain && (xf.mFileVersion != mainFileVersion)) || (!xf.mIsMain)) {
+                if (!xf.mIsMain || (xf.mFileVersion != mainFileVersion)) {
                     expansionFilePath = getExpansionFilePath(xf.mIsMain, xf.mFileVersion);
                     expansionFile = new File(expansionFilePath);
                     expansionZipFile = new ZipFile(expansionFile);
@@ -134,17 +120,15 @@ public class SplashScreenActivity extends Activity {
                     _zip.close();
                     if (xf.mIsMain) {
                         editor.putInt(getString(R.string.mainFileVersion), xf.mFileVersion);
-                        editor.commit();
                     } else {
                         editor.putInt(getString(R.string.patchFileVersion), xf.mFileVersion);
-                        editor.commit();
                     }
+                    editor.apply();
                 }
             }
             toCallApplication();
         } catch (IOException e) {
-            System.out.println("Could not extract assets");
-            System.out.println("Stack trace:" + e);
+            System.out.println(e);
         }
     }
 

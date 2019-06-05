@@ -391,7 +391,8 @@ public class AppActivity extends Cocos2dxActivity {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.mainFileVersion), 0);
             editor.putInt(getString(R.string.patchFileVersion), 0);
-            editor.commit();
+            editor.apply();
+            extractionRequired = !flagFile.exists();
         }
         else {
             int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultfileVersion);
@@ -404,7 +405,7 @@ public class AppActivity extends Cocos2dxActivity {
             }
 
         }
-        if (!flagFile.exists() || extractionRequired) {
+        if (extractionRequired) {
             Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
             startActivity(intent);
             finish();
