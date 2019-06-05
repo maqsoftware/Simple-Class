@@ -403,7 +403,7 @@ public class AppActivity extends Cocos2dxActivity {
         }
         super.onCreate(savedInstanceState);
 
-        //BaliApplication Code which was run by the launcher of Bali
+//        BaliApplication Code which was run by the launcher of Bali
         LiveData<User> userLiveData = UserRepo.getCurrentLiveUser(this);
 
         _appActivity = this;

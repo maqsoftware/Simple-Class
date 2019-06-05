@@ -42,19 +42,4 @@ public class MultipleChoiceQuiz {
         }
         this.correctAnswer = correctAnswer;
     }
-
-//    public MultipleChoiceQuiz(Bundle bundle) {
-//        this(bundle.getString(HELP), bundle.getString(QUESTION),
-//                bundle.getStringArray(ANSWERS), bundle.getInt(CORRECT_ANSWER));
-//    }
-//
-//    public Bundle getBundle() {
-//        Bundle b = new Bundle();
-//        b.putString(HELP, help);
-//        b.putString(QUESTION, question);
-//        b.putStringArray(ANSWERS, answers);
-//        b.putInt(CORRECT_ANSWER, correctAnswer);
-//        return b;
-//    }
-
 }

@@ -29,9 +29,6 @@ public class BaliContext {
         return instance;
     }
 
-//    private BaliContext() {
-//        // Singleton
-//    }
 
     public synchronized void initialize(final Context context) {
         if (initialized) {
