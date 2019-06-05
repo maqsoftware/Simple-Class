@@ -121,9 +121,10 @@ public class AppActivity extends Cocos2dxActivity {
     private List bluetoothAddresses;
     private TextToSpeech textToSpeechInstance;
 
+    //    LauncherScreen variables and functions from Bali
     public static native void setMultipleChoiceQuiz(String[] jsonInfo);
-
     public static native void setBagOfChoiceQuiz(String[] jsonInfo);
+
 
     public static void queryMultipleChoiceQuiz(int numQuizes, int numChoices, int answerFormat, int choiceFormat) {
         System.out.println("entry queryMultipleChoiceQuiz");
@@ -371,15 +372,6 @@ public class AppActivity extends Cocos2dxActivity {
         }
     }
 
-    int mCoins;
-
-    public int getCoins() {
-        return mCoins;
-    }
-
-    public void setCoins(int mCoins) {
-        this.mCoins = mCoins;
-    }
 
     public static native void updateInformation(String jsonInfo);
 

@@ -280,14 +280,8 @@ public class LessonContentProvider extends ContentProvider {
                 int coins = contentValues.getAsInteger(COINS);
                 int updatedCoins = 0;
 
-                /*Following try-catch block is a patch for Chimple application crash when launched for the first time*/
-                try {
-                    updatedCoins = UserRepo.updateCoins(getContext(), coins);
+                updatedCoins = UserRepo.updateCoins(getContext(), coins);
 
-                } catch (NullPointerException npe) {
-                    UserRepo.getCurrentLiveUser(getContext());
-                    update(uri, contentValues, s, strings);
-                }
                 Log.d("LessonContentProvider", "adding coins: "
                         + coins
                         + " for total of: "
