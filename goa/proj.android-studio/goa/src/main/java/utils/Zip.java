@@ -3,7 +3,7 @@ package utils;
 import android.app.Activity;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
+import android.content.SharedPreferences;
 import com.maq.xprize.chimple.hindi.R;
 
 import java.io.BufferedInputStream;
@@ -112,8 +112,16 @@ public class Zip {
             }
         }
         if (isExtractionSuccessful) {
-            flagFile = new File(extractPath + ".success.txt");
-            flagFile.createNewFile();
+            SharedPreferences.Editor editor = sharedPref.edit();
+            if (isMain) {
+                flagFile = new File(extractPath + ".success.txt");
+                flagFile.createNewFile();
+                editor.putInt(String.valueOf(R.string.mainFileVersion), fileVersion);
+            }
+            else {
+                editor.putInt(String.valueOf(R.string.patchFileVersion), fileVersion);
+            }
+            editor.apply();
         }
     }
 }
