@@ -35,7 +35,7 @@ public class Zip {
         _zipFile.close();
     }
 
-    public void unzip(String extractPath, int totalZipSize) throws IOException {
+    public void unzip(String extractPath, int totalZipSize, boolean isMain, int fileVersion) throws IOException {
         File targetDir = new File(extractPath);
         int percent;
         ProgressBar progressBar = zipActivity.findViewById(R.id.extraction_progress_bar);
