@@ -61,7 +61,6 @@ import java.util.List;
 import java.util.Locale;
 
 import chimple.DownloadExpansionFile;
-
 import static chimple.DownloadExpansionFile.xAPKs;
 
 public class AppActivity extends Cocos2dxActivity {
