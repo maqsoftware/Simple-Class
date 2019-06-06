@@ -115,7 +115,7 @@ public class SplashScreenActivity extends Activity {
                         }
                         packageNameDir.mkdir();
                     }
-                    _zip.unzip(unzipFilePath, totalZipSize);
+                    _zip.unzip(unzipFilePath, totalZipSize, xf.mIsMain, xf.mFileVersion);
                     _zip.close();
                 }
             }
