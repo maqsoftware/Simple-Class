@@ -61,6 +61,7 @@ import java.util.List;
 import java.util.Locale;
 
 import chimple.DownloadExpansionFile;
+
 import static chimple.DownloadExpansionFile.xAPKs;
 
 public class AppActivity extends Cocos2dxActivity {
@@ -124,6 +125,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     //    LauncherScreen variables and functions from Bali
     public static native void setMultipleChoiceQuiz(String[] jsonInfo);
+
     public static native void setBagOfChoiceQuiz(String[] jsonInfo);
 
 
@@ -385,24 +387,23 @@ public class AppActivity extends Cocos2dxActivity {
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
+        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
         String flagFilePath = "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/.success.txt";
+        int defaultFileVersion = 0;
         File flagFile = new File(flagFilePath);
-        if (!flagFile.exists() || (currentVersionObb != xAPK.mFileVersion)) {
         boolean extractionRequired = false;
-        int defaultfileVersion = 0;
+
         if (!flagFile.exists()) {
             SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(R.string.mainFileVersion), 0);
-            editor.putInt(getString(R.string.patchFileVersion), 0);
+            editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
+            editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
             editor.apply();
             extractionRequired = !flagFile.exists();
-        }
-        else {
-            int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultfileVersion);
-            int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultfileVersion);
+        } else {
+            int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
+            int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
-                if ((xf.mIsMain && (xf.mFileVersion != mainFileVersion)) || (!xf.mIsMain && (xf.mFileVersion != patchFileVersion))) {
+                if ((xf.mIsMain && xf.mFileVersion != mainFileVersion) || (!xf.mIsMain && xf.mFileVersion != patchFileVersion)) {
                     extractionRequired = true;
                     break;
                 }
@@ -414,6 +415,7 @@ public class AppActivity extends Cocos2dxActivity {
             startActivity(intent);
             finish();
         }
+
         super.onCreate(savedInstanceState);
 
 //        BaliApplication Code which was run by the launcher of Bali

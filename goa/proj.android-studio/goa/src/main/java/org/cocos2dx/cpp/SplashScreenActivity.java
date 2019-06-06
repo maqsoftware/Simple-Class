@@ -3,7 +3,6 @@ package org.cocos2dx.cpp;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -25,7 +24,9 @@ import java.util.zip.ZipFile;
 
 import chimple.DownloadExpansionFile;
 import utils.Zip;
+
 import static chimple.DownloadExpansionFile.xAPKs;
+import static org.cocos2dx.cpp.AppActivity.sharedPref;
 
 public class SplashScreenActivity extends Activity {
 
@@ -95,22 +96,21 @@ public class SplashScreenActivity extends Activity {
 
     public void unzipFile() {
         int totalZipSize = getTotalExpansionFileSize();
-        SharedPreferences sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
+        int defaultFileVersion = 0;
+        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
         mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
         patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
-                if (!xf.mIsMain || (xf.mFileVersion != mainFileVersion)) {
+                if (xf.mIsMain && xf.mFileVersion != mainFileVersion || !xf.mIsMain && xf.mFileVersion != patchFileVersion) {
                     expansionFilePath = getExpansionFilePath(xf.mIsMain, xf.mFileVersion);
                     expansionFile = new File(expansionFilePath);
                     expansionZipFile = new ZipFile(expansionFile);
                     _zip = new Zip(expansionZipFile, this);
                     unzipFilePath = getUnzippedExpansionFilePath();
                     packageNameDir = new File(unzipFilePath);
-                    if (xf.mIsMain) {
-                        if (packageNameDir.exists()) {
-                            DownloadExpansionFile.deleteDir(packageNameDir);
-                        }
+                    if (xf.mIsMain && packageNameDir.exists()) {
+                        DownloadExpansionFile.deleteDir(packageNameDir);
                         packageNameDir.mkdir();
                     }
                     _zip.unzip(unzipFilePath, totalZipSize, xf.mIsMain, xf.mFileVersion);
@@ -128,16 +128,16 @@ public class SplashScreenActivity extends Activity {
         ZipFile zipFile;
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
-                expansionFilePath = getExpansionFilePath(xf.mIsMain, xf.mFileVersion);
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                        99);
-                expansionFile = new File(expansionFilePath);
-                zipFile = new ZipFile(expansionFile);
-                totalExpansionFileSize += zipFile.size();
+                if (!xf.mIsMain && (xf.mFileVersion != patchFileVersion) || xf.mIsMain && (xf.mFileVersion != mainFileVersion)) {
+                    expansionFilePath = getExpansionFilePath(xf.mIsMain, xf.mFileVersion);
+                    expansionFile = new File(expansionFilePath);
+                    zipFile = new ZipFile(expansionFile);
+                    totalExpansionFileSize += zipFile.size();
+
+                }
             }
         } catch (IOException ie) {
-            System.out.println("Couldn't get total expansion file size");
-            System.out.println("Stacktrace: " + ie);
+            System.out.println(ie);
         }
         return totalExpansionFileSize;
     }
