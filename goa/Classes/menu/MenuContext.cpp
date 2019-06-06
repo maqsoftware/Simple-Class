@@ -158,6 +158,17 @@ bool MenuContext::init(Node* main) {
 //    _label = Label::createWithTTF("Points: 0", "fonts/Chanakya.ttf", 150);
 //    _label->setPosition(Vec2(125, 125));
 //    _menuButton->addChild(_label);
+
+    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+    if (aspectRatio >= 2.0) 
+    {
+        _menuButton->setScaleX(0.70);
+    }
+    else if (aspectRatio >= 1.5 and aspectRatio < 2.0)
+    {
+        _menuButton->setScaleX(0.82);
+    }
     
     _pointMeter = Slider::create();
     _pointMeter->loadBarTexture("menu/blank.png");
@@ -208,6 +219,10 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
     if(_chimp) {
         return;
     }
+
+    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+
     if(eEventType == cocos2d::ui::Widget::TouchEventType::ENDED) {
         Button* clickedButton = dynamic_cast<Button *>(pSender);
         if(clickedButton == _menuButton) {
@@ -256,10 +271,28 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 //                    _settingMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::addCalculator, this));
                     _helpMenu = this->createMenuItem("menu/help.png", "menu/help.png", "menu/help.png", 2 * POINTS_TO_LEFT);
                     _helpMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showHelp, this));
+                    if (aspectRatio >= 2.0) 
+                    {
+                        _helpMenu->setScaleX(0.70);
+                        _mapMenu->setScaleX(0.70);
+                    }
+                    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+                    {
+                        _helpMenu->setScaleX(0.82);
+                        _mapMenu->setScaleX(0.82);
+                    }
                 }
                 else if(gameName == "story-catalogue") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMainHomeMenu, this));
+                    if (aspectRatio >= 2.0) 
+                    {
+                        _gamesMenu->setScaleX(0.70);
+                    }
+                    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+                    {
+                        _gamesMenu->setScaleX(0.82);
+                    }
                 } else if(gameName == "StoryCoverPage" || isStories!=std::string::npos) {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMainHomeMenu, this));
@@ -267,19 +300,63 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
                     _bookMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showBook, this));
                     _helpMenu = this->createMenuItem("menu/help.png", "menu/help.png", "menu/help.png", 3 * POINTS_TO_LEFT);
                     _helpMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showHelp, this));
+                    if (aspectRatio >= 2.0) 
+                    {
+                        _helpMenu->setScaleX(0.70);
+                        _gamesMenu->setScaleX(0.70);
+                        _bookMenu->setScaleX(0.70);
+                    }
+                    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+                    {
+                        _helpMenu->setScaleX(0.82);
+                        _gamesMenu->setScaleX(0.82);
+                        _bookMenu->setScaleX(0.82);
+                    }
                     
                 } else if(gameName == "map") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMainHomeMenu, this));
+                    if (aspectRatio >= 2.0) 
+                    {
+                        _gamesMenu->setScaleX(0.70);
+                    }
+                    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+                    {
+                        _gamesMenu->setScaleX(0.82);
+                    }
                 } else if(gameName == "levelMenu") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showGamesMenu, this));
+                    if (aspectRatio >= 2.0) 
+                    {
+                        _gamesMenu->setScaleX(0.70);
+                    }
+                    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+                    {
+                        _gamesMenu->setScaleX(0.82);
+                    }
                 } else if(gameName == "ChooseCharacterScene") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMapMenu, this));
+                    if (aspectRatio >= 2.0) 
+                    {
+                        _gamesMenu->setScaleX(0.70);
+                    }
+                    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+                    {
+                        _gamesMenu->setScaleX(0.82);
+                    }
                 } else if(gameName == "Award") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMainHomeMenu, this));
+                    if (aspectRatio >= 2.0) 
+                    {
+                        _gamesMenu->setScaleX(0.70);
+                    }
+                    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+                    {
+                        _gamesMenu->setScaleX(0.82);
+                    }
                 } else {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showGamesMenu, this));
@@ -287,6 +364,16 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 //                    _bookMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showBook, this));
                     _helpMenu = this->createMenuItem("menu/help.png", "menu/help.png", "menu/help.png", 2 * POINTS_TO_LEFT);
                     _helpMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showHelp, this));
+                    if (aspectRatio >= 2.0) 
+                    {
+                        _gamesMenu->setScaleX(0.70);
+                        _helpMenu->setScaleX(0.70);
+                    }
+                    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+                    {
+                        _gamesMenu->setScaleX(0.82);
+                        _helpMenu->setScaleX(0.82);
+                    }
                 }
 //                _photoMenu = this->createAvatarMenuItem("", "", "", 6 * POINTS_TO_LEFT);
                 
@@ -344,6 +431,17 @@ cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(const std::string norma
     Sprite * stencil = Sprite::create("menu/back.png");
     clipper->setStencil(stencil);
     clipper->setAlphaThreshold(0.9);
+    
+    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+    if (aspectRatio >= 2.0) 
+    {
+        stencil->setScaleX(0.70);
+    }
+    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+    {
+        stencil->setScaleX(0.82);
+    }
     
     std::string cachedCharacterInformation;
     localStorageGetItem("cachedCharacterConfig", &cachedCharacterInformation);
@@ -714,14 +812,45 @@ void MenuContext::increasePoints(int points) {
 
 void MenuContext::happyFace() {
     _menuButton->loadTextureNormal("menu/happy.png");
+    
+    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+    if (aspectRatio >= 2.0) 
+    {
+        _menuButton->setScaleX(0.70);
+    }
+    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+    {
+        _menuButton->setScaleX(0.82);
+    }
 }
 
 void MenuContext::sadFace() {
     _menuButton->loadTextureNormal("menu/frown.png");
+    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+    if (aspectRatio >= 2.0)
+    {
+        _menuButton->setScaleX(0.70);
+    }
+    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+    {
+        _menuButton->setScaleX(0.82);
+    }
 }
 
 void MenuContext::normalFace() {
     _menuButton->loadTextureNormal("menu/menu.png");
+    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+    if (aspectRatio >= 2.0)
+    {
+        _menuButton->setScaleX(0.70);
+    }
+    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
+    {
+        _menuButton->setScaleX(0.82);
+    }
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)  
@@ -1775,6 +1904,16 @@ void MenuContext::showAnswer(std::string type, std::string header)
 	_closeButton = Button::create("menu/close.png", "menu/close.png", "menu/close.png", Widget::TextureResType::LOCAL);
 	_closeButton->addTouchEventListener(CC_CALLBACK_2(MenuContext::closeAnswerLayer, this));
 	_closeButton->setAnchorPoint(Vec2(0, 1));
+    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
+    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
+    if (aspectRatio >= 2.0) 
+    {
+        _closeButton->setScaleX(0.70);
+    }
+    else if (aspectRatio >= 1.5 and aspectRatio < 2.0)
+    {
+        _closeButton->setScaleX(0.82);
+    }
 	_closeButton->setPosition(Vec2(0, visibleSize.height));
 	_showAnswerLayer->addChild(_closeButton);
 
