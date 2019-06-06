@@ -25,7 +25,6 @@ import java.util.zip.ZipFile;
 
 import chimple.DownloadExpansionFile;
 import utils.Zip;
-
 import static chimple.DownloadExpansionFile.xAPKs;
 
 public class SplashScreenActivity extends Activity {
@@ -37,7 +36,6 @@ public class SplashScreenActivity extends Activity {
     Zip _zip;
     String unzipFilePath;
     File packageNameDir;
-    SharedPreferences sharedPref;
     int defaultFileVersion = 0;
     int mainFileVersion;
     int patchFileVersion;
@@ -97,7 +95,7 @@ public class SplashScreenActivity extends Activity {
 
     public void unzipFile() {
         int totalZipSize = getTotalExpansionFileSize();
-        SharedPreferences.Editor editor = sharedPref.edit();
+        SharedPreferences sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
         mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
         patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
         try {

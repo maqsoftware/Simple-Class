@@ -15,6 +15,8 @@ import java.util.Enumeration;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import static org.cocos2dx.cpp.AppActivity.sharedPref;
+
 public class Zip {
 
     private static int count = 0;
