@@ -1,6 +1,7 @@
 package org.cocos2dx.cpp;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,18 +32,16 @@ import static org.cocos2dx.cpp.AppActivity.sharedPref;
 public class SplashScreenActivity extends Activity {
 
     Intent intent = null;
-    String expansionFilePath;
-    File expansionFile;
-    ZipFile expansionZipFile;
+    String obbFilePath;
+    File obbFile;
+    ZipFile obbFile_zip;
     Zip _zip;
-    String unzipFilePath;
-    File packageNameDir;
-    int defaultFileVersion = 0;
+    String dataFilePath;
+    File packageDir;
     int mainFileVersion;
     int patchFileVersion;
-    boolean extractionRequired = false;
 
-    public static String getUnzippedExpansionFilePath() {
+    public static String getDataFilePath() {
         return "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/";
     }
 
@@ -95,25 +94,24 @@ public class SplashScreenActivity extends Activity {
     }
 
     public void unzipFile() {
-        int totalZipSize = getTotalExpansionFileSize();
-        int defaultFileVersion = 0;
+        int totalSize = getTotalSize();
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
-        patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
+        mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), 0);
+        patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), 0);
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 if (xf.mIsMain && xf.mFileVersion != mainFileVersion || !xf.mIsMain && xf.mFileVersion != patchFileVersion) {
-                    expansionFilePath = getExpansionFilePath(xf.mIsMain, xf.mFileVersion);
-                    expansionFile = new File(expansionFilePath);
-                    expansionZipFile = new ZipFile(expansionFile);
-                    _zip = new Zip(expansionZipFile, this);
-                    unzipFilePath = getUnzippedExpansionFilePath();
-                    packageNameDir = new File(unzipFilePath);
-                    if (xf.mIsMain && packageNameDir.exists()) {
-                        DownloadExpansionFile.deleteDir(packageNameDir);
-                        packageNameDir.mkdir();
+                    obbFilePath = getObbFilePath(xf.mIsMain, xf.mFileVersion);
+                    obbFile = new File(obbFilePath);
+                    obbFile_zip = new ZipFile(obbFile);
+                    _zip = new Zip(obbFile_zip, this);
+                    dataFilePath = getDataFilePath();
+                    packageDir = new File(dataFilePath);
+                    if (xf.mIsMain && packageDir.exists()) {
+                        DownloadExpansionFile.deleteDir(packageDir);
+                        packageDir.mkdir();
                     }
-                    _zip.unzip(unzipFilePath, totalZipSize, xf.mIsMain, xf.mFileVersion);
+                    _zip.unzip(dataFilePath, totalSize, xf.mIsMain, xf.mFileVersion);
                     _zip.close();
                 }
             }
@@ -123,30 +121,31 @@ public class SplashScreenActivity extends Activity {
         }
     }
 
-    public int getTotalExpansionFileSize() {
-        int totalExpansionFileSize = 0;
+    public int getTotalSize() {
+        int totalSize = 0;
         ZipFile zipFile;
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 if (!xf.mIsMain && (xf.mFileVersion != patchFileVersion) || xf.mIsMain && (xf.mFileVersion != mainFileVersion)) {
-                    expansionFilePath = getExpansionFilePath(xf.mIsMain, xf.mFileVersion);
-                    expansionFile = new File(expansionFilePath);
-                    zipFile = new ZipFile(expansionFile);
-                    totalExpansionFileSize += zipFile.size();
+                    obbFilePath = getObbFilePath(xf.mIsMain, xf.mFileVersion);
+                    obbFile = new File(obbFilePath);
+                    zipFile = new ZipFile(obbFile);
+                    totalSize += zipFile.size();
 
                 }
             }
         } catch (IOException ie) {
             System.out.println(ie);
         }
-        return totalExpansionFileSize;
+        return totalSize;
     }
 
-    public String getExpansionFilePath(boolean isMain, int fileVersion) {
+    public String getObbFilePath(boolean isMain, int fileVersion) {
         return Environment.getExternalStorageDirectory().toString() + "/Android/obb/" + Helpers.getPackageName(this) + File.separator +
                 Helpers.getExpansionAPKFileName(this, isMain, fileVersion);
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class DownloadFile extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... sUrl) {
