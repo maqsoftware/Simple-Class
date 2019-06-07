@@ -292,7 +292,7 @@ public class AppActivity extends Cocos2dxActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        String flagFilePath = "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/.success.txt";
+        String flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
         int defaultFileVersion = 0;
         File flagFile = new File(flagFilePath);
         boolean extractionRequired = false;
