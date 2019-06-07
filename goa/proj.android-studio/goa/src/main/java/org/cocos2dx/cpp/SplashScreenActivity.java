@@ -34,7 +34,7 @@ public class SplashScreenActivity extends Activity {
     Intent intent = null;
     String obbFilePath;
     File obbFile;
-    ZipFile obbFile_zip;
+    ZipFile obbZipFile;
     Zip _zip;
     String dataFilePath;
     File packageDir;
@@ -103,8 +103,8 @@ public class SplashScreenActivity extends Activity {
                 if (xf.mIsMain && xf.mFileVersion != mainFileVersion || !xf.mIsMain && xf.mFileVersion != patchFileVersion) {
                     obbFilePath = getObbFilePath(xf.mIsMain, xf.mFileVersion);
                     obbFile = new File(obbFilePath);
-                    obbFile_zip = new ZipFile(obbFile);
-                    _zip = new Zip(obbFile_zip, this);
+                    obbZipFile = new ZipFile(obbFile);
+                    _zip = new Zip(obbZipFile, this);
                     dataFilePath = getDataFilePath();
                     packageDir = new File(dataFilePath);
                     if (xf.mIsMain && packageDir.exists()) {
@@ -123,14 +123,14 @@ public class SplashScreenActivity extends Activity {
 
     public int getTotalSize() {
         int totalSize = 0;
-        ZipFile zipFile;
+        ZipFile obbZipFile;
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 if (!xf.mIsMain && (xf.mFileVersion != patchFileVersion) || xf.mIsMain && (xf.mFileVersion != mainFileVersion)) {
                     obbFilePath = getObbFilePath(xf.mIsMain, xf.mFileVersion);
                     obbFile = new File(obbFilePath);
-                    zipFile = new ZipFile(obbFile);
-                    totalSize += zipFile.size();
+                    obbZipFile = new ZipFile(obbFile);
+                    totalSize += obbZipFile.size();
 
                 }
             }
