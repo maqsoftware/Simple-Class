@@ -123,7 +123,6 @@ public class SplashScreenActivity extends Activity {
 
     public int getTotalSize() {
         int totalSize = 0;
-        ZipFile obbZipFile;
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 if (!xf.mIsMain && (xf.mFileVersion != patchFileVersion) || xf.mIsMain && (xf.mFileVersion != mainFileVersion)) {
