@@ -35,7 +35,7 @@ public class SplashScreenActivity extends Activity {
     String obbFilePath;
     File obbFile;
     ZipFile obbZipFile;
-    Zip _zip;
+    Zip zipFileHandler;
     String dataFilePath;
     File packageDir;
     int mainFileVersion;
@@ -104,15 +104,15 @@ public class SplashScreenActivity extends Activity {
                     obbFilePath = getObbFilePath(xf.mIsMain, xf.mFileVersion);
                     obbFile = new File(obbFilePath);
                     obbZipFile = new ZipFile(obbFile);
-                    _zip = new Zip(obbZipFile, this);
+                    zipFileHandler = new Zip(obbZipFile, this);
                     dataFilePath = getDataFilePath();
                     packageDir = new File(dataFilePath);
                     if (xf.mIsMain && packageDir.exists()) {
                         DownloadExpansionFile.deleteDir(packageDir);
                         packageDir.mkdir();
                     }
-                    _zip.unzip(dataFilePath, totalSize, xf.mIsMain, xf.mFileVersion);
-                    _zip.close();
+                    zipFileHandler.unzip(dataFilePath, totalSize, xf.mIsMain, xf.mFileVersion);
+                    zipFileHandler.close();
                 }
             }
             toCallApplication();

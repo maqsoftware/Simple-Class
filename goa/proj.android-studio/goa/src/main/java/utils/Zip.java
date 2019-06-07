@@ -22,21 +22,21 @@ import static org.cocos2dx.cpp.AppActivity.sharedPref;
 public class Zip {
 
     private static int count = 0;
-    private ZipFile _zipFile;
+    private ZipFile zipFileHandlerFile;
     private TextView percentText;
     private Activity zipActivity;
 
     public Zip(ZipFile zipFile, Activity _activity) {
-        this._zipFile = zipFile;
+        this.zipFileHandlerFile = zipFile;
         zipActivity = _activity;
     }
 
     public Zip(String pathToZipFile) throws IOException {
-        this._zipFile = new ZipFile(pathToZipFile);
+        this.zipFileHandlerFile = new ZipFile(pathToZipFile);
     }
 
     public void close() throws IOException {
-        _zipFile.close();
+        zipFileHandlerFile.close();
     }
 
     public void unzip(String extractPath, int totalZipSize, boolean isMain, int fileVersion) throws IOException {
@@ -61,7 +61,7 @@ public class Zip {
             throw new IOException("Unable to extract to a non-directory");
         }
 
-        Enumeration<? extends ZipEntry> zipEntries = _zipFile.entries();
+        Enumeration<? extends ZipEntry> zipEntries = zipFileHandlerFile.entries();
         progressBar = progressBar.findViewById(R.id.extraction_progress_bar);
 
         while (zipEntries.hasMoreElements()) {
@@ -81,7 +81,7 @@ public class Zip {
             zipEntry = zipEntries.nextElement();
             path = extractPath + zipEntry.getName();
             if (!zipEntry.isDirectory()) {
-                inputStream = new BufferedInputStream(_zipFile.getInputStream(zipEntry));
+                inputStream = new BufferedInputStream(zipFileHandlerFile.getInputStream(zipEntry));
 
                 outputFile = new File(path);
                 outputDir = new File(outputFile.getParent());
