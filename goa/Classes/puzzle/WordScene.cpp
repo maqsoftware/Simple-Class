@@ -250,7 +250,7 @@ void WordScene::createHandWritingButton() {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     _handWritingDialogButton = ui::Button::create(buttonNormalIcon, buttonNormalIcon, buttonDisabledIcon);
-    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_handWritingDialogButton);
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_handWritingDialogButton);
     _handWritingDialogButton->setPosition(Vec2(visibleSize.width/2, 400));
     _handWritingDialogButton->addTouchEventListener(CC_CALLBACK_2(WordScene::showHandWritingDialog, this));
     addChild(_handWritingDialogButton, 2);

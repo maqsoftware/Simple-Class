@@ -1,3 +1,12 @@
+/**
+ *   This class is used for scaling the circular icons based on the 
+ *   resolution of the device.
+ *   It can accept any kind of GUI Element (Sprite, Buttons etc. ) provided by cocos.
+ *
+ *   Author: Vishal Maurya
+ *   Created: 07.06.2019
+**/
+
 #include <iostream>
 using namespace std;
 
@@ -7,7 +16,7 @@ USING_NS_CC;
 #define _SCALE_GUI_ELEMENTS_
 
 template <class T>
-class GuiElement
+class ScaleUIElement
 {
     public:
         static void scaleGuiElements(T menuButton)

@@ -106,7 +106,7 @@ bool PhotoCaptureScene::init()
     this->photoButton->setName("photo_button");
     this->photoButton->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     this->photoButton->addTouchEventListener(CC_CALLBACK_2(PhotoCaptureScene::takePhoto, this));
-    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(this->photoButton);
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(this->photoButton);
     addChild(this->photoButton);
     
     return true;

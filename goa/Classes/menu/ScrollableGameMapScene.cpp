@@ -236,7 +236,7 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
     }
 
     cocos2d::ui::Button* backButton = createBackButton();
-    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(backButton);
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(backButton);
     
     
     rapidjson::Document d;

@@ -159,7 +159,7 @@ bool MenuContext::init(Node* main) {
 //    _label->setPosition(Vec2(125, 125));
 //    _menuButton->addChild(_label);
 
-    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
     
     _pointMeter = Slider::create();
     _pointMeter->loadBarTexture("menu/blank.png");
@@ -262,13 +262,13 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 //                    _settingMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::addCalculator, this));
                     _helpMenu = this->createMenuItem("menu/help.png", "menu/help.png", "menu/help.png", 2 * POINTS_TO_LEFT);
                     _helpMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showHelp, this));
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_helpMenu);
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_mapMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_helpMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_mapMenu);
                 }
                 else if(gameName == "story-catalogue") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMainHomeMenu, this));
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
 
                 } else if(gameName == "StoryCoverPage" || isStories!=std::string::npos) {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
@@ -277,29 +277,29 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
                     _bookMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showBook, this));
                     _helpMenu = this->createMenuItem("menu/help.png", "menu/help.png", "menu/help.png", 3 * POINTS_TO_LEFT);
                     _helpMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showHelp, this));
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_helpMenu);
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_bookMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_helpMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_bookMenu);
                     
                 } else if(gameName == "map") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMainHomeMenu, this));
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
 
                 } else if(gameName == "levelMenu") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showGamesMenu, this));
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
 
                 } else if(gameName == "ChooseCharacterScene") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMapMenu, this));
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
 
                 } else if(gameName == "Award") {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
                     _gamesMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showMainHomeMenu, this));
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
 
                 } else {
                     _gamesMenu = this->createMenuItem("menu/game.png", "menu/game.png", "menu/game.png", 1 * POINTS_TO_LEFT);
@@ -308,8 +308,8 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 //                    _bookMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showBook, this));
                     _helpMenu = this->createMenuItem("menu/help.png", "menu/help.png", "menu/help.png", 2 * POINTS_TO_LEFT);
                     _helpMenu->addTouchEventListener(CC_CALLBACK_2(MenuContext::showHelp, this));
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
-                    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_helpMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_gamesMenu);
+                    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_helpMenu);
 
                 }
 //                _photoMenu = this->createAvatarMenuItem("", "", "", 6 * POINTS_TO_LEFT);
@@ -371,7 +371,7 @@ cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(const std::string norma
     
     Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
     float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
-    GuiElement<Sprite*>::scaleGuiElements(stencil);
+    ScaleUIElement<Sprite*>::scaleGuiElements(stencil);
     
     std::string cachedCharacterInformation;
     localStorageGetItem("cachedCharacterConfig", &cachedCharacterInformation);
@@ -743,17 +743,17 @@ void MenuContext::increasePoints(int points) {
 void MenuContext::happyFace() {
     _menuButton->loadTextureNormal("menu/happy.png");
     
-    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
 }
 
 void MenuContext::sadFace() {
     _menuButton->loadTextureNormal("menu/frown.png");
-    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
 }
 
 void MenuContext::normalFace() {
     _menuButton->loadTextureNormal("menu/menu.png");
-    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
 }
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)  
@@ -1807,7 +1807,7 @@ void MenuContext::showAnswer(std::string type, std::string header)
 	_closeButton = Button::create("menu/close.png", "menu/close.png", "menu/close.png", Widget::TextureResType::LOCAL);
 	_closeButton->addTouchEventListener(CC_CALLBACK_2(MenuContext::closeAnswerLayer, this));
 	_closeButton->setAnchorPoint(Vec2(0, 1));
-    GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_closeButton);
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_closeButton);
 	_closeButton->setPosition(Vec2(0, visibleSize.height));
 	_showAnswerLayer->addChild(_closeButton);
 

@@ -37,7 +37,7 @@ void Setting::onEnterTransitionDidFinish()
 	this->addChild(_calcLayer, 4);
 
 	cocos2d::ui::Button *_closeButton = cocos2d::ui::Button::create("menu/close.png", "menu/close.png", "menu/close.png", cocos2d::ui::Widget::TextureResType::LOCAL);
-	GuiElement<cocos2d::ui::Button*>::scaleGuiElements(_closeButton);
+	ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_closeButton);
 	_closeButton->setPosition(Vec2(visibleSize.width - _closeButton->getContentSize().width, visibleSize.height - _closeButton->getContentSize().height));
 	_calcLayer->addChild(_closeButton, 5);
 
