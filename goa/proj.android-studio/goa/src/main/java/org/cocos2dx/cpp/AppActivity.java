@@ -28,7 +28,6 @@ package org.cocos2dx.cpp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
 import android.arch.lifecycle.LiveData;
 import android.content.ContentValues;
 import android.content.Context;
@@ -40,11 +39,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.Display;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.maq.xprize.bali.db.entity.User;
@@ -57,6 +53,7 @@ import java.io.File;
 import java.util.Locale;
 
 import chimple.DownloadExpansionFile;
+
 import static chimple.DownloadExpansionFile.xAPKs;
 
 public class AppActivity extends Cocos2dxActivity {
@@ -82,8 +79,11 @@ public class AppActivity extends Cocos2dxActivity {
     public static int width;
     // Return Intent extra
     public static SharedPreferences sharedPref;
+    @SuppressLint("StaticFieldLeak")
     private static Activity _activity;
+    @SuppressLint("StaticFieldLeak")
     private static AppActivity _appActivity;
+    @SuppressLint("StaticFieldLeak")
     private static Context _context;
     private static String currentGameName;
     private static boolean supportForTTSEnabled = false;
@@ -92,7 +92,6 @@ public class AppActivity extends Cocos2dxActivity {
         System.out.println("Loaded library");
     }
 
-    private Handler handler = null;
     private TextToSpeech textToSpeechInstance;
 
     //    LauncherScreen variables and functions from Bali
@@ -124,6 +123,7 @@ public class AppActivity extends Cocos2dxActivity {
                 if (cursor == null) {
 
                 } else if (cursor.getCount() < 1) {
+                    cursor.close();
                 } else {
                     System.out.println("got data getContentResolver");
                     String[] columnNames = cursor.getColumnNames();
@@ -154,6 +154,7 @@ public class AppActivity extends Cocos2dxActivity {
                             setMultipleChoiceQuiz(finalSendArray);
                         }
                     });
+                    cursor.close();
                 }
                 return null;
             }
@@ -188,6 +189,7 @@ public class AppActivity extends Cocos2dxActivity {
                 if (cursor == null) {
 
                 } else if (cursor.getCount() < 1) {
+                    cursor.close();
                 } else {
                     System.out.println("got data getContentResolver");
                     String[] columnNames = cursor.getColumnNames();
@@ -215,6 +217,7 @@ public class AppActivity extends Cocos2dxActivity {
                             setBagOfChoiceQuiz(finalSendArray);
                         }
                     });
+                    cursor.close();
                 }
                 return null;
             }
@@ -328,7 +331,7 @@ public class AppActivity extends Cocos2dxActivity {
         _appActivity = this;
         _activity = this;
         _context = this;
-        handler = new Handler(getMainLooper());
+        Handler handler = new Handler(getMainLooper());
 
         getGLSurfaceView().setMultipleTouchEnabled(false);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);

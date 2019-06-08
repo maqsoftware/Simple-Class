@@ -59,7 +59,7 @@ public class LessonRepo {
 
     private static final MutableLiveData ABSENT = new MutableLiveData();
 
-    {
+    static {
         //noinspection unchecked
         ABSENT.setValue(null);
     }
@@ -153,7 +153,7 @@ public class LessonRepo {
         User user = UserRepo.getCurrentUser(context);
         Lesson currentLesson = db.lessonDao().getLessonById(user.currentLessonId);
         int concept = currentLesson.concept;
-        List<FlashCard> lucs = null;
+        List<FlashCard> lucs;
         boolean answerCaseParticular = (answerFormat == UPPER_CASE_LETTER_FORMAT);
         if ((answerFormat == ANY_FORMAT
                 || (answerFormat == UPPER_CASE_LETTER_FORMAT
@@ -172,7 +172,7 @@ public class LessonRepo {
                 convertToUniqueSubjects(lucs, answerCaseParticular);
             }
         } else {
-            List<Integer> formats = new LinkedList<Integer>();
+            List<Integer> formats = new LinkedList<>();
             formats.add(Lesson.LETTER_CONCEPT);
             formats.add(Lesson.UPPER_CASE_TO_LOWER_CASE_CONCEPT);
             if (choiceFormat == ANY_FORMAT) {
@@ -180,7 +180,10 @@ public class LessonRepo {
                 formats.add(Lesson.UPPER_CASE_LETTER_TO_WORD_CONCEPT);
             }
             Lesson[] lessons = db.lessonDao().getLessonsBelowSeqAndByConcept(currentLesson.seq, formats);
-            int lessonIndex = ThreadLocalRandom.current().nextInt(lessons.length);
+            int lessonIndex = 0;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                lessonIndex = ThreadLocalRandom.current().nextInt(lessons.length);
+            }
             lucs = db.lessonUnitDao().getFlashCardsByLessonId(lessons[lessonIndex].id);
             concept = lessons[lessonIndex].concept;
             convertToUniqueSubjects(lucs, answerCaseParticular);
@@ -190,9 +193,9 @@ public class LessonRepo {
             }
 
         }
-        List<MultipleChoiceQuiz> mcqs = new ArrayList<MultipleChoiceQuiz>(numQuizes);
+        List<MultipleChoiceQuiz> mcqs = new ArrayList<>(numQuizes);
 
-        ArrayList<Integer> quizList = new ArrayList<Integer>();
+        ArrayList<Integer> quizList = new ArrayList<>();
         for (int i = 0; i < lucs.size(); i++) {
             quizList.add(i);
         }
@@ -203,7 +206,7 @@ public class LessonRepo {
             FlashCard luc = lucs.get(lucIndex);
             Unit[] choices = new Unit[numChoices];
 
-            ArrayList<Integer> choiceList = new ArrayList<Integer>();
+            ArrayList<Integer> choiceList = new ArrayList<>();
             for (int j = 0; j < lucs.size(); j++) {
                 if (!luc.subjectUnit.name.equals(lucs.get(j).subjectUnit.name)) {
                     choiceList.add(j);
@@ -211,7 +214,10 @@ public class LessonRepo {
             }
             Collections.shuffle(choiceList);
 
-            int answerIndex = ThreadLocalRandom.current().nextInt(numChoices);
+            int answerIndex = 0;
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                answerIndex = ThreadLocalRandom.current().nextInt(numChoices);
+            }
             for (int c = 0; c < numChoices; c++) {
                 if (c == answerIndex) {
                     choices[c] = luc.objectUnit;
@@ -225,15 +231,15 @@ public class LessonRepo {
                 answer.name = answer.name.toUpperCase();
             }
             if (choiceFormat == UPPER_CASE_LETTER_FORMAT) {
-                for (int c = 0; c < choices.length; c++) {
+                for (Unit choice : choices) {
                     //TODO: Handle unicode
-                    choices[c].name = choices[c].name.substring(0, 1).toUpperCase();
+                    choice.name = choice.name.substring(0, 1).toUpperCase();
                 }
             }
             if (concept == Lesson.UPPER_CASE_LETTER_TO_WORD_CONCEPT) {
-                for (int c = 0; c < choices.length; c++) {
+                for (Unit choice : choices) {
                     //TODO: Handle unicode
-                    choices[c].name = choices[c].name.substring(0, 1).toUpperCase() + choices[c].name.substring(1);
+                    choice.name = choice.name.substring(0, 1).toUpperCase() + choice.name.substring(1);
                 }
             }
             MultipleChoiceQuiz mcq = new MultipleChoiceQuiz(context.getResources().getString(R.string.word),
@@ -244,7 +250,7 @@ public class LessonRepo {
     }
 
     private static void convertToUniqueSubjects(List<FlashCard> lucs, boolean caseInvariant) {
-        Set<String> subjectSet = new HashSet<String>(lucs.size());
+        Set<String> subjectSet = new HashSet<>(lucs.size());
         for (Iterator<FlashCard> iter = lucs.iterator(); iter.hasNext(); ) {
             FlashCard luc = iter.next();
             String compareStr = luc.subjectUnit.name;
@@ -267,12 +273,12 @@ public class LessonRepo {
         Lesson lesson = db.lessonDao().getLessonById(user.currentLessonId);
         FlashCard[] lucs = db.lessonUnitDao().getFlashCardArrayByLessonId(lesson.id);
 
-        List<BagOfChoiceQuiz> bcqs = new ArrayList<BagOfChoiceQuiz>(numQuizes);
+        List<BagOfChoiceQuiz> bcqs = new ArrayList<>(numQuizes);
 
         if (lesson.concept == Lesson.LETTER_TO_WORD_CONCEPT) {
-            ArrayList<Integer> quizList = new ArrayList<Integer>();
-            Set<String> choiceSet = new HashSet<String>(lucs.length);
-            Map<String, String[]> wordMap = new HashMap<String, String[]>(lucs.length);
+            ArrayList<Integer> quizList = new ArrayList<>();
+            Set<String> choiceSet = new HashSet<>(lucs.length);
+            Map<String, String[]> wordMap = new HashMap<>(lucs.length);
             fillChoicesWithWords(minAnswers, maxAnswers, lucs, quizList, choiceSet, wordMap);
             if (quizList.size() == 0) {
                 fillChoicesWithWords(minAnswers, maxChoices, lucs, quizList, choiceSet, wordMap);
@@ -287,11 +293,11 @@ public class LessonRepo {
                 FlashCard luc = lucs[lucIndex];
                 String answer = luc.objectUnit.name;
                 String[] answers = wordMap.get(answer);
-                Set<String> choiceCloneSet = new HashSet<String>(choiceSet);
-                for (int a = 0; a < answers.length; a++) {
-                    choiceCloneSet.remove(answers[a]);
+                Set<String> choiceCloneSet = new HashSet<>(choiceSet);
+                for (String answer1 : answers) {
+                    choiceCloneSet.remove(answer1);
                 }
-                List<String> choiceList = new LinkedList<String>(choiceCloneSet);
+                List<String> choiceList = new LinkedList<>(choiceCloneSet);
                 Collections.shuffle(choiceList);
 
                 String[] choices = new String[maxChoices - answers.length];
@@ -307,9 +313,9 @@ public class LessonRepo {
                 bcqs.add(bcq);
             }
         } else if (lesson.concept == Lesson.SYLLABLE_TO_WORD_CONCEPT) {
-            ArrayList<Integer> quizList = new ArrayList<Integer>();
-            Map<Unit, EagerUnitPart[]> unitMap = new HashMap<Unit, EagerUnitPart[]>(lucs.length);
-            Set<String> choiceSet = new HashSet<String>(lucs.length);
+            ArrayList<Integer> quizList = new ArrayList<>();
+            Map<Unit, EagerUnitPart[]> unitMap = new HashMap<>(lucs.length);
+            Set<String> choiceSet = new HashSet<>(lucs.length);
             fillChoicesWithSyllables(minAnswers, maxAnswers, db, lucs, quizList, unitMap, choiceSet);
             if (quizList.size() == 0) {
                 fillChoicesWithSyllables(minAnswers, maxChoices, db, lucs, quizList, unitMap, choiceSet);
@@ -323,13 +329,13 @@ public class LessonRepo {
                 int lucIndex = quizList.get(Math.min(i, quizList.size() - 1));
                 FlashCard luc = lucs[lucIndex];
                 EagerUnitPart[] unitParts = unitMap.get(luc.objectUnit);
-                String[] answers = new String[unitParts.length];
-                Set<String> choiceCloneSet = new HashSet<String>(choiceSet);
-                for (int a = 0; a < unitParts.length; a++) {
+                String[] answers = unitParts != null ? new String[unitParts.length] : new String[0];
+                Set<String> choiceCloneSet = new HashSet<>(choiceSet);
+                for (int a = 0; a < (unitParts != null ? unitParts.length : 0); a++) {
                     answers[a] = unitParts[a].partUnit.name;
                     choiceCloneSet.remove(answers[a]);
                 }
-                List<String> choiceList = new LinkedList<String>(choiceCloneSet);
+                List<String> choiceList = new LinkedList<>(choiceCloneSet);
                 Collections.shuffle(choiceList);
 
                 String[] choices = new String[maxChoices - answers.length];
@@ -345,22 +351,22 @@ public class LessonRepo {
                 bcqs.add(bcq);
             }
         } else {
-            ArrayList<Integer> quizList = new ArrayList<Integer>();
+            ArrayList<Integer> quizList = new ArrayList<>();
             for (int i = 0; i < lucs.length; i++) {
-                quizList.add(new Integer(i));
+                quizList.add(Integer.valueOf(i));
             }
             Collections.shuffle(quizList);
 
             for (int i = 0; i < numQuizes; i++) {
                 int lucIndex = quizList.get(Math.min(i, quizList.size() - 1));
                 FlashCard luc = lucs[lucIndex];
-                List<String> answers = new LinkedList<String>();
-                List<String> choices = new LinkedList<String>();
+                List<String> answers = new LinkedList<>();
+                List<String> choices = new LinkedList<>();
 
-                ArrayList<Integer> choiceList = new ArrayList<Integer>();
+                ArrayList<Integer> choiceList = new ArrayList<>();
                 for (int j = 0; j < lucs.length; j++) {
                     if (!luc.subjectUnit.name.equals(lucs[j].subjectUnit.name)) {
-                        choiceList.add(new Integer(j));
+                        choiceList.add(Integer.valueOf(j));
                     }
                 }
                 Collections.shuffle(choiceList);
@@ -394,7 +400,7 @@ public class LessonRepo {
                 choiceSet.add(unitPart.partUnit.name);
             }
             if (unitParts.length >= minAnswers && unitParts.length <= maxAnswers) {
-                quizList.add(new Integer(i));
+                quizList.add(Integer.valueOf(i));
                 unitMap.put(lucs[i].objectUnit, unitParts);
             }
         }
@@ -411,7 +417,7 @@ public class LessonRepo {
                 letters[s] = letter;
             }
             if (word.length() >= minAnswers && word.length() <= maxAnswers) {
-                quizList.add(new Integer(i));
+                quizList.add(Integer.valueOf(i));
                 wordMap.put(word, letters);
             }
         }

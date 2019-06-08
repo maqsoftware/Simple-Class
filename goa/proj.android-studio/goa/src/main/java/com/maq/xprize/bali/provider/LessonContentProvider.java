@@ -174,7 +174,6 @@ public class LessonContentProvider extends ContentProvider {
             int maxAnswers = DEFAULT_MAX_ANSWERS;
             int minChoices = DEFAULT_MIN_CHOICES;
             int maxChoices = DEFAULT_MAX_CHOICES;
-            boolean order = DEFAULT_ORDER;
             if (selectionArgs != null) {
                 if (selectionArgs.length >= 1) {
                     try {
@@ -213,7 +212,7 @@ public class LessonContentProvider extends ContentProvider {
                     }
                 }
             }
-            List<BagOfChoiceQuiz> bcqList = LessonRepo.getBagOfChoiceQuizes(context, numQuizes, minAnswers, maxAnswers, minChoices, maxChoices, order);
+            List<BagOfChoiceQuiz> bcqList = LessonRepo.getBagOfChoiceQuizes(context, numQuizes, minAnswers, maxAnswers, minChoices, maxChoices, DEFAULT_ORDER);
             String[] rowNames;
             rowNames = new String[maxChoices + 4];
             int col = 0;
@@ -272,30 +271,28 @@ public class LessonContentProvider extends ContentProvider {
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
-        switch (MATCHER.match(uri)) {
-            case CODE_ADD_COIN:
-                String gameName = contentValues.getAsString(GAME_NAME);
-                int gameLevel = contentValues.getAsInteger(GAME_LEVEL);
-                int gameEvent = contentValues.getAsInteger(GAME_EVENT);
-                int coins = contentValues.getAsInteger(COINS);
-                int updatedCoins = 0;
+        if (MATCHER.match(uri) == CODE_ADD_COIN) {
+            String gameName = contentValues.getAsString(GAME_NAME);
+            int gameLevel = contentValues.getAsInteger(GAME_LEVEL);
+            int gameEvent = contentValues.getAsInteger(GAME_EVENT);
+            int coins = contentValues.getAsInteger(COINS);
+            int updatedCoins = 0;
 
-                updatedCoins = UserRepo.updateCoins(getContext(), coins);
+            updatedCoins = UserRepo.updateCoins(getContext(), coins);
 
-                Log.d("LessonContentProvider", "adding coins: "
-                        + coins
-                        + " for total of: "
-                        + updatedCoins);
+            Log.d("LessonContentProvider", "adding coins: "
+                    + coins
+                    + " for total of: "
+                    + updatedCoins);
 
-                String coinMessage = "Added Coins:" + coins + " for total of: "
-                        + updatedCoins;
+            String coinMessage = "Added Coins:" + coins + " for total of: "
+                    + updatedCoins;
 
 //                BaliApplication application = (BaliApplication) getContext().getApplicationContext();
 //                application.updateCoinNotifications("Coins:", coinMessage, updatedCoins);
-                UserLogRepo.logEntity(getContext(), UserLog.GAME_TYPE, (long) gameLevel, gameEvent, gameName);
-                return updatedCoins;
-            default:
-                throw new IllegalArgumentException("Unknown URI: " + uri);
+            UserLogRepo.logEntity(getContext(), UserLog.GAME_TYPE, (long) gameLevel, gameEvent, gameName);
+            return updatedCoins;
         }
+        throw new IllegalArgumentException("Unknown URI: " + uri);
     }
 }

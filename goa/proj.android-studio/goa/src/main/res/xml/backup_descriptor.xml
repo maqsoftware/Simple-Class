@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <!-- TODO Remove the following "exclude" elements to make them a part of the auto backup -->
+    <!-- Exclude the shared preferences file that contains the GCM registrationId -->
+    <exclude
+        domain="sharedpref"
+        path="com.android.vending.licensing.ServerManagedPolicy.xml" />
+    <exclude
+        domain="sharedpref"
+        path="ExpansionFile.xml" />
+    <exclude
+        domain="sharedpref"
+        path="com.android.vending.licensing.APKExpansionPolicy.xml" />
+    <exclude
+        domain="sharedpref"
+        path="com.maq.xprize.bali.PREFERENCE_FILE_KEY.xml" />
+    <exclude
+        domain="sharedpref"
+        path="Cocos2dxPrefsFile.xml" />
+</full-backup-content>

@@ -1,34 +1,34 @@
 /****************************************************************************
-Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+ Copyright (c) 2010-2012 cocos2d-x.org
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
 
-http://www.cocos2d-x.org
+ http://www.cocos2d-x.org
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
 import android.content.Context;
+import android.content.res.AssetFileDescriptor;
 import android.media.AudioManager;
 import android.media.SoundPool;
 import android.util.Log;
-import android.content.res.AssetFileDescriptor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -60,7 +60,7 @@ public class Cocos2dxSound {
 
     private final HashMap<String, Integer> mPathSoundIDMap = new HashMap<String, Integer>();
 
-    private ConcurrentHashMap<Integer, SoundInfoForLoadedCompleted>  mPlayWhenLoadedEffects =
+    private ConcurrentHashMap<Integer, SoundInfoForLoadedCompleted> mPlayWhenLoadedEffects =
             new ConcurrentHashMap<Integer, SoundInfoForLoadedCompleted>();
 
     private static final int MAX_SIMULTANEOUS_STREAMS_DEFAULT = 5;
@@ -85,11 +85,10 @@ public class Cocos2dxSound {
     private void initData() {
         if (Cocos2dxHelper.getDeviceModel().contains("GT-I9100")) {
             this.mSoundPool = new SoundPool(Cocos2dxSound.MAX_SIMULTANEOUS_STREAMS_I9100, AudioManager.STREAM_MUSIC, Cocos2dxSound.SOUND_QUALITY);
-        }
-        else {
+        } else {
             this.mSoundPool = new SoundPool(Cocos2dxSound.MAX_SIMULTANEOUS_STREAMS_DEFAULT, AudioManager.STREAM_MUSIC, Cocos2dxSound.SOUND_QUALITY);
         }
-        
+
         this.mSoundPool.setOnLoadCompleteListener(new OnLoadCompletedListener());
 
         this.mLeftVolume = 0.5f;
@@ -122,7 +121,7 @@ public class Cocos2dxSound {
 
         // unload effect
         final Integer soundID = this.mPathSoundIDMap.get(path);
-        if(soundID != null){
+        if (soundID != null) {
             this.mSoundPool.unload(soundID);
             this.mPathSoundIDMap.remove(path);
         }
@@ -130,7 +129,7 @@ public class Cocos2dxSound {
 
     private static int LOAD_TIME_OUT = 500;
 
-    public int playEffect(final String path, final boolean loop, float pitch, float pan, float gain){
+    public int playEffect(final String path, final boolean loop, float pitch, float pan, float gain) {
         Integer soundID = this.mPathSoundIDMap.get(path);
         int streamID = Cocos2dxSound.INVALID_STREAM_ID;
 
@@ -150,11 +149,10 @@ public class Cocos2dxSound {
             SoundInfoForLoadedCompleted info = new SoundInfoForLoadedCompleted(path, loop, pitch, pan, gain);
             mPlayWhenLoadedEffects.putIfAbsent(soundID, info);
 
-            synchronized(info) {
+            synchronized (info) {
                 try {
                     info.wait(LOAD_TIME_OUT);
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -294,9 +292,9 @@ public class Cocos2dxSound {
         return soundID;
     }
 
-        private float clamp(float value, float min, float max) {
-            return Math.max(min, (Math.min(value, max)));
-        }
+    private float clamp(float value, float min, float max) {
+        return Math.max(min, (Math.min(value, max)));
+    }
 
     private int doPlayEffect(final String path, final int soundId, final boolean loop, float pitch, float pan, float gain) {
         float leftVolume = this.mLeftVolume * gain * (1.0f - this.clamp(pan, 0.0f, 1.0f));
@@ -317,11 +315,11 @@ public class Cocos2dxSound {
         return streamID;
     }
 
-    public void onEnterBackground(){
+    public void onEnterBackground() {
         this.mSoundPool.autoPause();
     }
 
-    public void onEnterForeground(){
+    public void onEnterForeground() {
         this.mSoundPool.autoResume();
     }
 
@@ -351,9 +349,8 @@ public class Cocos2dxSound {
 
         @Override
         public void onLoadComplete(SoundPool soundPool, int sampleId, int status) {
-            if (status == 0)
-            {
-                SoundInfoForLoadedCompleted info =  mPlayWhenLoadedEffects.get(sampleId);
+            if (status == 0) {
+                SoundInfoForLoadedCompleted info = mPlayWhenLoadedEffects.get(sampleId);
                 if (info != null) {
                     info.effectID = doPlayEffect(info.path, sampleId, info.isLoop, info.pitch, info.pan, info.gain);
                     synchronized (info) {

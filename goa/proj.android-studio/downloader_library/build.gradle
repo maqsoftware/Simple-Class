@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 4
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 15
     }
 
@@ -15,8 +16,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
-    compile project(path: ':play_licensing')
+    api project(path: ':play_licensing')
 }

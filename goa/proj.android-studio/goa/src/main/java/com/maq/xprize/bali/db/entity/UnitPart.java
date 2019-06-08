@@ -39,15 +39,13 @@ import android.support.annotation.NonNull;
 public class UnitPart {
     @ColumnInfo(name = "unitId")
     @NonNull
-    public Long unitId;
+    public Long unitId = Long.valueOf(0);
 
     public Long partUnitId;
 
-    @NonNull
-    public int type;
+    public int type = 0;
 
-    @NonNull
-    public int seq;
+    public int seq = 0;
 
     @Ignore
     public UnitPart(Long unitId, Long partUnitId, int type, int seq) {
