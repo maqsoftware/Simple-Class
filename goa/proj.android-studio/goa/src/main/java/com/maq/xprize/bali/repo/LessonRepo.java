@@ -353,7 +353,7 @@ public class LessonRepo {
         } else {
             ArrayList<Integer> quizList = new ArrayList<>();
             for (int i = 0; i < lucs.length; i++) {
-                quizList.add(Integer.valueOf(i));
+                quizList.add(i);
             }
             Collections.shuffle(quizList);
 
@@ -366,7 +366,7 @@ public class LessonRepo {
                 ArrayList<Integer> choiceList = new ArrayList<>();
                 for (int j = 0; j < lucs.length; j++) {
                     if (!luc.subjectUnit.name.equals(lucs[j].subjectUnit.name)) {
-                        choiceList.add(Integer.valueOf(j));
+                        choiceList.add(j);
                     }
                 }
                 Collections.shuffle(choiceList);
@@ -400,7 +400,7 @@ public class LessonRepo {
                 choiceSet.add(unitPart.partUnit.name);
             }
             if (unitParts.length >= minAnswers && unitParts.length <= maxAnswers) {
-                quizList.add(Integer.valueOf(i));
+                quizList.add(i);
                 unitMap.put(lucs[i].objectUnit, unitParts);
             }
         }
@@ -417,7 +417,7 @@ public class LessonRepo {
                 letters[s] = letter;
             }
             if (word.length() >= minAnswers && word.length() <= maxAnswers) {
-                quizList.add(Integer.valueOf(i));
+                quizList.add(i);
                 wordMap.put(word, letters);
             }
         }

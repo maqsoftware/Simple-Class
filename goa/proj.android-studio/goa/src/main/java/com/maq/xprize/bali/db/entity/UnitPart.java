@@ -39,7 +39,7 @@ import android.support.annotation.NonNull;
 public class UnitPart {
     @ColumnInfo(name = "unitId")
     @NonNull
-    public Long unitId = Long.valueOf(0);
+    public Long unitId = 0L;
 
     public Long partUnitId;
 
