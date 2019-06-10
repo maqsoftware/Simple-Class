@@ -22,7 +22,7 @@ TextGenerator* TextGenerator::getInstance() {
 }
 
 
-std::vector<std::vector<std::string>> TextGenerator::generateMatrix(std::string word, int numRows, int numCols) {
+std::vector<std::vector<std::string>> TextGenerator::generateMatrix(const std::string word, int numRows, int numCols) {
     auto allChars = getAllChars();
     auto wordVec = getGraphemes(word);
     int wordLength = wordVec.size();
@@ -68,7 +68,7 @@ std::string TextGenerator::generateASentence(int level) {
 }
 
 
-int TextGenerator::getNumGraphemesInString(std::string word) {
+int TextGenerator::getNumGraphemesInString(const std::string word) {
     return getGraphemes(word).size();
 }
 
@@ -107,7 +107,7 @@ std::vector<std::string> TextGenerator::getAllChars() {
     return allCharVector;
 }
 
-std::vector<std::string> TextGenerator::getValidCombinations(std::string chars, int maxLength) {
+std::vector<std::string> TextGenerator::getValidCombinations(const std::string chars, int maxLength) {
     const char* args[] = {"one", "two", "three", "four"};
     std::vector<std::string> v(args, args + 4);
     return v;
@@ -133,7 +133,7 @@ std::map<std::string, std::string> TextGenerator::getSingularPlurals(int maxNum,
     return getPairs("plurals", maxNum, level);
 }
 
-std::map<std::string, std::string> TextGenerator::getPairs(std::string type, int maxNum, int level) {
+std::map<std::string, std::string> TextGenerator::getPairs(const std::string type, int maxNum, int level) {
     std::string contents = cocos2d::FileUtils::getInstance()->getStringFromFile(LangUtil::getInstance()->getDir() + "/" + type + ".csv");
     std::vector<std::pair<std::string, std::string>> pairs;
     std::stringstream ss;
@@ -169,7 +169,7 @@ std::map<std::string, std::string> TextGenerator::getPairs(std::string type, int
     return data;
 }
 
-std::map<std::string, std::string> TextGenerator::getPairsNotForLevel(std::string type, int maxNum, int level) {
+std::map<std::string, std::string> TextGenerator::getPairsNotForLevel(const std::string type, int maxNum, int level) {
     std::string contents = cocos2d::FileUtils::getInstance()->getStringFromFile(LangUtil::getInstance()->getDir() + "/" + type + ".csv");
     std::vector<std::pair<std::string, std::string>> pairs;
     std::stringstream ss;
@@ -202,7 +202,7 @@ std::map<std::string, std::string> TextGenerator::getPairsNotForLevel(std::strin
 }
 
 
-std::vector<std::string> TextGenerator::getWordList(std::string type, int level, int maxNum) {
+std::vector<std::string> TextGenerator::getWordList(const std::string type, int level, int maxNum) {
     std::string contents = cocos2d::FileUtils::getInstance()->getStringFromFile(LangUtil::getInstance()->getDir() + "/" + type + ".csv");
     std::vector<std::string> pairs;
     std::stringstream ss;
@@ -238,7 +238,7 @@ std::vector<std::string> TextGenerator::getWordList(std::string type, int level,
     return pairs;
 }
 
-std::string TextGenerator::getSingle(std::string type, int level, int length) {
+std::string TextGenerator::getSingle(const std::string type, int level, int length) {
     std::string contents = cocos2d::FileUtils::getInstance()->getStringFromFile(LangUtil::getInstance()->getDir() + "/" + type + ".csv");
     std::vector<std::string> pairs;
     std::stringstream ss;
@@ -272,7 +272,7 @@ std::string TextGenerator::getSingle(std::string type, int level, int length) {
 
 
 
-std::map<std::string, std::map<std::string, std::string>> TextGenerator::getMapOfWords(std::string type, int maxNum, int maxChoices, int level) {
+std::map<std::string, std::map<std::string, std::string>> TextGenerator::getMapOfWords(const std::string type, int maxNum, int maxChoices, int level) {
     std::string contents = cocos2d::FileUtils::getInstance()->getStringFromFile(LangUtil::getInstance()->getDir() + "/" + type + ".csv");
     std::map<std::string, std::vector<std::string>> pairMap;
     std::vector<std::string> keys;
@@ -716,7 +716,7 @@ std::vector<std::vector<std::string>> TextGenerator::getSegmentsNotForPhonic(int
     return ret;
 }
 
-std::vector<std::vector<std::string>> TextGenerator::getListsOfWords(std::string type, int level, int maxNum) {
+std::vector<std::vector<std::string>> TextGenerator::getListsOfWords(const std::string type, int level, int maxNum) {
     std::string contents = cocos2d::FileUtils::getInstance()->getStringFromFile(LangUtil::getInstance()->getDir() + "/" + type + ".csv");
     std::vector<std::vector<std::string>> pairs;
     std::stringstream ss;

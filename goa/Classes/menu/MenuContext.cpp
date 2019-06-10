@@ -116,7 +116,7 @@ bool MenuContext::_gameIsStatic = false;
 std::string MenuContext::_lastAudioId = "";
 bool MenuContext::_isInStoryDialogSpeechCurrentlyActive = false;
 
-MenuContext* MenuContext::create(Node* main, std::string gameName, bool launchCustomEventOnExit, std::string sceneName) {
+MenuContext* MenuContext::create(Node* main, const std::string gameName, bool launchCustomEventOnExit, const std::string sceneName) {
     MenuContext* menuContext = new (std::nothrow) MenuContext();
     menuContext->gameName = gameName;
     menuContext->sceneName = sceneName;
@@ -758,7 +758,7 @@ void MenuContext::pickAlphabet(char targetAlphabet, char chosenAlphabet, bool ch
     SafariAnalyticsManager::getInstance()->insertAnalyticsInfo(targetAlphabetStr.c_str(), chosenAlphabetStr.c_str(), gameName.c_str());
 }
 
-void MenuContext::pickWord(std::string targetWord, std::string chosenString, bool choose) {
+void MenuContext::pickWord(const std::string targetWord, const std::string chosenString, bool choose) {
     int points = -1;
     if((choose && targetWord == chosenString) || (!choose && targetWord != chosenString)) {
         points = 1;
@@ -1038,7 +1038,7 @@ void MenuContext::showMap(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
     }
 }
 
-void MenuContext::launchGame(std::string gameName) {
+void MenuContext::launchGame(const std::string gameName) {
     launchGameFromJS(gameName);
 }
 
@@ -1354,7 +1354,7 @@ void MenuContext::changePhoto(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 }
 
 
-void MenuContext::createNewlockStoryDocument(std::string storyToUnlock) {
+void MenuContext::createNewlockStoryDocument(const std::string storyToUnlock) {
     rapidjson::Document documentUnlock;
     rapidjson::Document::AllocatorType& allocator = documentUnlock.GetAllocator();
     documentUnlock.SetObject();
@@ -1371,7 +1371,7 @@ void MenuContext::createNewlockStoryDocument(std::string storyToUnlock) {
 
 
 
-void MenuContext::createNewUnlockStoryDocument(std::string storyToUnlock) {
+void MenuContext::createNewUnlockStoryDocument(const std::string storyToUnlock) {
     rapidjson::Document documentUnlock;
     rapidjson::Document::AllocatorType& allocator = documentUnlock.GetAllocator();
     documentUnlock.SetObject();
@@ -1387,7 +1387,7 @@ void MenuContext::createNewUnlockStoryDocument(std::string storyToUnlock) {
 }
 
 
-void MenuContext::createUnlockStoryDocument(std::string storyToUnlock) {
+void MenuContext::createUnlockStoryDocument(const std::string storyToUnlock) {
     std::string unlockStoryStr;
     localStorageGetItem(storyToUnlock + LEVEL, &unlockStoryStr);
     

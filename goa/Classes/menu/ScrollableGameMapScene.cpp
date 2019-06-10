@@ -557,7 +557,7 @@ std::vector<std::string> ScrollableGameMapScene::getTopBarGames() {
     return topBarGames;
 }
 
-void ScrollableGameMapScene::pushTopBarGame(std::string game) {
+void ScrollableGameMapScene::pushTopBarGame(const std::string game) {
     if(game == "story-catalogue") {
         return;
     }
