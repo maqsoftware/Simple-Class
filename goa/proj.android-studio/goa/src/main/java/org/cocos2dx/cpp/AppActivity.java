@@ -56,7 +56,8 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import java.io.File;
 import java.util.Locale;
 
-import static chimple.DownloadExpansionFile.xAPK;
+import chimple.DownloadExpansionFile;
+import static chimple.DownloadExpansionFile.xAPKs;
 
 public class AppActivity extends Cocos2dxActivity {
     public static final String TAG = "GOA";
@@ -292,13 +293,33 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
         String flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
-        int currentVersionObb = sharedPref.getInt(String.valueOf(R.string.mainFileVersion), 0);
+        int defaultFileVersion = 0;
         File flagFile = new File(flagFilePath);
-        if (!flagFile.exists() || (currentVersionObb != xAPK.mFileVersion)) {
+        boolean extractionRequired = false;
+
+        if (!flagFile.exists()) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
+            editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
+            editor.apply();
+            extractionRequired = !flagFile.exists();
+        } else {
+            int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
+            int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
+            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
+                if ((xf.mIsMain && xf.mFileVersion != mainFileVersion) || (!xf.mIsMain && xf.mFileVersion != patchFileVersion)) {
+                    extractionRequired = true;
+                    break;
+                }
+            }
+
+        }
+        if (extractionRequired) {
             Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
             startActivity(intent);
             finish();
         }
+
         super.onCreate(savedInstanceState);
 
 //        BaliApplication Code which was run by the launcher of Bali

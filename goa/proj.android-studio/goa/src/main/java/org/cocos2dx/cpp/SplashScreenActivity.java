@@ -1,6 +1,7 @@
 package org.cocos2dx.cpp;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -25,11 +26,22 @@ import java.util.zip.ZipFile;
 import chimple.DownloadExpansionFile;
 import utils.Zip;
 
+import static chimple.DownloadExpansionFile.xAPKs;
+import static org.cocos2dx.cpp.AppActivity.sharedPref;
+
 public class SplashScreenActivity extends Activity {
 
     Intent intent = null;
+    String obbFilePath;
+    File obbFile;
+    ZipFile obbZipFile;
+    Zip zipFileHandler;
+    String dataFilePath;
+    File packageDir;
+    int mainFileVersion;
+    int patchFileVersion;
 
-    public static String getUnzippedExpansionFilePath() {
+    public static String getDataFilePath() {
         return "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/";
     }
 
@@ -82,31 +94,57 @@ public class SplashScreenActivity extends Activity {
     }
 
     public void unzipFile() {
+        int totalSize = getTotalSize();
+        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
+        mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), 0);
+        patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), 0);
         try {
-            String filePath = getExpansionFilePath();
-            File file = new File(filePath);
-            ZipFile zipFile = new ZipFile(file);
-            Zip _zip = new Zip(zipFile, this);
-            String unzipFilePath = getUnzippedExpansionFilePath();
-            File packageNameDir = new File(unzipFilePath);
-            if (packageNameDir.exists()) {
-                DownloadExpansionFile.deleteDir(packageNameDir);
+            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
+                if (xf.mIsMain && xf.mFileVersion != mainFileVersion || !xf.mIsMain && xf.mFileVersion != patchFileVersion) {
+                    obbFilePath = getObbFilePath(xf.mIsMain, xf.mFileVersion);
+                    obbFile = new File(obbFilePath);
+                    obbZipFile = new ZipFile(obbFile);
+                    zipFileHandler = new Zip(obbZipFile, this);
+                    dataFilePath = getDataFilePath();
+                    packageDir = new File(dataFilePath);
+                    if (xf.mIsMain && packageDir.exists()) {
+                        DownloadExpansionFile.deleteDir(packageDir);
+                        packageDir.mkdir();
+                    }
+                    zipFileHandler.unzip(dataFilePath, totalSize, xf.mIsMain, xf.mFileVersion);
+                    zipFileHandler.close();
+                }
             }
-            packageNameDir.mkdir();
-            _zip.unzip(unzipFilePath);
-            _zip.close();
             toCallApplication();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public int getTotalSize() {
+        int totalSize = 0;
+        try {
+            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
+                if (!xf.mIsMain && (xf.mFileVersion != patchFileVersion) || xf.mIsMain && (xf.mFileVersion != mainFileVersion)) {
+                    obbFilePath = getObbFilePath(xf.mIsMain, xf.mFileVersion);
+                    obbFile = new File(obbFilePath);
+                    obbZipFile = new ZipFile(obbFile);
+                    totalSize += obbZipFile.size();
+
+                }
+            }
         } catch (IOException ie) {
             System.out.println(ie);
         }
-        return;
+        return totalSize;
     }
 
-    public String getExpansionFilePath() {
+    public String getObbFilePath(boolean isMain, int fileVersion) {
         return Environment.getExternalStorageDirectory().toString() + "/Android/obb/" + Helpers.getPackageName(this) + File.separator +
-                Helpers.getExpansionAPKFileName(this, DownloadExpansionFile.xAPK.mIsMain, DownloadExpansionFile.xAPK.mFileVersion);
+                Helpers.getExpansionAPKFileName(this, isMain, fileVersion);
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class DownloadFile extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... sUrl) {
@@ -115,3 +153,4 @@ public class SplashScreenActivity extends Activity {
         }
     }
 }
+

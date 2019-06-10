@@ -53,13 +53,18 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
      * application is using LVL for licensing, it may make sense to eliminate
      * these checks and to just rely on the server.
      */
-    public static final XAPKFile xAPK = new
-
-            XAPKFile(
-            true, // true signifies a main file
-            7, // the version of the APK that the file was uploaded along with OBB
-            1721211311L // the length of the file in bytes
-    );
+    public static final XAPKFile[] xAPKs = {
+            new XAPKFile(
+                    true, // true signifies a main file
+                    7, // the version of the main obb that is uploaded
+                    1721211311L  // the length of the file in bytes
+            ),
+            new XAPKFile(
+                    false, // false signifies a patch file
+                    0, // the version of the patch that is uploaded
+                    842558L  // the length of the file in bytes
+            )
+    };
     /* expansion service*/
     private static final String LOG_TAG = "LVLDownloader";
     /**
@@ -274,8 +279,13 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
      * @return true if they are present.
      */
     boolean expansionFilesDelivered() {
-        String fileName = Helpers.getExpansionAPKFileName(this, xAPK.mIsMain, xAPK.mFileVersion);
-        return Helpers.doesFileExist(this, fileName, xAPK.mFileSize, false);
+        for (XAPKFile xf : xAPKs) {
+            String fileName = Helpers.getExpansionAPKFileName(this, xf.mIsMain, xf.mFileVersion);
+            if (Helpers.doesFileExist(this, fileName, xf.mFileSize, false)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -378,104 +388,87 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
 
             @Override
             protected Boolean doInBackground(Object... params) {
-
-                String fileName = Helpers.getExpansionAPKFileName(
-                        DownloadExpansionFile.this,
-                        xAPK.mIsMain, xAPK.mFileVersion);
-                if (!Helpers.doesFileExist(DownloadExpansionFile.this, fileName,
-                        xAPK.mFileSize, false))
-                    return false;
-                fileName = Helpers
-                        .generateSaveFileName(DownloadExpansionFile.this, fileName);
-                ZipResourceFile zrf;
-                byte[] buf = new byte[1024 * 256];
-                try {
-                    zrf = new ZipResourceFile(fileName);
-                    ZipResourceFile.ZipEntryRO[] entries = zrf.getAllEntries();
-                    /**
-                     * First calculate the total compressed length
-                     */
-                    long totalCompressedLength = 0;
-                    for (ZipResourceFile.ZipEntryRO entry : entries) {
-                        totalCompressedLength += entry.mCompressedLength;
+                for (XAPKFile xf : xAPKs) {
+                    String fileName = Helpers.getExpansionAPKFileName(DownloadExpansionFile.this, xf.mIsMain, xf.mFileVersion);
+                    if (!Helpers.doesFileExist(DownloadExpansionFile.this, fileName, xf.mFileSize, false)) {
+                        return false;
                     }
-                    float averageVerifySpeed = 0;
-                    long totalBytesRemaining = totalCompressedLength;
-                    long timeRemaining;
-                    /**
-                     * Then calculate a CRC for every file in the Zip file,
-                     * comparing it to what is stored in the Zip directory.
-                     * Note that for compressed Zip files we must extract
-                     * the contents to do this comparison.
-                     */
-                    for (ZipResourceFile.ZipEntryRO entry : entries) {
-                        if (-1 != entry.mCRC32) {
-                            long length = entry.mUncompressedLength;
-                            CRC32 crc = new CRC32();
-                            DataInputStream dis = null;
-                            try {
-                                dis = new DataInputStream(
-                                        zrf.getInputStream(entry.mFileName));
+                    fileName = Helpers.generateSaveFileName(DownloadExpansionFile.this, fileName);
+                    ZipResourceFile zrf;
+                    byte[] buf = new byte[1024 * 256];
+                    try {
+                        zrf = new ZipResourceFile(fileName);
+                        ZipResourceFile.ZipEntryRO[] entries = zrf.getAllEntries();
+                        /**
+                         * First calculate the total compressed length
+                         */
+                        long totalCompressedLength = 0;
+                        for (ZipResourceFile.ZipEntryRO entry : entries) {
+                            totalCompressedLength += entry.mCompressedLength;
+                        }
+                        float averageVerifySpeed = 0;
+                        long totalBytesRemaining = totalCompressedLength;
+                        long timeRemaining;
+                        /**
+                         * Then calculate a CRC for every file in the Zip file, comparing it to what is
+                         * stored in the Zip directory. Note that for compressed Zip files we must
+                         * extract the contents to do this comparison.
+                         */
+                        for (ZipResourceFile.ZipEntryRO entry : entries) {
+                            if (-1 != entry.mCRC32) {
+                                long length = entry.mUncompressedLength;
+                                CRC32 crc = new CRC32();
+                                DataInputStream dis = null;
+                                try {
+                                    dis = new DataInputStream(zrf.getInputStream(entry.mFileName));
 
-                                long startTime = SystemClock.uptimeMillis();
-                                while (length > 0) {
-                                    int seek = (int) (length > buf.length ? buf.length
-                                            : length);
-                                    dis.readFully(buf, 0, seek);
-                                    crc.update(buf, 0, seek);
-                                    length -= seek;
-                                    long currentTime = SystemClock.uptimeMillis();
-                                    long timePassed = currentTime - startTime;
-                                    if (timePassed > 0) {
-                                        float currentSpeedSample = (float) seek
-                                                / (float) timePassed;
-                                        if (0 != averageVerifySpeed) {
-                                            averageVerifySpeed = SMOOTHING_FACTOR
-                                                    * currentSpeedSample
-                                                    + (1 - SMOOTHING_FACTOR)
-                                                    * averageVerifySpeed;
-                                        } else {
-                                            averageVerifySpeed = currentSpeedSample;
+                                    long startTime = SystemClock.uptimeMillis();
+                                    while (length > 0) {
+                                        int seek = (int) (length > buf.length ? buf.length : length);
+                                        dis.readFully(buf, 0, seek);
+                                        crc.update(buf, 0, seek);
+                                        length -= seek;
+                                        long currentTime = SystemClock.uptimeMillis();
+                                        long timePassed = currentTime - startTime;
+                                        if (timePassed > 0) {
+                                            float currentSpeedSample = (float) seek / (float) timePassed;
+                                            if (0 != averageVerifySpeed) {
+                                                averageVerifySpeed = SMOOTHING_FACTOR * currentSpeedSample
+                                                        + (1 - SMOOTHING_FACTOR) * averageVerifySpeed;
+                                            } else {
+                                                averageVerifySpeed = currentSpeedSample;
+                                            }
+                                            totalBytesRemaining -= seek;
+                                            timeRemaining = (long) (totalBytesRemaining / averageVerifySpeed);
+                                            this.publishProgress(new DownloadProgressInfo(totalCompressedLength,
+                                                    totalCompressedLength - totalBytesRemaining, timeRemaining,
+                                                    averageVerifySpeed));
                                         }
-                                        totalBytesRemaining -= seek;
-                                        timeRemaining = (long) (totalBytesRemaining / averageVerifySpeed);
-                                        this.publishProgress(
-                                                new DownloadProgressInfo(
-                                                        totalCompressedLength,
-                                                        totalCompressedLength
-                                                                - totalBytesRemaining,
-                                                        timeRemaining,
-                                                        averageVerifySpeed)
-                                        );
+                                        startTime = currentTime;
+                                        if (mCancelValidation)
+                                            return true;
                                     }
-                                    startTime = currentTime;
-                                    if (mCancelValidation)
-                                        return true;
-                                }
-                                if (crc.getValue() != entry.mCRC32) {
-                                    Log.e(Constants.TAG,
-                                            "CRC does not match for entry: "
-                                                    + entry.mFileName);
-                                    Log.e(Constants.TAG,
-                                            "In file: " + entry.getZipFileName());
-                                    return false;
-                                }
-                            } finally {
-                                if (null != dis) {
-                                    dis.close();
+                                    if (crc.getValue() != entry.mCRC32) {
+                                        Log.e(Constants.TAG, "CRC does not match for entry: " + entry.mFileName);
+                                        Log.e(Constants.TAG, "In file: " + entry.getZipFileName());
+                                        return false;
+                                    }
+                                } finally {
+                                    if (null != dis) {
+                                        dis.close();
+                                    }
                                 }
                             }
                         }
+                    } catch (IOException e) {
+                        StringWriter sw = new StringWriter();
+                        PrintWriter pw = new PrintWriter(sw);
+                        e.printStackTrace(pw);
+                        Log.e("ZIP Exception", sw.toString());
+                        e.printStackTrace();
+                        return false;
                     }
-                } catch (IOException e) {
-                    StringWriter sw = new StringWriter();
-                    PrintWriter pw = new PrintWriter(sw);
-                    e.printStackTrace(pw);
-                    Log.e("ZIP Exception", sw.toString());
-                    e.printStackTrace();
-                    return false;
                 }
-
                 return true;
             }
 
@@ -483,14 +476,14 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
             protected void onPreExecute() {
                 mDashboard.setVisibility(View.VISIBLE);
                 mCellMessage.setVisibility(View.GONE);
-                mStatusText.setText(/*R.string.text_verifying_download*/null);
+                mStatusText.setText(null);
                 mPauseButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         mCancelValidation = true;
                     }
                 });
-                mPauseButton.setText(/*R.string.text_button_cancel_verify*/null);
+                mPauseButton.setText(null);
                 super.onPreExecute();
             }
 
@@ -499,14 +492,12 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
                 if (result) {
                     mDashboard.setVisibility(View.VISIBLE);
                     mCellMessage.setVisibility(View.GONE);
-                    mStatusText.setText(/*R.string.text_validation_complete*/null);
+                    mStatusText.setText(null);
                     Intent intent = new Intent(vContext, AppActivity.class);
                     startActivity(intent);
                     mPauseButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-//                            Intent intent = new Intent(vContext, AppActivity.class);
-//                            startActivity(intent);
                             finish();
                         }
                     });
@@ -515,7 +506,7 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
                 } else {
                     mDashboard.setVisibility(View.VISIBLE);
                     mCellMessage.setVisibility(View.GONE);
-                    mStatusText.setText(/*R.string.text_validation_failed*/null);
+                    mStatusText.setText(null);
                     mPauseButton.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -556,9 +547,7 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
         progress.mOverallTotal = progress.mOverallTotal;
         mPB.setMax((int) (progress.mOverallTotal >> 8));
         mPB.setProgress((int) (progress.mOverallProgress >> 8));
-        mProgressPercent.setText(progress.mOverallProgress
-                * 100 /
-                progress.mOverallTotal + "%");
+        mProgressPercent.setText(progress.mOverallProgress * 100 / progress.mOverallTotal + "%");
         mProgressFraction.setText(Helpers.getDownloadProgressString
                 (progress.mOverallProgress,
                         progress.mOverallTotal));
