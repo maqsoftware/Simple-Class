@@ -65,11 +65,11 @@ void ChocolateFactory::onEnterTransitionDidFinish()
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 	Node * monsterItem = *item;
 	std::string str = monsterItem->getName().c_str();
-	if (str.find("abox") == 0)
+	if (str.compare(0, 4, "abox") == 0)
 	{
 		_nodeName.push_back(str);
 	}
-	else if (str.find("conveyor") == 0)
+	else if (str.compare(0, 8, "conveyor") == 0)
 	{
 		for (int j = 0; j < monsterItem->getChildren().size(); j++)
 		{
@@ -119,7 +119,7 @@ void ChocolateFactory::onEnterTransitionDidFinish()
 		for (int j=0; j<sprite->getChildren().size(); j++)
 		{ 
 			 std::string str = sprite->getChildren().at(j)->getName();
-			 if(str.find("milkcarton")==0)
+			 if(str.compare(0, 10, "milkcarton")==0)
 			 sprite->getChildren().at(j)->setVisible(false);
 		}
 	}

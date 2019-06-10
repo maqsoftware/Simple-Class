@@ -35,7 +35,7 @@ void Balloon::onEnterTransitionDidFinish()
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
-		if (str.find("Node_") == 0)
+		if (str.compare(0, 5, "Node_") == 0)
 			_nodeName.push_back(str);
 		CCLOG("name : %s", str.c_str());
 	}

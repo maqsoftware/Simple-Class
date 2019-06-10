@@ -160,7 +160,7 @@ void AlphamonFeed::startGame(cocos2d::EventCustom *eventCustom) {
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monster = *item;
 		std::string str = monster->getName().c_str();
-		if (str.find("skate") == 0) {
+		if (str.compare(0, 5, "skate") == 0) {
 			legReff.pushBack(monster);
 		}
 	}
