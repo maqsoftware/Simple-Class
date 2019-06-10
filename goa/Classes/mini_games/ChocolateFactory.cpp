@@ -228,7 +228,7 @@ void ChocolateFactory::update(float dt)
 }
 void ChocolateFactory::machineDynamicMotion(std::vector<int> randomNumbers, std::vector<int> sortedRandomNumbers, int index, cocostudio::timeline::ActionTimeline* timeline)
 {
-	int correctOrderIndex;
+	int correctOrderIndex = NULL;
 	auto a = (randomNumbers[index]);
 	
 		for (int k = 0;k < sortedRandomNumbers.size(); k++)
