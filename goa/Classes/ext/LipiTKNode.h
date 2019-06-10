@@ -32,9 +32,9 @@ public:
     
     virtual cocos2d::Sprite* createDrawingAreaUsingFileName(cocos2d::Vec2 anchorPoint, cocos2d::Vec2 position, float opacity, std::string fileName);
     
-    virtual cocos2d::ui::Button* createButton(const std::string normalImage,
-                                      const std::string selectedImage ,
-                                      const std::string disableImage, cocos2d::Vec2 position);
+    virtual cocos2d::ui::Button* createButton(const std::string const normalImage,
+                                      const std::string const selectedImage ,
+                                      const std::string const disableImage, cocos2d::Vec2 position);
 
     virtual void clearDrawing(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType);
     
@@ -86,9 +86,9 @@ private:
 	cocos2d::EventListenerTouchOneByOne * _listenerTouches;
     void processLipiTK();
 	virtual void removeClearButton();
-	virtual void setClearButtonTexture(const std::string normalImage,
-		const std::string selectedImage,
-		const std::string disableImage );
+	virtual void setClearButtonTexture(const std::string const normalImage,
+		const std::string const selectedImage,
+		const std::string const disableImage );
 };
 
 #endif /* LipiTKNode_h */
