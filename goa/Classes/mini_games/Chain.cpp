@@ -60,7 +60,7 @@ Node* Chain::loadNode() {
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node* monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
-		if (str.compare(0, 6, "compare") == 0)
+		if (str.compare(0, 6, "monkey") == 0)
 		{
 			monsterItem->setVisible(false);
 		}
