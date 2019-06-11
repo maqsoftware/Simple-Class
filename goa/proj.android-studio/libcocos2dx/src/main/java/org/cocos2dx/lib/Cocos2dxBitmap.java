@@ -1,37 +1,35 @@
 /****************************************************************************
-Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+ Copyright (c) 2010-2012 cocos2d-x.org
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
 
-http://www.cocos2d-x.org
+ http://www.cocos2d-x.org
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.Typeface;
-import android.text.BoringLayout;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -77,7 +75,7 @@ public final class Cocos2dxBitmap {
     // ===========================================================
 
     private static native void nativeInitBitmapDC(final int width,
-            final int height, final byte[] pixels);
+                                                  final int height, final byte[] pixels);
 
     //http://egoco.de/post/19077604048/calculating-the-height-of-text-in-android
     public static int getTextHeight(String text, int maxWidth, float textSize, Typeface typeface) {
@@ -90,20 +88,19 @@ public final class Cocos2dxBitmap {
         int index = 0;
         int length = text.length();
 
-        while(index < length) {
+        while (index < length) {
             index += paint.breakText(text, index, length, true, maxWidth, null);
             lineCount++;
         }
 
         float actualHeight = (Math.abs(paint.ascent()) + Math.abs(paint.descent()));
 
-        return (int)Math.floor(lineCount * actualHeight);
+        return (int) Math.floor(lineCount * actualHeight);
     }
 
-    public static Typeface calculateShrinkTypeFace(String text, int width, int height, Layout.Alignment hAlignment, float textSize, TextPaint paint, boolean enableWrap)
-    {
+    public static Typeface calculateShrinkTypeFace(String text, int width, int height, Layout.Alignment hAlignment, float textSize, TextPaint paint, boolean enableWrap) {
         if (width == 0 || height == 0) {
-            return  paint.getTypeface();
+            return paint.getTypeface();
         }
         float actualWidth = width + 1;
         float actualHeight = height + 1;
@@ -113,8 +110,8 @@ public final class Cocos2dxBitmap {
             while (actualWidth > width || actualHeight > height) {
                 fontSize = fontSize - 1;
 
-                actualWidth = (int)Math.ceil( StaticLayout.getDesiredWidth(text, paint));
-                actualHeight = getTextHeight(text, (int)actualWidth, fontSize, paint.getTypeface());
+                actualWidth = (int) Math.ceil(StaticLayout.getDesiredWidth(text, paint));
+                actualHeight = getTextHeight(text, (int) actualWidth, fontSize, paint.getTypeface());
 
                 paint.setTextSize(fontSize);
                 if (fontSize <= 0) {
@@ -126,7 +123,7 @@ public final class Cocos2dxBitmap {
             while (actualHeight > height || actualWidth > width) {
                 fontSize = fontSize - 1;
 
-                Layout layout = new StaticLayout(text, paint, (int) width, hAlignment,1.0f,0.0f,false);
+                Layout layout = new StaticLayout(text, paint, (int) width, hAlignment, 1.0f, 0.0f, false);
                 actualWidth = layout.getWidth();
                 actualHeight = layout.getLineTop(layout.getLineCount());
 
@@ -142,16 +139,16 @@ public final class Cocos2dxBitmap {
         return paint.getTypeface();
     }
 
-    public static boolean createTextBitmapShadowStroke(byte[] bytes,  final String fontName, int fontSize,
-                                                    int fontTintR, int fontTintG, int fontTintB, int fontTintA,
-                                                    int alignment, int width, int height, 
-                                                    boolean shadow, float shadowDX, float shadowDY, float shadowBlur, float shadowOpacity, 
-                                                    boolean stroke, int strokeR, int strokeG, int strokeB, int strokeA, float strokeSize, boolean enableWrap, int overflow) {
+    public static boolean createTextBitmapShadowStroke(byte[] bytes, final String fontName, int fontSize,
+                                                       int fontTintR, int fontTintG, int fontTintB, int fontTintA,
+                                                       int alignment, int width, int height,
+                                                       boolean shadow, float shadowDX, float shadowDY, float shadowBlur, float shadowOpacity,
+                                                       boolean stroke, int strokeR, int strokeG, int strokeB, int strokeA, float strokeSize, boolean enableWrap, int overflow) {
         String string;
         if (bytes == null || bytes.length == 0) {
-          return false;
+            return false;
         } else {
-          string = new String(bytes);
+            string = new String(bytes);
         }
 
         Layout.Alignment hAlignment = Layout.Alignment.ALIGN_NORMAL;
@@ -179,7 +176,7 @@ public final class Cocos2dxBitmap {
         int maxWidth = width;
 
         if (maxWidth <= 0) {
-            maxWidth = (int)Math.ceil( StaticLayout.getDesiredWidth(string, paint));
+            maxWidth = (int) Math.ceil(StaticLayout.getDesiredWidth(string, paint));
         }
 
         Layout layout = null;
@@ -187,14 +184,14 @@ public final class Cocos2dxBitmap {
         int layoutHeight = 0;
 
 
-        if (overflow == 1 && !enableWrap){
-            int widthBoundary = (int)Math.ceil( StaticLayout.getDesiredWidth(string, paint));
-            layout = new StaticLayout(string, paint, widthBoundary , hAlignment,1.0f,0.0f,false);
-        }else {
+        if (overflow == 1 && !enableWrap) {
+            int widthBoundary = (int) Math.ceil(StaticLayout.getDesiredWidth(string, paint));
+            layout = new StaticLayout(string, paint, widthBoundary, hAlignment, 1.0f, 0.0f, false);
+        } else {
             if (overflow == 2) {
                 calculateShrinkTypeFace(string, width, height, hAlignment, fontSize, paint, enableWrap);
             }
-            layout = new StaticLayout(string, paint, maxWidth , hAlignment,1.0f,0.0f,false);
+            layout = new StaticLayout(string, paint, maxWidth, hAlignment, 1.0f, 0.0f, false);
         }
 
         layoutWidth = layout.getWidth();
@@ -219,15 +216,13 @@ public final class Cocos2dxBitmap {
         int offsetX = 0;
         if (horizontalAlignment == HORIZONTAL_ALIGN_CENTER) {
             offsetX = (bitmapWidth - layoutWidth) / 2;
-        }
-        else if (horizontalAlignment == HORIZONTAL_ALIGN_RIGHT) {
+        } else if (horizontalAlignment == HORIZONTAL_ALIGN_RIGHT) {
             offsetX = bitmapWidth - layoutWidth;
         }
 
         int offsetY = 0;
-        int verticalAlignment   = (alignment >> 4) & 0x0F;
-        switch (verticalAlignment)
-        {
+        int verticalAlignment = (alignment >> 4) & 0x0F;
+        switch (verticalAlignment) {
             case VERTICAL_ALIGN_CENTER:
                 offsetY = (bitmapHeight - layoutHeight) / 2;
                 break;
@@ -237,12 +232,10 @@ public final class Cocos2dxBitmap {
         }
 
 
-
         Bitmap bitmap = Bitmap.createBitmap(bitmapWidth, bitmapHeight, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         canvas.translate(offsetX, offsetY);
-        if ( stroke )
-        {
+        if (stroke) {
             paint.setARGB(strokeA, strokeR, strokeG, strokeB);
             layout.draw(canvas);
         }

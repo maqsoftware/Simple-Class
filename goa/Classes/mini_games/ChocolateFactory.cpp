@@ -231,14 +231,14 @@ void ChocolateFactory::machineDynamicMotion(std::vector<int> randomNumbers, std:
 	int correctOrderIndex = NULL;
 	auto a = (randomNumbers[index]);
 	
-		for (int k = 0;k < sortedRandomNumbers.size(); k++)
+	for (int k = 0;k < sortedRandomNumbers.size(); k++)
+	{
+		if (a == sortedRandomNumbers[k])
 		{
-			if (a == sortedRandomNumbers[k])
-			{
-				correctOrderIndex = k;
-				break;
-			}
-	    }
+			correctOrderIndex = k;
+			break;
+		}
+	}
 	if (a != 0)
 	{
 		for (int j = 1; j <= a; j++)

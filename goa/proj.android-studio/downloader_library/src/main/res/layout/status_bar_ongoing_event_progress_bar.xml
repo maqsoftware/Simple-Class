@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 /*
 ** Copyright 2008, The Android Open Source Project
 **
@@ -17,24 +16,28 @@
 */
 -->
 
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
-    android:orientation="horizontal" android:id="@+id/notificationLayout" xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="horizontal"
+    android:id="@+id/notificationLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
         android:layout_width="35dp"
         android:layout_height="fill_parent"
         android:paddingTop="10dp"
-        android:paddingBottom="8dp" >
+        android:paddingBottom="8dp">
 
         <ImageView
             android:id="@+id/appIcon"
             android:layout_width="fill_parent"
             android:layout_height="25dp"
-            android:scaleType="centerInside"            
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"            
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/download_button"
+            android:scaleType="centerInside"
             android:src="@android:drawable/stat_sys_download" />
 
         <TextView
@@ -57,7 +60,7 @@
         android:focusable="true"
         android:paddingTop="10dp"
         android:paddingRight="8dp"
-        android:paddingBottom="8dp" >
+        android:paddingBottom="8dp">
 
         <TextView
             android:id="@+id/title"
@@ -65,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:singleLine="true"/>
+            android:singleLine="true" />
 
         <TextView
             android:id="@+id/time_remaining"
@@ -73,14 +76,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:singleLine="true"/>
+            android:singleLine="true"
+            tools:ignore="RelativeOverlap" />
         <!-- Only one of progress_bar and paused_text will be visible. -->
 
         <FrameLayout
             android:id="@+id/progress_bar_frame"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true" >
+            android:layout_alignParentBottom="true">
 
             <ProgressBar
                 android:id="@+id/progress_bar"

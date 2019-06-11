@@ -1,26 +1,26 @@
 /****************************************************************************
-Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+ Copyright (c) 2010-2012 cocos2d-x.org
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
 
-http://www.cocos2d-x.org
+ http://www.cocos2d-x.org
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
  ****************************************************************************/
 
 package org.cocos2dx.lib;
@@ -137,7 +137,7 @@ public class Cocos2dxMusic {
         if (this.mBackgroundMediaPlayer != null) {
             mBackgroundMediaPlayer.release();
             mBackgroundMediaPlayer = createMediaPlayer(mCurrentPath);
-            
+
             /**
              * should set the state, if not, the following sequence will be error
              * play -> pause -> stop -> resume
@@ -181,7 +181,7 @@ public class Cocos2dxMusic {
         // music active from some other app (eg the user playing their own
         // music).
         AudioManager manager =
-            (AudioManager)mContext.getSystemService(Context.AUDIO_SERVICE);
+                (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         return !manager.isMusicActive();
     }
 
@@ -231,7 +231,7 @@ public class Cocos2dxMusic {
         }
     }
 
-    public void onEnterBackground(){
+    public void onEnterBackground() {
         try {
             if (this.mBackgroundMediaPlayer != null && this.mBackgroundMediaPlayer.isPlaying()) {
                 this.mBackgroundMediaPlayer.pause();
@@ -241,8 +241,8 @@ public class Cocos2dxMusic {
             Log.e(TAG, "onEnterBackground, IllegalStateException was triggered!");
         }
     }
-    
-    public void onEnterForeground(){
+
+    public void onEnterForeground() {
         try {
             if (!this.mManualPaused) {
                 if (this.mBackgroundMediaPlayer != null && this.mPaused) {
@@ -254,7 +254,7 @@ public class Cocos2dxMusic {
             Log.e(TAG, "onEnterForeground, IllegalStateException was triggered!");
         }
     }
-    
+
     private void initData() {
         this.mLeftVolume = 0.5f;
         this.mRightVolume = 0.5f;
@@ -265,7 +265,7 @@ public class Cocos2dxMusic {
 
     /**
      * create MediaPlayer for music
-     * 
+     *
      * @param path The path relative to assets
      * @return
      */

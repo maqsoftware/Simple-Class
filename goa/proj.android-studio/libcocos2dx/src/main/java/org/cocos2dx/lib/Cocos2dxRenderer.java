@@ -1,25 +1,25 @@
 /****************************************************************************
-Copyright (c) 2010-2011 cocos2d-x.org
+ Copyright (c) 2010-2011 cocos2d-x.org
 
-http://www.cocos2d-x.org
+ http://www.cocos2d-x.org
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
@@ -27,6 +27,7 @@ import android.opengl.GLSurfaceView;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
+
 public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
     // ===========================================================
     // Constants
@@ -90,7 +91,7 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
         } else {
             final long now = System.nanoTime();
             final long interval = now - this.mLastTickInNanoSeconds;
-        
+
             if (interval < Cocos2dxRenderer.sAnimationInterval) {
                 try {
                     Thread.sleep((Cocos2dxRenderer.sAnimationInterval - interval) / Cocos2dxRenderer.NANOSECONDSPERMICROSECOND);
@@ -99,7 +100,7 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
             }
             /*
              * Render time MUST be counted in, or the FPS will slower than appointed.
-            */
+             */
             this.mLastTickInNanoSeconds = System.nanoTime();
             Cocos2dxRenderer.nativeRender();
         }
@@ -110,14 +111,23 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
     // ===========================================================
 
     private static native void nativeTouchesBegin(final int id, final float x, final float y);
+
     private static native void nativeTouchesEnd(final int id, final float x, final float y);
+
     private static native void nativeTouchesMove(final int[] ids, final float[] xs, final float[] ys);
+
     private static native void nativeTouchesCancel(final int[] ids, final float[] xs, final float[] ys);
-    private static native boolean nativeKeyEvent(final int keyCode,boolean isPressed);
+
+    private static native boolean nativeKeyEvent(final int keyCode, boolean isPressed);
+
     private static native void nativeRender();
+
     private static native void nativeInit(final int width, final int height);
+
     private static native void nativeOnSurfaceChanged(final int width, final int height);
+
     private static native void nativeOnPause();
+
     private static native void nativeOnResume();
 
     public void handleActionDown(final int id, final float x, final float y) {
@@ -151,7 +161,7 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
          * onSurfaceCreated is invoked. Can not invoke any
          * native method before onSurfaceCreated is invoked
          */
-        if (! mNativeInitCompleted)
+        if (!mNativeInitCompleted)
             return;
 
         Cocos2dxHelper.onEnterBackground();
@@ -164,7 +174,9 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
     }
 
     private static native void nativeInsertText(final String text);
+
     private static native void nativeDeleteBackward();
+
     private static native String nativeGetContentText();
 
     public void handleInsertText(final String text) {

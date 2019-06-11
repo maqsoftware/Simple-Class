@@ -25,7 +25,7 @@ public class Utility {
 		Matrix rotateRight = new Matrix();
 		rotateRight.preRotate(90);
 
-		if (android.os.Build.VERSION.SDK_INT > 13 && frontCamera) {
+		if (frontCamera) {
 			float[] mirrorY = { -1, 0, 0, 0, 1, 0, 0, 0, 1 };
 			rotateRight = new Matrix();
 			Matrix matrixMirrorY = new Matrix();
@@ -36,8 +36,7 @@ public class Utility {
 			rotateRight.preRotate(270);
 		}
 
-		final Bitmap rImg = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), rotateRight, true);
-		return rImg;
+		return Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), rotateRight, true);
 	}
 
 	public static Bitmap MakeSquare(Bitmap bitPic, boolean frontCamera, int finalWidth) {
@@ -61,7 +60,7 @@ public class Utility {
 		}
 
 		matrix.postRotate(90);
-		Bitmap bitPicFinal = null;
+		Bitmap bitPicFinal;
 		// Create new Bitmap out of the old one
 		bitPicFinal = Bitmap.createBitmap(bitPic, 0, 0, width, height, matrix, true);		
 		bitPic.recycle();
@@ -72,7 +71,7 @@ public class Utility {
 	
 		Matrix matrix1 = new Matrix();
 			
-		Bitmap croppedBitmap = null;
+		Bitmap croppedBitmap;
     	if (bitPicFinal.getWidth() > bitPicFinal.getHeight()) {
     		desHeight = bitPicFinal.getHeight();
 			int startingY = bitPicFinal.getWidth() / 2 - bitPicFinal.getHeight() / 2;

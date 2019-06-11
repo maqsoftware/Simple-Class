@@ -16,12 +16,15 @@
 
 package services;
 
+import android.annotation.SuppressLint;
+
 import com.google.android.vending.expansion.downloader.impl.DownloaderService;
 
 /**
  * This class demonstrates the minimal client implementation of the
  * DownloaderService from the Downloader library.
  */
+@SuppressLint("Registered")
 public class ExpansionDownloaderService extends DownloaderService {
     // stuff for LVL -- MODIFY FOR YOUR APPLICATION!
     private static final String BASE64_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAl7LFe5FyRte9PtuChRvZ6dMih+LHzbzqGSUSf4bwbsZL2TItpUNxDxPpDGPqA/iNpuYzc9impVyE7gOgirM27Nu5Cm8gEwHmsbEnElb1r30INK2GaPDXqqfOjOcNpYRh362wSu8m008hCpKy+OuZkGKijv/jrU4U8RhoZ8kvA2TK9W2Ggv1yZ8UMuS7+t1X0dxAEDliSh7bpzN42G4dM2wdRawIx4IFP/i0V8/WYRECEHUuMTnx9g8A/F06sVUzqbjKFyUGDwKS+ym5ZJnovZQrYnSew9sW8s/PE/8RLwR2+5xygukfiZUlnFAddjJCKoAPOPYzwcVfcTWdoLcZjnwIDAQAB";

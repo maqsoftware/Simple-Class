@@ -109,7 +109,7 @@ public abstract class AppDatabase extends RoomDatabase {
                     }
                     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-                    String line = "";
+                    String line;
                     beginTransaction();
                     try {
                         while ((line = bufferedReader.readLine()) != null) {
@@ -143,7 +143,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                             Context.MODE_PRIVATE);
                                     SharedPreferences.Editor editor = sharedPref.edit();
                                     editor.putLong(context.getString(R.string.user_id), user.id);
-                                    editor.commit();
+                                    editor.apply();
 
                                     break;
                             }
