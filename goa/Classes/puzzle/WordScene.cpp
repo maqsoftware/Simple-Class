@@ -121,7 +121,7 @@ bool WordScene::init() {
     return true;
 }
 
-bool WordScene::initWithWord(std::string word) {
+bool WordScene::initWithWord(const std::string word) {
     if(!Node::init()) {
         return false;
     }

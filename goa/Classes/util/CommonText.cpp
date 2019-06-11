@@ -71,7 +71,7 @@ void CommonText::setCommonTextInStory(bool fromStory) {
 }
 
 
-void CommonText::setSplitFileNameInStory(std::string fileName) {
+void CommonText::setSplitFileNameInStory(const std::string fileName) {
     this->inStoryWhichFilename = fileName;
 }
 
