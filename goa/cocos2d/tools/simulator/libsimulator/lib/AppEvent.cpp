@@ -22,7 +22,7 @@ int  AppEvent::getEventType()
     return _eventType;
 }
 
-void AppEvent::setDataString(std::string data)
+void AppEvent::setDataString(const std::string data)
 {
     _dataString = data;
 }
