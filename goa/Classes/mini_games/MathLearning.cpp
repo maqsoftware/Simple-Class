@@ -191,13 +191,13 @@ LabelTTF* MathLearning::setAllLabelProperties(std::string letterString, int zOrd
 }
 
 
-string MathLearning::getGridNameInString(int ballNumber, string direction) {
+string MathLearning::getGridNameInString(int ballNumber, const string direction) {
 	std::ostringstream gridName;
 	gridName << direction << ballNumber;
 	return gridName.str();
 }
 
-Sprite* MathLearning::getGridWithIndex(int ballNumber, string direction, bool flag) {
+Sprite* MathLearning::getGridWithIndex(int ballNumber, const string direction, bool flag) {
 
 	auto gridName = getGridNameInString(ballNumber, direction);
 	Sprite* grid;

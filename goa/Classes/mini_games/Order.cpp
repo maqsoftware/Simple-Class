@@ -453,7 +453,7 @@ void Order::gameHelp()
 
 
 
-void Order::checkUserSortList(std::vector<int> list)
+void Order::checkUserSortList(const std::vector<int> list)
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	int score = 0;

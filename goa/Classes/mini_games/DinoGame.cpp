@@ -294,7 +294,7 @@ void DinoGame::onTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event)
 	}
 }
 
-void DinoGame::alphabetHint(std::string letter)
+void DinoGame::alphabetHint(const std::string letter)
 {
 	std::string child = letter + _mapping.at("png");
 	auto alpha = _dinoNode->getChildByName(child);

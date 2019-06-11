@@ -744,7 +744,7 @@ void EndlessRunner::AddRocksInSecondLayerPath() {
 	}
 }
 
-Sprite* EndlessRunner::CreateSprites(std::string name, int PositionX, int positionY, float scaleX, float scaleY, int zOrder, std::string vectorType) {
+Sprite* EndlessRunner::CreateSprites(const std::string name, int PositionX, int positionY, float scaleX, float scaleY, int zOrder, const std::string vectorType) {
 	Sprite* sprite = Sprite::createWithSpriteFrameName(name);
 	sprite->setPosition(Vec2(PositionX, positionY));
 	sprite->setAnchorPoint(Vec2(0, 0));
