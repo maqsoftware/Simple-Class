@@ -288,8 +288,6 @@ public class LessonContentProvider extends ContentProvider {
             String coinMessage = "Added Coins:" + coins + " for total of: "
                     + updatedCoins;
 
-//                BaliApplication application = (BaliApplication) getContext().getApplicationContext();
-//                application.updateCoinNotifications("Coins:", coinMessage, updatedCoins);
             UserLogRepo.logEntity(getContext(), UserLog.GAME_TYPE, (long) gameLevel, gameEvent, gameName);
             return updatedCoins;
         }
