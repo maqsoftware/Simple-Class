@@ -8,6 +8,7 @@
 
 #include "PhotoCaptureScene.hpp"
 #include "SimpleAudioEngine.h"
+#include "ScaleGuiElements.cpp"
 
 #if( CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID )
 #include <jni.h>
@@ -105,16 +106,7 @@ bool PhotoCaptureScene::init()
     this->photoButton->setName("photo_button");
     this->photoButton->setPosition(Vec2(visibleSize.width/2, visibleSize.height/2));
     this->photoButton->addTouchEventListener(CC_CALLBACK_2(PhotoCaptureScene::takePhoto, this));
-    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
-    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
-    if (aspectRatio >= 2.0) 
-    {
-        this->photoButton->setScaleX(0.70);
-    }
-    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
-    {
-        this->photoButton->setScaleX(0.82);
-    }
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(this->photoButton);
     addChild(this->photoButton);
     
     return true;

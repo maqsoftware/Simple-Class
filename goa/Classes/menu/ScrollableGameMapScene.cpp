@@ -63,6 +63,7 @@
 #include "external/json/writer.h"
 #include "../menu/LevelHelpScene.h"
 #include "../menu/MainMenuHome.hpp"
+#include "../misc/ScaleGuiElements.cpp"
 
 
 USING_NS_CC;
@@ -235,17 +236,7 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
     }
 
     cocos2d::ui::Button* backButton = createBackButton();
-
-    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
-    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
-    if (aspectRatio >= 2.0) 
-    {
-        backButton->setScaleX(0.70);
-    }
-    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
-    {
-        backButton->setScaleX(0.82);
-    }
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(backButton);
     
     
     rapidjson::Document d;

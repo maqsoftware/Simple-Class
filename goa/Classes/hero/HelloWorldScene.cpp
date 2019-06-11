@@ -10,6 +10,7 @@
 #include "../effects/FShake.h"
 #include "storage/local-storage/LocalStorage.h"
 #include "../ext/util/lib/LTKStringUtil.h"
+#include "../misc/ScaleGuiElements.cpp"
 
 USING_NS_CC;
 
@@ -294,6 +295,7 @@ cocos2d::ui::Button* HelloWorld::createMenuItem(const std::string normalImage,
     
     _bagPackMenu->setPosition(Vec2(origin.x + 150, origin.y + visibleSize.height - 150));
     _bagPackMenu->addTouchEventListener(CC_CALLBACK_2(HelloWorld::showBagPack, this));
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_bagPackMenu);
     
     addChild(_bagPackMenu);
     
