@@ -118,7 +118,7 @@ bool DBCCSprite::_checkVisibility(const cocos2d::Mat4& transform, const cocos2d:
 
     //If draw to Rendertexture, return true directly.
     // only cull the default camera. The culling algorithm is valid for default camera.
-    if (!scene || (scene && scene->getDefaultCamera() != cocos2d::Camera::getVisitingCamera()))
+    if (!scene || (scene->getDefaultCamera() != cocos2d::Camera::getVisitingCamera()))
         return true;
 
     auto director = cocos2d::Director::getInstance();

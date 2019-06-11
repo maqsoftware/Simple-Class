@@ -195,13 +195,13 @@ int AppDelegate::printExtendedSceneGraph(int fd, Node *node, int level)
     int total = 1;
     //    for(int i=0; i<level; ++i)
     //        Console::Utility::sendToConsole(fd, "-", 1);
-    float x = 0.0;
-    float y = 0.0;
+    //float x;
+    //float y;
     if (node->getParent() != nullptr)
     {
         auto nodeInWorld = node->getParent()->convertToWorldSpace(node->getPosition());
-        x = nodeInWorld.x;
-        y = nodeInWorld.y;
+    //    x = nodeInWorld.x;
+    //    y = nodeInWorld.y;
     }
     //    Console::Utility::mydprintf(fd, " %s x=%f y=%f\n", node->getDescription().c_str(), x, y);
 
