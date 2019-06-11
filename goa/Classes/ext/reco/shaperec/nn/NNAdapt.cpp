@@ -358,7 +358,7 @@ int LTKAdapt::readAdaptConfig()
                 "Using default value of MinimumNumerOfSamplesPerClass: "<<
                 m_minNumberSamplesPerClass <<
                 " LTKAdapt::readAdaptConfig()"<<endl;
-			delete adaptConfigReader;
+	    delete adaptConfigReader;
 		}
 
 
