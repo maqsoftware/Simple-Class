@@ -95,7 +95,7 @@ bool LevelHelpScene::initWithGame(std::string gameName)
         if (d.HasMember(gameName.c_str()))
         {
             const rapidjson::Value &game = d[gameName.c_str()];
-            std::string lvl = "";
+            //std::string lvl = "";
             assert(game.IsArray());
             for (rapidjson::SizeType i = 0; i < game.Size(); i++)
             {
@@ -103,7 +103,7 @@ bool LevelHelpScene::initWithGame(std::string gameName)
                 int videoLevel = 0;
                 int videoLevelIndex = 0;
                 std::string video;
-                std::vector<std::string> conceptVideos;
+                //std::vector<std::string> conceptVideos;
                 auto levelStr = LangUtil::getInstance()->getLang() + "_levels";
                 if (helpMap.HasMember(levelStr.c_str()))
                 {
