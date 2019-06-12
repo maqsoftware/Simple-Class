@@ -130,13 +130,9 @@ public class SplashScreenActivity extends Activity {
             if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
 //              For external storage path
                 externalOBBFilePath = file.getAbsolutePath();
-                externalOBBFilePath = externalOBBFilePath.substring(0, externalOBBFilePath.indexOf("obb"));
-                externalOBBFilePath = externalOBBFilePath + "data/" + getPackageName() + "/files/";
             } else {
 //              For internal storage path
                 internalOBBFilePath = file.getAbsolutePath();
-                internalOBBFilePath = internalOBBFilePath.substring(0, internalOBBFilePath.indexOf("obb"));
-                internalOBBFilePath = internalOBBFilePath + "data/" + getPackageName() + "/files/";
             }
         }
         if (externalOBBFilePath == null) {
