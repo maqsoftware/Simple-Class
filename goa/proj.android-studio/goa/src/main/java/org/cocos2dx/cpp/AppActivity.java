@@ -28,7 +28,6 @@ package org.cocos2dx.cpp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
 import android.arch.lifecycle.LiveData;
 import android.content.ContentValues;
 import android.content.Context;
@@ -38,13 +37,13 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
-import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
+import android.support.annotation.RequiresApi;
 import android.util.Log;
-import android.view.Display;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.maq.xprize.bali.db.entity.User;
@@ -57,7 +56,9 @@ import java.io.File;
 import java.util.Locale;
 
 import chimple.DownloadExpansionFile;
+
 import static chimple.DownloadExpansionFile.xAPKs;
+import static org.cocos2dx.lib.Cocos2dxHelper.getActivity;
 
 public class AppActivity extends Cocos2dxActivity {
     public static final String TAG = "GOA";
@@ -288,11 +289,28 @@ public class AppActivity extends Cocos2dxActivity {
 
     public static native void updateInformation(String jsonInfo);
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        String flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
+        String flagFilePath = null;
+        File[] fileList = getObbDirs();
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
+                flagFilePath = file.getAbsolutePath();
+
+            }
+        }
+        if (flagFilePath == null) {
+            flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
+        }
+        File directory = new File(flagFilePath + java.io.File.separator + "DirectoryLoL");
+        String lol;
+        if (!directory.exists()) {
+            lol = directory.mkdirs() ? "Directory has been created" : "Directory not created";
+        } else
+            lol = "Already exists!";
         int defaultFileVersion = 0;
         File flagFile = new File(flagFilePath);
         boolean extractionRequired = false;
@@ -391,9 +409,29 @@ public class AppActivity extends Cocos2dxActivity {
         super.onStop();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onResume() {
         super.onResume();
+        String flagFilePath = null;
+        File[] fileList = getObbDirs();
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
+                flagFilePath = file.getAbsolutePath();
+
+            }
+        }
+        if (flagFilePath == null) {
+            flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
+        }
+        File directory = new File(flagFilePath + java.io.File.separator + "DirectoryLoL");
+        if (!directory.exists())
+            Toast.makeText(getActivity(),
+                    (directory.mkdirs() ? "Directory has been created" : "Directory not created"),
+                    Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(getActivity(), "Directory exists", Toast.LENGTH_SHORT).show();
+
         Intent intent = new Intent();
         intent.setClassName("com.maq.xprize.bali", "com.maq.xprize.bali.service.TollBroadcastReceiver");
         intent.putExtra("onResume", "com.maq.xprize.chimple.hindi");

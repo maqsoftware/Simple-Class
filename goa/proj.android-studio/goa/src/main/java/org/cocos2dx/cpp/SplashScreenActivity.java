@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -93,9 +94,27 @@ public class SplashScreenActivity extends Activity {
         finish();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void unzipFile() {
         int totalSize = getTotalSize();
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
+        String flagFilePath = null;
+        File[] fileList = getObbDirs();
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
+                flagFilePath = file.getAbsolutePath();
+
+            }
+        }
+        if (flagFilePath == null) {
+            flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
+        }
+        File directory = new File(flagFilePath + java.io.File.separator + "DirectoryLoL");
+        String lol;
+        if (!directory.exists()) {
+            lol = directory.mkdirs() ? "Directory has been created" : "Directory not created";
+        } else
+            lol = "Already there!";
         mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), 0);
         patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), 0);
         try {
@@ -121,6 +140,7 @@ public class SplashScreenActivity extends Activity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public int getTotalSize() {
         int totalSize = 0;
         try {
@@ -139,13 +159,26 @@ public class SplashScreenActivity extends Activity {
         return totalSize;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String getObbFilePath(boolean isMain, int fileVersion) {
-        return Environment.getExternalStorageDirectory().toString() + "/Android/obb/" + Helpers.getPackageName(this) + File.separator +
+        String flagFilePath = null;
+        File[] fileList = getObbDirs();
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
+                flagFilePath = file.getAbsolutePath();
+
+            }
+        }
+        if (flagFilePath == null) {
+            flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
+        }
+        return flagFilePath + File.separator +
                 Helpers.getExpansionAPKFileName(this, isMain, fileVersion);
     }
 
     @SuppressLint("StaticFieldLeak")
     private class DownloadFile extends AsyncTask<String, Integer, String> {
+        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected String doInBackground(String... sUrl) {
             unzipFile();
