@@ -38,7 +38,7 @@ void Stack::onEnterTransitionDidFinish()
 	_helpFlag = 0;
 	visibleSize = Director::getInstance()->getWinSize();
 	_menuContext->setMaxPoints(25);
-	std::vector<std::string> scene = { "island", "superhero" , "farm" };
+	//std::vector<std::string> scene = { "island", "superhero" , "farm" };
 
 	_currentLevel = _menuContext->getCurrentLevel();
 	if ((_currentLevel >= 1 && _currentLevel <= 8) || (_currentLevel >= 25 && _currentLevel <= 32) || (_currentLevel >= 49 && _currentLevel <= 56))

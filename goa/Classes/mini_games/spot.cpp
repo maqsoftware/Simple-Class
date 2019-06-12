@@ -348,7 +348,7 @@ void spot::addAnimals() {
 	std::string animalsName[] = { "","buffalo", "cow", "goat", "horse","pig","sheep" };
 
 	Vector <Node*> children = _bg->getChildren();
-	int size = children.size();
+	//int size = children.size();
 
 	for (int i = 1; i<=24;) {
 		

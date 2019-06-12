@@ -703,7 +703,7 @@ int EndlessRunner::getSpeedForMonsterRunning()
 		if (highLevelSpeed)
 			return 2;
 		return 3;
-	}else if (_totalCounterAlphabets > floor(totalAlphabets * 0)) {
+	}else if (_totalCounterAlphabets > 0) {
 		if (highLevelSpeed)
 			return 3;
 		return 4;

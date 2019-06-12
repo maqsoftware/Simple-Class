@@ -137,7 +137,7 @@ void Owl::onEnterTransitionDidFinish()
 	auto origin = Director::getInstance()->getVisibleOrigin();
 
 	// Here we set the level of complexity and concept ....
-	int gameCurrentLevel = _menuContext->getCurrentLevel();
+	//int gameCurrentLevel = _menuContext->getCurrentLevel();
 
 	// lesson word spelling ....
 	//_lesson.setConcept(Lesson::CONCEPT::WORD_SPELLING);
@@ -374,8 +374,8 @@ void Owl::crateLetterGridOnBuilding(int blockLevel, vector<string> displayWord) 
 	auto themeResourcePath = _sceneMap.at(_owlCurrentTheme);
 	auto blockObject = Sprite::createWithSpriteFrameName(themeResourcePath.at("orangebase"));
 	auto letterbox = Sprite::createWithSpriteFrameName(themeResourcePath.at("gridOrange"));
-	int boxSize = blockObject->getContentSize().width;
-	int space = blockObject->getContentSize().width - (letterbox->getContentSize().width * 6);
+	//int boxSize = blockObject->getContentSize().width;
+	//int space = blockObject->getContentSize().width - (letterbox->getContentSize().width * 6);
 	//int indiSpace = space / (6+1);
 	int indiSpace = 0;
 	if (displayWord.size() <= 9) {

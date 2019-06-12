@@ -54,7 +54,7 @@ void Units::onEnterTransitionDidFinish() {
 
 
 	Vector <Node*> children = _bg->getChildren();
-	int size = children.size();
+	//int size = children.size();
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
@@ -85,7 +85,7 @@ void Units::onEnterTransitionDidFinish() {
 
 	*/
 	hideUnwated(_level);
-	float delay = 0.5;
+	//float delay = 0.5;
 	outlet_1 = _bg->getChildByName("outlet_1")->getPosition();
 	outlet_2 = _bg->getChildByName("outlet_2")->getPosition();
 
