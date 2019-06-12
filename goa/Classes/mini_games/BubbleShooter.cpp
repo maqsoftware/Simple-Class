@@ -123,7 +123,7 @@ void BubbleShooter::gameBegin(cocos2d::EventCustom *eventCustom) {
 	setGameState(gamestates.ready);
 
 	letterSprite.resize(numberOfLetter);
-	int bubblelevelValues = 1;
+	//int bubblelevelValues = 1;
 
 
 	for (int i = 0; i < vmc.size(); i++)

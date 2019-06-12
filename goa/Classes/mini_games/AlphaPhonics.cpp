@@ -319,11 +319,11 @@ void AlphaPhonics::createOptions() {
 		optionsMap.push_back(pairs);
 	}
 	_optionsMap.clear();
-	bool flagAlphabetsCheck = true;
+	//bool flagAlphabetsCheck = true;
 
 	for (size_t i = 0; i < 4; i++) {
 
-		flagAlphabetsCheck = true;
+		bool flagAlphabetsCheck = true;
 		int counter = 0;
 		int counterJunk = 0;
 
