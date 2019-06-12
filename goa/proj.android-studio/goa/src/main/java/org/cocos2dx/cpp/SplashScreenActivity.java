@@ -42,9 +42,8 @@ public class SplashScreenActivity extends Activity {
     int mainFileVersion;
     int patchFileVersion;
 
-    public static String getDataFilePath() {
-        return "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/";
-    }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode,
@@ -124,7 +123,7 @@ public class SplashScreenActivity extends Activity {
                     obbFile = new File(obbFilePath);
                     obbZipFile = new ZipFile(obbFile);
                     zipFileHandler = new Zip(obbZipFile, this);
-                    dataFilePath = getDataFilePath();
+                    dataFilePath = AppActivity.getDataFilePath();
                     packageDir = new File(dataFilePath);
                     if (xf.mIsMain && packageDir.exists()) {
                         DownloadExpansionFile.deleteDir(packageDir);

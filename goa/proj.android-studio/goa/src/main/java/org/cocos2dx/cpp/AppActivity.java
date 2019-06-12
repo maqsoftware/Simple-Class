@@ -58,7 +58,7 @@ import java.util.Locale;
 import chimple.DownloadExpansionFile;
 
 import static chimple.DownloadExpansionFile.xAPKs;
-import static org.cocos2dx.lib.Cocos2dxHelper.getActivity;
+
 
 public class AppActivity extends Cocos2dxActivity {
     public static final String TAG = "GOA";
@@ -162,6 +162,32 @@ public class AppActivity extends Cocos2dxActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public static String getDataFilePath() {
+        String internalflagFilePath = null;
+        String externalflagFilePath = null;
+        String flagFilePath = null;
+        File[] fileList = _context.getObbDirs();
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + _context.getPackageName()) && file.isDirectory() && file.canRead()) {
+//              For external storage path
+                externalflagFilePath = file.getAbsolutePath();
+                externalflagFilePath = externalflagFilePath.substring(0, externalflagFilePath.indexOf("obb"));
+                externalflagFilePath = externalflagFilePath + "data/" + _context.getPackageName() + "/files/";
+            } else {
+//              For internal storage path
+                internalflagFilePath = file.getAbsolutePath();
+                internalflagFilePath = internalflagFilePath.substring(0, internalflagFilePath.indexOf("obb"));
+                internalflagFilePath = internalflagFilePath + "data/" + _context.getPackageName() + "/files/";
+            }
+        }
+        if (externalflagFilePath == null) {
+            flagFilePath = internalflagFilePath;
+        } else {
+            flagFilePath = externalflagFilePath;
+        }
+        return flagFilePath;
+    }
     public static void queryBagOfChoiceQuiz(int numQuizes, int minAnswers, int maxAnswers,
                                             int minChoices, int maxChoices, int order) {
         Log.d("queryBagOfChoiceQuiz", "entry queryBagOfChoiceQuiz");
@@ -294,23 +320,7 @@ public class AppActivity extends Cocos2dxActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        String flagFilePath = null;
-        File[] fileList = getObbDirs();
-        for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
-                flagFilePath = file.getAbsolutePath();
-
-            }
-        }
-        if (flagFilePath == null) {
-            flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
-        }
-        File directory = new File(flagFilePath + java.io.File.separator + "DirectoryLoL");
-        String lol;
-        if (!directory.exists()) {
-            lol = directory.mkdirs() ? "Directory has been created" : "Directory not created";
-        } else
-            lol = "Already exists!";
+        String flagFilePath = getDataFilePath() + ".success.txt";
         int defaultFileVersion = 0;
         File flagFile = new File(flagFilePath);
         boolean extractionRequired = false;
@@ -413,25 +423,6 @@ public class AppActivity extends Cocos2dxActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        String flagFilePath = null;
-        File[] fileList = getObbDirs();
-        for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
-                flagFilePath = file.getAbsolutePath();
-
-            }
-        }
-        if (flagFilePath == null) {
-            flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
-        }
-        File directory = new File(flagFilePath + java.io.File.separator + "DirectoryLoL");
-        if (!directory.exists())
-            Toast.makeText(getActivity(),
-                    (directory.mkdirs() ? "Directory has been created" : "Directory not created"),
-                    Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(getActivity(), "Directory exists", Toast.LENGTH_SHORT).show();
-
         Intent intent = new Intent();
         intent.setClassName("com.maq.xprize.bali", "com.maq.xprize.bali.service.TollBroadcastReceiver");
         intent.putExtra("onResume", "com.maq.xprize.chimple.hindi");
