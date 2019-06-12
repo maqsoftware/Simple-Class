@@ -168,7 +168,7 @@ int PointFloatShapeFeatureExtractor::extractFeatures(const LTKTraceGroup& inTrac
         "PointFloatShapeFeatureExtractor::extractFeatures()" << endl;
     
     PointFloatShapeFeature *featurePtr = NULL;
-	float x,y,deltax;
+	//float x,y,deltax;
 	int numPoints=0;						// number of pts
 	int count=0;
 	int currentStrokeSize;
