@@ -59,7 +59,7 @@ public class LessonRepo {
 
     private static final MutableLiveData ABSENT = new MutableLiveData();
 
-    static {
+    {
         //noinspection unchecked
         ABSENT.setValue(null);
     }
