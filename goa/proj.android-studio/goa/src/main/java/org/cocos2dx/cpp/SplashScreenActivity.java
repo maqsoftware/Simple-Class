@@ -94,36 +94,74 @@ public class SplashScreenActivity extends Activity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void unzipFile() {
-        int totalSize = getTotalSize();
-        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        String flagFilePath = null;
+    public String getDataFilePath() {
+        String internalDataFilePath = null;
+        String externalDataFilePath = null;
+        String DataFilePath = null;
         File[] fileList = getObbDirs();
         for (File file : fileList) {
             if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
-                flagFilePath = file.getAbsolutePath();
-
+//              For external storage path
+                externalDataFilePath = file.getAbsolutePath();
+                externalDataFilePath = externalDataFilePath.substring(0, externalDataFilePath.indexOf("obb"));
+                externalDataFilePath = externalDataFilePath + "data/" + getPackageName() + "/files/";
+            } else {
+//              For internal storage path
+                internalDataFilePath = file.getAbsolutePath();
+                internalDataFilePath = internalDataFilePath.substring(0, internalDataFilePath.indexOf("obb"));
+                internalDataFilePath = internalDataFilePath + "data/" + getPackageName() + "/files/";
             }
         }
-        if (flagFilePath == null) {
-            flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
+        if (externalDataFilePath == null) {
+            DataFilePath = internalDataFilePath;
+        } else {
+            DataFilePath = externalDataFilePath;
         }
-        File directory = new File(flagFilePath + java.io.File.separator + "DirectoryLoL");
-        String lol;
-        if (!directory.exists()) {
-            lol = directory.mkdirs() ? "Directory has been created" : "Directory not created";
-        } else
-            lol = "Already there!";
+        return DataFilePath;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public String getOBBFilePath() {
+        String internalOBBFilePath = null;
+        String externalOBBFilePath = null;
+        String OBBFilePath = null;
+        File[] fileList = getObbDirs();
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
+//              For external storage path
+                externalOBBFilePath = file.getAbsolutePath();
+                externalOBBFilePath = externalOBBFilePath.substring(0, externalOBBFilePath.indexOf("obb"));
+                externalOBBFilePath = externalOBBFilePath + "data/" + getPackageName() + "/files/";
+            } else {
+//              For internal storage path
+                internalOBBFilePath = file.getAbsolutePath();
+                internalOBBFilePath = internalOBBFilePath.substring(0, internalOBBFilePath.indexOf("obb"));
+                internalOBBFilePath = internalOBBFilePath + "data/" + getPackageName() + "/files/";
+            }
+        }
+        if (externalOBBFilePath == null) {
+            OBBFilePath = internalOBBFilePath;
+        } else {
+            OBBFilePath = externalOBBFilePath;
+        }
+        return OBBFilePath;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public void unzipFile() {
+        int totalSize = getTotalSize();
+        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
         mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), 0);
         patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), 0);
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 if (xf.mIsMain && xf.mFileVersion != mainFileVersion || !xf.mIsMain && xf.mFileVersion != patchFileVersion) {
-                    obbFilePath = getObbFilePath(xf.mIsMain, xf.mFileVersion);
+                    obbFilePath = getOBBFilePath() + File.separator +
+                            Helpers.getExpansionAPKFileName(this, xf.mIsMain, xf.mFileVersion);
                     obbFile = new File(obbFilePath);
                     obbZipFile = new ZipFile(obbFile);
                     zipFileHandler = new Zip(obbZipFile, this);
-                    dataFilePath = AppActivity.getDataFilePath();
+                    dataFilePath = getDataFilePath();
                     packageDir = new File(dataFilePath);
                     if (xf.mIsMain && packageDir.exists()) {
                         DownloadExpansionFile.deleteDir(packageDir);
@@ -145,34 +183,17 @@ public class SplashScreenActivity extends Activity {
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 if (!xf.mIsMain && (xf.mFileVersion != patchFileVersion) || xf.mIsMain && (xf.mFileVersion != mainFileVersion)) {
-                    obbFilePath = getObbFilePath(xf.mIsMain, xf.mFileVersion);
+                    obbFilePath = getOBBFilePath() + File.separator +
+                            Helpers.getExpansionAPKFileName(this, xf.mIsMain, xf.mFileVersion);
                     obbFile = new File(obbFilePath);
                     obbZipFile = new ZipFile(obbFile);
                     totalSize += obbZipFile.size();
-
                 }
             }
         } catch (IOException ie) {
             System.out.println(ie);
         }
         return totalSize;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public String getObbFilePath(boolean isMain, int fileVersion) {
-        String flagFilePath = null;
-        File[] fileList = getObbDirs();
-        for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
-                flagFilePath = file.getAbsolutePath();
-
-            }
-        }
-        if (flagFilePath == null) {
-            flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
-        }
-        return flagFilePath + File.separator +
-                Helpers.getExpansionAPKFileName(this, isMain, fileVersion);
     }
 
     @SuppressLint("StaticFieldLeak")

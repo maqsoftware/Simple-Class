@@ -163,30 +163,30 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public static String getDataFilePath() {
-        String internalflagFilePath = null;
-        String externalflagFilePath = null;
-        String flagFilePath = null;
-        File[] fileList = _context.getObbDirs();
+    public String getDataFilePath() {
+        String internalDataFilePath = null;
+        String externalDataFilePath = null;
+        String DataFilePath = null;
+        File[] fileList = getObbDirs();
         for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + _context.getPackageName()) && file.isDirectory() && file.canRead()) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
 //              For external storage path
-                externalflagFilePath = file.getAbsolutePath();
-                externalflagFilePath = externalflagFilePath.substring(0, externalflagFilePath.indexOf("obb"));
-                externalflagFilePath = externalflagFilePath + "data/" + _context.getPackageName() + "/files/";
+                externalDataFilePath = file.getAbsolutePath();
+                externalDataFilePath = externalDataFilePath.substring(0, externalDataFilePath.indexOf("obb"));
+                externalDataFilePath = externalDataFilePath + "data/" + getPackageName() + "/files/";
             } else {
 //              For internal storage path
-                internalflagFilePath = file.getAbsolutePath();
-                internalflagFilePath = internalflagFilePath.substring(0, internalflagFilePath.indexOf("obb"));
-                internalflagFilePath = internalflagFilePath + "data/" + _context.getPackageName() + "/files/";
+                internalDataFilePath = file.getAbsolutePath();
+                internalDataFilePath = internalDataFilePath.substring(0, internalDataFilePath.indexOf("obb"));
+                internalDataFilePath = internalDataFilePath + "data/" + getPackageName() + "/files/";
             }
         }
-        if (externalflagFilePath == null) {
-            flagFilePath = internalflagFilePath;
+        if (externalDataFilePath == null) {
+            DataFilePath = internalDataFilePath;
         } else {
-            flagFilePath = externalflagFilePath;
+            DataFilePath = externalDataFilePath;
         }
-        return flagFilePath;
+        return DataFilePath;
     }
     public static void queryBagOfChoiceQuiz(int numQuizes, int minAnswers, int maxAnswers,
                                             int minChoices, int maxChoices, int order) {
