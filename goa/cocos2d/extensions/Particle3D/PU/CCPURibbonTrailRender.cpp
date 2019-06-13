@@ -254,7 +254,7 @@ void PURibbonTrailRender::prepare()
         _trail->setUseVertexColours(_useVertexColours);
 
         // Create number of VisualData objects
-        std::string sceneNodeName;
+        //std::string sceneNodeName;
         std::stringstream ss; 
         ss << this;
         for (size_t i = 0; i < _quota; i++)

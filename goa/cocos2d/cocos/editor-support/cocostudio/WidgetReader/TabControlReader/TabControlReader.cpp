@@ -250,7 +250,7 @@ flatbuffers::Offset<flatbuffers::Table> TabHeaderReader::createOptionsWithFlatBu
     int fontsize = 12;
     std::string text = "";
     cocos2d::Color4B textColor(255, 255, 255, 255);
-    std::string fontName;
+    //std::string fontName;
     
     int backgroundboxResourceType = 0;
     std::string backgroundboxPath = "";
