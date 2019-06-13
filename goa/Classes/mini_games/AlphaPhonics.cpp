@@ -177,7 +177,7 @@ void AlphaPhonics::OptionListner(Sprite *option) {
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, option);
 }
 
-string AlphaPhonics::StringandIntConcat(string data,int number) {
+string AlphaPhonics::StringandIntConcat(const string data,int number) {
 	
 	std::ostringstream value;
 	value << data << number;

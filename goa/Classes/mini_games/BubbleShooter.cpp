@@ -1133,7 +1133,7 @@ void BubbleShooter::stateRemoveCluster() {
 	}
 }
 
-void BubbleShooter::DataCard(std::string gamestatus) {
+void BubbleShooter::DataCard(const std::string gamestatus) {
 	//console.log("gamestatus : " + gamestatus + " -------------- ");
 	//auto level = bubblelevelValues; //NTC
 	auto level = _menuContext->getCurrentLevel();

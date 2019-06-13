@@ -31,7 +31,7 @@ AlphabetWriting::~AlphabetWriting()
 {
 
 }
-bool AlphabetWriting::initWithAlphabet(std::string alphabet, bool type)
+bool AlphabetWriting::initWithAlphabet(const std::string alphabet, bool type)
 {
 	std::string path;
 	if (type)

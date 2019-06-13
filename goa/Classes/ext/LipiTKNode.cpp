@@ -297,9 +297,9 @@ void LipiTKNode::removeClearButton() {
 	_drawingBoard->removeChild(_clearButton, true);
 }
 
-void LipiTKNode::setClearButtonTexture(const std::string normalImage,
-	const std::string selectedImage,
-	const std::string disableImage) {
+void LipiTKNode::setClearButtonTexture(const std::string const normalImage,
+	const std::string const selectedImage,
+	const std::string const disableImage) {
 
 	_clearButton->loadTextures(normalImage, selectedImage, disableImage, cocos2d::ui::Widget::TextureResType::PLIST);
 
