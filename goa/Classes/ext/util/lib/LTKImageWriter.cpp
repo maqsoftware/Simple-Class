@@ -464,7 +464,7 @@ m_offset(0)
 		{
 			LTKInkFileReader::readRawInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
@@ -510,7 +510,7 @@ m_offset(0)
 		{
 			LTKInkFileReader::readRawInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
@@ -556,7 +556,7 @@ m_offset(0)
 		{
 			LTKInkFileReader::readRawInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
@@ -605,7 +605,7 @@ m_offset(0)
 		{
 			LTKInkFileReader::readUnipenInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
@@ -650,7 +650,7 @@ m_offset(0)
 		{
 			LTKInkFileReader::readUnipenInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
@@ -699,7 +699,7 @@ m_offset(0)
 		{
 			LTKInkFileReader::readUnipenInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
@@ -747,7 +747,7 @@ m_offset(0)
 		{
 			LTKInkFileReader::readUnipenInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 		LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)

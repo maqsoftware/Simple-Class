@@ -2942,7 +2942,7 @@ int LTKPreprocessor::readConfig(const string& cfgFilePath)
     {
         configurableProperties = new LTKConfigFileReader(cfgFilePath);
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
     {
         delete configurableProperties;
 
@@ -3237,7 +3237,7 @@ int LTKPreprocessor::readConfig(const string& cfgFilePath)
             }
 	    }
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		delete configurableProperties;
 		LTKReturnError(e.getErrorCode());

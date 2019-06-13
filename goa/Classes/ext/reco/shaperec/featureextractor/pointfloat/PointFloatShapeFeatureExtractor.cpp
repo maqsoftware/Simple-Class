@@ -128,7 +128,7 @@ int PointFloatShapeFeatureExtractor::readConfig(const string& cfgFilePath)
 		configurableProperties = new LTKConfigFileReader(cfgFilePath);
 	}
 
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		delete configurableProperties;
 

@@ -255,7 +255,7 @@ m_libHandlerFE(NULL)
 	    }
 
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		
 		deletePreprocessor();
@@ -300,7 +300,7 @@ int NNShapeRecognizer::readClassifierConfig()
     {
         shapeRecognizerProperties = new LTKConfigFileReader(m_nnCfgFilePath);
     }
-    catch(LTKException e)
+    catch(LTKException &e)
     {
         LOG(LTKLogger::LTK_LOGLEVEL_INFO)<< "Info: " <<
             "Config file not found, using default values of the parameters" <<
@@ -2747,7 +2747,7 @@ int NNShapeRecognizer::performClustering(const vector<LTKShapeSample> & shapeSam
         }
         distanceMatrix = hc.getProximityMatrix();
     }
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		errorCode = e.getErrorCode();
                 LOG(LTKLogger::LTK_LOGLEVEL_ERR) << "Error: " << errorCode << " " <<
