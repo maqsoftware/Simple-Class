@@ -43,7 +43,7 @@ public:
 					const btTransform& toA,
 					const btTransform& fromB,
 					const btTransform& toB,
-					CastResult& result);
+					CastResult& result) override;
 
 };
 

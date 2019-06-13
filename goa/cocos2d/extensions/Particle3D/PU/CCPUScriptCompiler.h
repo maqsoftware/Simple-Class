@@ -87,7 +87,7 @@ public:
     PUObjectAbstractNode(PUAbstractNode *ptr);
     virtual ~PUObjectAbstractNode();
     PUAbstractNode *clone() const;
-    std::string getValue() const;
+    std::string getValue() const override;
     
     
     void addVariable(const std::string &name);
@@ -107,7 +107,7 @@ public:
     PUPropertyAbstractNode(PUAbstractNode *ptr);
     virtual ~PUPropertyAbstractNode();
     PUAbstractNode *clone() const;
-    std::string getValue() const;
+    std::string getValue() const override;
 };
 
 /** This is an abstract node which cannot be broken down further */
@@ -119,7 +119,7 @@ public:
 public:
     PUAtomAbstractNode(PUAbstractNode *ptr);
     PUAbstractNode *clone() const;
-    std::string getValue() const;
+    std::string getValue() const override;
 private:
     void parseNumber() const;
 };

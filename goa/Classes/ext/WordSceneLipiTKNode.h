@@ -16,15 +16,14 @@ public:
     WordSceneLipiTKNode();
     ~WordSceneLipiTKNode();
     
-    cocos2d::Sprite* createDrawingBoard();
+    cocos2d::Sprite* createDrawingBoard() override;
     static WordSceneLipiTKNode *create(int width, int height, cocos2d::Point position);
-    
-    void draw(cocos2d::DrawNode* paintingNode, cocos2d::Point fromPoint, cocos2d::Point currentPoint);
-    
-    virtual void postTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event, cocos2d::Point touchPoint);
-    virtual void postTouchMoved(cocos2d::Touch * touch, cocos2d::Event * event, cocos2d::Point touchPoint);
-    virtual void postTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event, cocos2d::Point touchPoint);
 
+    void draw(cocos2d::DrawNode *paintingNode, cocos2d::Point fromPoint, cocos2d::Point currentPoint) override;
+
+    virtual void postTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event, cocos2d::Point touchPoint) override;
+    virtual void postTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event, cocos2d::Point touchPoint) override;
+    virtual void postTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event, cocos2d::Point touchPoint) override;
 };
 
 #endif /* WordSceneLipiTKNode_h */

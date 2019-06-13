@@ -33,7 +33,7 @@ public:
 				const btTransform& transA,const btTransform& transB,
 			btVector3& v, btVector3& pa, btVector3& pb,
 			class btIDebugDraw* debugDraw
-			);
+			) override;
 };
 
 #endif //BT_MINKOWSKI_PENETRATION_DEPTH_SOLVER_H

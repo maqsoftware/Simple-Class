@@ -39,10 +39,9 @@ protected:
 
 
 
-	virtual bool buildShaders();
+	virtual bool buildShaders() override;
 
-
-	void updateConstants( float timeStep );
+	void updateConstants(float timeStep) override;
 
 	float computeTriangleArea( 
 		const Vectormath::Aos::Point3 &vertex0,
@@ -52,9 +51,9 @@ protected:
 
 	//////////////////////////////////////
 	// Kernel dispatches
-	void solveLinksForPosition( int startLink, int numLinks, float kst, float ti );
-	
-	void solveCollisionsAndUpdateVelocities( float isolverdt );
+	void solveLinksForPosition(int startLink, int numLinks, float kst, float ti) override;
+
+	void solveCollisionsAndUpdateVelocities(float isolverdt) override;
 	// End kernel dispatches
 	/////////////////////////////////////
 
@@ -63,18 +62,16 @@ public:
 
 	virtual ~btOpenCLSoftBodySolverSIMDAware();
 
-	virtual SolverTypes getSolverType() const
+	virtual SolverTypes getSolverType() const override
 	{
 		return CL_SIMD_SOLVER;
 	}
 
+	virtual btSoftBodyLinkData &getLinkData() override;
 
-	virtual btSoftBodyLinkData &getLinkData();
+	virtual void optimize(btAlignedObjectArray<btSoftBody *> &softBodies, bool forceUpdate = false) override;
 
-
-	virtual void optimize( btAlignedObjectArray< btSoftBody * > &softBodies , bool forceUpdate=false);
-
-	virtual void solveConstraints( float solverdt );
+	virtual void solveConstraints(float solverdt) override;
 
 }; // btOpenCLSoftBodySolverSIMDAware
 
