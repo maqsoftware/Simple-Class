@@ -119,7 +119,7 @@ void ChocolateFactory::onEnterTransitionDidFinish()
 		for (int j=0; j<sprite->getChildren().size(); j++)
 		{ 
 			 std::string str = sprite->getChildren().at(j)->getName();
-			 if(str.compare(0, 10, "milkcarton")==0)
+			 if(str.compare(0, 10, "milkcarton") == 0)
 			 sprite->getChildren().at(j)->setVisible(false);
 		}
 	}
