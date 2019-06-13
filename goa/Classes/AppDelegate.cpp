@@ -166,7 +166,20 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setContentScaleFactor(scaleFactor);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    string devicePath = "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/";
+
+    JniMethodInfo t;
+    std :: string str;
+     if (JniHelper::getStaticMethodInfo(t,
+        "com/cocos2dx/cpp/AppActivity",
+        "getPathToAppDelegate",
+        "()Ljava/lang/String")) {
+
+            jstring s = (jstring) t.env->CallObjectMethod(t.classID,t.methodID);
+            t.env->DeleteLocalRef(t.classID);
+
+            str = JniHelper::jstring2string(s);
+        }
+    string devicePath = str;
     FileUtils::getInstance()->setDefaultResourceRootPath(devicePath);
 #endif
 

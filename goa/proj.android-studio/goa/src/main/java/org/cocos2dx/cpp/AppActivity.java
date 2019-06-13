@@ -48,16 +48,11 @@ import android.widget.Toast;
 
 import com.maq.xprize.bali.db.entity.User;
 import com.maq.xprize.bali.repo.UserRepo;
-import com.maq.xprize.chimple.hindi.R;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 import java.io.File;
 import java.util.Locale;
-
-import chimple.DownloadExpansionFile;
-
-import static chimple.DownloadExpansionFile.xAPKs;
 
 
 public class AppActivity extends Cocos2dxActivity {
@@ -95,6 +90,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     private Handler handler = null;
     private TextToSpeech textToSpeechInstance;
+    public static String pathToAppDelegate = "/storage/3535-6630/Android/data/files/";
 
     //    LauncherScreen variables and functions from Bali
     public static native void setMultipleChoiceQuiz(String[] jsonInfo);
@@ -162,14 +158,25 @@ public class AppActivity extends Cocos2dxActivity {
 
     }
 
+    //        Method to check if SD card is mounted
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public boolean isSDcard() {
+        File[] fileList = getObbDirs();
+        if (fileList.length >= 2) {
+            return true;
+        }
+        return false;
+    }
+
+    //      Method returning the Android/data directory path
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String getDataFilePath() {
         String internalDataFilePath = null;
         String externalDataFilePath = null;
-        String DataFilePath = null;
+        String dataFilePath = null;
         File[] fileList = getObbDirs();
         for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
+            if ((!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName())) && isSDcard() && file.isDirectory() && file.canRead()) {
 //              For external storage path
                 externalDataFilePath = file.getAbsolutePath();
                 externalDataFilePath = externalDataFilePath.substring(0, externalDataFilePath.indexOf("obb"));
@@ -182,12 +189,22 @@ public class AppActivity extends Cocos2dxActivity {
             }
         }
         if (externalDataFilePath == null) {
-            DataFilePath = internalDataFilePath;
+            dataFilePath = internalDataFilePath;
+            Log.d("ExtractionPath", internalDataFilePath);
         } else {
-            DataFilePath = externalDataFilePath;
+            dataFilePath = externalDataFilePath;
+            Log.d("ExtractionPath", externalDataFilePath);
         }
-        return DataFilePath;
+        pathToAppDelegate = dataFilePath;
+        return dataFilePath;
     }
+
+    //  Method called from AppDelegate for the extraction path
+    public static String getPathToAppDelegate() {
+        return pathToAppDelegate;
+    }
+
+
     public static void queryBagOfChoiceQuiz(int numQuizes, int minAnswers, int maxAnswers,
                                             int minChoices, int maxChoices, int order) {
         Log.d("queryBagOfChoiceQuiz", "entry queryBagOfChoiceQuiz");
@@ -319,34 +336,39 @@ public class AppActivity extends Cocos2dxActivity {
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        String flagFilePath = getDataFilePath() + ".success.txt";
-        int defaultFileVersion = 0;
-        File flagFile = new File(flagFilePath);
-        boolean extractionRequired = false;
+//        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
+////        Don't remove this! This is needed for the initialization of string variable pathToAppDelegate.
+//        String flagFilePath = getDataFilePath() + ".success.txt";
+//        int defaultFileVersion = 0;
+//        File flagFile = new File(flagFilePath);
+//        boolean extractionRequired = false;
+//
+//        if (!flagFile.exists()) {
+//            SharedPreferences.Editor editor = sharedPref.edit();
+//            editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
+//            editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
+//            editor.apply();
+//            extractionRequired = !flagFile.exists();
+//        } else {
+//            int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
+//            int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
+//            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
+//                if ((xf.mIsMain && xf.mFileVersion != mainFileVersion) || (!xf.mIsMain && xf.mFileVersion != patchFileVersion)) {
+//                    extractionRequired = true;
+//                    break;
+//                }
+//            }
+//
+//        }
+//        if (extractionRequired) {
+//            Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+        String temp = getDataFilePath();
+        temp = null;
+        temp = getPathToAppDelegate();
 
-        if (!flagFile.exists()) {
-            SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
-            editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
-            editor.apply();
-            extractionRequired = !flagFile.exists();
-        } else {
-            int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
-            int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
-            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
-                if ((xf.mIsMain && xf.mFileVersion != mainFileVersion) || (!xf.mIsMain && xf.mFileVersion != patchFileVersion)) {
-                    extractionRequired = true;
-                    break;
-                }
-            }
-
-        }
-        if (extractionRequired) {
-            Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
-            startActivity(intent);
-            finish();
-        }
 
         super.onCreate(savedInstanceState);
 
