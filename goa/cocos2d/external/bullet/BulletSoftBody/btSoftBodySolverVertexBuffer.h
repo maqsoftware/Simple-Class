@@ -148,7 +148,7 @@ public:
 	/**
 	 * Return the type of the vertex buffer descriptor.
 	 */
-	virtual BufferTypes getBufferType() const
+	virtual BufferTypes getBufferType() const override
 	{
 		return CPU_BUFFER;
 	}
