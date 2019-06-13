@@ -135,7 +135,7 @@ void Jasmin_Mainfile::startFlowerAnimation(Node *nd, int random_val, int animati
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
-		if (str.find("flower") == 0) {
+		if (str.compare(0, 6, "flower") == 0) {
 			std::ostringstream fileName (std::ostringstream::ate);
 			fileName.str("jasmine/flower");
 			fileName << random_val;

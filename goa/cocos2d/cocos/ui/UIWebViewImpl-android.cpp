@@ -56,7 +56,7 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
         fixedBaseUrl = baseUrl;
     }
     else if (baseUrl.c_str()[0] != '/') {
-        if(baseUrl.find("assets/") == 0) {
+        if(baseUrl.compare(0, 7, "assets/") == 0) {
             fixedBaseUrl = s_defaultBaseUrl + baseUrl.c_str()[7];
         }
         else {

@@ -9,7 +9,7 @@ SpriteCreate::~SpriteCreate()
 {
 }
 
-SpriteCreate* SpriteCreate::createSprite(std::string spriteName, int positionX, int positionY, float anchorX, float anchorY, std::string currentRockName, std::string nextRockName, std::string layerTypeName)
+SpriteCreate* SpriteCreate::createSprite(const std::string spriteName, int positionX, int positionY, float anchorX, float anchorY, const std::string currentRockName, const std::string nextRockName, const std::string layerTypeName)
 {
 	SpriteCreate *pSprite = new SpriteCreate();
 

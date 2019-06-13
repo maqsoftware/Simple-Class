@@ -514,7 +514,7 @@ void Drop::update(float delta) {
 	}
 }
 
-void Drop::addSpeaker(string word)
+void Drop::addSpeaker(const string word)
 {
 	std::ostringstream boardName;
 	boardName << _labelPrefix;

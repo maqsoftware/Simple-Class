@@ -74,7 +74,7 @@ std::string CommonTextField::getOriginalText() {
 }
 
 
-void CommonTextField::setOriginalText(std::string text) {
+void CommonTextField::setOriginalText(const std::string text) {
     _originalText = text;
 }
 

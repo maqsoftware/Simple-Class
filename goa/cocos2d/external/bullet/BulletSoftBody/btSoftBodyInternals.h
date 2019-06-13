@@ -643,7 +643,7 @@ struct btSoftColliders
 			threshold	=(btScalar)0;
 		}
 		bool				SolveContact(	const btGjkEpaSolver2::sResults& res,
-			btSoftBody::Body ba,const btSoftBody::Body bb,
+			const btSoftBody::Body ba,const btSoftBody::Body bb,
 			btSoftBody::CJoint& joint)
 		{
 			if(res.distance<m_margin)
