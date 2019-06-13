@@ -1083,7 +1083,7 @@ inline int area2(const unsigned char* a, const unsigned char* b, const unsigned 
 //	(This idea is due to Michael Baldwin.)
 inline bool xorb(bool x, bool y)
 {
-	return !x ^ !y;
+	return (bool)(!x ^ !y);
 }
 
 // Returns true iff c is strictly to the left of the directed

@@ -477,9 +477,9 @@ namespace gjkepa2_impl
 							if((mindist<0)||(subd<mindist))
 							{
 								mindist		=	subd;
-								m			=	static_cast<U>((subm&1?1<<i:0)+
-									(subm&2?1<<j:0)+
-									(subm&4?8:0));
+								m			=	static_cast<U>(((subm&1)?(1<<i):0)+
+									((subm&2)?(1<<j):0)+
+									((subm&4)?8:0));
 								w[i]		=	subw[0];
 								w[j]		=	subw[1];
 								w[imd3[j]]	=	0;

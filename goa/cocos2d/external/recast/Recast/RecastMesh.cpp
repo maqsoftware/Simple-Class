@@ -175,7 +175,7 @@ inline int area2(const int* a, const int* b, const int* c)
 //	(This idea is due to Michael Baldwin.)
 inline bool xorb(bool x, bool y)
 {
-	return !x ^ !y;
+	return (bool) (!x ^ !y);
 }
 
 // Returns true iff c is strictly to the left of the directed

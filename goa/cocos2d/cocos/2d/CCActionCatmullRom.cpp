@@ -103,7 +103,7 @@ void PointArray::setControlPoints(vector<Vec2*> *controlPoints)
     CCASSERT(controlPoints != nullptr, "control points should not be nullptr");
     
     // delete old points
-    vector<Vec2*>::iterator iter;
+    //vector<Vec2*>::iterator iter;
     for (auto& controlPoint : *_controlPoints)
     {
         delete controlPoint;

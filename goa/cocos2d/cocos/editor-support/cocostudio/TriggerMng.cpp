@@ -202,7 +202,7 @@ void TriggerMng::buildJson(rapidjson::Document &document, cocostudio::CocoLoader
     int size = 0;
     int extent = 0;
     int border = 0;
-    std::string key0;
+    //std::string key0;
     stExpCocoNode *pTriggersArray = pCocoNode[13].GetChildArray(pCocoLoader);
     
     document.SetArray();
