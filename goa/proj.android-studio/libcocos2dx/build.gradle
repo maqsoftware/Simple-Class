@@ -6,6 +6,7 @@ android {
 
     defaultConfig {
         minSdkVersion 9
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 9
     }
 
@@ -15,10 +16,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {
-    compile files('libs/android-async-http-1.4.9.jar')
-    compile files('libs/com.android.vending.expansion.zipfile.jar')
-    compile files('libs/httpclient-4.4.1.1.jar')
+    api files('libs/android-async-http-1.4.9.jar')
+    api files('libs/com.android.vending.expansion.zipfile.jar')
+    api files('libs/httpclient-4.4.1.1.jar')
 }

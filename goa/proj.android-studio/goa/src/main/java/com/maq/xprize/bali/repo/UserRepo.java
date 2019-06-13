@@ -40,8 +40,7 @@ public class UserRepo {
                 context.getString(R.string.preference_file_key),
                 Context.MODE_PRIVATE);
         Long userId = sharedPref.getLong("user_id", 0);
-        User user = db.userDao().getUserById(userId);
-        return user;
+        return db.userDao().getUserById(userId);
     }
 
     public static LiveData<User> getCurrentLiveUser(Context context) {
@@ -52,7 +51,6 @@ public class UserRepo {
                 context.getString(R.string.preference_file_key),
                 Context.MODE_PRIVATE);
         Long userId = sharedPref.getLong("user_id", 0);
-        LiveData<User> user = db.userDao().getLiveUserById(userId);
-        return user;
+        return db.userDao().getLiveUserById(userId);
     }
 }

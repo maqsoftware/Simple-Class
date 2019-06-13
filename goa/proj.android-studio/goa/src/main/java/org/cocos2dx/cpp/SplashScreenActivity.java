@@ -48,15 +48,13 @@ public class SplashScreenActivity extends Activity {
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    new DownloadFile().execute(null, null, null);
-                } else {
-                    Toast.makeText(this, "Permission required!", Toast.LENGTH_LONG).show();
-                    finish();
-                }
+        // If request is cancelled, the result arrays are empty.
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                new DownloadFile().execute(null, null, null);
+            } else {
+                Toast.makeText(this, "Permission required!", Toast.LENGTH_LONG).show();
+                finish();
             }
         }
     }
@@ -117,7 +115,7 @@ public class SplashScreenActivity extends Activity {
             }
             toCallApplication();
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println("An Exception has occured");
         }
     }
 
@@ -134,7 +132,7 @@ public class SplashScreenActivity extends Activity {
                 }
             }
         } catch (IOException ie) {
-            System.out.println(ie);
+            System.out.println("An exception has occured");
         }
         return totalSize;
     }

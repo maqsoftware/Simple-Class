@@ -16,17 +16,17 @@
 
 package com.google.android.vending.expansion.downloader.impl;
 
-import com.android.vending.expansion.downloader.R;
-import com.google.android.vending.expansion.downloader.DownloadProgressInfo;
-import com.google.android.vending.expansion.downloader.DownloaderClientMarshaller;
-import com.google.android.vending.expansion.downloader.Helpers;
-import com.google.android.vending.expansion.downloader.IDownloaderClient;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.os.Messenger;
+
+import com.android.vending.expansion.downloader.R;
+import com.google.android.vending.expansion.downloader.DownloadProgressInfo;
+import com.google.android.vending.expansion.downloader.DownloaderClientMarshaller;
+import com.google.android.vending.expansion.downloader.Helpers;
+import com.google.android.vending.expansion.downloader.IDownloaderClient;
 
 /**
  * This class handles displaying the notification associated with the download
@@ -192,7 +192,7 @@ public class DownloadNotification implements IDownloaderClient {
     /**
      * Called in response to onClientUpdated. Creates a new proxy and notifies
      * it of the current state.
-     * 
+     *
      * @param msg the client Messenger to notify
      */
     public void setMessenger(Messenger msg) {
@@ -207,7 +207,7 @@ public class DownloadNotification implements IDownloaderClient {
 
     /**
      * Constructor
-     * 
+     *
      * @param ctx The context to use to obtain access to the Notification
      *            Service
      */

@@ -2053,7 +2053,7 @@ void HelloWorld::processMessage(std::vector<MessageContent*>*messages) {
     std::string ownerOfMessage;
     int howTextManyMessages = 0;
     int howUseManyMessages = 0;
-    for (std::vector<MessageContent* >::iterator it = messages->begin() ; it != messages->end(); ++it)
+    for (std::vector<MessageContent*> :: iterator it = messages->begin() ; it != messages->end(); ++it)
     {
         MessageContent* content = (MessageContent*) *it;
         if(content->getAction() == "say") {
