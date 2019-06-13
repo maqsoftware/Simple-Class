@@ -12,13 +12,13 @@ class TreasureHuntNode : public LipiTKNode
 public:
 	TreasureHuntNode();
 	~TreasureHuntNode();
-	cocos2d::Sprite* createDrawingBoard();
+	cocos2d::Sprite* createDrawingBoard() override;
 	static TreasureHuntNode *create(int width, int height, cocos2d::Point position);
 	static int done;
-	virtual void clearDrawing(cocos2d::Ref * pSender, cocos2d::ui::Widget::TouchEventType eEventType);
-	virtual void postTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event, cocos2d::Point touchPoint);
+	virtual void clearDrawing(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType) override;
+	virtual void postTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event, cocos2d::Point touchPoint) override;
 	void postTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event, cocos2d::Point touchPoint) override;
-	void draw(cocos2d::DrawNode* paintingNode, cocos2d::Point fromPoint, cocos2d::Point currentPoint);
+	void draw(cocos2d::DrawNode *paintingNode, cocos2d::Point fromPoint, cocos2d::Point currentPoint) override;
 	virtual void broadCastRecognizedChars(std::vector<std::string> results) override;
 	std::vector<std::string> getPosibileCharacter();
 	virtual void removeClearButton() override;

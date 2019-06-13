@@ -271,7 +271,7 @@ public:
   void ZFillFunction(TZFillCallback zFillFunc);
 #endif
 protected:
-  void Reset();
+  void Reset() override;
   virtual bool ExecuteInternal();
 private:
   PolyOutList       m_PolyOuts;

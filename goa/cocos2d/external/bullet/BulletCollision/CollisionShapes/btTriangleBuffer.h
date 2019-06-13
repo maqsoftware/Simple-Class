@@ -45,7 +45,7 @@ class btTriangleBuffer : public btTriangleCallback
 public:
 
 
-	virtual void processTriangle(btVector3* triangle, int partId, int triangleIndex);
+	virtual void processTriangle(btVector3* triangle, int partId, int triangleIndex) override;
 	
 	int	getNumTriangles() const
 	{

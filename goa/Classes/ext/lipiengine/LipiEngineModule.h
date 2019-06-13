@@ -138,7 +138,7 @@ public:
 	/** @brief Sets the data member LTKLipiEngineModule::m_logFileName
 	*/
     
-	int setLipiLogFileName(const string& appLogFile);
+	int setLipiLogFileName(const string& appLogFile) override;
 
     /** @brief Returns LTKLipiEngineModule::m_logLevel 
 	*/
@@ -146,7 +146,7 @@ public:
 
     /** @brief Sets the data member LTKLipiEngineModule::m_logLevel
 	*/
-	int setLipiLogLevel(const string& appLogLevel);
+	int setLipiLogLevel(const string &appLogLevel) override;
 
 	/** @brief Initializes the lipiengine.
 	* <p>
@@ -165,7 +165,7 @@ public:
 	* @return SUCCESS/Error
 	* @error LTKErrorsList::ELIPI_ROOT_PATH_NOT_SET
 	*/
-	int initializeLipiEngine();
+	int initializeLipiEngine() override;
 
 	/* destructor */
 	virtual ~LTKLipiEngineModule();
@@ -221,8 +221,8 @@ public:
 	*   - Recogniser createShapeRecognizer failed
 	*   - Recognizers initialize function failed
 	*/
-    int createShapeRecognizer(const string& strProjName, const string& strProfName, 
-						      LTKShapeRecognizer** outShapeRecoObj);
+	int createShapeRecognizer(const string &strProjName, const string &strProfName,
+							  LTKShapeRecognizer **outShapeRecoObj) override;
 
 	/**
 	* @brief Given project and profile, returns an instance of shape recognizers
@@ -249,7 +249,7 @@ public:
 	*                          LTKErrorsList::ENO_SHAPE_RECOGNIZER
 	*
 	*/
-	int createShapeRecognizer(string &strLogicalProjectName, LTKShapeRecognizer** outShapeRecognizerPtr) ;
+	int createShapeRecognizer(string &strLogicalProjectName, LTKShapeRecognizer **outShapeRecognizerPtr) override;
 
 	/**
 	* Use this to delete the shape recognizer object created using 
@@ -257,7 +257,7 @@ public:
 	* @param handle to the recognizer object to delete
 	* @return 0 on success
 	*/
-	int deleteShapeRecognizer(LTKShapeRecognizer* obj);
+	int deleteShapeRecognizer(LTKShapeRecognizer *obj) override;
 
 	/**
 	* Use this to create word recognizer object, by passing the project name 
@@ -266,26 +266,24 @@ public:
 	*        
 	* @return 0 on success
 	*/
-	int createWordRecognizer(const string& strProjectName, 
-                                 const string& strProfileName,
-                                  LTKWordRecognizer** outWordRecPtr);
+	int createWordRecognizer(const string &strProjectName,
+							 const string &strProfileName,
+							 LTKWordRecognizer **outWordRecPtr) override;
 
 	/**
 	* Use this to create word recognizer object, by passing the logical project name 
     * 
 	* @return 0 on success
 	*/
-	int createWordRecognizer(const string& strlogicalProjectName, 
-                                  LTKWordRecognizer** outWordRecPtr);
+	int createWordRecognizer(const string &strlogicalProjectName,
+							 LTKWordRecognizer **outWordRecPtr) override;
 
 	/**
 	* Use this to delete the word recognizer object created using createWordRecognizer call
 	* @param handle to the recognizer object to delete
 	* @return 0 on success
 	*/
-	int deleteWordRecognizer(LTKWordRecognizer* obj);
-   
-
+	int deleteWordRecognizer(LTKWordRecognizer *obj) override;
 
 private :
 

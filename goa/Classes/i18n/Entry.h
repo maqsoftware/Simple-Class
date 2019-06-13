@@ -64,7 +64,7 @@ public:
     
 public:
     NoopEntry() { _name = "NoopEntry"; };
-    virtual std::string toString();
+    virtual std::string toString() override;
 };
 
 
@@ -79,7 +79,7 @@ public:
     
 public:
     TranslateEntry() { _name = "TranslateEntry"; };
-    virtual std::string toString();
+    virtual std::string toString() override;
 };
 
 

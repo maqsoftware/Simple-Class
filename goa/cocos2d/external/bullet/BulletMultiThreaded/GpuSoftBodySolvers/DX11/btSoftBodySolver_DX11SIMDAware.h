@@ -43,10 +43,9 @@ protected:
 	bool m_updateSolverConstants;
 
 	
-	virtual bool buildShaders();
+	virtual bool buildShaders() override;
 
-	void updateConstants( float timeStep );
-
+	void updateConstants(float timeStep) override;
 
 	//////////////////////////////////////
 	// Kernel dispatches
@@ -64,13 +63,13 @@ public:
 
 	virtual ~btDX11SIMDAwareSoftBodySolver();
 
-	virtual btSoftBodyLinkData &getLinkData();
+	virtual btSoftBodyLinkData &getLinkData() override;
 
-	virtual void optimize( btAlignedObjectArray< btSoftBody * > &softBodies , bool forceUpdate=false);
+	virtual void optimize(btAlignedObjectArray<btSoftBody *> &softBodies, bool forceUpdate = false) override;
 
-	virtual void solveConstraints( float solverdt );
-	
-	virtual SolverTypes getSolverType() const
+	virtual void solveConstraints(float solverdt) override;
+
+	virtual SolverTypes getSolverType() const override
 	{
 		return DX_SIMD_SOLVER;
 	}

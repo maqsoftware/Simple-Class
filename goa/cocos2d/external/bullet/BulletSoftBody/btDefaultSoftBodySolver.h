@@ -35,29 +35,28 @@ public:
 	
 	virtual ~btDefaultSoftBodySolver();
 	
-	virtual SolverTypes getSolverType() const
+	virtual SolverTypes getSolverType() const override
 	{
 		return DEFAULT_SOLVER;
 	}
 
-	virtual bool checkInitialized();
+	virtual bool checkInitialized() override;
 
-	virtual void updateSoftBodies( );
+	virtual void updateSoftBodies( ) override;
 
-	virtual void optimize( btAlignedObjectArray< btSoftBody * > &softBodies,bool forceUpdate=false );
+	virtual void optimize( btAlignedObjectArray< btSoftBody * > &softBodies,bool forceUpdate=false ) override;
 
-	virtual void copyBackToSoftBodies(bool bMove = true);
+	virtual void copyBackToSoftBodies(bool bMove = true) override;
 
-	virtual void solveConstraints( float solverdt );
+	virtual void solveConstraints(float solverdt) override;
 
-	virtual void predictMotion( float solverdt );
+	virtual void predictMotion(float solverdt) override;
 
 	virtual void copySoftBodyToVertexBuffer( const btSoftBody *const softBody, btVertexBufferDescriptor *vertexBuffer );
 
 	virtual void processCollision( btSoftBody *, const btCollisionObjectWrapper* );
 
-	virtual void processCollision( btSoftBody*, btSoftBody* );
-
+	virtual void processCollision(btSoftBody *, btSoftBody *) override;
 };
 
 #endif // #ifndef BT_ACCELERATED_SOFT_BODY_CPU_SOLVER_H

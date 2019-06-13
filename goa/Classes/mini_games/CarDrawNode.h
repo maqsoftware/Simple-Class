@@ -21,18 +21,18 @@ class carDrawNode : public LipiTKNode
 public:
 	carDrawNode();
 	~carDrawNode();
-	cocos2d::Sprite* createDrawingBoard();
+	cocos2d::Sprite* createDrawingBoard() override;
 	static carDrawNode *create(int width, int height, cocos2d::Point position);
 	cocos2d::Layer * carLayer;
-	void draw(cocos2d::DrawNode* paintingNode, cocos2d::Point fromPoint, cocos2d::Point currentPoint);
+	void draw(cocos2d::DrawNode *paintingNode, cocos2d::Point fromPoint, cocos2d::Point currentPoint) override;
 
-	virtual void postTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event, cocos2d::Point touchPoint);
-	virtual void postTouchMoved(cocos2d::Touch * touch, cocos2d::Event * event, cocos2d::Point touchPoint);
-	virtual void postTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event, cocos2d::Point touchPoint);
+	virtual void postTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event, cocos2d::Point touchPoint) override;
+	virtual void postTouchMoved(cocos2d::Touch * touch, cocos2d::Event * event, cocos2d::Point touchPoint) override;
+	virtual void postTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event, cocos2d::Point touchPoint) override;
 	virtual void broadCastRecognizedChars(std::vector<std::string> results) override;
 	//virtual void broadCastRecognizedChars(std::vector<std::string> results);
 	void setParent(CarDraw* parent);
-	virtual void clearDrawing(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+	virtual void clearDrawing(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType) override;
 	cocos2d::ui::Button* _button;
 	virtual cocos2d::ui::Button* createButton(const std::string normalImage,
 		const std::string selectedImage,
