@@ -1436,9 +1436,9 @@ void MenuContext::showScore() {
         rapidjson::Document::AllocatorType& allocator = d.GetAllocator();
         if(progressStr.empty()) {
             d.SetArray();
-            int x = d.Size();
+            //int x = d.Size();
             d.PushBack(0, allocator);
-            int y = d.Size();
+            //int y = d.Size();
         } else {
             d.Parse(progressStr.c_str());
         }
@@ -1789,10 +1789,10 @@ void MenuContext::showAnswer(std::string type, std::string header)
 	
 	
 
-	float x = 0;
+	//float x = 0;
 	float y = bg->getContentSize().height * 0.8;
 	int blockSize = 0;
-	float labelWidth, labelHeight;
+	//float labelWidth, labelHeight;
 	auto headerBlock = Sprite::createWithSpriteFrameName("dash/button.png");
 	headerBlock->setPositionX(visibleSize.width / 2);
 	headerBlock->setPositionY(visibleSize.height - headerBlock->getContentSize().height / 1.5);
@@ -1867,8 +1867,8 @@ void MenuContext::showAnswer(std::string type, std::string header)
 			if (blockSize % 2 == 1) {
 				y -= obj1->getContentSize().height * 1.2;
 			}
-			labelWidth = label1->getContentSize().width;
-			labelHeight = label1->getContentSize().height;
+			//labelWidth = label1->getContentSize().width;
+			//labelHeight = label1->getContentSize().height;
 			blockSize++;
 			_showAnswerLayer->addChild(duplicatNode);
 			numberOfWordShow++;
@@ -1897,8 +1897,8 @@ void MenuContext::showAnswer(std::string type, std::string header)
 			if (blockSize % 2 == 1) {
 				y -= obj1->getContentSize().height * 1.2;
 			}
-			labelWidth = label1->getContentSize().width;
-			labelHeight = label1->getContentSize().height;
+			//labelWidth = label1->getContentSize().width;
+			//labelHeight = label1->getContentSize().height;
 			blockSize++;
 			numberOfWordShow++;
 			if (numberOfWordShow == 10) {

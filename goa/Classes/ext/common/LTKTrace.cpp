@@ -522,7 +522,7 @@ int LTKTrace::setAllChannelValues(const float2DVector& allChannelValues)
     }
     
     int prevRowSize=allChannelValues[0].size();
-    int currRowSize=0;
+    int currRowSize;
     
     for(int i=1; i<allChannelValues.size(); ++i)
     {

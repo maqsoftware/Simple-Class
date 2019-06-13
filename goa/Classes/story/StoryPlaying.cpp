@@ -372,7 +372,7 @@ void StoryPlaying::bindEventsToTarget(Node* node) {
         
         CCLOG("found user data for child %s", node->getName().c_str());
         CCLOG("user data for child %s", data->getCustomProperty().c_str());
-        std::string eventProperty = data->getCustomProperty();
+        //std::string eventProperty = data->getCustomProperty();
         
         std::vector<std::string> contentPageInfo = _menuContext->split(data->getCustomProperty(), ';');
         for (std::vector<std::string>::iterator it = contentPageInfo.begin() ; it != contentPageInfo.end(); ++it) {
@@ -582,7 +582,7 @@ std::vector<float> StoryPlaying::splitFloat(std::string s, char delim)
 
 
 void StoryPlaying::loadTimings() {
-    std::string pageI = MenuContext::to_string(_pageIndex + 1);
+    //std::string pageI = MenuContext::to_string(_pageIndex + 1);
     std::string timeFileUrl = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + "_timing" + ".json";
     if(!timeFileUrl.empty() && FileUtils::getInstance()->isFileExist(timeFileUrl))
     {

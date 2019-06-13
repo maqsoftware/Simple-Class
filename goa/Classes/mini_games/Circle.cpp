@@ -50,7 +50,7 @@ bool Circle::init()
 		return false;
 	}
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	float toplabelX = visibleSize.width / 2 - 30;
+	//float toplabelX = visibleSize.width / 2 - 30;
 	_differntSceneMapping = {
 		{
 			{ "city",  //pratap designs
@@ -120,8 +120,8 @@ void Circle::startGame(cocos2d::EventCustom *eventCustom)
 	Node::onEnterTransitionDidFinish();
 	int level = menu->getCurrentLevel();
 	std::vector<std::string> theme = { "iceLand","candy" };
-	std::string themeName;
-	int division = ((level - 1) % 15) + 1;
+	//std::string themeName;
+	//int division = ((level - 1) % 15) + 1;
 
 	// _convertToLessonConcept
 	// auto vmc = _lesson.getMultiChoices(10, 0);

@@ -85,7 +85,7 @@ void WordScene::charactersRecognized(EventCustom* event) {
     _lipiTKResultMenu->setPosition(Vec2(1000, 800));
     
     std::vector<std::string>*messages = reinterpret_cast<std::vector<std::string>*>(event->getUserData());
-    std::string resultChar;
+    //std::string resultChar;
     int i = 0;
     for (std::vector<std::string>::iterator it = messages->begin() ; it != messages->end(); ++it)
     {

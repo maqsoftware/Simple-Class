@@ -892,7 +892,7 @@ bool SortIt::onTouchBegan(Touch* touch, Event* event) {
 	auto target = event->getCurrentTarget();
 	Point locationInNode = target->convertToNodeSpace(touch->getLocation());
 	Size s = target->getContentSize();
-	Rect rect = Rect(0, 0, s.width, s.height);
+	//Rect rect = Rect(0, 0, s.width, s.height);
 
 	if (target->getBoundingBox().containsPoint(touch->getLocation()) && enableTouch)
 	{			
@@ -913,7 +913,7 @@ void SortIt::onTouchEnded(cocos2d::Touch *touch, cocos2d::Event *event) {
 
 
 	auto toy = target->getContentSize();
-	Rect rectToy = Rect(0, 0, toy.width, toy.height);
+	//Rect rectToy = Rect(0, 0, toy.width, toy.height);
 	
 	if (overlapped == 0) {
 		wrong++;

@@ -614,8 +614,8 @@ void MainGame::startFire(EventListenerClass* letterObject, Node *mycannon)
 
 	if (flag == 1)
 	{
-		std::string val = "";
-		val += letterObject->id;
+		//std::string val = "";
+		//val += letterObject->id;
 
 		cocostudio::timeline::ActionTimeline *timeline = CSLoader::createTimeline("cannonball_cannonballanimation.csb");
 		Node *mycannon1 = (Node *)CSLoader::createNode("cannonball_cannonballanimation.csb");

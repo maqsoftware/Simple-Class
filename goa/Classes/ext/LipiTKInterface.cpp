@@ -101,7 +101,7 @@ std::map<std::string, std::string> LipiTKInterface::getEnglishUnicodeMapping() {
 std::map<std::string, std::string> LipiTKInterface::split(std::string s, char delim)
 {
     std::map<std::string, std::string> map;
-    std::vector<std::string> elems;
+    //std::vector<std::string> elems;
     std::stringstream ss;
     ss.str(s);
     std::string item;

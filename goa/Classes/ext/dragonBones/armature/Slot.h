@@ -82,14 +82,11 @@ protected:
 
     inline bool _isMeshBonesUpdate() const
     {
-        for (auto bone : _meshBones)
+        if(std::any_of(_meshBones.begin(), _meshBones.end(), [](auto bone){return (bone->_transformDirty != Bone::BoneTransformDirty::None);}))
         {
-            if (bone->_transformDirty != Bone::BoneTransformDirty::None)
-            {
-                return true;
-            }
+            return true;
         }
-
+        
         return false;
     }
 

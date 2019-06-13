@@ -52,7 +52,7 @@ void MathLearning::onEnterTransitionDidFinish()
 		{ 6,	"zebra_animation/zebra_animation.csb" }
 				   };
 
-	int answer;
+	//int answer;
 	if (gameCurrentLevel >= 1 && gameCurrentLevel <= 5)
 	{
 		_operation = "addition";
@@ -106,7 +106,7 @@ void MathLearning::onEnterTransitionDidFinish()
 		grid->setName("grid");
 
 		Vector <Node*> children1 = grid->getChildren();
-		int size1 = children1.size();
+		//int size1 = children1.size();
 		for (auto item = children1.rbegin(); item != children1.rend(); ++item) {
 			Node *monsterItem = *item;
 			std::string str = monsterItem->getName().c_str();
@@ -445,7 +445,7 @@ void MathLearning::quiz()
 	auto sign = (Sprite*)play->getChildByName("operation");
 
 	Vector <Node*> children = play->getChildren();
-	int size = children.size();
+	//int size = children.size();
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node *monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();

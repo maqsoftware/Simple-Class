@@ -345,7 +345,7 @@ std::vector<float> StoryCoverPage::splitFloat(std::string s, char delim)
 
 
 void StoryCoverPage::loadTimings() {
-    std::string pageI = MenuContext::to_string(0);
+    //std::string pageI = MenuContext::to_string(0);
     std::string timeFileUrl = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + "_timing" + ".json";
     if(!timeFileUrl.empty() && FileUtils::getInstance()->isFileExist(timeFileUrl))
     {

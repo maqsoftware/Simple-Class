@@ -1237,9 +1237,9 @@ int LTKPreprocessor::dehookTraces(const LTKTraceGroup& inTraceGroup,
 
 			dPY3 = yVec[dominantPoints[1] + 1];
 
-			dPX4 = xVec[dominantPoints[1] - 1];
+			//dPX4 = xVec[dominantPoints[1] - 1];
 
-			dPY4 = yVec[dominantPoints[1] - 1];
+			//dPY4 = yVec[dominantPoints[1] - 1];
 
 			if( (errorCode = computeTraceLength(trace, dominantPoints[0], dominantPoints[1],L0))!= SUCCESS)
 			{
@@ -1273,9 +1273,9 @@ int LTKPreprocessor::dehookTraces(const LTKTraceGroup& inTraceGroup,
 
 			dPY3 = yVec[dominantPoints[numDominantPoints - 2] - 1];
 
-			dPX4 = xVec[dominantPoints[numDominantPoints - 2] + 1];
+			//dPX4 = xVec[dominantPoints[numDominantPoints - 2] + 1];
 
-			dPY4 = yVec[dominantPoints[numDominantPoints - 2] + 1];
+			//dPY4 = yVec[dominantPoints[numDominantPoints - 2] + 1];
 
 			if( (errorCode = computeTraceLength(trace, dominantPoints[numDominantPoints - 2], dominantPoints[numDominantPoints - 1],L0))!= SUCCESS)
 			{
@@ -2017,7 +2017,7 @@ int LTKPreprocessor::setQuantizationStep(int quantizationStep)
 *************************************************************************************/
 int LTKPreprocessor::setResamplingMethod(const string& resamplingMethod)
 {
-    int returnVal = FAILURE;
+    //int returnVal = FAILURE;
 
     if ( LTKSTRCMP(resamplingMethod.c_str(), LENGTHBASED) == 0 ||
          LTKSTRCMP(resamplingMethod.c_str(), POINTBASED ) == 0 ||

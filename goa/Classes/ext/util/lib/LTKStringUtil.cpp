@@ -82,7 +82,7 @@ int LTKStringUtil::tokenizeString(const string& inputString,
 
     //	clearing the token list
 	int inputStrLength = inputString.length();
-	int delimLength = delimiters.length();
+	//int delimLength = delimiters.length();
 
 
 	char *strToken;
