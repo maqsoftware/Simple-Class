@@ -134,7 +134,7 @@ int LTKLipiEngineModule::initializeLipiEngine()
 	{
 		m_LipiEngineConfigEntries = new LTKConfigFileReader(temp);
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		// display warning to the user and continue with default values
 		cout << " Could not open file : " << temp << endl <<
@@ -936,7 +936,7 @@ int LTKLipiEngineModule::validateProject(const string& strProjectName,
 	{
 		projectConfigReader = new LTKConfigFileReader(projectCfgPath);
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		LOG( LTKLogger::LTK_LOGLEVEL_ERR) << 
         "Error: "<< getErrorMessage(e.getErrorCode()) << projectCfgPath <<
@@ -999,7 +999,7 @@ int LTKLipiEngineModule::validateProfile(const string& strProjectName,
 	{
 		profileConfigReader = new LTKConfigFileReader(profileCfgPath);
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		LOG( LTKLogger::LTK_LOGLEVEL_ERR) << 
             "Error: "<< getErrorMessage(e.getErrorCode()) << profileCfgPath <<

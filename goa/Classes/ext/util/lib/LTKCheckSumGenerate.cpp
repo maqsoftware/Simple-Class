@@ -355,7 +355,7 @@ int LTKCheckSumGenerate::addHeaderInfo(const string& modelDataHeaderInfoFilePath
 
 
 	}
-	catch (LTKException e)
+	catch (LTKException &e)
 	{
 		LOG(LTKLogger::LTK_LOGLEVEL_ERR)<<"Error : "<<EFILE_OPEN_ERROR<<":"<< e.getExceptionMessage()<<
 			"LTKCheckSumGenerate::addHeaderInfo()"<<endl;
