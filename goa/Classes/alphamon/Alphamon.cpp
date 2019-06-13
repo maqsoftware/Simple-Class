@@ -239,7 +239,7 @@ void Alphamon::alphamonLegAnimation(std::string animationName, bool loop) {
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
-        if (str.compare(0, 5, "skate")){
+        if (str.compare(0, 5, "skate") == 0) {
             auto legTimeline = CSLoader::createTimeline(CCString::createWithFormat("leg_ani/%s.csb", str.c_str())->getCString());
 			monsterItem->runAction(legTimeline);
 			legTimeline->play(animationName, loop);
@@ -254,7 +254,7 @@ void Alphamon::alphamonMouthAnimation(std::string animationName, bool loop) {
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
-		if (str.compare(0, 5, "mouth")) {
+		if (str.compare(0, 5, "mouth") == 0) {
 			auto mouthTimeline = CSLoader::createTimeline(CCString::createWithFormat("mouth_ani/%s.csb", str.c_str())->getCString());
 			monsterItem->runAction(mouthTimeline);
 			mouthTimeline->play(animationName, loop);

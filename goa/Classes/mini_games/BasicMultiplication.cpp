@@ -110,7 +110,7 @@ void BasicMultiplication::topBoardSetting() {
 	_questionValue = getRandomValueRange(1, 10, 5);
 }
 
-void BasicMultiplication::gridGrayAndListnerController(const string gridName,int row , int column ) {
+void BasicMultiplication::gridGrayAndListnerController(const string gridName, int row , int column ) {
 	int rowValue = 6;
 	if (gridName != "gridlearning")
 		rowValue = 8;

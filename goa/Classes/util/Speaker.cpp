@@ -31,7 +31,7 @@ Speaker::~Speaker() {
  position - Vec type,to set position of widget ....
  selectionMode - select choice option enable if true or default false
  */
-Speaker*  Speaker::createSpeaker(const string word, Vec2 position,bool selectionMode) {
+Speaker*  Speaker::createSpeaker(const string word, Vec2 position, bool selectionMode) {
 	
 	// checkBox enable status , spearkWord which pronounce by speaker ...
 	_speakerWord = word;
