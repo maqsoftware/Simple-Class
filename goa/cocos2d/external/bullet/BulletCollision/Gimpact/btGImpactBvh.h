@@ -387,9 +387,9 @@ public:
 	static float getAverageTreeCollisionTime();
 #endif //TRI_COLLISION_PROFILING
 
-	static void find_collision(btGImpactBvh * boxset1, const btTransform & trans1,
-		btGImpactBvh * boxset2, const btTransform & trans2,
-		btPairSet & collision_pairs);
+	static void find_collision(btGImpactBvh *boxset0, const btTransform &trans0,
+				   btGImpactBvh *boxset1, const btTransform &trans1,
+				   btPairSet &collision_pairs);
 };
 
 
