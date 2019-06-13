@@ -143,7 +143,7 @@ void Find::onEnterTransitionDidFinish()
 	if (gameCurrentLevel == 1 && _helpFlag)
 	{
 		_helpFlag = false;
-		Sprite *cloneSprite;
+		Sprite *cloneSprite = NULL;
 		for (int i = 0; i < _propsBin.size(); i++)
 		{
 			string name = _propsBin[i]->getName();

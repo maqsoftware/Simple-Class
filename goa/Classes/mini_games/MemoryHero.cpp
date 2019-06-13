@@ -287,7 +287,7 @@ void MemoryHero::gameBegin(cocos2d::EventCustom *eventCustom) {
 		auto stringOne = matchNode.at(0)->getName();
 
 		auto stringTwo = _data[stringOne];
-		int ids[3] = { 9, 13, 15 };
+		int ids[4] = { 9, 13, 15, NULL };
 		int  i;
 		for (i = 0; i < 3; i++) {
 
@@ -410,7 +410,7 @@ bool MemoryHero::onTouchBegan(Touch* touch, Event* event) {
 			auto stringOne = matchNode.at(0)->getName();
 
 			auto stringTwo = _data[stringOne];
-			int ids[3] = { 9, 13, 15 };
+			int ids[4] = {9, 13, 15, NULL};
 			int  i;
 			for (i = 0; i < 3; i++) {
 
