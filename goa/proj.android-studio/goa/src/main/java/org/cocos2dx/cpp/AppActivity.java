@@ -48,11 +48,16 @@ import android.widget.Toast;
 
 import com.maq.xprize.bali.db.entity.User;
 import com.maq.xprize.bali.repo.UserRepo;
+import com.maq.xprize.chimple.hindi.R;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 import java.io.File;
 import java.util.Locale;
+
+import chimple.DownloadExpansionFile;
+
+import static chimple.DownloadExpansionFile.xAPKs;
 
 
 public class AppActivity extends Cocos2dxActivity {
@@ -336,36 +341,36 @@ public class AppActivity extends Cocos2dxActivity {
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
+        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
 
 ////        Don't remove this! This is needed for the initialization of string variable pathToAppDelegate.
         String flagFilePath = getDataFilePath() + ".success.txt";
-//        int defaultFileVersion = 0;
-//        File flagFile = new File(flagFilePath);
-//        boolean extractionRequired = false;
-//
-//        if (!flagFile.exists()) {
-//            SharedPreferences.Editor editor = sharedPref.edit();
-//            editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
-//            editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
-//            editor.apply();
-//            extractionRequired = !flagFile.exists();
-//        } else {
-//            int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
-//            int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
-//            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
-//                if ((xf.mIsMain && xf.mFileVersion != mainFileVersion) || (!xf.mIsMain && xf.mFileVersion != patchFileVersion)) {
-//                    extractionRequired = true;
-//                    break;
-//                }
-//            }
-//
-//        }
-//        if (extractionRequired) {
-//            Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
-//            startActivity(intent);
-//            finish();
-//        }
+        int defaultFileVersion = 0;
+        File flagFile = new File(flagFilePath);
+        boolean extractionRequired = false;
+
+        if (!flagFile.exists()) {
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
+            editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
+            editor.apply();
+            extractionRequired = !flagFile.exists();
+        } else {
+            int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
+            int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
+            for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
+                if ((xf.mIsMain && xf.mFileVersion != mainFileVersion) || (!xf.mIsMain && xf.mFileVersion != patchFileVersion)) {
+                    extractionRequired = true;
+                    break;
+                }
+            }
+
+        }
+        if (extractionRequired) {
+            Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
 
         super.onCreate(savedInstanceState);

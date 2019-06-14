@@ -3,6 +3,7 @@ package org.cocos2dx.cpp;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
@@ -12,6 +13,7 @@ import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -28,6 +30,7 @@ import chimple.DownloadExpansionFile;
 import utils.Zip;
 
 import static chimple.DownloadExpansionFile.xAPKs;
+import static org.cocos2dx.cpp.AppActivity.TAG;
 import static org.cocos2dx.cpp.AppActivity.sharedPref;
 
 public class SplashScreenActivity extends Activity {
@@ -41,10 +44,9 @@ public class SplashScreenActivity extends Activity {
     File packageDir;
     int mainFileVersion;
     int patchFileVersion;
+    protected static boolean preferExternalStorage;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
@@ -59,6 +61,36 @@ public class SplashScreenActivity extends Activity {
                 }
             }
         }
+    }
+
+    public void customDialog() {
+        final android.support.v7.app.AlertDialog.Builder builderSingle = new android.support.v7.app.AlertDialog.Builder(this);
+        builderSingle.setTitle("Attention");
+        builderSingle.setMessage("Do you want to save app data in your SD card");
+
+        builderSingle.setNegativeButton(
+                "No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d(TAG, "onClick: No Called.");
+                        preferExternalStorage = false;
+                        startExtraction();
+                    }
+                });
+
+        builderSingle.setPositiveButton(
+                "Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Log.d(TAG, "onClick: Yes Called.");
+                        preferExternalStorage = true;
+                        startExtraction();
+                    }
+                });
+
+        builderSingle.show();
     }
 
     @Override
@@ -76,7 +108,10 @@ public class SplashScreenActivity extends Activity {
             decorView.setSystemUiVisibility(uiOptions);
         }
         setContentView(R.layout.activity_splash_screen);
+        customDialog();
+    }
 
+    private void startExtraction() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             // Permission is not granted
