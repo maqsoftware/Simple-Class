@@ -149,7 +149,6 @@ void Spirograph::update(float dt) {
 
 Vec2 Spirograph::trace() {
     Vec2 p;
-    //float s = 1 + _spirality*(log1p(_t) - 1.0);
     p.x = (_R - _r) * cos(_t) + _rho * cos((_R - _r) / _r * _t);
     p.y = (_R - _r) * sin(_t) - _rho * sin((_R - _r) / _r * _t);
     return p;

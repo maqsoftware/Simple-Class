@@ -86,7 +86,6 @@ bool DecomonGallery::init() {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-	//std::string ICONS = ICON_FOLDER;
 
 
 	auto fullpath = FileUtils::sharedFileUtils()->getWritablePath() + "decomon.txt";

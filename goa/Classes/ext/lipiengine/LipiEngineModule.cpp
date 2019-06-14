@@ -397,7 +397,6 @@ int LTKLipiEngineModule::createWordRecognizer(const string& strProjName,
 		"Entering: LTKLipiEngineModule::createWordRecognizer()"<<endl;
 
 	string recognizerName = "";
-	//int iResult;
 	void *dllHandler = NULL;
 	string strProjectName = strProjName;
     string strProfileName = strProfName;

@@ -374,7 +374,6 @@ stringStringMap LTKCheckSumGenerate::updateHeaderWithMandatoryFields(const strin
 		 " Entering: LTKCheckSumGenerate::updateHeaderWithMandatoryFields()" << endl;
 
 	long testEndian = 1;
-	//string comment="";
 	int commentLen=0;
 
 	stringStringMap tempHeaderInfo = headerInfo;

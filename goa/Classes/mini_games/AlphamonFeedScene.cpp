@@ -234,7 +234,6 @@ void AlphamonFeed:: update(float dt) {
                 if ((monster).intersectsRect(fruit)) {
                     audio = CocosDenshion::SimpleAudioEngine::getInstance();
                     auto soundPath = (fruitReff.at(i)->getName());
-                    //std::string::size_type sz;   // alias of size_t
                     int i_dec = atoi(soundPath.c_str());//std::stoi(soundPath, &sz);
                     wchar_t testing = (wchar_t)i_dec;
                     auto path = LangUtil::getInstance()->getAlphabetSoundFileName(testing);

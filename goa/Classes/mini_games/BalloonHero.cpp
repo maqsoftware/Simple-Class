@@ -657,7 +657,6 @@ void BalloonHero::gameStart(cocos2d::EventCustom *eventCustom) {
 		this->addChild(_fireFly, 1);
 	
 		Vector <Node*> children = _fireFly->getChildren();
-		//int size = children.size();
 		for (auto item = children.rbegin(); item != children.rend(); ++item) {
 			Node * monsterItem = *item;
 			std::string str = monsterItem->getName().c_str();
@@ -884,15 +883,6 @@ void BalloonHero::generateObjectsAndMove() {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-	//std::vector<int> durations = {3,4,5,6};
-	//std::vector<float> startPosX = { 400,1000,1600,2200 };
-	//std::vector<float> startPosY = { 1600,1700,1800,1900 };
-	
-
-	//std::vector<float> endPosX = { 400,1000,1600,2200 };
-	//std::vector<float> endPosY = { -300,-300,-300,-300 };
-
 
 	if (_sceneNumber == 1) {
 		_objects = { "balloonhero/safe.png","balloonhero/safe.png" ,"balloonhero/cloud2.png", "balloonhero/meteor.png" , "balloonhero/cloud4.png" ,"balloonhero/safe.png" };

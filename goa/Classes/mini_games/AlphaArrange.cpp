@@ -179,7 +179,6 @@ void AlphaArrange::createBox() {
 
 	int numberPicker = RandomHelper::random_int(0, 3);
 
-	//std::string boxColor;
 
 	
 	_randomPlaces[_currentAlphabet] = CSLoader::createNode(boxes[numberPicker]);

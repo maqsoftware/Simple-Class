@@ -59,7 +59,6 @@ EventListenerClass* EventListenerClass::createSprite(const std::string spriteNam
 {
 	EventListenerClass *createSprite_pSprite = new EventListenerClass();
 	CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("cannonball_mainassetPlist.plist");
-	//std::string val = "cannonball/cannonball_mainasset/";
 
 	if (createSprite_pSprite->initWithSpriteFrameName(spriteName))
 	{
@@ -78,8 +77,6 @@ EventListenerClass* EventListenerClass::createSprite(const std::string spriteNam
 LabelClass* LabelClass::createSpt(const std::string spriteName, float x, float y, const std::string charid, MainGame *callerObject)
 {
 	LabelClass *createSprite_pSprite = new LabelClass();
-	//std::string val = "";
-	//val += spriteName;
 
 	createSprite_pSprite->flag = 0;
 	createSprite_pSprite->xP = x;

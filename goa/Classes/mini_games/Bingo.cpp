@@ -429,8 +429,6 @@ void Bingo::createGameSetupAndLayout(cocos2d::EventCustom *eventCustom)
 	auto boxId = 0;
 	Sprite* box;
 	Sprite*	boxShade;
-	//Sprite* bingoFace;
-	// Sprite* wrong;
 	int Boxcounter = 0;
 	cocos2d::LabelTTF * label;
 

@@ -145,7 +145,6 @@ void Drop::gameStart(cocos2d::EventCustom *eventCustom)
 		{ 1,	"dropjungle" },
 		{ 2,    "dropcity" }
 	};
-	//std::string wordOnLabel;
 	std::vector<std::string> wordOnLayout;
 	/*
 	int gameCurrentLevel = _menuContext->getCurrentLevel();

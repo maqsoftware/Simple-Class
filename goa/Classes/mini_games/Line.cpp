@@ -52,7 +52,6 @@ bool Line::init()
 		return false;
 	}
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	//float toplabelX = visibleSize.width / 2 - 30;
 	std::map<std::string, std::map<std::string, std::string>> differntSceneMapping = {
 		{
 			{ "candy",  
@@ -517,7 +516,6 @@ void Line::onTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event)
 	auto target = event->getCurrentTarget();
 	auto  location = target->convertToNodeSpace(touch->getLocation());
 	target->setPosition(touch->getLocation());
-	//Rect rect = Rect(0, 0, target->getContentSize().width, target->getContentSize().height);
 	for (int i = 0; i < _nodeRef.size(); i++)
 	{
 		if ((target->getBoundingBox().containsPoint(Vec2(_nodeRef.at(i)->getPositionX() + extraX, _nodeRef.at(i)->getPositionY()))) && (target->getName().compare(_nodeRef.at(i)->getName()) == 0))

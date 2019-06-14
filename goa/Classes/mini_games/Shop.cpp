@@ -20,7 +20,6 @@ void Shop::onEnterTransitionDidFinish()
 	CCSpriteFrameCache* framecache1 = CCSpriteFrameCache::sharedSpriteFrameCache();
 	framecache1->addSpriteFramesWithFile("shoping/shoping.plist");
 
-	//int gameCurrentLevel = _menuContext->getCurrentLevel();
 
 	_vegePrice = {
 
@@ -73,7 +72,6 @@ void Shop::onEnterTransitionDidFinish()
 	 textOnMachine();
 
 	Vector <Node*> children = shopingBackground->getChildren();
-	//int size = children.size();
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;	
 		std::string str = monsterItem->getName().c_str();

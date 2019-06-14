@@ -303,7 +303,6 @@ std::map<std::string, std::map<std::string, std::string>> TextGenerator::getMapO
         return getMapOfWords(type, maxNum, maxChoices, 0);
     };
     
-    // std::vector<std::vector<std::string>> pairs;
     std::map<std::string, std::map<std::string, std::string>> data;
     for(int i = 0; i < maxNum; i++) {
         int rIndex = rand() % keys.size();
@@ -572,7 +571,6 @@ std::vector<std::vector<std::pair<std::string, TextGenerator::P_O_S>>> TextGener
     }
     std::string contents = cocos2d::FileUtils::getInstance()->getStringFromFile(LangUtil::getInstance()->getDir() + "/sentences_pos.csv");
     std::vector<std::vector<std::pair<std::string, TextGenerator::P_O_S>>> Sentences;
-    // std::vector<std::string> words;
     std::stringstream ss;
     ss.str(contents);
     std::string line;

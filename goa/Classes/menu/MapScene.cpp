@@ -105,7 +105,6 @@ bool MapScene::init()
 
 
 void MapScene::loadMap() {    
-    //const int numCols = 4;
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     

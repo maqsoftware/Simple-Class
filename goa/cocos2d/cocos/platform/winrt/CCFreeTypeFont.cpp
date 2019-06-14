@@ -386,8 +386,6 @@ FT_Error CCFreeTypeFont::initGlyphs(const char* text)
     FT_Error error = 0;
     std::stringstream stringStream(text);
     std::string line;
-    //vector<std::string> lines;
-    //vector<std::string> words;
 
     m_textWidth = 0;
     m_textHeight = 0;

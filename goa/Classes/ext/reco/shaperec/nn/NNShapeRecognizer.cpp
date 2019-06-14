@@ -4486,7 +4486,6 @@ int NNShapeRecognizer::processPrototypeSetForLVQ()
 
 	int codeVecIndex = 5;
 	int trainSize = m_trainSet.size() ;
-	//int train_index = 0;
 
 	//Number of iterations for LVQ
 	long length = m_prototypeSet.size() * m_LVQIterationScale;

@@ -475,7 +475,6 @@ void Decomon::onTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event)
 				CCLOG("on touch end");
 				_movedNodes.pushBack(target);
 			}
-			//Node * temp = target;
 			_iconLayer->removeChild(target);
 			auto vector1 = _costumeLayer->getChildren();
 			auto it1 = std::find(vector1.begin(), vector1.end(), target);

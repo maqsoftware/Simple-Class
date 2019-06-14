@@ -37,7 +37,6 @@ void Find::onEnterTransitionDidFinish()
 	}
 	
 	Vector <Node*> children = findBackground->getChildren();
-	//int size = children.size();
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node *monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();

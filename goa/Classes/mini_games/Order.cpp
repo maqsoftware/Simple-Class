@@ -224,7 +224,6 @@ void Order::onTouchMoved(cocos2d::Touch * touch, cocos2d::Event * event)
 
 void Order::onTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event)
 {
-	//bool flag = false;
 	_iteration++;
 	if (_iteration > _sortedList.size()) {
 		menu->addPoints(-1);
