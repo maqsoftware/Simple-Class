@@ -183,7 +183,7 @@ public class Helpers {
             }
             return "";
         }
-        return Long.toString(overallProgress * 100 / overallTotal) + "%";
+        return overallProgress * 100 / overallTotal + "%";
     }
 
     @SuppressLint("DefaultLocale")

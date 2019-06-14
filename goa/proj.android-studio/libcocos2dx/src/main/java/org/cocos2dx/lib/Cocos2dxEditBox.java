@@ -267,15 +267,13 @@ public class Cocos2dxEditBox extends EditText {
 
     @Override
     public boolean onKeyDown(final int pKeyCode, final KeyEvent pKeyEvent) {
-        switch (pKeyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                Cocos2dxActivity activity = (Cocos2dxActivity) this.getContext();
-                //To prevent program from going to background
-                activity.getGLSurfaceView().requestFocus();
-                return true;
-            default:
-                return super.onKeyDown(pKeyCode, pKeyEvent);
+        if (pKeyCode == KeyEvent.KEYCODE_BACK) {
+            Cocos2dxActivity activity = (Cocos2dxActivity) this.getContext();
+            //To prevent program from going to background
+            activity.getGLSurfaceView().requestFocus();
+            return true;
         }
+        return super.onKeyDown(pKeyCode, pKeyEvent);
     }
 
     @Override

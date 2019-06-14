@@ -42,6 +42,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
@@ -228,18 +229,18 @@ public class LessonRepo {
             }
             Unit answer = luc.subjectUnit;
             if (answerFormat == UPPER_CASE_LETTER_FORMAT) {
-                answer.name = answer.name.toUpperCase();
+                answer.name = answer.name.toUpperCase(Locale.getDefault());
             }
             if (choiceFormat == UPPER_CASE_LETTER_FORMAT) {
                 for (Unit choice : choices) {
                     //TODO: Handle unicode
-                    choice.name = choice.name.substring(0, 1).toUpperCase();
+                    choice.name = choice.name.substring(0, 1).toUpperCase(Locale.getDefault());
                 }
             }
             if (concept == Lesson.UPPER_CASE_LETTER_TO_WORD_CONCEPT) {
                 for (Unit choice : choices) {
                     //TODO: Handle unicode
-                    choice.name = choice.name.substring(0, 1).toUpperCase() + choice.name.substring(1);
+                    choice.name = choice.name.substring(0, 1).toUpperCase(Locale.getDefault()) + choice.name.substring(1);
                 }
             }
             MultipleChoiceQuiz mcq = new MultipleChoiceQuiz(context.getResources().getString(R.string.word),
@@ -255,7 +256,7 @@ public class LessonRepo {
             FlashCard luc = iter.next();
             String compareStr = luc.subjectUnit.name;
             if (caseInvariant) {
-                compareStr = compareStr.toUpperCase();
+                compareStr = compareStr.toUpperCase(Locale.getDefault());
             }
             if (!subjectSet.contains(compareStr)) {
                 subjectSet.add(compareStr);

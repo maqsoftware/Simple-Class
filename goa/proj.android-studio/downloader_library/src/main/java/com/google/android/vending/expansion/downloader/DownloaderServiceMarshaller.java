@@ -16,6 +16,7 @@
 
 package com.google.android.vending.expansion.downloader;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -107,6 +108,7 @@ public class DownloaderServiceMarshaller {
 
     private static class Stub implements IStub {
         private IDownloaderService mItf = null;
+        @SuppressLint("HandlerLeak")
         final Messenger mMessenger = new Messenger(new Handler() {
             @Override
             public void handleMessage(Message msg) {

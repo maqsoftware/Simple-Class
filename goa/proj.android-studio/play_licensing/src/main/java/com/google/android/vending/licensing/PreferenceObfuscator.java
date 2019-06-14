@@ -16,6 +16,7 @@
 
 package com.google.android.vending.licensing;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -42,6 +43,7 @@ public class PreferenceObfuscator {
         mEditor = null;
     }
 
+    @SuppressLint("CommitPrefEdits")
     public void putString(String key, String value) {
         if (mEditor == null) {
             mEditor = mPreferences.edit();

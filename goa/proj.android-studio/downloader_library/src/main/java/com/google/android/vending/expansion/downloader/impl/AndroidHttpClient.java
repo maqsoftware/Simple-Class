@@ -366,7 +366,7 @@ public final class AndroidHttpClient implements HttpClient {
      * @param data The bytes to compress
      * @return Entity holding the data
      */
-    public static AbstractHttpEntity getCompressedEntity(byte data[], ContentResolver resolver)
+    public static AbstractHttpEntity getCompressedEntity(byte[] data, ContentResolver resolver)
             throws IOException {
         AbstractHttpEntity entity;
         if (data.length < getMinGzipSize(resolver)) {
@@ -429,7 +429,7 @@ public final class AndroidHttpClient implements HttpClient {
      * Enables cURL request logging for this client.
      *
      * @param name  to log messages with
-     * @param level at which to log messages (see {@link android.util.Log})
+     * @param level at which to log messages (see {"@link android.util.Log"})
      */
     public void enableCurlLogging(String name, int level) {
         if (name == null) {

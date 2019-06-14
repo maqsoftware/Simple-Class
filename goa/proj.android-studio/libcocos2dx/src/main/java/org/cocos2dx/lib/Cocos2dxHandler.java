@@ -62,10 +62,8 @@ public class Cocos2dxHandler extends Handler {
     // ===========================================================
 
     public void handleMessage(Message msg) {
-        switch (msg.what) {
-            case Cocos2dxHandler.HANDLER_SHOW_DIALOG:
-                showDialog(msg);
-                break;
+        if (msg.what == Cocos2dxHandler.HANDLER_SHOW_DIALOG) {
+            showDialog(msg);
         }
     }
 

@@ -398,8 +398,6 @@ public class DownloadsDB {
         }
     }
 
-    ;
-
     public boolean updateStatus(int status) {
         if (mStatus != status) {
             ContentValues cv = new ContentValues();
@@ -414,8 +412,6 @@ public class DownloadsDB {
             return true;
         }
     }
-
-    ;
 
     public boolean updateMetadata(ContentValues cv) {
         final SQLiteDatabase sqldb = mHelper.getWritableDatabase();
@@ -445,8 +441,6 @@ public class DownloadsDB {
             return false;
         }
     }
-
-    ;
 
     public boolean updateFromDb(DownloadInfo di) {
         final SQLiteDatabase sqldb = mHelper.getReadableDatabase();

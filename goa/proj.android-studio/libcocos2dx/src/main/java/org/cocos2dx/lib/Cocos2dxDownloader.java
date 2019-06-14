@@ -130,7 +130,7 @@ class FileTaskHandler extends FileAsyncHttpResponseHandler {
                     errStr = "Dest file is directory:" + _finalFile.getAbsolutePath();
                     break;
                 }
-                if (false == _finalFile.delete()) {
+                if (!_finalFile.delete()) {
                     errStr = "Can't remove old file:" + _finalFile.getAbsolutePath();
                     break;
                 }
@@ -290,9 +290,8 @@ public class Cocos2dxDownloader {
             public void run() {
 
                 //downloader._httpClient.cancelAllRequests(true);
-                Iterator iter = downloader._taskMap.entrySet().iterator();
-                while (iter.hasNext()) {
-                    Map.Entry entry = (Map.Entry) iter.next();
+                for (Object o : downloader._taskMap.entrySet()) {
+                    Map.Entry entry = (Map.Entry) o;
                     //Object key = entry.getKey();
                     DownloadTask task = (DownloadTask) entry.getValue();
                     if (null != task.handle) {

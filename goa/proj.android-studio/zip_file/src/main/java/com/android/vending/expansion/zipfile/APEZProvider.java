@@ -19,6 +19,7 @@ package com.android.vending.expansion.zipfile;
 //To implement APEZProvider in your application, you'll want to change
 //the AUTHORITY to match what you define in the manifest.
 
+import android.annotation.TargetApi;
 import android.content.ContentProvider;
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
@@ -33,6 +34,7 @@ import android.content.res.AssetFileDescriptor;
 import android.database.Cursor;
 import android.database.MatrixCursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.provider.BaseColumns;
 
@@ -139,9 +141,9 @@ public abstract class APEZProvider extends ContentProvider {
                 mainFileVersion = pi.metaData.getInt("mainVersion", appVersionCode);
                 patchFileVersion = pi.metaData.getInt("patchVersion", appVersionCode);
                 String mainFileName = pi.metaData.getString("mainFilename", NO_FILE);
-                if (NO_FILE != mainFileName) {
+                if (NO_FILE == null ? mainFileName != null : !NO_FILE.equals(mainFileName)) {
                     String patchFileName = pi.metaData.getString("patchFilename", NO_FILE);
-                    if (NO_FILE != patchFileName) {
+                    if (NO_FILE == null ? patchFileName != null : !NO_FILE.equals(patchFileName)) {
                         resourceFiles = new String[]{mainFileName, patchFileName};
                     } else {
                         resourceFiles = new String[]{mainFileName};

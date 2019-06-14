@@ -239,7 +239,7 @@ public class APKExpansionPolicy implements Policy {
             // No response or not parseable, expire immediately
             Log.w(TAG, "License retry timestamp (GT) missing, grace period disabled");
             retryUntil = "0";
-            lRetryUntil = 0l;
+            lRetryUntil = 0L;
         }
 
         mRetryUntil = lRetryUntil;
@@ -265,7 +265,7 @@ public class APKExpansionPolicy implements Policy {
             // No response or not parseable, expire immediately
             Log.w(TAG, "Licence retry count (GR) missing, grace period disabled");
             maxRetries = "0";
-            lMaxRetries = 0l;
+            lMaxRetries = 0L;
         }
 
         mMaxRetries = lMaxRetries;

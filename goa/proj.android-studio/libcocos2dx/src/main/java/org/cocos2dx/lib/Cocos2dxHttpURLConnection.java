@@ -277,7 +277,7 @@ public class Cocos2dxHttpURLConnection {
             while ((size = in.read(buffer, 0, 1024)) != -1) {
                 bytestream.write(buffer, 0, size);
             }
-            byte retbuffer[] = bytestream.toByteArray();
+            byte[] retbuffer = bytestream.toByteArray();
             bytestream.close();
             return retbuffer;
         } catch (Exception e) {

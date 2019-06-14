@@ -285,7 +285,7 @@ public class DownloadThread {
     private void executeDownload(State state, AndroidHttpClient client, HttpGet request)
             throws StopRequest, RetryDownload {
         InnerState innerState = new InnerState();
-        byte data[] = new byte[Constants.BUFFER_SIZE];
+        byte[] data = new byte[Constants.BUFFER_SIZE];
 
         checkPausedOrCanceled(state);
 
@@ -447,10 +447,9 @@ public class DownloadThread {
     private void checkPausedOrCanceled(State state) throws StopRequest {
         if (mService.getControl() == DownloaderService.CONTROL_PAUSED) {
             int status = mService.getStatus();
-            switch (status) {
-                case DownloaderService.STATUS_PAUSED_BY_APP:
-                    throw new StopRequest(mService.getStatus(),
-                            "download paused");
+            if (status == DownloaderService.STATUS_PAUSED_BY_APP) {
+                throw new StopRequest(mService.getStatus(),
+                        "download paused");
             }
         }
     }

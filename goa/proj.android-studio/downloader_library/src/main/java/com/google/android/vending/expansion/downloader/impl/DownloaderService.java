@@ -16,6 +16,7 @@
 
 package com.google.android.vending.expansion.downloader.impl;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -375,7 +376,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
      * Bit flag for {@link #setAllowedNetworkTypes} corresponding to
      * {@link ConnectivityManager#TYPE_MOBILE}.
      */
-    public static final int NETWORK_MOBILE = 1 << 0;
+    public static final int NETWORK_MOBILE = 1;
 
     /**
      * Bit flag for {@link #setAllowedNetworkTypes} corresponding to
@@ -748,7 +749,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
         public void run() {
             setServiceRunning(true);
             mNotification.onDownloadStateChanged(IDownloaderClient.STATE_FETCHING_URL);
-            String deviceId = Secure.getString(mContext.getContentResolver(),
+            @SuppressLint("HardwareIds") String deviceId = Secure.getString(mContext.getContentResolver(),
                     Secure.ANDROID_ID);
 
             final APKExpansionPolicy aep = new APKExpansionPolicy(mContext,
@@ -892,8 +893,6 @@ public abstract class DownloaderService extends CustomIntentService implements I
 
     }
 
-    ;
-
     /**
      * Updates the LVL information from the server.
      *
@@ -998,8 +997,6 @@ public abstract class DownloaderService extends CustomIntentService implements I
             }
         }
     }
-
-    ;
 
     /**
      * This is the main thread for the Downloader. This thread is responsible

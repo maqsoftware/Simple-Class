@@ -190,7 +190,7 @@ public class Cocos2dxHelper {
     // This function returns the absolute path to the OBB if it exists,
     // else it returns the absolute path to the APK.
     public static String getAssetsPath() {
-        if (Cocos2dxHelper.sAssetsPath == "") {
+        if (Cocos2dxHelper.sAssetsPath == null ? "" == null : Cocos2dxHelper.sAssetsPath.equals("")) {
             int versionCode = 1;
             try {
                 versionCode = Cocos2dxHelper.sActivity.getPackageManager().getPackageInfo(Cocos2dxHelper.sPackageName, 0).versionCode;
@@ -523,10 +523,10 @@ public class Cocos2dxHelper {
             if (value instanceof String) {
                 return Boolean.parseBoolean(value.toString());
             } else if (value instanceof Integer) {
-                int intValue = ((Integer) value).intValue();
+                int intValue = (Integer) value;
                 return (intValue != 0);
             } else if (value instanceof Float) {
-                float floatValue = ((Float) value).floatValue();
+                float floatValue = (Float) value;
                 return (floatValue != 0.0f);
             }
         }
@@ -548,7 +548,7 @@ public class Cocos2dxHelper {
             } else if (value instanceof Float) {
                 return ((Float) value).intValue();
             } else if (value instanceof Boolean) {
-                boolean booleanValue = ((Boolean) value).booleanValue();
+                boolean booleanValue = (Boolean) value;
                 if (booleanValue)
                     return 1;
             }
@@ -571,7 +571,7 @@ public class Cocos2dxHelper {
             } else if (value instanceof Integer) {
                 return ((Integer) value).floatValue();
             } else if (value instanceof Boolean) {
-                boolean booleanValue = ((Boolean) value).booleanValue();
+                boolean booleanValue = (Boolean) value;
                 if (booleanValue)
                     return 1.0f;
             }

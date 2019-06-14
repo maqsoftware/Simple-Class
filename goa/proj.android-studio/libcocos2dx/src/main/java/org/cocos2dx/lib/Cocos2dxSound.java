@@ -185,9 +185,7 @@ public class Cocos2dxSound {
 
     public void pauseAllEffects() {
         if (!this.mPathStreamIDsMap.isEmpty()) {
-            final Iterator<Entry<String, ArrayList<Integer>>> iter = this.mPathStreamIDsMap.entrySet().iterator();
-            while (iter.hasNext()) {
-                final Entry<String, ArrayList<Integer>> entry = iter.next();
+            for (Entry<String, ArrayList<Integer>> entry : this.mPathStreamIDsMap.entrySet()) {
                 for (final int steamID : entry.getValue()) {
                     this.mSoundPool.pause(steamID);
                 }
@@ -199,9 +197,7 @@ public class Cocos2dxSound {
         // can not only invoke SoundPool.autoResume() here, because
         // it only resumes all effects paused by pauseAllEffects()
         if (!this.mPathStreamIDsMap.isEmpty()) {
-            final Iterator<Entry<String, ArrayList<Integer>>> iter = this.mPathStreamIDsMap.entrySet().iterator();
-            while (iter.hasNext()) {
-                final Entry<String, ArrayList<Integer>> entry = iter.next();
+            for (Entry<String, ArrayList<Integer>> entry : this.mPathStreamIDsMap.entrySet()) {
                 for (final int steamID : entry.getValue()) {
                     this.mSoundPool.resume(steamID);
                 }
@@ -213,9 +209,7 @@ public class Cocos2dxSound {
     public void stopAllEffects() {
         // stop effects
         if (!this.mPathStreamIDsMap.isEmpty()) {
-            final Iterator<?> iter = this.mPathStreamIDsMap.entrySet().iterator();
-            while (iter.hasNext()) {
-                final Map.Entry<String, ArrayList<Integer>> entry = (Map.Entry<String, ArrayList<Integer>>) iter.next();
+            for (Entry<String, ArrayList<Integer>> entry : this.mPathStreamIDsMap.entrySet()) {
                 for (final int steamID : entry.getValue()) {
                     this.mSoundPool.stop(steamID);
                 }
@@ -243,9 +237,7 @@ public class Cocos2dxSound {
 
         // change the volume of playing sounds
         if (!this.mPathStreamIDsMap.isEmpty()) {
-            final Iterator<Entry<String, ArrayList<Integer>>> iter = this.mPathStreamIDsMap.entrySet().iterator();
-            while (iter.hasNext()) {
-                final Entry<String, ArrayList<Integer>> entry = iter.next();
+            for (Entry<String, ArrayList<Integer>> entry : this.mPathStreamIDsMap.entrySet()) {
                 for (final int steamID : entry.getValue()) {
                     this.mSoundPool.setVolume(steamID, this.mLeftVolume, this.mRightVolume);
                 }

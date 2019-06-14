@@ -31,6 +31,8 @@ package com.google.android.vending.licensing.util;
  * @version 1.3
  */
 
+import android.annotation.SuppressLint;
+
 /**
  * Base64 converter class. This code is not a full-blown MIME encoder;
  * it simply converts binary data to base64 data and back.
@@ -288,7 +290,7 @@ public class Base64 {
 
         // If doPadding is false, set length to truncate '='
         // padding characters
-        while (doPadding == false && outLen > 0) {
+        while (!doPadding && outLen > 0) {
             if (outBuff[outLen - 1] != '=') {
                 break;
             }
@@ -308,6 +310,7 @@ public class Base64 {
      * @param maxLineLength maximum length of one line.
      * @return the BASE64-encoded byte array
      */
+    @SuppressLint("Assert")
     public static byte[] encode(byte[] source, int off, int len, byte[] alphabet,
                                 int maxLineLength) {
         int lenDiv3 = (len + 2) / 3; // ceil(len / 3)
