@@ -1138,7 +1138,7 @@ int LTKPreprocessor::dehookTraces(const LTKTraceGroup& inTraceGroup,
 
 	float dPX3, dPY3;
 
-	float dPX4, dPY4;
+	// float dPX4, dPY4;
 
 	float L0;
 

@@ -22,7 +22,7 @@ public:
 	static BlastLetterNode *create(int width, int height, cocos2d::Point position);
 	virtual void draw(cocos2d::DrawNode *paintingNode, cocos2d::Point fromPoint, cocos2d::Point currentPoint) override;
 	virtual void broadCastRecognizedChars(std::vector<std::string> results) override;
-	virtual ui::Button* createButton(const std::string normalImage, const std::string selectedImage, const std::string disableImage, Vec2 position) override;
+	virtual ui::Button* createButton(std::string const& normalImage, std::string const& selectedImage, std::string const& disableImage, Vec2 position) override;
 	virtual void clearDrawing(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType) override;
 	std::vector<std::string> getPosibileCharacter();
 	void drawAllowance(bool permission);

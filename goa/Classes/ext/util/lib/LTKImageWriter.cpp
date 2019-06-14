@@ -1234,7 +1234,7 @@ m_offset(0)
 			short type;
 			int size;
 			short reserved1;
-			short reserved2;
+			// short reserved2;
 			int offset;
 			int i,j;
 			int biSize,biWidth,biHeight;

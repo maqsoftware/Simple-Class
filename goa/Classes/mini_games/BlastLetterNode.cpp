@@ -60,7 +60,7 @@ void BlastLetterNode::broadCastRecognizedChars(std::vector<std::string> results)
 	_result = results;
 }
 
-ui::Button * BlastLetterNode::createButton(const std::string normalImage, const std::string selectedImage, const std::string disableImage, Vec2 position)
+ui::Button * BlastLetterNode::createButton(std::string const& normalImage, std::string const& selectedImage, std::string const& disableImage, Vec2 position)
 {
 	auto spritecache1 = SpriteFrameCache::getInstance();
 	spritecache1->addSpriteFramesWithFile("cardraw/cardraw.plist");

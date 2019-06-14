@@ -343,10 +343,10 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
     }
 }
 
-cocos2d::ui::Button* MenuContext::createMenuItem(const std::string normalImage,
-                                 const std::string selectedImage ,
-                                 const std::string disableImage,
-                                 float xPosOffSet) {
+cocos2d::ui::Button* MenuContext::createMenuItem( std::string const& normalImage,
+                                                  std::string const& selectedImage ,
+                                                  std::string const& disableImage,
+                                                  float xPosOffSet) {
     cocos2d::ui::Button* _menu = Button::create(normalImage, selectedImage, disableImage, Widget::TextureResType::LOCAL);
     _menu->setPosition(_menuButton->getPosition());
     addChild(_menu);
@@ -358,10 +358,10 @@ cocos2d::ui::Button* MenuContext::createMenuItem(const std::string normalImage,
     return _menu;
 }
 
-cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(const std::string normalImage,
-                                                 const std::string selectedImage ,
-                                                 const std::string disableImage,
-                                                 float xPosOffSet) {
+cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(std::string const& normalImage,
+                                                         std::string const& selectedImage ,
+                                                         std::string const& disableImage,
+                                                         float xPosOffSet) {
     
     ClippingNode* clipper = ClippingNode::create();
     clipper->setPosition(_menuButton->getPosition());
@@ -475,10 +475,10 @@ cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(const std::string norma
 }
 
 
-cocos2d::Node* MenuContext::createAvatarMenuItem(const std::string normalImage,
-                                                         const std::string selectedImage ,
-                                                         const std::string disableImage,
-                                                         float xPosOffSet) {
+cocos2d::Node* MenuContext::createAvatarMenuItem(std::string const& normalImage,
+                                                 std::string const& selectedImage ,
+                                                 std::string const& disableImage,
+                                                 float xPosOffSet) {
     
     std::string cachedCharacterInformation;
     localStorageGetItem("cachedCharacterConfig", &cachedCharacterInformation);

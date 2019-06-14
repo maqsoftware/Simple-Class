@@ -26,9 +26,10 @@ public:
 	void setParent(Door* parent);
 	virtual void clearDrawing(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType) override;
 	cocos2d::ui::Button* _button;
-	virtual cocos2d::ui::Button* createButton(const std::string normalImage,
-		const std::string selectedImage,
-		const std::string disableImage, cocos2d::Vec2 position) override;
+	virtual cocos2d::ui::Button *createButton(std::string const& normalImage,
+											  std::string const& selectedImage,
+											  std::string const& disableImage, cocos2d::Vec2 position) override;
+
 protected:
 	MenuContext * menu;
 	Door* _Door;

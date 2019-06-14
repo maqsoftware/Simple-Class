@@ -180,22 +180,22 @@ protected:
 
     bool onTouchBeganOnCharacter(cocos2d::Touch *touch, cocos2d::Event *event);
     
-    cocos2d::ui::Button* createMenuItem(const std::string normalImage,
-                        const std::string selectedImage ,
-                        const std::string disableImage,
+    cocos2d::ui::Button* createMenuItem(std::string const& normalImage,
+                        std::string const& selectedImage ,
+                        std::string const& disableImage,
                         float xPosOffSet);
-    
-    cocos2d::ClippingNode* createMaskedMenuItem(const std::string normalImage,
-                                        const std::string selectedImage ,
-                                        const std::string disableImage,
-                                        float xPosOffSet);
-    
-    cocos2d::Node* createAvatarMenuItem(const std::string normalImage,
-                                                     const std::string selectedImage ,
-                                                     const std::string disableImage,
+
+    cocos2d::ClippingNode *createMaskedMenuItem(std::string const& normalImage,
+                                                std::string const& selectedImage,
+                                                std::string const& disableImage,
+                                                float xPosOffSet);
+
+    cocos2d::Node *createAvatarMenuItem(std::string const& normalImage,
+                                        std::string const& selectedImage,
+                                        std::string const& disableImage,
                                         float xPosOffSet);
 
-	std::map<std::string, std::string> _wordsList;
+    std::map<std::string, std::string> _wordsList;
 	std::vector<std::string> _listOfWords;
 	std::map<std::string, std::vector<std::string>> _listOfInitialSyllableWords;
     
