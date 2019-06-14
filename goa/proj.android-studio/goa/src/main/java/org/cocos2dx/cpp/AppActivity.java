@@ -90,7 +90,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     private Handler handler = null;
     private TextToSpeech textToSpeechInstance;
-    public static String pathToAppDelegate = "/storage/3535-6630/Android/data/files/";
+    public static String pathToAppDelegate = null;
 
     //    LauncherScreen variables and functions from Bali
     public static native void setMultipleChoiceQuiz(String[] jsonInfo);
@@ -158,7 +158,7 @@ public class AppActivity extends Cocos2dxActivity {
 
     }
 
-    //        Method to check if SD card is mounted
+    //  Method to check if SD card is mounted
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean isSDcard() {
         File[] fileList = getObbDirs();
@@ -168,7 +168,7 @@ public class AppActivity extends Cocos2dxActivity {
         return false;
     }
 
-    //      Method returning the Android/data directory path
+    //  Method returning the Android/data directory path
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String getDataFilePath() {
         String internalDataFilePath = null;
@@ -337,8 +337,9 @@ public class AppActivity extends Cocos2dxActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
+
 ////        Don't remove this! This is needed for the initialization of string variable pathToAppDelegate.
-//        String flagFilePath = getDataFilePath() + ".success.txt";
+        String flagFilePath = getDataFilePath() + ".success.txt";
 //        int defaultFileVersion = 0;
 //        File flagFile = new File(flagFilePath);
 //        boolean extractionRequired = false;
@@ -365,9 +366,6 @@ public class AppActivity extends Cocos2dxActivity {
 //            startActivity(intent);
 //            finish();
 //        }
-        String temp = getDataFilePath();
-        temp = null;
-        temp = getPathToAppDelegate();
 
 
         super.onCreate(savedInstanceState);
@@ -441,8 +439,6 @@ public class AppActivity extends Cocos2dxActivity {
         super.onStop();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
     protected void onResume() {
         super.onResume();
         Intent intent = new Intent();

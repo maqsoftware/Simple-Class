@@ -140,6 +140,7 @@ public class SplashScreenActivity extends Activity {
         } else {
             OBBFilePath = externalOBBFilePath;
         }
+//
         return OBBFilePath;
     }
 
@@ -159,41 +160,10 @@ public class SplashScreenActivity extends Activity {
                     zipFileHandler = new Zip(obbZipFile, this);
                     dataFilePath = getDataFilePath();
                     packageDir = new File(dataFilePath);
-//                    if (xf.mIsMain && packageDir.exists()) {
-//                        DownloadExpansionFile.deleteDir(packageDir);
-//                        packageDir.mkdir();
-//                    }
-//                    String packageDirectory="/storage/3535-6630/Android/data/com.maq.xprize.chimple.hindi/files";
-//                    File packageDir2 = new File(packageDirectory);
-//                    packageDir2.mkdir();
-//                    String packageDirectory2="/storage/3535-6630/Android/obb/com.maq.xprize.chimple.hindi/files22/lol";
-//                    File packageDir3 = new File(packageDirectory2);
-//
-//                    File[] fileList = getObbDirs();
-//                    String flagFilePath = null;
-//                    for (File file : fileList) {
-//                        if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
-//                            flagFilePath = file.getAbsolutePath();
-//                            flagFilePath =  flagFilePath.substring(0,  flagFilePath.indexOf("obb"));
-//                            flagFilePath =  flagFilePath + "data/"  ;
-//                        }
-//                    }
-//                    if (flagFilePath == null) {
-//                        flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
-//                    }
-//                    flagFilePath = "/storage/emulated/0/lol";
-//                    File directory = new File(flagFilePath + java.io.File.separator + "Directory" + java.io.File.separator+ "ka22k");
-//                    String lol;
-//                    if (!directory.exists()) {
-//                        lol = directory.mkdirs() ? "Directory has been created" : "Directory not created";
-//                    } else
-//                        lol = "Already exists!";
-//                    String lol1;
-//                    File directory1 = new File( java.io.File.separator + "storage" + java.io.File.separator + "3535-6630" + java.io.File.separator + "Android"+ java.io.File.separator + "data" + java.io.File.separator + "com.maq.xprize.chimple.hindi" + java.io.File.separator+ "files");
-//                    if (!directory.exists()) {
-//                        lol = directory.mkdirs() ? "Directory has been created" : "Directory not created";
-//                    } else
-//                        lol = "Already exists!";
+                    if (xf.mIsMain && packageDir.exists()) {
+                        DownloadExpansionFile.deleteDir(packageDir);
+                        packageDir.mkdir();
+                    }
                     zipFileHandler.unzip(dataFilePath, totalSize, xf.mIsMain, xf.mFileVersion);
                     System.out.println("Extracted3");
                     zipFileHandler.close();
