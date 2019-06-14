@@ -167,19 +167,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
-    JniMethodInfo t;
-    std :: string str;
-     if (JniHelper::getStaticMethodInfo(t,
-        "com/cocos2dx/cpp/AppActivity",
-        "getPathToAppDelegate",
-        "()Ljava/lang/String")) {
+//  Fetch extracted resource path by calling getPathToAppDelegate() in AppActivity.java
+    string devicePath = JniHelper::callStaticStringMethod("org/cocos2dx/cpp/AppActivity", "getPathToAppDelegate");
 
-            jstring s = (jstring) t.env->CallObjectMethod(t.classID,t.methodID);
-            t.env->DeleteLocalRef(t.classID);
-
-            str = JniHelper::jstring2string(s);
-        }
-    string devicePath = str;
     FileUtils::getInstance()->setDefaultResourceRootPath(devicePath);
 #endif
 

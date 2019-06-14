@@ -231,7 +231,7 @@ public: virtual void set##funName(varType var)   \
 #define CCLOGWARN(...)   do {} while (0)
 
 #elif COCOS2D_DEBUG == 1
-#define CCLOG( ...)      __android_log_print(ANDROID_LOG_DEBUG, "TAG", __VA_ARGS__)
+#define CCLOG(...)      __android_log_print(ANDROID_LOG_DEBUG, "TAG", __VA_ARGS__)
 #define CCLOGERROR(...)   __android_log_print(ANDROID_LOG_DEBUG, "TAG", __VA_ARGS__)
 #define CCLOGINFO(format,...)   do {} while (0)
 #define CCLOGWARN(...) __CCLOGWITHFUNCTION(__VA_ARGS__)
