@@ -1,7 +1,7 @@
 [
   {
     "name": "decomone",
-    "title": "¥ÿæÚ âÁæ¥ô",
+    "title": "¥ÿæÚ âÁæ¥ô$#$Decomone",
 	"_title_comment": "अक्षर सजाओ",
     "unlock": true,
     "cIcon": "gameicons/decomone_pressed.png",
@@ -184,7 +184,7 @@
   },
   {
     "name": "EndlessRunner",
-	"title":"Öæ»ô ¥æñÚ Â·UUUUÇ¸ô",
+	"title":"Öæ»ô ¥æñÚ Â·UUUUÇ¸ô$#$Endless Runner",
     "_title_comment": "भागो और पकड़ो",
     "unlock": true,
     "cIcon": "gameicons/EndlessRunner_pressed.png",
@@ -295,7 +295,7 @@
   },
   {
     "name": "Alphamon Feed",
-    "title": "Úæÿæâô¢ ·UUUUô ç¹Üæ¥ô",
+    "title": "Úæÿæâô¢ ·UUUUô ç¹Üæ¥ô$#$Alphamon Feed",
 	"_title_comment": "राक्षसों को खिलाओ",
     "unlock": true,
     "cIcon": "gameicons/Alphamon Feed_pressed.png",
@@ -406,7 +406,7 @@
   },
   {
     "name": "book",
-    "title": "¥ÿæÚ ·UUUè ÜÇ¸æ§ü",
+    "title": "¥ÿæÚ ·UUUè ÜÇ¸æ§ü$#$Book",
 	"_title_comment": "अक्षर की लड़ाई",
     "unlock": true,
     "cIcon": "gameicons/book_pressed.png",
@@ -469,7 +469,7 @@
   },
   {
     "name": "alphamole",
-    "title": "Úæÿæâ ·UUUUô ×æÚô",
+    "title": "Úæÿæâ ·UUUUô ×æÚô$#$Alphamole",
 	"_title_comment":"राक्षस को मारो ",
     "unlock": true,
     "cIcon": "gameicons/alphamole_pressed.png",
@@ -580,7 +580,7 @@
   },
   {
     "name": "Cross The Bridge",
-	"title": "ÂêÜ ·UUUUô ÂæÚ ·UUUUÚô",
+	"title": "ÂêÜ ·UUUUô ÂæÚ ·UUUUÚô$#$Cross The Bridge",
     "_title_comment": "पूल को पार करो",
     "unlock": true,
     "cIcon": "gameicons/Cross The Bridge_pressed.png",
@@ -688,7 +688,7 @@
   },
   {
     "name": "Cannon Ball",
-	"title":"ÌôÂ ·UUUæ »ôÜæ",
+	"title":"ÌôÂ ·UUUæ »ôÜæ$#$Cannon Ball",
     "_title_comment": "तोप का गोला",
     "unlock": true,
     "cIcon": "gameicons/Cannon Ball_pressed.png",
@@ -733,7 +733,7 @@
   },
   {
     "name": "bubble",
-	"title": "ÕéÜÕéÜæ ÈUUUUôÇ¸ô",
+	"title": "ÕéÜÕéÜæ ÈUUUUôÇ¸ô$#$Bubble",
     "_title_comment": "बुलबुला फोड़ो",
     "unlock": true,
     "cIcon": "gameicons/bubble_pressed.png",
@@ -820,7 +820,7 @@
   },
   {
     "name": "Smash The Rock",
-	"title": "¿^æÙ ÌôÇ¸ô",
+	"title": "¿^æÙ ÌôÇ¸ô$#$Smash The Rock",
     "_title_comment": "चट्टान तोड़ो",
     "unlock": true,
     "cIcon": "gameicons/Smash The Rock_pressed.png",
@@ -931,7 +931,7 @@
   },
   {
     "name": "dino",
-	"title": "ß‡æü×æÜæ",
+	"title": "ß‡æü×æÜæ$#$Dino",
     "_title_comment": "वर्णमाला",
     "unlock": true,
     "cIcon": "gameicons/dino_pressed.png",
@@ -964,7 +964,7 @@
   },
   {
     "name": "Patch The Wall",
-	"title": "ÎèßæÚ ·UUUUô ÍÂÍÂæ°¢",
+	"title": "ÎèßæÚ ·UUUUô ÍÂÍÂæ°¢$#$Patch The Wall",
     "_title_comment": "ÎèßæÚ ·UUUè ×Ú{×Ì",
     "unlock": true,
     "cIcon": "gameicons/Patch The Wall_pressed.png",
@@ -1011,7 +1011,7 @@
   },
   {
     "name": "basiclettercase",
-	"title": "¥æ§âRUUUè×",
+	"title": "¥æ§âRUUUè×$#$Basic Letter Case",
     "_title_comment": "आइसक्रीम",
     "cIcon": "gameicons/basiclettercase_pressed.png",
     "icon": "gameicons/basiclettercase.png",
@@ -1058,7 +1058,7 @@
   },
   {
     "name": "alphaarrange",
-	"title": "¥ËÈUUUæ ÃØßSÍæ",
+	"title": "¥ËÈUUUæ ÃØßSÍæ$#$Alpha Arrange",
     "_title_comment": "अल्फा व्यवस्था",
     "unlock": true,
     "cIcon": "gameicons/AlphaArrange_pressed.png",

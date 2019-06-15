@@ -68,6 +68,7 @@
 
 USING_NS_CC;
 static const bool KIOSK = true;
+bool isLastRow = false;
 
 std::map<std::string, cocos2d::Color3B> ScrollableGameMapScene::BUTTON_TEXT_COLOR_MAP = {
     {"alphabet", Color3B(0xFF, 0xC0, 0xC0)},
@@ -290,7 +291,7 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
         topBarGames.insert(topBarGames.begin(), "story-catalogue");
         std::map<std::string, int> topBarGamesIndexes = {{"story-catalogue", 0}};
         int index = 0;
-        int yOffset = 50;
+        int yOffset = 70;
         
         for(int k = 0; k < numberOfPages; k++) {
             auto page = ui::Widget::create();
@@ -316,6 +317,9 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
             for (int i = 0; i < numRows; i++) {
                 for (int j = 0; j < numCols; j++) {
                     if(index < orderedGameIndexes.size()) {
+                        isLastRow = false;
+                        if (i == numRows - 1)
+                            isLastRow = true;
                         int dIndex = orderedGameIndexes[index];
                         const rapidjson::Value& game = d[dIndex];
                         auto gameName = game["name"].GetString();
@@ -386,6 +390,7 @@ void ScrollableGameMapScene::backButtonPressed(Ref* pSender, ui::Widget::TouchEv
 cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value& gameJson, bool active) {
     std::string ICONS = ICON_FOLDER;
     std::string gameName = gameJson["name"].GetString();
+    CCLOG("game name jsonnnnnnnnn ::::: %s", gameName.c_str());
     rapidjson::StringBuffer buffer;
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
     gameJson.Accept(writer);
@@ -411,11 +416,30 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
             button->loadTextureDisabled(buttonNormalIcon);
             button->addTouchEventListener(CC_CALLBACK_2(ScrollableGameMapScene::disabledGameSelected, this));
         }
+
+        string gameTitle = gameJson["title"].GetString();
+        string delimiter = "$#$";
+
+        // splitting the string into its chanakya component
+        string gameTitleHindi = gameTitle.substr(0, gameTitle.find(delimiter));
+        string gameTitleEnglish = gameTitle.substr(gameTitle.find(delimiter) + delimiter.size(), gameTitle.size() - 1);
         
+        CCLOG("------------ english text -------- :: %s", gameTitleEnglish.c_str());
+        CCLOG("------------ hindi text -------- :: %s", gameTitleHindi.c_str());
+
+        if (isLastRow) 
+        {
+            CCLOG("inside this function ///////////");
+            gameTitleHindi = gameJson["_title_comment"].GetString();
+            gameTitleEnglish += "/" + gameTitleHindi;
+            CCLOG("hindi combined :: %s", gameTitleHindi.c_str());
+        }
+
+        // IF THE LAST ROW IS NOT ENABLED
         button->setName(gameJson["name"].GetString());
-        button->setTitleText(LangUtil::getInstance()->translateString(gameJson["title"].GetString()));
+        button->setTitleText(LangUtil::getInstance()->translateString(gameTitleEnglish));
         button->setTitleAlignment(TextHAlignment::CENTER, TextVAlignment::BOTTOM);
-        button->setTitleFontName("fonts/Chanakya.ttf");
+        // button->setTitleFontName("fonts/Arial.ttf");
         auto titleColor = Color3B(0xFF, 0xF2, 0x00);
         if(!_subGameMenuToNavigate.empty()) {
             auto it = BUTTON_TEXT_COLOR_MAP.find(_subGameMenuToNavigate);
@@ -424,10 +448,18 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
             }
         }
         button->setTitleColor(titleColor);
-        button->setTitleFontSize(150);
+        button->setTitleFontSize(100);
         auto label = button->getTitleRenderer();
         label->setPosition(Vec2(label->getPositionX(), label->getPositionY()- 300));
         button->setScale(0.5);
+        
+        if (!isLastRow)
+        {
+            Label *engText = Label::createWithTTF(gameTitleHindi, "fonts/Chanakya.ttf", 140);
+            engText->setPosition(Vec2(label->getPositionX(), label->getPositionY() - 130));
+            engText->setColor(titleColor);
+            button->addChild(engText);
+        }
         return button;
     }
     return nullptr;
