@@ -46,8 +46,8 @@ public class SplashScreenActivity extends Activity {
     File packageDir;
     int mainFileVersion;
     int patchFileVersion;
+    boolean flagSwitchToInternal = false;
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String[] permissions, int[] grantResults) {
@@ -98,6 +98,7 @@ public class SplashScreenActivity extends Activity {
         builderSingle.show();
     }
 
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +116,7 @@ public class SplashScreenActivity extends Activity {
         }
         setContentView(R.layout.activity_splash_screen);
         if (isSDcard() && sharedPref.getInt(getString(R.string.dataPath), 0) == 0) {
-            flag = true;
+            flagSwitchToInternal = true;
             customDialog();
         } else {
             final SharedPreferences.Editor editor = sharedPref.edit();
@@ -125,7 +126,6 @@ public class SplashScreenActivity extends Activity {
         }
     }
 
-    boolean flag = false;
     private void startExtraction() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -158,7 +158,6 @@ public class SplashScreenActivity extends Activity {
                     obbZipFile = new ZipFile(obbFile);
                     zipFileHandler = new Zip(obbZipFile, this);
                     dataFilePathtoZip = getDataFilePath();
-                    dataFilePathtoZip = dataFilePathtoZip + "/";
                     pathToAppDelegate = dataFilePathtoZip;
                     packageDir = new File(dataFilePathtoZip);
                     if (xf.mIsMain && packageDir.exists()) {
@@ -197,10 +196,10 @@ public class SplashScreenActivity extends Activity {
                     isSDcard() &&
                     sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
 //              For external storage path
-                externalDataFilePath = file.getAbsolutePath();
-            } else if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 1 || !flag) && internalDataFilePath == null) {
+                externalDataFilePath = file.getAbsolutePath() + "/";
+            } else if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 1 || !flagSwitchToInternal) && internalDataFilePath == null) {
 //              For internal storage path
-                internalDataFilePath = file.getAbsolutePath();
+                internalDataFilePath = file.getAbsolutePath() + "/";
             }
         }
         if (externalDataFilePath == null) {
@@ -225,7 +224,7 @@ public class SplashScreenActivity extends Activity {
                     sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
 //              For external storage path
                 externalOBBFilePath = file.getAbsolutePath();
-            } else if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 1 || !flag) && internalOBBFilePath == null) {
+            } else if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 1 || !flagSwitchToInternal) && internalOBBFilePath == null) {
 //              For internal storage path
                 internalOBBFilePath = file.getAbsolutePath();
             }

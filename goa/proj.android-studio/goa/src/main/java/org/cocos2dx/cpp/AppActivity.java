@@ -59,7 +59,6 @@ import chimple.DownloadExpansionFile;
 
 import static chimple.DownloadExpansionFile.xAPKs;
 
-
 public class AppActivity extends Cocos2dxActivity {
     public static final String TAG = "GOA";
     public static final String AUTHORITY = "com.maq.xprize.bali.provider";
@@ -119,22 +118,18 @@ public class AppActivity extends Cocos2dxActivity {
         String internalDataFilePath = null;
         String externalDataFilePath = null;
         String DataFilePath = null;
-        File[] fileList = getObbDirs();
+        File[] fileList = getExternalFilesDirs(null);
         for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) &&
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + getPackageName() + "files") &&
                     file.isDirectory() &&
                     file.canRead() &&
                     isSDcard() &&
                     sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
 //              For external storage path
-                externalDataFilePath = file.getAbsolutePath();
-                externalDataFilePath = externalDataFilePath.substring(0, externalDataFilePath.indexOf("obb"));
-                externalDataFilePath = externalDataFilePath + "data/" + getPackageName() + "/files/";
+                externalDataFilePath = file.getAbsolutePath() + "/";
             } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 1 && internalDataFilePath == null) {
 //              For internal storage path
-                internalDataFilePath = file.getAbsolutePath();
-                internalDataFilePath = internalDataFilePath.substring(0, internalDataFilePath.indexOf("obb"));
-                internalDataFilePath = internalDataFilePath + "data/" + getPackageName() + "/files/";
+                internalDataFilePath = file.getAbsolutePath() + "/";
             }
         }
         if (externalDataFilePath == null) {
@@ -149,9 +144,11 @@ public class AppActivity extends Cocos2dxActivity {
         return DataFilePath;
     }
 
+    //  Method called by AppDelegate.cpp
     public static String getPathToAppDelegate() {
         return pathToAppDelegate;
     }
+
     public static void queryMultipleChoiceQuiz(int numQuizes, int numChoices, int answerFormat, int choiceFormat) {
         System.out.println("entry queryMultipleChoiceQuiz");
         new AsyncTask<int[], Void, Void>() {
@@ -211,10 +208,6 @@ public class AppActivity extends Cocos2dxActivity {
         }.execute(new int[]{numQuizes, numChoices, answerFormat, choiceFormat});
 
     }
-
-
-
-
 
     public static void queryBagOfChoiceQuiz(int numQuizes, int minAnswers, int maxAnswers,
                                             int minChoices, int maxChoices, int order) {
