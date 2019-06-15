@@ -115,12 +115,15 @@ public class SplashScreenActivity extends Activity {
         }
         setContentView(R.layout.activity_splash_screen);
         if (isSDcard() && sharedPref.getInt(getString(R.string.dataPath), 0) == 0) {
+            flag = true;
             customDialog();
         } else {
+
             new DownloadFile().execute(null, null, null);
         }
     }
 
+    boolean flag = false;
     private void startExtraction() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -154,9 +157,6 @@ public class SplashScreenActivity extends Activity {
                     zipFileHandler = new Zip(obbZipFile, this);
                     dataFilePathtoZip = getDataFilePath();
                     pathToAppDelegate = dataFilePathtoZip;
-                    System.out.println(dataFilePathtoZip);
-                    System.out.println(obbFile);
-                    System.out.println("check12333");
                     packageDir = new File(dataFilePathtoZip);
                     if (xf.mIsMain && packageDir.exists()) {
                         DownloadExpansionFile.deleteDir(packageDir);
@@ -195,7 +195,7 @@ public class SplashScreenActivity extends Activity {
                     sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
 //              For external storage path
                 externalDataFilePath = file.getAbsolutePath();
-            } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 1 && internalDataFilePath == null) {
+            } else if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 1 || !flag) && internalDataFilePath == null) {
 //              For internal storage path
                 internalDataFilePath = file.getAbsolutePath();
             }
@@ -222,7 +222,7 @@ public class SplashScreenActivity extends Activity {
                     sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
 //              For external storage path
                 externalOBBFilePath = file.getAbsolutePath();
-            } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 1 && internalOBBFilePath == null) {
+            } else if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 1 || !flag) && internalOBBFilePath == null) {
 //              For internal storage path
                 internalOBBFilePath = file.getAbsolutePath();
             }
