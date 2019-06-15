@@ -118,7 +118,9 @@ public class SplashScreenActivity extends Activity {
             flag = true;
             customDialog();
         } else {
-
+            final SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(getString(R.string.dataPath), 1);
+            editor.apply();
             new DownloadFile().execute(null, null, null);
         }
     }
@@ -156,6 +158,7 @@ public class SplashScreenActivity extends Activity {
                     obbZipFile = new ZipFile(obbFile);
                     zipFileHandler = new Zip(obbZipFile, this);
                     dataFilePathtoZip = getDataFilePath();
+                    dataFilePathtoZip = dataFilePathtoZip + "/";
                     pathToAppDelegate = dataFilePathtoZip;
                     packageDir = new File(dataFilePathtoZip);
                     if (xf.mIsMain && packageDir.exists()) {
