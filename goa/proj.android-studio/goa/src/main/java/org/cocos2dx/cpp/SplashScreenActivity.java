@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -31,6 +32,7 @@ import utils.Zip;
 
 import static chimple.DownloadExpansionFile.xAPKs;
 import static org.cocos2dx.cpp.AppActivity.TAG;
+import static org.cocos2dx.cpp.AppActivity.pathToAppDelegate;
 import static org.cocos2dx.cpp.AppActivity.sharedPref;
 
 public class SplashScreenActivity extends Activity {
@@ -40,11 +42,10 @@ public class SplashScreenActivity extends Activity {
     File obbFile;
     ZipFile obbZipFile;
     Zip zipFileHandler;
-    String dataFilePath;
+    String dataFilePathtoZip;
     File packageDir;
     int mainFileVersion;
     int patchFileVersion;
-    protected static boolean preferExternalStorage;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -63,18 +64,20 @@ public class SplashScreenActivity extends Activity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void customDialog() {
         final android.support.v7.app.AlertDialog.Builder builderSingle = new android.support.v7.app.AlertDialog.Builder(this);
         builderSingle.setTitle("Attention");
         builderSingle.setMessage("Do you want to save app data in your SD card");
-
+        final SharedPreferences.Editor editor = sharedPref.edit();
         builderSingle.setNegativeButton(
                 "No",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Log.d(TAG, "onClick: No Called.");
-                        preferExternalStorage = false;
+                        editor.putInt(getString(R.string.dataPath), 1);
+                        editor.apply();
                         startExtraction();
                     }
                 });
@@ -85,14 +88,17 @@ public class SplashScreenActivity extends Activity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         Log.d(TAG, "onClick: Yes Called.");
-                        preferExternalStorage = true;
+                        editor.putInt(getString(R.string.dataPath), 2);
+                        editor.apply();
                         startExtraction();
                     }
                 });
-
+//        to initialize pathToAppDelegate with the selected path
+        String junkDataFilePath = getDataFilePath();
         builderSingle.show();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,7 +114,11 @@ public class SplashScreenActivity extends Activity {
             decorView.setSystemUiVisibility(uiOptions);
         }
         setContentView(R.layout.activity_splash_screen);
-        customDialog();
+        if (isSDcard() && sharedPref.getInt(getString(R.string.dataPath), 0) == 0) {
+            customDialog();
+        } else {
+            new DownloadFile().execute(null, null, null);
+        }
     }
 
     private void startExtraction() {
@@ -129,57 +139,6 @@ public class SplashScreenActivity extends Activity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public String getDataFilePath() {
-        String internalDataFilePath = null;
-        String externalDataFilePath = null;
-        String DataFilePath = null;
-        File[] fileList = getObbDirs();
-        for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
-//              For external storage path
-                externalDataFilePath = file.getAbsolutePath();
-                externalDataFilePath = externalDataFilePath.substring(0, externalDataFilePath.indexOf("obb"));
-                externalDataFilePath = externalDataFilePath + "data/" + getPackageName() + "/files/";
-            } else {
-//              For internal storage path
-                internalDataFilePath = file.getAbsolutePath();
-                internalDataFilePath = internalDataFilePath.substring(0, internalDataFilePath.indexOf("obb"));
-                internalDataFilePath = internalDataFilePath + "data/" + getPackageName() + "/files/";
-            }
-        }
-        if (externalDataFilePath == null) {
-            DataFilePath = internalDataFilePath;
-        } else {
-            DataFilePath = externalDataFilePath;
-        }
-        return DataFilePath;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public String getOBBFilePath() {
-        String internalOBBFilePath = null;
-        String externalOBBFilePath = null;
-        String OBBFilePath = null;
-        File[] fileList = getObbDirs();
-        for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) && file.isDirectory() && file.canRead()) {
-//              For external storage path
-                externalOBBFilePath = file.getAbsolutePath();
-            } else {
-//              For internal storage path
-                internalOBBFilePath = file.getAbsolutePath();
-            }
-        }
-        if (externalOBBFilePath == null) {
-            OBBFilePath = internalOBBFilePath;
-        } else {
-            OBBFilePath = externalOBBFilePath;
-        }
-//
-        return OBBFilePath;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void unzipFile() {
         int totalSize = getTotalSize();
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
@@ -193,16 +152,18 @@ public class SplashScreenActivity extends Activity {
                     obbFile = new File(obbFilePath);
                     obbZipFile = new ZipFile(obbFile);
                     zipFileHandler = new Zip(obbZipFile, this);
-                    dataFilePath = getDataFilePath();
-                    packageDir = new File(dataFilePath);
+                    dataFilePathtoZip = getDataFilePath();
+                    pathToAppDelegate = dataFilePathtoZip;
+                    System.out.println(dataFilePathtoZip);
+                    System.out.println(obbFile);
+                    System.out.println("check12333");
+                    packageDir = new File(dataFilePathtoZip);
                     if (xf.mIsMain && packageDir.exists()) {
                         DownloadExpansionFile.deleteDir(packageDir);
-                        packageDir.mkdir();
+                        packageDir.mkdirs();
                     }
-                    zipFileHandler.unzip(dataFilePath, totalSize, xf.mIsMain, xf.mFileVersion);
-                    System.out.println("Extracted3");
+                    zipFileHandler.unzip(dataFilePathtoZip, totalSize, xf.mIsMain, xf.mFileVersion);
                     zipFileHandler.close();
-                    System.out.println("Extracted4");
                 }
             }
             toCallApplication();
@@ -211,6 +172,68 @@ public class SplashScreenActivity extends Activity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public boolean isSDcard() {
+        File[] fileList = getObbDirs();
+        if (fileList.length >= 2) {
+            return true;
+        }
+        return false;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public String getDataFilePath() {
+        String internalDataFilePath = null;
+        String externalDataFilePath = null;
+        String DataFilePath = null;
+        File[] fileList = getExternalFilesDirs(null);
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + getPackageName() + "files/") &&
+                    file.isDirectory() &&
+                    file.canRead() &&
+                    isSDcard() &&
+                    sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+//              For external storage path
+                externalDataFilePath = file.getAbsolutePath();
+            } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 1 && internalDataFilePath == null) {
+//              For internal storage path
+                internalDataFilePath = file.getAbsolutePath();
+            }
+        }
+        if (externalDataFilePath == null) {
+            DataFilePath = internalDataFilePath;
+        } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+            DataFilePath = externalDataFilePath;
+        }
+        return DataFilePath;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public String getOBBFilePath() {
+        String internalOBBFilePath = null;
+        String externalOBBFilePath = null;
+        String OBBFilePath = null;
+        File[] fileList = getObbDirs();
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) &&
+                    file.isDirectory() &&
+                    file.canRead() &&
+                    isSDcard() &&
+                    sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+//              For external storage path
+                externalOBBFilePath = file.getAbsolutePath();
+            } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 1 && internalOBBFilePath == null) {
+//              For internal storage path
+                internalOBBFilePath = file.getAbsolutePath();
+            }
+        }
+        if (externalOBBFilePath == null) {
+            OBBFilePath = internalOBBFilePath;
+        } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+            OBBFilePath = externalOBBFilePath;
+        }
+        return OBBFilePath;
+    }
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public int getTotalSize() {
         int totalSize = 0;
@@ -221,7 +244,6 @@ public class SplashScreenActivity extends Activity {
                             Helpers.getExpansionAPKFileName(this, xf.mIsMain, xf.mFileVersion);
                     obbFile = new File(obbFilePath);
                     obbZipFile = new ZipFile(obbFile);
-                    System.out.println(obbFilePath);
                     totalSize += obbZipFile.size();
                 }
             }

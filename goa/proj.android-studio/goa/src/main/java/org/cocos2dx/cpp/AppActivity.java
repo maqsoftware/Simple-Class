@@ -95,14 +95,63 @@ public class AppActivity extends Cocos2dxActivity {
 
     private Handler handler = null;
     private TextToSpeech textToSpeechInstance;
-    public static String pathToAppDelegate = null;
 
     //    LauncherScreen variables and functions from Bali
     public static native void setMultipleChoiceQuiz(String[] jsonInfo);
 
     public static native void setBagOfChoiceQuiz(String[] jsonInfo);
 
+    //      Initializing only if it is not passed null to AppDelegate.cpp
+    protected static String pathToAppDelegate = "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/";
 
+    //  Method to check if SD card is mounted
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public boolean isSDcard() {
+        File[] fileList = getObbDirs();
+        if (fileList.length >= 2) {
+            return true;
+        }
+        return false;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public String getDataFilePath() {
+        String internalDataFilePath = null;
+        String externalDataFilePath = null;
+        String DataFilePath = null;
+        File[] fileList = getObbDirs();
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) &&
+                    file.isDirectory() &&
+                    file.canRead() &&
+                    isSDcard() &&
+                    sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+//              For external storage path
+                externalDataFilePath = file.getAbsolutePath();
+                externalDataFilePath = externalDataFilePath.substring(0, externalDataFilePath.indexOf("obb"));
+                externalDataFilePath = externalDataFilePath + "data/" + getPackageName() + "/files/";
+            } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 1 && internalDataFilePath == null) {
+//              For internal storage path
+                internalDataFilePath = file.getAbsolutePath();
+                internalDataFilePath = internalDataFilePath.substring(0, internalDataFilePath.indexOf("obb"));
+                internalDataFilePath = internalDataFilePath + "data/" + getPackageName() + "/files/";
+            }
+        }
+        if (externalDataFilePath == null) {
+            DataFilePath = internalDataFilePath;
+        } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+            DataFilePath = externalDataFilePath;
+        }
+        if (DataFilePath != null)
+            pathToAppDelegate = DataFilePath;
+        else
+            return pathToAppDelegate;
+        return DataFilePath;
+    }
+
+    public static String getPathToAppDelegate() {
+        return pathToAppDelegate;
+    }
     public static void queryMultipleChoiceQuiz(int numQuizes, int numChoices, int answerFormat, int choiceFormat) {
         System.out.println("entry queryMultipleChoiceQuiz");
         new AsyncTask<int[], Void, Void>() {
@@ -163,51 +212,8 @@ public class AppActivity extends Cocos2dxActivity {
 
     }
 
-    //  Method to check if SD card is mounted
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public boolean isSDcard() {
-        File[] fileList = getObbDirs();
-        if (fileList.length >= 2) {
-            return true;
-        }
-        return false;
-    }
 
-    //  Method returning the Android/data directory path
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public String getDataFilePath() {
-        String internalDataFilePath = null;
-        String externalDataFilePath = null;
-        String dataFilePath = null;
-        File[] fileList = getObbDirs();
-        for (File file : fileList) {
-            if ((!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName())) && isSDcard() && file.isDirectory() && file.canRead()) {
-//              For external storage path
-                externalDataFilePath = file.getAbsolutePath();
-                externalDataFilePath = externalDataFilePath.substring(0, externalDataFilePath.indexOf("obb"));
-                externalDataFilePath = externalDataFilePath + "data/" + getPackageName() + "/files/";
-            } else {
-//              For internal storage path
-                internalDataFilePath = file.getAbsolutePath();
-                internalDataFilePath = internalDataFilePath.substring(0, internalDataFilePath.indexOf("obb"));
-                internalDataFilePath = internalDataFilePath + "data/" + getPackageName() + "/files/";
-            }
-        }
-        if (externalDataFilePath == null) {
-            dataFilePath = internalDataFilePath;
-            Log.d("ExtractionPath", internalDataFilePath);
-        } else {
-            dataFilePath = externalDataFilePath;
-            Log.d("ExtractionPath", externalDataFilePath);
-        }
-        pathToAppDelegate = dataFilePath;
-        return dataFilePath;
-    }
 
-    //  Method called from AppDelegate for the extraction path
-    public static String getPathToAppDelegate() {
-        return pathToAppDelegate;
-    }
 
 
     public static void queryBagOfChoiceQuiz(int numQuizes, int minAnswers, int maxAnswers,
@@ -343,18 +349,18 @@ public class AppActivity extends Cocos2dxActivity {
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
 
-////        Don't remove this! This is needed for the initialization of string variable pathToAppDelegate.
-        String flagFilePath = getDataFilePath() + ".success.txt";
+//      Don't remove this. Used to Initialize the pathToAppDelegate with the selected path
+        String initializeDataPath = getDataFilePath();
+
         int defaultFileVersion = 0;
-        File flagFile = new File(flagFilePath);
         boolean extractionRequired = false;
 
-        if (!flagFile.exists()) {
+        if (sharedPref.getInt(getString(R.string.dataPath), 0) == 0) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
             editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
             editor.apply();
-            extractionRequired = !flagFile.exists();
+            extractionRequired = true;
         } else {
             int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
             int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
@@ -364,14 +370,12 @@ public class AppActivity extends Cocos2dxActivity {
                     break;
                 }
             }
-
         }
         if (extractionRequired) {
             Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
             startActivity(intent);
             finish();
         }
-
 
         super.onCreate(savedInstanceState);
 
