@@ -194,15 +194,36 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                 if (textTitle)
                 {
                     std::string translatedString = this->currentLangUtil->translateString(textTitle->getName());
-                    textTitle->setText(translatedString);
+
+                    string gameName = textTitle->getName().c_str();
+                    string mainMenuEnglishText = "";
+                    if (gameName == "alphabet")
+                        mainMenuEnglishText = "Alphabet";
+                    else if (gameName == "shapes")
+                        mainMenuEnglishText = "Shapes";
+                    else if (gameName == "writing")
+                        mainMenuEnglishText = "Writing";
+                    else if (gameName == "library")
+                        mainMenuEnglishText = "Library";
+                    else if (gameName == "grammar")
+                        mainMenuEnglishText = "Grammar";
+                    else if (gameName == "map")
+                        mainMenuEnglishText = "Map";
+
+                    textTitle->setText(mainMenuEnglishText);
                     textTitle->setTextHorizontalAlignment(TextHAlignment::CENTER);
                     textTitle->setTextVerticalAlignment(TextVAlignment::TOP);
                     textTitle->setEnabled(false);
                     textTitle->setTouchEnabled(false);
                     textTitle->setFocusEnabled(false);
-                    textTitle->setFontName("fonts/Chanakya.ttf");
+                    textTitle->setFontName("Arial");
                     textTitle->setTextColor(Color4B(Color3B::WHITE));
-                    textTitle->setFontSize(100);
+                    textTitle->setFontSize(70);
+
+                    Label *mainMenuHindiText = Label::createWithTTF(translatedString, "fonts/Chanakya.ttf", 90);
+                    mainMenuHindiText->setPosition(Vec2(textTitle->getPositionX(), textTitle->getPositionY() - 90));
+                    mainMenuHindiText->setColor(Color3B::WHITE);
+                    this->addChild(mainMenuHindiText);
                 }
             }
         }

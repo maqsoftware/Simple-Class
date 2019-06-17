@@ -642,8 +642,8 @@
   },
   {
     "name": "jumpingNumbers",
-    "title": "âÈUUUUÜÌæ ·UUUè âèÉ¸çØæ¢$#$Jumping Numbers",
-	"_title_comment":"सफलता की सीढ़ियां",
+    "title": "·¤êÎð$#$Jump",
+	"_title_comment":"कूदे ",
     "unlock": true,
     "cIcon": "gameicons/jumping numbers_pressed.png",
     "icon": "gameicons/jumping numbers.png",
@@ -726,8 +726,8 @@
   },
   {
     "name": "Bounce",
-    "title": "¥æ§âRUUUè× ç»Úæ¥ô$#$Bounce",
-	"_title_comment":"आइसक्रीम गिराओ",
+    "title": "¥æ§âRUUUè×$#$Ice-Cream",
+	"_title_comment":"आइसक्रीम",
     "unlock": true,
     "cIcon": "gameicons/icecream_pressed.png",
     "icon": "gameicons/icecream.png",
@@ -754,7 +754,7 @@
   },
   {
     "name": "BasicMultiplication",
-    "title": "×êÜ »é‡æÙ$#$Basic Multiplication",
+    "title": "×êÜ »é‡æÙ$#$Multiplication",
 	"_title_comment":"मूल गुणन",
     "unlock": true,
     "cIcon": "gameicons/BasicMultiplication_pressed.png",
