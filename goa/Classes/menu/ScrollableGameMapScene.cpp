@@ -417,7 +417,7 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
             button->addTouchEventListener(CC_CALLBACK_2(ScrollableGameMapScene::disabledGameSelected, this));
         }
 
-        const static string gameTitle = gameJson["title"].GetString();
+        string gameTitle = gameJson["title"].GetString();
 
         // splitting the string into its chanakya component
         string gameTitleHindi = gameTitle.substr(0, gameTitle.find(delimiter));
