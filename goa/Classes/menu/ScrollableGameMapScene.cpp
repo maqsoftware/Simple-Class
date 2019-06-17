@@ -450,6 +450,10 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
         label->setPosition(Vec2(label->getPositionX(), label->getPositionY()- 300));
         button->setScale(0.5);
         
+        /**
+         * If the module of the game is not in the last row.
+         * Then display the English and the Hindi text in a separate line.
+        **/
         if (!isLastRow)
         {
             Label *engText = Label::createWithTTF(gameTitleHindi, "fonts/Chanakya.ttf", 140);
