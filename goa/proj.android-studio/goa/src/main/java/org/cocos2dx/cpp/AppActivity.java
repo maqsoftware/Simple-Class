@@ -37,12 +37,10 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
-import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -294,13 +292,11 @@ public class AppActivity extends Cocos2dxActivity {
     public static native void updateInformation(String jsonInfo);
 
     //  Method to check if SD card is mounted
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean isSDcard() {
         File[] fileList = getObbDirs();
         return fileList.length >= 2;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String getDataFilePath() {
         String internalDataFilePath = null;
         String externalDataFilePath = null;
@@ -329,7 +325,6 @@ public class AppActivity extends Cocos2dxActivity {
         return dataFilePath;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {

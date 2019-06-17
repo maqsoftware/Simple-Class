@@ -3,15 +3,15 @@ package org.cocos2dx.cpp;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -29,7 +29,6 @@ import java.util.zip.ZipFile;
 import chimple.DownloadExpansionFile;
 import utils.Zip;
 
-import static android.support.v7.app.AlertDialog.Builder;
 import static chimple.DownloadExpansionFile.xAPKs;
 import static org.cocos2dx.cpp.AppActivity.pathToAppDelegate;
 import static org.cocos2dx.cpp.AppActivity.sharedPref;
@@ -63,59 +62,47 @@ public class SplashScreenActivity extends Activity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public void customDialog() {
-        final Builder builderSingle = new Builder(this);
-        builderSingle.setTitle(null);
-        builderSingle.setMessage(R.string.dialogInfo);
-        builderSingle.setCancelable(false);
+    public Dialog sdCardPreferenceDialog() {
         final SharedPreferences.Editor editor = sharedPref.edit();
-        builderSingle.setNegativeButton(
-                R.string.dialogNo,
-                new DialogInterface.OnClickListener() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setMessage(R.string.dialogInfo)
+                .setPositiveButton(R.string.dialogYes, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        editor.putInt(getString(R.string.dataPath), 1);
+                    public void onClick(DialogInterface dialog, int id) {
+                        editor.putInt(getString(R.string.dataPath), 2);
                         editor.apply();
                         startExtraction();
                     }
-                });
-
-        builderSingle.setPositiveButton(
-                R.string.dialogYes,
-                new DialogInterface.OnClickListener() {
+                })
+                .setNegativeButton(R.string.dialogNo, new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        editor.putInt(getString(R.string.dataPath), 2);
+                    public void onClick(DialogInterface dialog, int id) {
+                        editor.putInt(getString(R.string.dataPath), 1);
                         editor.apply();
                         startExtraction();
                     }
                 });
 //      to initialize pathToAppDelegate with the selected path
         String junkDataFilePath = getDataFilePath();
-        builderSingle.show();
+        return builder.create();
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if (Build.VERSION.SDK_INT < 19) { // lower api
-            View v = this.getWindow().getDecorView();
-            v.setSystemUiVisibility(View.GONE);
-        } else {
-            //for new api versions.
-            View decorView = this.getWindow().getDecorView();
-            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-            decorView.setSystemUiVisibility(uiOptions);
-        }
+        //for new api versions.
+        View decorView = this.getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        decorView.setSystemUiVisibility(uiOptions);
         setContentView(R.layout.activity_splash_screen);
         if (isSDcard() && sharedPref.getInt(getString(R.string.dataPath), 0) == 0) {
             flagSwitchToInternal = true;
-            customDialog();
+            Dialog builder = sdCardPreferenceDialog();
+            builder.show();
         } else {
             final SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.dataPath), 1);
@@ -141,7 +128,6 @@ public class SplashScreenActivity extends Activity {
         finish();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void unzipFile() {
         int totalSize = getTotalSize();
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
@@ -170,13 +156,11 @@ public class SplashScreenActivity extends Activity {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean isSDcard() {
         File[] fileList = getObbDirs();
         return fileList.length >= 2;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String getDataFilePath() {
         String internalDataFilePath = null;
         String externalDataFilePath = null;
@@ -203,7 +187,6 @@ public class SplashScreenActivity extends Activity {
         return DataFilePath;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public File getOBBFilePath(DownloadExpansionFile.XAPKFile xf) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
         mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), 0);
@@ -229,14 +212,16 @@ public class SplashScreenActivity extends Activity {
                 internalOBBFile = new File(internalOBBFilePath);
             }
         }
-        if (externalOBBFile.exists()) {
+        /*
+         * Check for OBB file in both internal and external storage and choose internal storage path if file is not available in external storage.
+         * externalOBBFile is null only when internal storage is available
+         */
+        if (externalOBBFile != null && externalOBBFile.exists()) {
             return externalOBBFile;
-        } else {
-            return internalOBBFile;
         }
+        return internalOBBFile;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public int getTotalSize() {
         int totalSize = 0;
         try {
@@ -255,7 +240,6 @@ public class SplashScreenActivity extends Activity {
 
     @SuppressLint("StaticFieldLeak")
     private class DownloadFile extends AsyncTask<String, Integer, String> {
-        @RequiresApi(api = Build.VERSION_CODES.KITKAT)
         @Override
         protected String doInBackground(String... sUrl) {
             unzipFile();
