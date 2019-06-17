@@ -4,9 +4,12 @@
     <string name="content_extraction">This is a one time process. It may take upto 10 minutes to complete.\nयह प्रक्रिया केवल एक बार की जाएगी। इसमें १० मिनट तक का समय लग सकता है।</string>
     <string name="mainFileVersion">mainFileVersion</string>
     <string name="patchFileVersion">patchFileVersion</string>
+    <string name="dataPath">dataPath</string>
+    <string name="dialogInfo">\nDo you want to save app data in your SD card?\n\nक्या आप मेमरी कार्ड में ऐप को डालना चाहते है?</string>
+    <string name="dialogNo">No\nनहीं</string>
+    <string name="dialogYes">Yes\nहाँ</string>
     <!-- Bali strings -->
     <string name="preference_file_key">com.maq.xprize.bali.PREFERENCE_FILE_KEY</string>
     <string name="user_id">user_id</string>
     <string name="word">Find</string>
-
 </resources>
