@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.vending.expansion.downloader.Helpers;
+import com.maq.xprize.chimple.hindi.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,13 +31,6 @@ import utils.Zip;
 
 import static android.support.v7.app.AlertDialog.Builder;
 import static chimple.DownloadExpansionFile.xAPKs;
-import static com.maq.xprize.chimple.hindi.R.layout;
-import static com.maq.xprize.chimple.hindi.R.string;
-import static com.maq.xprize.chimple.hindi.R.string.Attention;
-import static com.maq.xprize.chimple.hindi.R.string.dataPath;
-import static com.maq.xprize.chimple.hindi.R.string.dialogInfo;
-import static com.maq.xprize.chimple.hindi.R.string.dialogNo;
-import static com.maq.xprize.chimple.hindi.R.string.dialogYes;
 import static org.cocos2dx.cpp.AppActivity.pathToAppDelegate;
 import static org.cocos2dx.cpp.AppActivity.sharedPref;
 
@@ -72,26 +66,26 @@ public class SplashScreenActivity extends Activity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void customDialog() {
         final Builder builderSingle = new Builder(this);
-        builderSingle.setTitle(Attention);
-        builderSingle.setMessage(dialogInfo);
+        builderSingle.setTitle(null);
+        builderSingle.setMessage(R.string.dialogInfo);
         final SharedPreferences.Editor editor = sharedPref.edit();
         builderSingle.setNegativeButton(
-                dialogNo,
+                R.string.dialogNo,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        editor.putInt(getString(dataPath), 1);
+                        editor.putInt(getString(R.string.dataPath), 1);
                         editor.apply();
                         startExtraction();
                     }
                 });
 
         builderSingle.setPositiveButton(
-                dialogYes,
+                R.string.dialogYes,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        editor.putInt(getString(dataPath), 2);
+                        editor.putInt(getString(R.string.dataPath), 2);
                         editor.apply();
                         startExtraction();
                     }
@@ -117,13 +111,13 @@ public class SplashScreenActivity extends Activity {
             int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             decorView.setSystemUiVisibility(uiOptions);
         }
-        setContentView(layout.activity_splash_screen);
-        if (isSDcard() && sharedPref.getInt(getString(dataPath), 0) == 0) {
+        setContentView(R.layout.activity_splash_screen);
+        if (isSDcard() && sharedPref.getInt(getString(R.string.dataPath), 0) == 0) {
             flagSwitchToInternal = true;
             customDialog();
         } else {
             final SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(dataPath), 1);
+            editor.putInt(getString(R.string.dataPath), 1);
             editor.apply();
             new DownloadFile().execute(null, null, null);
         }
@@ -150,8 +144,8 @@ public class SplashScreenActivity extends Activity {
     public void unzipFile() {
         int totalSize = getTotalSize();
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        mainFileVersion = sharedPref.getInt(getString(string.mainFileVersion), 0);
-        patchFileVersion = sharedPref.getInt(getString(string.patchFileVersion), 0);
+        mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), 0);
+        patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), 0);
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 if (xf.mIsMain && xf.mFileVersion != mainFileVersion || !xf.mIsMain && xf.mFileVersion != patchFileVersion) {
@@ -192,17 +186,17 @@ public class SplashScreenActivity extends Activity {
                     file.isDirectory() &&
                     file.canRead() &&
                     isSDcard() &&
-                    sharedPref.getInt(getString(dataPath), 0) == 2) {
+                    sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
 //              For external storage path
                 externalDataFilePath = file.getAbsolutePath() + File.separator;
-            } else if ((sharedPref.getInt(getString(dataPath), 0) == 1 || !flagSwitchToInternal) && internalDataFilePath == null) {
+            } else if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 1 || !flagSwitchToInternal) && internalDataFilePath == null) {
 //              For internal storage path
                 internalDataFilePath = file.getAbsolutePath() + File.separator;
             }
         }
         if (externalDataFilePath == null) {
             DataFilePath = internalDataFilePath;
-        } else if (sharedPref.getInt(getString(dataPath), 0) == 2) {
+        } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
             DataFilePath = externalDataFilePath;
         }
         return DataFilePath;
@@ -211,8 +205,8 @@ public class SplashScreenActivity extends Activity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public File getOBBFilePath(DownloadExpansionFile.XAPKFile xf) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        mainFileVersion = sharedPref.getInt(getString(string.mainFileVersion), 0);
-        patchFileVersion = sharedPref.getInt(getString(string.patchFileVersion), 0);
+        mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), 0);
+        patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), 0);
         String internalOBBFilePath = null;
         String externalOBBFilePath = null;
         File externalOBBFile = null;
