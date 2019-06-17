@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">चिम्पल - Chimple</string>
-    <string name="content_extraction">यह प्रक्रिया केवल एक बार की जाएगी। इसमें १० मिनट तक का समय लग सकता है।</string>
+    <string name="content_extraction">This is a one time process. It may take upto 10 minutes to complete.\nयह प्रक्रिया केवल एक बार की जाएगी। इसमें १० मिनट तक का समय लग सकता है।</string>
     <string name="mainFileVersion">mainFileVersion</string>
     <string name="patchFileVersion">patchFileVersion</string>
     <!-- Bali strings -->
