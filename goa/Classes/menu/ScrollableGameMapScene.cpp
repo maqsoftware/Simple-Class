@@ -390,7 +390,6 @@ void ScrollableGameMapScene::backButtonPressed(Ref* pSender, ui::Widget::TouchEv
 cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value& gameJson, bool active) {
     std::string ICONS = ICON_FOLDER;
     std::string gameName = gameJson["name"].GetString();
-    CCLOG("game name jsonnnnnnnnn ::::: %s", gameName.c_str());
     rapidjson::StringBuffer buffer;
     rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
     gameJson.Accept(writer);
@@ -423,16 +422,11 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
         // splitting the string into its chanakya component
         string gameTitleHindi = gameTitle.substr(0, gameTitle.find(delimiter));
         string gameTitleEnglish = gameTitle.substr(gameTitle.find(delimiter) + delimiter.size(), gameTitle.size() - 1);
-        
-        CCLOG("------------ english text -------- :: %s", gameTitleEnglish.c_str());
-        CCLOG("------------ hindi text -------- :: %s", gameTitleHindi.c_str());
 
         if (isLastRow) 
         {
-            CCLOG("inside this function ///////////");
             gameTitleHindi = gameJson["_title_comment"].GetString();
             gameTitleEnglish += "/" + gameTitleHindi;
-            CCLOG("hindi combined :: %s", gameTitleHindi.c_str());
         }
 
         // IF THE LAST ROW IS NOT ENABLED
