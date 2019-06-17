@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">चिम्पल - Chimple</string>
     <string name="hindi_content_extraction">यह प्रक्रिया केवल एक बार की जाएगी। इसमें १० मिनट तक का समय लग सकता है।</string>
-    <string name="english_content_extraction">This is a one time process, It may take up to 10 minutes to complete.</string>
+    <string name="english_content_extraction">This is a one time process. It make take upto 10 minutes to complete.</string>
     <string name="mainFileVersion">mainFileVersion</string>
     <string name="patchFileVersion">patchFileVersion</string>
     <!-- Bali strings -->
