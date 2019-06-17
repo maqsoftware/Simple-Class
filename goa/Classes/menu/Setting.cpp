@@ -4,6 +4,7 @@
 #include "ui/UIScale9Sprite.h"
 #include "../menu/HelpLayer.h"
 #include "../util/CommonLabelTTF.h"
+#include "../misc/ScaleGuiElements.cpp"
 
 USING_NS_CC;
 
@@ -36,16 +37,7 @@ void Setting::onEnterTransitionDidFinish()
 	this->addChild(_calcLayer, 4);
 
 	cocos2d::ui::Button *_closeButton = cocos2d::ui::Button::create("menu/close.png", "menu/close.png", "menu/close.png", cocos2d::ui::Widget::TextureResType::LOCAL);
-	Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
-    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
-    if (aspectRatio >= 2.0) 
-    {
-        _closeButton->setScaleX(0.70);
-    }
-    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
-    {
-        _closeButton->setScaleX(0.82);
-    }
+	ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_closeButton);
 	_closeButton->setPosition(Vec2(visibleSize.width - _closeButton->getContentSize().width, visibleSize.height - _closeButton->getContentSize().height));
 	_calcLayer->addChild(_closeButton, 5);
 

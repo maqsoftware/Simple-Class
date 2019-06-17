@@ -13,6 +13,7 @@
 #include "storage/local-storage/LocalStorage.h"
 #include "StartMenuScene.h"
 #include "MainMenuHome.hpp"
+#include "../misc/ScaleGuiElements.cpp"
 
 static const std::string CURRENT_LEVEL = ".currentLevel";
 const std::map<std::string, std::string> MapScene::levelToGameNameMap = MapScene::createLevelToGameName();
@@ -112,17 +113,7 @@ void MapScene::loadMap() {
     this->addChild(rootNode);
     this->processChildNodes(rootNode);
     cocos2d::ui::Button* backButton = createBackButton();
-    
-    Size frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
-    float aspectRatio = (1.0 * frameSize.width) / frameSize.height;
-    if (aspectRatio >= 2.0) 
-    {
-        backButton->setScaleX(0.70);
-    }
-    else if (aspectRatio >= 1.5 && aspectRatio < 2.0)
-    {
-        backButton->setScaleX(0.82);
-    }
+    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(backButton);
     
     backButton->setPosition(Vec2(origin.x + 150, origin.y + visibleSize.height - 150));
     this->addChild(backButton);
