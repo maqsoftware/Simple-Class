@@ -41,12 +41,12 @@ public class Cocos2dxLocalStorage {
     private static DBOpenHelper mDatabaseOpenHelper = null;
     private static SQLiteDatabase mDatabase = null;
 
-//    /**
-//     * Constructor
-//     *
-//     * @param context The Context within which to work, used to create the DB
-//     * @return
-//     */
+    /**
+     * Constructor
+     *
+     * @param context The Context within which to work, used to create the DB
+     * @return
+     */
     public static boolean init(String dbName, String tableName) {
         if (Cocos2dxActivity.getContext() != null) {
             DATABASE_NAME = dbName;
