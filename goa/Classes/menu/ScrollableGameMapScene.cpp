@@ -69,6 +69,7 @@
 USING_NS_CC;
 static const bool KIOSK = true;
 bool isLastRow = false;
+const static string delimiter = "$#$";
 
 std::map<std::string, cocos2d::Color3B> ScrollableGameMapScene::BUTTON_TEXT_COLOR_MAP = {
     {"alphabet", Color3B(0xFF, 0xC0, 0xC0)},
@@ -417,7 +418,6 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
         }
 
         const static string gameTitle = gameJson["title"].GetString();
-        const static string delimiter = "$#$";
 
         // splitting the string into its chanakya component
         string gameTitleHindi = gameTitle.substr(0, gameTitle.find(delimiter));
@@ -425,7 +425,7 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
 
         /**
          * If the module section displays the games in the very last row.
-         * Then display the English and the Hindi text in a single line.
+         * Then display English and Hindi text in the same line.
         **/
         if (isLastRow) 
         {
@@ -452,7 +452,7 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
         
         /**
          * If the module of the game is not in the last row.
-         * Then display the English and the Hindi text in a separate line.
+         * Then display English and Hindi text in separate lines.
         **/
         if (!isLastRow)
         {

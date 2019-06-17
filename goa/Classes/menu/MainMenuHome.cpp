@@ -199,7 +199,7 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                     if (gameName == "alphabet")
                         mainMenuEnglishText = "Alphabet";
                     else if (gameName == "shapes")
-                        mainMenuEnglishText = "Shapes";
+                        mainMenuEnglishText = "Numbers";
                     else if (gameName == "writing")
                         mainMenuEnglishText = "Writing";
                     else if (gameName == "library")
