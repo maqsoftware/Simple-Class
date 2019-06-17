@@ -17,17 +17,17 @@ public abstract class ServiceRunnable implements Runnable {
         }
     }
 
-//    /**
-//     * Replaces run
-//     *
-//     * @throws Exception
-//     */
+    /**
+     * Replaces run
+     *
+     * @throws Exception
+     */
     public abstract void execute() throws Exception;
 
-//    /**
-//     * Called when an exception is thrown
-//     *
-//     * @param e
-//     */
+    /**
+     * Called when an exception is thrown
+     *
+     * @param e
+     */
     public abstract void executeFailure(Exception e);
 }
