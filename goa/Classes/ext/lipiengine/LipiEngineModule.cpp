@@ -219,7 +219,6 @@ int LTKLipiEngineModule::createShapeRecognizer(const string& strProjName,
 		"Entering: LTKLipiEngineModule::createShapeRecognizer()"<<endl;
 	
 	int errorCode;
-    //int iResult;
 	void *dllHandler = NULL;
 	string recognizerName = "";
 	string strProjectName = strProjName;
