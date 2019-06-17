@@ -11,7 +11,7 @@
     <string name="word">Find</string>
     <string name="dataPath">dataPath</string>
     <string name="Attention">सावधान!\t\tAttention!</string>
-    <string name="dialogInfo">\nक्या आप मेमरी कार्ड में ऍप को डालना चाहते है?\n\nDo you want to save app data in your SD card</string>
+    <string name="dialogInfo">\nक्या आप मेमरी कार्ड में ऐप को डालना चाहते है?\n\nDo you want to save app data in your SD card</string>
     <string name="dialogNo">नहीं\nNo</string>
     <string name="dialogYes">हाँ\nYes</string>
 
