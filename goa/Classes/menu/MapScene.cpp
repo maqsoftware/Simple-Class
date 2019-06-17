@@ -194,7 +194,7 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode) {
                     label->setColor(Color3B(128, 64, 0));
                     mainLayer->addChild(label);
 
-                    // Add English Label below the hindi text
+                    // Add English Label above the hindi text
                     cocos2d::Label* englishLabel = Label::createWithTTF(englishName, "fonts/Arial.ttf", 80);
                     englishLabel->setPosition(Vec2(node->getPosition().x, node->getPosition().y + 50));
                     englishLabel->setColor(Color3B(128, 64, 0));
