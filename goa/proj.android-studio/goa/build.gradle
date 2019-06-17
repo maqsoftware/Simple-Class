@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.maq.xprize.chimple.hindi"
-        minSdkVersion 14
+        minSdkVersion 23
         targetSdkVersion 28
 
         ndk {
