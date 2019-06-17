@@ -80,8 +80,11 @@ public class AppActivity extends Cocos2dxActivity {
     // Return Intent extra
     public static SharedPreferences sharedPref;
     protected static String pathToAppDelegate = null;
+    @SuppressLint("StaticFieldLeak")
     private static Activity _activity;
+    @SuppressLint("StaticFieldLeak")
     private static AppActivity _appActivity;
+    @SuppressLint("StaticFieldLeak")
     private static Context _context;
     private static String currentGameName;
     private static boolean supportForTTSEnabled = false;
@@ -126,6 +129,7 @@ public class AppActivity extends Cocos2dxActivity {
                 if (cursor == null) {
 
                 } else if (cursor.getCount() < 1) {
+                    cursor.close();
                 } else {
                     System.out.println("got data getContentResolver");
                     String[] columnNames = cursor.getColumnNames();
@@ -156,6 +160,7 @@ public class AppActivity extends Cocos2dxActivity {
                             setMultipleChoiceQuiz(finalSendArray);
                         }
                     });
+                    cursor.close();
                 }
                 return null;
             }
@@ -190,6 +195,7 @@ public class AppActivity extends Cocos2dxActivity {
                 if (cursor == null) {
 
                 } else if (cursor.getCount() < 1) {
+                    cursor.close();
                 } else {
                     System.out.println("got data getContentResolver");
                     String[] columnNames = cursor.getColumnNames();
@@ -217,6 +223,7 @@ public class AppActivity extends Cocos2dxActivity {
                             setBagOfChoiceQuiz(finalSendArray);
                         }
                     });
+                    cursor.close();
                 }
                 return null;
             }

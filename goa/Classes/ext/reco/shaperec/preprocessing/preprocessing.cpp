@@ -83,7 +83,7 @@ int createPreprocInst(const LTKControlInfo& controlInfo,
 	{
 		*preprocPtr = new LTKPreprocessor(controlInfo);
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 	    *preprocPtr = NULL;
 		LTKReturnError(e.getErrorCode());

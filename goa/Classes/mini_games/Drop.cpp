@@ -145,7 +145,6 @@ void Drop::gameStart(cocos2d::EventCustom *eventCustom)
 		{ 1,	"dropjungle" },
 		{ 2,    "dropcity" }
 	};
-	std::string wordOnLabel;
 	std::vector<std::string> wordOnLayout;
 	/*
 	int gameCurrentLevel = _menuContext->getCurrentLevel();
@@ -265,8 +264,7 @@ void Drop::gameStart(cocos2d::EventCustom *eventCustom)
 	//aab->drawRect(Vec2((visibleSize.width*0.13) - _removalPole->getContentSize().width / 2, (visibleSize.height*_sceneBasedNumericalVal.at("floatBoxHeightFactor"))- _removalPole->getContentSize().height*0.1), Vec2((visibleSize.width*0.13) + _removalPole->getContentSize().width / 2, visibleSize.height *_sceneBasedNumericalVal.at("floatBoxHeightFactor") + _removalPole->getContentSize().height/2), Color4F(0, 0, 255, 22));
 
 	//bool levelForSpeaker = isSpeakerAddLevel();
-	bool levelForSpeaker = false;
-	if (levelForSpeaker)
+	if (false)//levelForSpeaker
 	{
 		std::ostringstream boardName;
 		boardName << _labelPrefix << _wordToDisplay;
@@ -514,7 +512,7 @@ void Drop::update(float delta) {
 	}
 }
 
-void Drop::addSpeaker(string word)
+void Drop::addSpeaker(const string word)
 {
 	std::ostringstream boardName;
 	boardName << _labelPrefix;

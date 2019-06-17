@@ -102,10 +102,7 @@ void WorldClock::remove(IAnimateble* value)
 
 void WorldClock::clear()
 {
-    for (auto& animateble : _animatebles)
-    {
-        animateble = nullptr;
-    }
+    std::fill(_animatebles.begin(), _animatebles.end(), nullptr);
 }
 
 DRAGONBONES_NAMESPACE_END

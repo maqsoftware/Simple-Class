@@ -227,7 +227,7 @@ public:
 	{
 	}
 
-	virtual void* castRay(const btVector3& from,const btVector3& to, btVehicleRaycasterResult& result);
+	virtual void* castRay(const btVector3& from,const btVector3& to, btVehicleRaycasterResult& result) override;
 
 };
 

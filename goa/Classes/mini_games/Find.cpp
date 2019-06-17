@@ -37,11 +37,10 @@ void Find::onEnterTransitionDidFinish()
 	}
 	
 	Vector <Node*> children = findBackground->getChildren();
-	int size = children.size();
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node *monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
-		if (str.find("Node_") == 0)
+		if (str.compare(0, 5, "Node_") == 0)
 			_nodeBin.push_back(monsterItem);
 		CCLOG("name : %s", str.c_str());
 	}
@@ -143,7 +142,7 @@ void Find::onEnterTransitionDidFinish()
 	if (gameCurrentLevel == 1 && _helpFlag)
 	{
 		_helpFlag = false;
-		Sprite *cloneSprite;
+		Sprite *cloneSprite = NULL;
 		for (int i = 0; i < _propsBin.size(); i++)
 		{
 			string name = _propsBin[i]->getName();
@@ -171,7 +170,7 @@ void Find::onEnterTransitionDidFinish()
 	this->scheduleUpdate();
 }
 
-string Find::StringandIntConcat(string data, int number) {
+string Find::StringandIntConcat(const string data, int number) {
 
 	std::ostringstream value;
 	value << data << number;

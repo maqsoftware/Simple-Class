@@ -314,7 +314,7 @@ static spAnimation* _spSkeletonJson_readAnimation (spSkeletonJson* self, Json* r
 
 	/** Path constraint timelines. */
 	for(constraintMap = paths ? paths->child : 0; constraintMap; constraintMap = constraintMap->next ) {
-		int constraintIndex, i;
+		int constraintIndex = NULL, i;
 		Json* timelineMap;
 
 		spPathConstraintData* data = spSkeletonData_findPathConstraint(skeletonData, constraintMap->name);

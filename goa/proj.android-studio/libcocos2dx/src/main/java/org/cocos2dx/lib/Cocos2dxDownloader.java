@@ -6,11 +6,17 @@ import com.loopj.android.http.BinaryHttpResponseHandler;
 import com.loopj.android.http.FileAsyncHttpResponseHandler;
 import com.loopj.android.http.RequestHandle;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.message.BasicHeader;
-
-import java.io.File;
-import java.util.*;
 
 class DataTaskHandler extends BinaryHttpResponseHandler {
     int _id;
@@ -124,7 +130,7 @@ class FileTaskHandler extends FileAsyncHttpResponseHandler {
                     errStr = "Dest file is directory:" + _finalFile.getAbsolutePath();
                     break;
                 }
-                if (false == _finalFile.delete()) {
+                if (!_finalFile.delete()) {
                     errStr = "Can't remove old file:" + _finalFile.getAbsolutePath();
                     break;
                 }
@@ -173,7 +179,7 @@ public class Cocos2dxDownloader {
     private int _runningTaskCount = 0;
 
     void onProgress(final int id, final long downloadBytes, final long downloadNow, final long downloadTotal) {
-        DownloadTask task = (DownloadTask)_taskMap.get(id);
+        DownloadTask task = (DownloadTask) _taskMap.get(id);
         if (null != task) {
             task.bytesReceived = downloadBytes;
             task.totalBytesReceived = downloadNow;
@@ -188,14 +194,14 @@ public class Cocos2dxDownloader {
     }
 
     public void onStart(int id) {
-        DownloadTask task = (DownloadTask)_taskMap.get(id);
+        DownloadTask task = (DownloadTask) _taskMap.get(id);
         if (null != task) {
             task.resetStatus();
         }
     }
 
     public void onFinish(final int id, final int errCode, final String errStr, final byte[] data) {
-        DownloadTask task = (DownloadTask)_taskMap.get(id);
+        DownloadTask task = (DownloadTask) _taskMap.get(id);
         if (null == task) return;
         _taskMap.remove(id);
         Cocos2dxHelper.runOnGLThread(new Runnable() {
@@ -284,9 +290,8 @@ public class Cocos2dxDownloader {
             public void run() {
 
                 //downloader._httpClient.cancelAllRequests(true);
-                Iterator iter = downloader._taskMap.entrySet().iterator();
-                while (iter.hasNext()) {
-                    Map.Entry entry = (Map.Entry) iter.next();
+                for (Object o : downloader._taskMap.entrySet()) {
+                    Map.Entry entry = (Map.Entry) o;
                     //Object key = entry.getKey();
                     DownloadTask task = (DownloadTask) entry.getValue();
                     if (null != task.handle) {
@@ -321,5 +326,6 @@ public class Cocos2dxDownloader {
     }
 
     native void nativeOnProgress(int id, int taskId, long dl, long dlnow, long dltotal);
+
     native void nativeOnFinish(int id, int taskId, int errCode, String errStr, final byte[] data);
 }

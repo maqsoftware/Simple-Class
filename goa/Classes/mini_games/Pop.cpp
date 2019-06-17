@@ -342,8 +342,8 @@ std::vector<std::string> Pop::convertSentenceIntoWords(std::string sentance)
 	std::vector<std::string> strWords;
 	std::string currentWord;
 	for (short i = 0; i<=sentance.length(); i++)
-	{ 
-		if ((sentance[i] == ' ' && !currentWord.empty()) || (i == sentance.length()))
+	{
+		if ((i == sentance.length()) || (sentance[i] == ' ' && !currentWord.empty()))
 		{ 
 			strWords.push_back(currentWord); 
 			currentWord.clear(); 

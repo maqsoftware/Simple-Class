@@ -1,26 +1,26 @@
 /****************************************************************************
-Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+ Copyright (c) 2010-2012 cocos2d-x.org
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
 
-http://www.cocos2d-x.org
+ http://www.cocos2d-x.org
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
@@ -54,16 +54,19 @@ public class Cocos2dxEditBoxHelper {
 
     //Call native methods
     private static native void editBoxEditingDidBegin(int index);
-    public static void __editBoxEditingDidBegin(int index){
+
+    public static void __editBoxEditingDidBegin(int index) {
         editBoxEditingDidBegin(index);
     }
 
     private static native void editBoxEditingChanged(int index, String text);
-    public static void __editBoxEditingChanged(int index, String text){
+
+    public static void __editBoxEditingChanged(int index, String text) {
         editBoxEditingChanged(index, text);
     }
 
     private static native void editBoxEditingDidEnd(int index, String text, int action);
+
     public static void __editBoxEditingDidEnd(int index, String text, int action) {
         editBoxEditingDidEnd(index, text, action);
     }
@@ -76,13 +79,13 @@ public class Cocos2dxEditBoxHelper {
         Cocos2dxEditBoxHelper.mEditBoxArray = new SparseArray<Cocos2dxEditBox>();
     }
 
-    public static int convertToSP(float point){
+    public static int convertToSP(float point) {
         Resources r = mCocos2dxActivity.getResources();
 
-        int convertedValue = (int)TypedValue.applyDimension(
+        int convertedValue = (int) TypedValue.applyDimension(
                 TypedValue.COMPLEX_UNIT_SP, point, r.getDisplayMetrics());
 
-        return  convertedValue;
+        return convertedValue;
 
     }
 
@@ -104,15 +107,15 @@ public class Cocos2dxEditBoxHelper {
                 editBox.setSingleLine();
                 editBox.setOpenGLViewScaleX(scaleX);
                 Resources r = mCocos2dxActivity.getResources();
-                float density =  r.getDisplayMetrics().density;
-                int paddingBottom = (int)(height * 0.33f / density);
-                paddingBottom = convertToSP(paddingBottom  - 5 * scaleX / density);
+                float density = r.getDisplayMetrics().density;
+                int paddingBottom = (int) (height * 0.33f / density);
+                paddingBottom = convertToSP(paddingBottom - 5 * scaleX / density);
                 paddingBottom = paddingBottom / 2;
                 int paddingTop = paddingBottom;
-                int paddingLeft = (int)(5 * scaleX / density);
+                int paddingLeft = (int) (5 * scaleX / density);
                 paddingLeft = convertToSP(paddingLeft);
 
-                editBox.setPadding(paddingLeft,paddingTop, 0, paddingBottom);
+                editBox.setPadding(paddingLeft, paddingTop, 0, paddingBottom);
 
 
                 FrameLayout.LayoutParams lParams = new FrameLayout.LayoutParams(
@@ -240,7 +243,7 @@ public class Cocos2dxEditBoxHelper {
         });
     }
 
-    public static void setFont(final int index, final String fontName, final float fontSize){
+    public static void setFont(final int index, final String fontName, final float fontSize) {
         mCocos2dxActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -255,21 +258,21 @@ public class Cocos2dxEditBoxHelper {
                                 Log.e("Cocos2dxEditBoxHelper", "error to create ttf type face: "
                                         + fontName);
                                 // The file may not find, use system font.
-                                tf  =  Typeface.create(fontName, Typeface.NORMAL);
+                                tf = Typeface.create(fontName, Typeface.NORMAL);
                             }
                         } else {
-                            tf  =  Typeface.create(fontName, Typeface.NORMAL);
+                            tf = Typeface.create(fontName, Typeface.NORMAL);
                         }
 
-                    }else{
+                    } else {
                         tf = Typeface.DEFAULT;
                     }
                     // TODO: The font size is not the same across all the android devices...
-                    if (fontSize >= 0){
-                        float density =  mCocos2dxActivity.getResources().getDisplayMetrics().density;
+                    if (fontSize >= 0) {
+                        float density = mCocos2dxActivity.getResources().getDisplayMetrics().density;
 //                        Log.e("XXX", "density is " + density);
                         editBox.setTextSize(TypedValue.COMPLEX_UNIT_SP,
-                                fontSize / density );
+                                fontSize / density);
                     }
                     editBox.setTypeface(tf);
                 }
@@ -277,7 +280,7 @@ public class Cocos2dxEditBoxHelper {
         });
     }
 
-    public static void setFontColor(final int index, final int red, final int green, final int blue, final int alpha){
+    public static void setFontColor(final int index, final int red, final int green, final int blue, final int alpha) {
         mCocos2dxActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -289,7 +292,7 @@ public class Cocos2dxEditBoxHelper {
         });
     }
 
-    public static void setPlaceHolderText(final int index, final String text){
+    public static void setPlaceHolderText(final int index, final String text) {
         mCocos2dxActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -301,7 +304,7 @@ public class Cocos2dxEditBoxHelper {
         });
     }
 
-    public static void setPlaceHolderTextColor(final int index, final int red, final int green, final int blue, final int alpha){
+    public static void setPlaceHolderTextColor(final int index, final int red, final int green, final int blue, final int alpha) {
         mCocos2dxActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -338,7 +341,7 @@ public class Cocos2dxEditBoxHelper {
     }
 
 
-    public static void setText(final int index, final String text){
+    public static void setText(final int index, final String text) {
         mCocos2dxActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -412,13 +415,12 @@ public class Cocos2dxEditBoxHelper {
     }
 
 
-
     public static void openKeyboard(final int index) {
 
         mCocos2dxActivity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-               openKeyboardOnUiThread(index);
+                openKeyboardOnUiThread(index);
             }
         });
     }
@@ -443,7 +445,7 @@ public class Cocos2dxEditBoxHelper {
             Log.e(TAG, "closeKeyboardOnUiThread doesn't run on UI thread!");
             return;
         }
-        
+
         final InputMethodManager imm = (InputMethodManager) mCocos2dxActivity.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
         Cocos2dxEditBox editBox = mEditBoxArray.get(index);
         if (null != editBox) {

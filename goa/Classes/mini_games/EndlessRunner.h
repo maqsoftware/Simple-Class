@@ -113,7 +113,7 @@ public:
 	SpriteCreate* addUpperLayerStartSpriteRock(SpriteCreate* SpriteObject, std::string MountainType, int positionY, int zOrder, int xCordinateforBlankSpace);
 
 	float setPositionX(SpriteCreate* SpriteObject);
-	int randmValueIncludeBoundery(int max, int min);
+	int randmValueIncludeBoundery(int min, int max);
 
 	void CreateMonsterWithLetter(float dt);
 	void sceneTree1Flow(float dt);

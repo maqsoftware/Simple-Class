@@ -247,10 +247,10 @@ private:
     
     void renderBagPack();
     
-    cocos2d::ui::Button* createMenuItem(const std::string normalImage,
-                                                     const std::string selectedImage ,
-                                                     const std::string disableImage
-                                                     );
+    cocos2d::ui::Button* createMenuItem(std::string const& normalImage,
+                                        std::string const& selectedImage ,
+                                        std::string const& disableImage
+                                         );
     
     
     void showWordBubblesNotificationReceived(cocos2d::EventCustom * event);

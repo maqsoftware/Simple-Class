@@ -17,7 +17,7 @@ USING_NS_CC;
 
 static LipiTKInterface* _singletonLipiTKInterface = nullptr;
 
-LipiTKInterface* LipiTKInterface::getInstance(std::string projectPath) {
+LipiTKInterface* LipiTKInterface::getInstance(std::string const projectPath) {
     if(!_singletonLipiTKInterface)
     {
         _singletonLipiTKInterface = new (std::nothrow) LipiTKInterface(projectPath);
@@ -27,7 +27,7 @@ LipiTKInterface* LipiTKInterface::getInstance(std::string projectPath) {
 }
 
 
-LipiTKInterface::LipiTKInterface(std::string lipiDirectoryPath):
+LipiTKInterface::LipiTKInterface(std::string const lipiDirectoryPath):
 _lipiDirectory(""),
 _projectRecognizeStr(""),
 _lipiEngine(nullptr),
@@ -101,7 +101,6 @@ std::map<std::string, std::string> LipiTKInterface::getEnglishUnicodeMapping() {
 std::map<std::string, std::string> LipiTKInterface::split(std::string s, char delim)
 {
     std::map<std::string, std::string> map;
-    std::vector<std::string> elems;
     std::stringstream ss;
     ss.str(s);
     std::string item;

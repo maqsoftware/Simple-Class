@@ -20,16 +20,12 @@
  */
 
 package com.google.android.vending.expansion.downloader.impl;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.net.URI;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
+
+import android.content.ContentResolver;
+import android.content.Context;
+import android.net.SSLCertificateSocketFactory;
+import android.os.Looper;
+import android.util.Log;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -64,11 +60,16 @@ import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.BasicHttpProcessor;
 import org.apache.http.protocol.HttpContext;
 
-import android.content.ContentResolver;
-import android.content.Context;
-import android.net.SSLCertificateSocketFactory;
-import android.os.Looper;
-import android.util.Log;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.net.URI;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 /**
  * Subclass of the Apache {@link DefaultHttpClient} that is configured with
@@ -83,16 +84,17 @@ import android.util.Log;
  */
 public final class AndroidHttpClient implements HttpClient {
 
-	static Class<?> sSslSessionCacheClass;
-	static {
-		// if we are on Froyo+ devices, we can take advantage of the SSLSessionCache
-		try {
-			sSslSessionCacheClass = Class.forName("android.net.SSLSessionCache");
-		} catch (Exception e) {
-			
-		}
-	}
-	
+    static Class<?> sSslSessionCacheClass;
+
+    static {
+        // if we are on Froyo+ devices, we can take advantage of the SSLSessionCache
+        try {
+            sSslSessionCacheClass = Class.forName("android.net.SSLSessionCache");
+        } catch (Exception e) {
+
+        }
+    }
+
     // Gzip of data shorter than this probably won't be worthwhile
     public static long DEFAULT_SYNC_MIN_GZIP_BYTES = 256;
 
@@ -102,22 +104,24 @@ public final class AndroidHttpClient implements HttpClient {
     private static final String TAG = "AndroidHttpClient";
 
 
-    /** Interceptor throws an exception if the executing thread is blocked */
+    /**
+     * Interceptor throws an exception if the executing thread is blocked
+     */
     private static final HttpRequestInterceptor sThreadCheckInterceptor =
             new HttpRequestInterceptor() {
-        public void process(HttpRequest request, HttpContext context) {
-            // Prevent the HttpRequest from being sent on the main thread
-            if (Looper.myLooper() != null && Looper.myLooper() == Looper.getMainLooper() ) {
-                throw new RuntimeException("This thread forbids HTTP requests");
-            }
-        }
-    };
+                public void process(HttpRequest request, HttpContext context) {
+                    // Prevent the HttpRequest from being sent on the main thread
+                    if (Looper.myLooper() != null && Looper.myLooper() == Looper.getMainLooper()) {
+                        throw new RuntimeException("This thread forbids HTTP requests");
+                    }
+                }
+            };
 
     /**
      * Create a new HttpClient with reasonable defaults (which you can update).
      *
      * @param userAgent to report in your HTTP requests
-     * @param context to use for caching SSL sessions (may be null for no caching)
+     * @param context   to use for caching SSL sessions (may be null for no caching)
      * @return AndroidHttpClient for you to use for all your requests.
      */
     public static AndroidHttpClient newInstance(String userAgent, Context context) {
@@ -137,30 +141,30 @@ public final class AndroidHttpClient implements HttpClient {
 
         Object sessionCache = null;
         // Use a session cache for SSL sockets -- Froyo only
-        if ( null != context && null != sSslSessionCacheClass ) {
-             Constructor<?> ct;
-			try {
-				ct = sSslSessionCacheClass.getConstructor(Context.class);
-				sessionCache = ct.newInstance(context);             
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InstantiationException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        if (null != context && null != sSslSessionCacheClass) {
+            Constructor<?> ct;
+            try {
+                ct = sSslSessionCacheClass.getConstructor(Context.class);
+                sessionCache = ct.newInstance(context);
+            } catch (SecurityException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
 
         // Set the specified user agent and register standard protocols.
@@ -169,30 +173,30 @@ public final class AndroidHttpClient implements HttpClient {
         schemeRegistry.register(new Scheme("http",
                 PlainSocketFactory.getSocketFactory(), 80));
         SocketFactory sslCertificateSocketFactory = null;
-        if ( null != sessionCache ) {
-        	Method getHttpSocketFactoryMethod;
-			try {
-				getHttpSocketFactoryMethod = SSLCertificateSocketFactory.class.getDeclaredMethod("getHttpSocketFactory",Integer.TYPE, sSslSessionCacheClass);
-	        	sslCertificateSocketFactory = (SocketFactory)getHttpSocketFactoryMethod.invoke(null, SOCKET_OPERATION_TIMEOUT, sessionCache);
-			} catch (SecurityException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        if (null != sessionCache) {
+            Method getHttpSocketFactoryMethod;
+            try {
+                getHttpSocketFactoryMethod = SSLCertificateSocketFactory.class.getDeclaredMethod("getHttpSocketFactory", Integer.TYPE, sSslSessionCacheClass);
+                sslCertificateSocketFactory = (SocketFactory) getHttpSocketFactoryMethod.invoke(null, SOCKET_OPERATION_TIMEOUT, sessionCache);
+            } catch (SecurityException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
-        if ( null == sslCertificateSocketFactory ) {
-        	sslCertificateSocketFactory = SSLSocketFactory.getSocketFactory();
+        if (null == sslCertificateSocketFactory) {
+            sslCertificateSocketFactory = SSLSocketFactory.getSocketFactory();
         }
         schemeRegistry.register(new Scheme("https",
                 sslCertificateSocketFactory, 443));
@@ -207,6 +211,7 @@ public final class AndroidHttpClient implements HttpClient {
 
     /**
      * Create a new HttpClient with reasonable defaults (which you can update).
+     *
      * @param userAgent to report in your HTTP requests.
      * @return AndroidHttpClient for you to use for all your requests.
      */
@@ -262,6 +267,7 @@ public final class AndroidHttpClient implements HttpClient {
     /**
      * Modifies a request to indicate to the server that we would like a
      * gzipped response.  (Uses the "Accept-Encoding" HTTP header.)
+     *
      * @param request the request to modify
      * @see #getUngzippedContent
      */
@@ -324,30 +330,30 @@ public final class AndroidHttpClient implements HttpClient {
     }
 
     public HttpResponse execute(HttpHost target, HttpRequest request,
-            HttpContext context) throws IOException {
+                                HttpContext context) throws IOException {
         return delegate.execute(target, request, context);
     }
 
     public <T> T execute(HttpUriRequest request,
-            ResponseHandler<? extends T> responseHandler)
+                         ResponseHandler<? extends T> responseHandler)
             throws IOException, ClientProtocolException {
         return delegate.execute(request, responseHandler);
     }
 
     public <T> T execute(HttpUriRequest request,
-            ResponseHandler<? extends T> responseHandler, HttpContext context)
+                         ResponseHandler<? extends T> responseHandler, HttpContext context)
             throws IOException, ClientProtocolException {
         return delegate.execute(request, responseHandler, context);
     }
 
     public <T> T execute(HttpHost target, HttpRequest request,
-            ResponseHandler<? extends T> responseHandler) throws IOException,
+                         ResponseHandler<? extends T> responseHandler) throws IOException,
             ClientProtocolException {
         return delegate.execute(target, request, responseHandler);
     }
 
     public <T> T execute(HttpHost target, HttpRequest request,
-            ResponseHandler<? extends T> responseHandler, HttpContext context)
+                         ResponseHandler<? extends T> responseHandler, HttpContext context)
             throws IOException, ClientProtocolException {
         return delegate.execute(target, request, responseHandler, context);
     }
@@ -356,10 +362,11 @@ public final class AndroidHttpClient implements HttpClient {
      * Compress data to send to server.
      * Creates a Http Entity holding the gzipped data.
      * The data will not be compressed if it is too short.
+     *
      * @param data The bytes to compress
      * @return Entity holding the data
      */
-    public static AbstractHttpEntity getCompressedEntity(byte data[], ContentResolver resolver)
+    public static AbstractHttpEntity getCompressedEntity(byte[] data, ContentResolver resolver)
             throws IOException {
         AbstractHttpEntity entity;
         if (data.length < getMinGzipSize(resolver)) {
@@ -413,14 +420,16 @@ public final class AndroidHttpClient implements HttpClient {
         }
     }
 
-    /** cURL logging configuration. */
+    /**
+     * cURL logging configuration.
+     */
     private volatile LoggingConfiguration curlConfiguration;
 
     /**
      * Enables cURL request logging for this client.
      *
-     * @param name to log messages with
-     * @param level at which to log messages (see {@link android.util.Log})
+     * @param name  to log messages with
+     * @param level at which to log messages (see {"@link android.util.Log"})
      */
     public void enableCurlLogging(String name, int level) {
         if (name == null) {
@@ -428,7 +437,7 @@ public final class AndroidHttpClient implements HttpClient {
         }
         if (level < Log.VERBOSE || level > Log.ASSERT) {
             throw new IllegalArgumentException("Level is out of range ["
-                + Log.VERBOSE + ".." + Log.ASSERT + "]");
+                    + Log.VERBOSE + ".." + Log.ASSERT + "]");
         }
 
         curlConfiguration = new LoggingConfiguration(name, level);
@@ -466,10 +475,10 @@ public final class AndroidHttpClient implements HttpClient {
 
         builder.append("curl ");
 
-        for (Header header: request.getAllHeaders()) {
+        for (Header header : request.getAllHeaders()) {
             if (!logAuthToken
                     && (header.getName().equals("Authorization") ||
-                        header.getName().equals("Cookie"))) {
+                    header.getName().equals("Cookie"))) {
                 continue;
             }
             builder.append("--header \"");
@@ -528,7 +537,7 @@ public final class AndroidHttpClient implements HttpClient {
      *
      * @return the number of milliseconds since Jan. 1, 1970, midnight GMT.
      * @throws IllegalArgumentException if {@code dateString} is not a date or
-     *     of an unsupported format.
+     *                                  of an unsupported format.
      */
     public static long parseDate(String dateString) {
         return HttpDateTime.parse(dateString);

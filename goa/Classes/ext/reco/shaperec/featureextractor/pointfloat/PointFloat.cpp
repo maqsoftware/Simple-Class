@@ -73,7 +73,7 @@ int createShapeFeatureExtractor(const LTKControlInfo& controlInfo,
 	{
 		*outFeatureExtractor = new PointFloatShapeFeatureExtractor(controlInfo);
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		*outFeatureExtractor = NULL;
 

@@ -263,7 +263,6 @@ bool Trace::onTouchBegan(Touch* touch, Event* event){
 	auto target = event->getCurrentTarget();
 	Point locationInNode = target->convertToNodeSpace(touch->getLocation());
 	Size s = target->getContentSize();
-	Rect rect = Rect(0, 0, s.width, s.height);
 
     //auto n = getParent()->convertTouchToNodeSpace(touch);
     //auto rect = this->getBoundingBox();

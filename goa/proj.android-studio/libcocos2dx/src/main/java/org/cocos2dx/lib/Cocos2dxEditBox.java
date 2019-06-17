@@ -1,39 +1,36 @@
 /****************************************************************************
-Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2016 Chukong Technologies Inc.
+ Copyright (c) 2010-2012 cocos2d-x.org
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
 
-http://www.cocos2d-x.org
+ http://www.cocos2d-x.org
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -100,7 +97,7 @@ public class Cocos2dxEditBox extends EditText {
     private final int kEditBoxInputFlagInitialCapsAllCharacters = 4;
 
     /**
-     *  Lowercase all characters automatically.
+     * Lowercase all characters automatically.
      */
     private final int kEditBoxInputFlagLowercaseAllCharacters = 5;
 
@@ -123,24 +120,24 @@ public class Cocos2dxEditBox extends EditText {
     private static final int kTextVerticalAlignmentCenter = 1;
     private static final int getkTextVerticalAlignmentBottom = 2;
 
-    private int mInputFlagConstraints; 
+    private int mInputFlagConstraints;
     private int mInputModeConstraints;
-    private  int mMaxLength;
+    private int mMaxLength;
 
     //OpenGL view scaleX
-    private  float mScaleX;
+    private float mScaleX;
 
     // package private
     int endAction = kEndActionUnknown;
 
 
-    public  Cocos2dxEditBox(Context context){
+    public Cocos2dxEditBox(Context context) {
         super(context);
     }
 
     public void setEditBoxViewRect(int left, int top, int maxWidth, int maxHeight) {
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT,
-                                                                            FrameLayout.LayoutParams.WRAP_CONTENT);
+                FrameLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.leftMargin = left;
         layoutParams.topMargin = top;
         layoutParams.width = maxWidth;
@@ -158,13 +155,13 @@ public class Cocos2dxEditBox extends EditText {
     }
 
 
-    public  void setMaxLength(int maxLength){
+    public void setMaxLength(int maxLength) {
         this.mMaxLength = maxLength;
 
-        this.setFilters(new InputFilter[]{new InputFilter.LengthFilter(this.mMaxLength) });
+        this.setFilters(new InputFilter[]{new InputFilter.LengthFilter(this.mMaxLength)});
     }
 
-    public void setMultilineEnabled(boolean flag){
+    public void setMultilineEnabled(boolean flag) {
         this.mInputModeConstraints |= InputType.TYPE_TEXT_FLAG_MULTI_LINE;
     }
 
@@ -233,7 +230,7 @@ public class Cocos2dxEditBox extends EditText {
         this.setGravity(gravity);
     }
 
-    public  void setInputMode(int inputMode){
+    public void setInputMode(int inputMode) {
         this.setTextHorizontalAlignment(kTextHorizontalAlignmentLeft);
         this.setTextVerticalAlignment(kTextVerticalAlignmentCenter);
         switch (inputMode) {
@@ -270,15 +267,13 @@ public class Cocos2dxEditBox extends EditText {
 
     @Override
     public boolean onKeyDown(final int pKeyCode, final KeyEvent pKeyEvent) {
-        switch (pKeyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                Cocos2dxActivity activity = (Cocos2dxActivity)this.getContext();
-                //To prevent program from going to background
-                activity.getGLSurfaceView().requestFocus();
-                return true;
-            default:
-                return super.onKeyDown(pKeyCode, pKeyEvent);
+        if (pKeyCode == KeyEvent.KEYCODE_BACK) {
+            Cocos2dxActivity activity = (Cocos2dxActivity) this.getContext();
+            //To prevent program from going to background
+            activity.getGLSurfaceView().requestFocus();
+            return true;
         }
+        return super.onKeyDown(pKeyCode, pKeyEvent);
     }
 
     @Override

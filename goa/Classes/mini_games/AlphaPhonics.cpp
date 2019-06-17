@@ -177,7 +177,7 @@ void AlphaPhonics::OptionListner(Sprite *option) {
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, option);
 }
 
-string AlphaPhonics::StringandIntConcat(string data,int number) {
+string AlphaPhonics::StringandIntConcat(const string data, int number) {
 	
 	std::ostringstream value;
 	value << data << number;
@@ -319,11 +319,10 @@ void AlphaPhonics::createOptions() {
 		optionsMap.push_back(pairs);
 	}
 	_optionsMap.clear();
-	bool flagAlphabetsCheck = true;
 
 	for (size_t i = 0; i < 4; i++) {
 
-		flagAlphabetsCheck = true;
+		bool flagAlphabetsCheck = true;
 		int counter = 0;
 		int counterJunk = 0;
 

@@ -12,4 +12,6 @@
     <string name="preference_file_key">com.maq.xprize.bali.PREFERENCE_FILE_KEY</string>
     <string name="user_id">user_id</string>
     <string name="word">Find</string>
+    <string name="background">Background</string>
+    <string name="start_percent">0 %</string>
 </resources>

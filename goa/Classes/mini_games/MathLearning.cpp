@@ -52,7 +52,6 @@ void MathLearning::onEnterTransitionDidFinish()
 		{ 6,	"zebra_animation/zebra_animation.csb" }
 				   };
 
-	int answer;
 	if (gameCurrentLevel >= 1 && gameCurrentLevel <= 5)
 	{
 		_operation = "addition";
@@ -106,7 +105,6 @@ void MathLearning::onEnterTransitionDidFinish()
 		grid->setName("grid");
 
 		Vector <Node*> children1 = grid->getChildren();
-		int size1 = children1.size();
 		for (auto item = children1.rbegin(); item != children1.rend(); ++item) {
 			Node *monsterItem = *item;
 			std::string str = monsterItem->getName().c_str();
@@ -191,13 +189,13 @@ LabelTTF* MathLearning::setAllLabelProperties(std::string letterString, int zOrd
 }
 
 
-string MathLearning::getGridNameInString(int ballNumber, string direction) {
+string MathLearning::getGridNameInString(int ballNumber, const string direction) {
 	std::ostringstream gridName;
 	gridName << direction << ballNumber;
 	return gridName.str();
 }
 
-Sprite* MathLearning::getGridWithIndex(int ballNumber, string direction, bool flag) {
+Sprite* MathLearning::getGridWithIndex(int ballNumber, const string direction, bool flag) {
 
 	auto gridName = getGridNameInString(ballNumber, direction);
 	Sprite* grid;
@@ -445,7 +443,6 @@ void MathLearning::quiz()
 	auto sign = (Sprite*)play->getChildByName("operation");
 
 	Vector <Node*> children = play->getChildren();
-	int size = children.size();
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node *monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();

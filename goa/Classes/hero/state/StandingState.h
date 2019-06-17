@@ -19,12 +19,11 @@ public:
     StandingState();
     ~StandingState();
     
-    void enter(cocos2d::Vec2 forceVector, SkeletonCharacterState previousStateCommand);
-    
-    void exit();
-    SkeletonCharacterState handleInput(SkeletonCharacterState command);
-    SkeletonCharacterState getState();
-    
+    void enter(cocos2d::Vec2 forceVector, SkeletonCharacterState previousStateCommand) override;
+
+    void exit() override;
+    SkeletonCharacterState handleInput(SkeletonCharacterState command) override;
+    SkeletonCharacterState getState() override;
 };
 
 

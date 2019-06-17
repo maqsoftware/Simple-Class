@@ -385,7 +385,7 @@ void			btSoftBody::appendAnchor(int node,btRigidBody* body, const btVector3& loc
 }
 
 //
-void			btSoftBody::appendLinearJoint(const LJoint::Specs& specs,Cluster* body0,Body body1)
+void			btSoftBody::appendLinearJoint(const LJoint::Specs& specs,Cluster* body0, const Body body1)
 {
 	LJoint*		pj	=	new(btAlignedAlloc(sizeof(LJoint),16)) LJoint();
 	pj->m_bodies[0]	=	body0;
@@ -399,7 +399,7 @@ void			btSoftBody::appendLinearJoint(const LJoint::Specs& specs,Cluster* body0,B
 }
 
 //
-void			btSoftBody::appendLinearJoint(const LJoint::Specs& specs,Body body)
+void			btSoftBody::appendLinearJoint(const LJoint::Specs& specs, const Body body)
 {
 	appendLinearJoint(specs,m_clusters[0],body);
 }
@@ -411,7 +411,7 @@ void			btSoftBody::appendLinearJoint(const LJoint::Specs& specs,btSoftBody* body
 }
 
 //
-void			btSoftBody::appendAngularJoint(const AJoint::Specs& specs,Cluster* body0,Body body1)
+void			btSoftBody::appendAngularJoint(const AJoint::Specs& specs,Cluster* body0, const Body body1)
 {
 	AJoint*		pj	=	new(btAlignedAlloc(sizeof(AJoint),16)) AJoint();
 	pj->m_bodies[0]	=	body0;
@@ -426,7 +426,7 @@ void			btSoftBody::appendAngularJoint(const AJoint::Specs& specs,Cluster* body0,
 }
 
 //
-void			btSoftBody::appendAngularJoint(const AJoint::Specs& specs,Body body)
+void			btSoftBody::appendAngularJoint(const AJoint::Specs& specs, const Body body)
 {
 	appendAngularJoint(specs,m_clusters[0],body);
 }
@@ -501,7 +501,7 @@ void			btSoftBody::addAeroForceToNode(const btVector3& windVelocity,int nodeInde
 					fDrag = 0.5f * kDG * medium.m_density * rel_v2 * tri_area * n_dot_v * (-rel_v_nrm);
 							
 					// Check angle of attack
-					// cos(10º) = 0.98480
+					// cos(10ï¿½) = 0.98480
 					if ( 0 < n_dot_v && n_dot_v < 0.98480f)
 						fLift = 0.5f * kLF * medium.m_density * rel_v_len * tri_area * btSqrt(1.0f-n_dot_v*n_dot_v) * (nrm.cross(rel_v_nrm).cross(rel_v_nrm));
 
@@ -587,7 +587,7 @@ void			btSoftBody::addAeroForceToFace(const btVector3& windVelocity,int faceInde
 				fDrag = 0.5f * kDG * medium.m_density * rel_v2 * tri_area * n_dot_v * (-rel_v_nrm);
 
 				// Check angle of attack
-				// cos(10º) = 0.98480
+				// cos(10ï¿½) = 0.98480
 				if ( 0 < n_dot_v && n_dot_v < 0.98480f)
 					fLift = 0.5f * kLF * medium.m_density * rel_v_len * tri_area * btSqrt(1.0f-n_dot_v*n_dot_v) * (nrm.cross(rel_v_nrm).cross(rel_v_nrm));
 

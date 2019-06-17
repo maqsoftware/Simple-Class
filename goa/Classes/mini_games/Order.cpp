@@ -224,7 +224,6 @@ void Order::onTouchMoved(cocos2d::Touch * touch, cocos2d::Event * event)
 
 void Order::onTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event)
 {
-	bool flag = false;
 	_iteration++;
 	if (_iteration > _sortedList.size()) {
 		menu->addPoints(-1);
@@ -453,7 +452,7 @@ void Order::gameHelp()
 
 
 
-void Order::checkUserSortList(std::vector<int> list)
+void Order::checkUserSortList(const std::vector<int> list)
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	int score = 0;

@@ -66,12 +66,14 @@ void LanguageManager::changeLanguage(SupportedLanguages lang) {
 
 
 //"You have chosen the %s1 hat.
-std::string LanguageManager::translateParameterizedString(std::string parameterizedString, std::string substituteString) {
+std::string LanguageManager::translateParameterizedString(const std::string parameterizedString, const std::string substituteString) {
     return I18N::i18nFormatStr(translateString(parameterizedString),translateString(substituteString).c_str());
 }
 
 //"There are birds %s1 in the %s2."
-std::string LanguageManager::translateTwoParameterizedString(std::string parameterizedString, std::string substituteString1, std::string substituteString2) {
+std::string LanguageManager::translateTwoParameterizedString(const std::string parameterizedString, 
+                                                                const std::string substituteString1,
+                                                                const std::string substituteString2) {
     
     return I18N::i18nFormatStr(translateString(parameterizedString), translateString(substituteString1).c_str(), translateString(substituteString2).c_str());
 }

@@ -16,10 +16,10 @@
 
 package com.google.android.vending.expansion.downloader.impl;
 
+import android.util.Log;
+
 import com.google.android.vending.expansion.downloader.Constants;
 import com.google.android.vending.expansion.downloader.Helpers;
-
-import android.util.Log;
 
 /**
  * Representation of information about an individual download from the database.
@@ -71,7 +71,7 @@ public class DownloadInfo {
         }
         return mLastMod +
                 Constants.RETRY_FIRST_DELAY *
-                (1000 + mFuzz) * (1 << (mNumFailed - 1));
+                        (1000 + mFuzz) * (1 << (mNumFailed - 1));
     }
 
     public void logVerboseInfo() {

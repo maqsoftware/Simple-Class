@@ -123,7 +123,6 @@ void BubbleShooter::gameBegin(cocos2d::EventCustom *eventCustom) {
 	setGameState(gamestates.ready);
 
 	letterSprite.resize(numberOfLetter);
-	int bubblelevelValues = 1;
 
 
 	for (int i = 0; i < vmc.size(); i++)
@@ -1133,7 +1132,7 @@ void BubbleShooter::stateRemoveCluster() {
 	}
 }
 
-void BubbleShooter::DataCard(std::string gamestatus) {
+void BubbleShooter::DataCard(const std::string gamestatus) {
 	//console.log("gamestatus : " + gamestatus + " -------------- ");
 	//auto level = bubblelevelValues; //NTC
 	auto level = _menuContext->getCurrentLevel();

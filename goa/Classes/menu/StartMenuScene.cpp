@@ -152,7 +152,7 @@ const std::vector<std::string> StartMenu::multiPlayerGameNames() {
 
 
 
-void StartMenu::startScene(std::string gameName, std::string firstParam, std::string secondParam, std::string thirdParam) {
+void StartMenu::startScene(const std::string gameName, const std::string firstParam, const std::string secondParam, const std::string thirdParam) {
     
     std::string gameConfig;
     localStorageGetItem(gameName, &gameConfig);

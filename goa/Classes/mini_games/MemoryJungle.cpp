@@ -302,7 +302,7 @@ void MemoryJungle::gameBegin(cocos2d::EventCustom *eventCustom) {
 		auto stringOne = matchNode.at(0)->getName();
 
 		auto stringTwo = _data[stringOne];
-		int ids[3] = { 10, 15, 16 };
+		int ids[4] = { 10, 15, 16, NULL };
 		int  i;
 		for (i = 0; i < 3; i++) {
 
@@ -427,7 +427,7 @@ bool MemoryJungle::onTouchBegan(Touch* touch, Event* event) {
 			 auto stringOne = matchNode.at(0)->getName();
 
 			 auto stringTwo = _data[stringOne];
-			 int ids[3] = { 10, 15, 16 };
+			 int ids[4] = {10, 15, 16, NULL};
 			 int  i;
 			 for (i = 0; i < 3; i++) {
 

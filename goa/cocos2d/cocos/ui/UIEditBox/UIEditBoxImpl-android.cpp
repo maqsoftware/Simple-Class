@@ -117,7 +117,7 @@ void EditBoxImplAndroid::setNativeFont(const char* pFontName, int fontSize)
     std::string realFontPath = pFontName;
     if(isFontFileExists) {
         realFontPath = cocos2d::FileUtils::getInstance()->fullPathForFilename(pFontName);
-        if (realFontPath.find("assets/") == 0)
+        if (realFontPath.compare(0, 7, "assets/") == 0)
         {
             realFontPath = realFontPath.substr(strlen("assets/"));   // Chop out the 'assets/' portion of the path.
         }

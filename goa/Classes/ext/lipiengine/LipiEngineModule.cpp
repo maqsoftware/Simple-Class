@@ -134,7 +134,7 @@ int LTKLipiEngineModule::initializeLipiEngine()
 	{
 		m_LipiEngineConfigEntries = new LTKConfigFileReader(temp);
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		// display warning to the user and continue with default values
 		cout << " Could not open file : " << temp << endl <<
@@ -219,7 +219,6 @@ int LTKLipiEngineModule::createShapeRecognizer(const string& strProjName,
 		"Entering: LTKLipiEngineModule::createShapeRecognizer()"<<endl;
 	
 	int errorCode;
-    int iResult = 0;
 	void *dllHandler = NULL;
 	string recognizerName = "";
 	string strProjectName = strProjName;
@@ -397,7 +396,6 @@ int LTKLipiEngineModule::createWordRecognizer(const string& strProjName,
 		"Entering: LTKLipiEngineModule::createWordRecognizer()"<<endl;
 
 	string recognizerName = "";
-	int iResult = 0;
 	void *dllHandler = NULL;
 	string strProjectName = strProjName;
     string strProfileName = strProfName;
@@ -936,7 +934,7 @@ int LTKLipiEngineModule::validateProject(const string& strProjectName,
 	{
 		projectConfigReader = new LTKConfigFileReader(projectCfgPath);
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		LOG( LTKLogger::LTK_LOGLEVEL_ERR) << 
         "Error: "<< getErrorMessage(e.getErrorCode()) << projectCfgPath <<
@@ -999,7 +997,7 @@ int LTKLipiEngineModule::validateProfile(const string& strProjectName,
 	{
 		profileConfigReader = new LTKConfigFileReader(profileCfgPath);
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		LOG( LTKLogger::LTK_LOGLEVEL_ERR) << 
             "Error: "<< getErrorMessage(e.getErrorCode()) << profileCfgPath <<

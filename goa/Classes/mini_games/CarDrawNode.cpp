@@ -98,7 +98,7 @@ void carDrawNode::clearDrawing(cocos2d::Ref * pSender, cocos2d::ui::Widget::Touc
 	}
 }
 
-cocos2d::ui::Button * carDrawNode::createButton(const std::string normalImage, const std::string selectedImage, const std::string disableImage, cocos2d::Vec2 position)
+cocos2d::ui::Button *carDrawNode::createButton(std::string const& normalImage, std::string const& selectedImage, std::string const& disableImage, cocos2d::Vec2 position)
 {
 	auto spritecache1 = SpriteFrameCache::getInstance();
 	spritecache1->addSpriteFramesWithFile("cardraw/cardraw.plist");

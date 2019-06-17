@@ -95,7 +95,6 @@ bool js_pluginx_ProtocolIAP_setResultListener(JSContext *cx, uint32_t argc, jsva
     JSObject *obj = JS_THIS_OBJECT(cx, vp);
     js_proxy_t *proxy = jsb_get_js_proxy(obj);
     cocos2d::plugin::ProtocolIAP* cobj = (cocos2d::plugin::ProtocolIAP *)(proxy ? proxy->ptr : NULL);
-    bool ok = true;
 
     if (argc == 1) {
         // save the delegate

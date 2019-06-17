@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2010-2013 cocos2d-x.org
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,9 +29,9 @@ import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
 public class ResizeLayout extends FrameLayout {
-    private  boolean mEnableForceDoLayout = false;
+    private boolean mEnableForceDoLayout = false;
 
-    public ResizeLayout(Context context){
+    public ResizeLayout(Context context) {
         super(context);
     }
 
@@ -39,18 +39,18 @@ public class ResizeLayout extends FrameLayout {
         super(context, attrs);
     }
 
-    public void setEnableForceDoLayout(boolean flag){
+    public void setEnableForceDoLayout(boolean flag) {
         mEnableForceDoLayout = flag;
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        if(mEnableForceDoLayout){
+        if (mEnableForceDoLayout) {
             /*This is a hot-fix for some android devices which don't do layout when the main window
-            * is paned. We refresh the layout in 24 frames per seconds.
-            * When the editBox is lose focus or when user begin to type, the do layout is disabled.
-            */
+             * is paned. We refresh the layout in 24 frames per seconds.
+             * When the editBox is lose focus or when user begin to type, the do layout is disabled.
+             */
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override
