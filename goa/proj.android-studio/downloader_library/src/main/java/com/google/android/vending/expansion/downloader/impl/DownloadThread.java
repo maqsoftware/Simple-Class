@@ -147,19 +147,19 @@ public class DownloadThread {
         private static final long serialVersionUID = 6196036036517540229L;
     }
 
-//    /**
-//     * Returns the preferred proxy to be used by clients. This is a wrapper
-//     * around {@link android.net.Proxy#getHost()}. Currently no proxy will be
-//     * returned for localhost or if the active network is Wi-Fi.
-//     *
-//     * @param context the context which will be passed to
-//     *                {@link android.net.Proxy#getHost()}
-//     * @param url     the target URL for the request
-//     * @return The preferred proxy to be used by clients, or null if there is no
-//     * proxy.
-//     * @note Calling this method requires permission
-//     * android.permission.ACCESS_NETWORK_STATE
-//     */
+    /**
+     * Returns the preferred proxy to be used by clients. This is a wrapper
+     * around {@link android.net.Proxy#getHost()}. Currently no proxy will be
+     * returned for localhost or if the active network is Wi-Fi.
+     *
+     * @param context the context which will be passed to
+     *                {@link android.net.Proxy#getHost()}
+     * @param url     the target URL for the request
+     * @return The preferred proxy to be used by clients, or null if there is no
+     * proxy.
+     * @note Calling this method requires permission
+     * android.permission.ACCESS_NETWORK_STATE
+     */
     public HttpHost getPreferredHttpHost(Context context,
                                          String url) {
         if (!isLocalHost(url) && !mService.isWiFi()) {
