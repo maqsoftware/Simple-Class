@@ -156,33 +156,33 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode) {
             std::unordered_map<std::string,std::string>::const_iterator itNextScene = attributes.find("nextScene");
             
             if ( it != attributes.end() ) {
-                //process text
+                // process text
                 if (it->first.compare("text") == 0) {
                     std::string lName = node->getName();
                     std::string englishName = "";
                     if (lName.compare("City1") == 0) {
-                        lName = "Õð¢»ÜéLUUUU"; //Bengaluru
+                        lName = "Õð¢»ÜéLUUUU"; // Bengaluru
                         englishName = "Bengaluru";
                     } else if (lName.compare("City2") == 0) {
-                        lName = "Üæòâ °¢ÁðçÜâ";//Los Angeles
+                        lName = "Üæòâ °¢ÁðçÜâ";// Los Angeles
                         englishName = "Los Angeles";
                     } else if (lName.compare("City3") == 0) {
-                        lName = "sêSÅÙ";//Houston
+                        lName = "sêSÅÙ"; // Houston
                         englishName = "Houston";
                     } else if (lName.compare("city4") == 0) {
-                        lName = "Ü¢ÇÙ";//London
+                        lName = "Ü¢ÇÙ"; // London
                         englishName = "London";
                     } else if (lName.compare("City5") == 0) {
-                        lName = "ÇæÚ °â âÜæ×";//Dar es Salaam
+                        lName = "ÇæÚ °â âÜæ×"; // Dar es Salaam
                         englishName = "Dar es Salaam";
                     } else if (lName.compare("Camp") == 0) {
-						lName = "·ñ¢UUUÂ";//Camp
+						lName = "·ñ¢UUUÂ"; // Camp
                         englishName = "Camp";
 					} else if (lName.compare("Farm House") == 0) {
-						lName ="ÈUUUæ×ü ãæ©â";//Farm House
+						lName ="ÈUUUæ×ü ãæ©â"; // Farm House
                         englishName = "Farm House";
 					} else if (lName.compare("Mining Town") == 0) {
-						lName ="¹ÙÙ àæãÚ";//Mining Town
+						lName ="¹ÙÙ àæãÚ"; // Mining Town
                         englishName = "Mining Town";
 					}
 
