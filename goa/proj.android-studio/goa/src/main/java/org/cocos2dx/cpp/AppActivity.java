@@ -26,6 +26,7 @@
  ****************************************************************************/
 package org.cocos2dx.cpp;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.content.ContentValues;
