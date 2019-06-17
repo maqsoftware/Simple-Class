@@ -416,13 +416,17 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
             button->addTouchEventListener(CC_CALLBACK_2(ScrollableGameMapScene::disabledGameSelected, this));
         }
 
-        string gameTitle = gameJson["title"].GetString();
-        string delimiter = "$#$";
+        const static string gameTitle = gameJson["title"].GetString();
+        const static string delimiter = "$#$";
 
         // splitting the string into its chanakya component
         string gameTitleHindi = gameTitle.substr(0, gameTitle.find(delimiter));
         string gameTitleEnglish = gameTitle.substr(gameTitle.find(delimiter) + delimiter.size(), gameTitle.size() - 1);
 
+        /**
+         * If the module section displays the games in the very last row.
+         * Then display the English and the Hindi text in a single line.
+        **/
         if (isLastRow) 
         {
             gameTitleHindi = gameJson["_title_comment"].GetString();
@@ -433,7 +437,6 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
         button->setName(gameJson["name"].GetString());
         button->setTitleText(LangUtil::getInstance()->translateString(gameTitleEnglish));
         button->setTitleAlignment(TextHAlignment::CENTER, TextVAlignment::BOTTOM);
-        // button->setTitleFontName("fonts/Arial.ttf");
         auto titleColor = Color3B(0xFF, 0xF2, 0x00);
         if(!_subGameMenuToNavigate.empty()) {
             auto it = BUTTON_TEXT_COLOR_MAP.find(_subGameMenuToNavigate);

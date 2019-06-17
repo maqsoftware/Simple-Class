@@ -194,7 +194,6 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                 if (textTitle)
                 {
                     std::string translatedString = this->currentLangUtil->translateString(textTitle->getName());
-
                     string gameName = textTitle->getName().c_str();
                     string mainMenuEnglishText = "";
                     if (gameName == "alphabet")
