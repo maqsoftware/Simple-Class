@@ -92,6 +92,7 @@ public class AppActivity extends Cocos2dxActivity {
         System.out.println("Loaded library");
     }
 
+    private Handler handler = null;
     private TextToSpeech textToSpeechInstance;
 
     //    LauncherScreen variables and functions from Bali
@@ -331,7 +332,7 @@ public class AppActivity extends Cocos2dxActivity {
         _appActivity = this;
         _activity = this;
         _context = this;
-        Handler handler = new Handler(getMainLooper());
+        handler = new Handler(getMainLooper());
 
         getGLSurfaceView().setMultipleTouchEnabled(false);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
