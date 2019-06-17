@@ -68,6 +68,7 @@ public class SplashScreenActivity extends Activity {
         final Builder builderSingle = new Builder(this);
         builderSingle.setTitle(null);
         builderSingle.setMessage(R.string.dialogInfo);
+        builderSingle.setCancelable(false);
         final SharedPreferences.Editor editor = sharedPref.edit();
         builderSingle.setNegativeButton(
                 R.string.dialogNo,
