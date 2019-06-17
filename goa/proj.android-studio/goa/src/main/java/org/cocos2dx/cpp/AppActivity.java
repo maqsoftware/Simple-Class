@@ -26,7 +26,6 @@
  ****************************************************************************/
 package org.cocos2dx.cpp;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.content.ContentValues;
@@ -325,7 +324,6 @@ public class AppActivity extends Cocos2dxActivity {
         return dataFilePath;
     }
 
-    @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
