@@ -112,13 +112,7 @@ public class Zip {
         }
         SharedPreferences.Editor editor = sharedPref.edit();
         if (isExtractionSuccessful) {
-            if (isMain) {
-                flagFile = new File(extractPath + ".success.txt");
-                flagFile.createNewFile();
-                editor.putInt(zipActivity.getString(R.string.mainFileVersion), fileVersion);
-            } else {
-                editor.putInt(zipActivity.getString(R.string.patchFileVersion), fileVersion);
-            }
+            editor.putInt(zipActivity.getString(isMain ? R.string.mainFileVersion : R.string.patchFileVersion), fileVersion);
             editor.apply();
         }
     }

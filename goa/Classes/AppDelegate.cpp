@@ -166,10 +166,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setContentScaleFactor(scaleFactor);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-
 //  Fetch extracted resource path by calling getPathToAppDelegate() in AppActivity.java
     string devicePath = JniHelper::callStaticStringMethod("org/cocos2dx/cpp/AppActivity", "getPathToAppDelegate");
-
     FileUtils::getInstance()->setDefaultResourceRootPath(devicePath);
 #endif
 

@@ -14,14 +14,12 @@ import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.vending.expansion.downloader.Helpers;
-import com.maq.xprize.chimple.hindi.R;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,8 +28,15 @@ import java.util.zip.ZipFile;
 import chimple.DownloadExpansionFile;
 import utils.Zip;
 
+import static android.support.v7.app.AlertDialog.Builder;
 import static chimple.DownloadExpansionFile.xAPKs;
-import static org.cocos2dx.cpp.AppActivity.TAG;
+import static com.maq.xprize.chimple.hindi.R.layout;
+import static com.maq.xprize.chimple.hindi.R.string;
+import static com.maq.xprize.chimple.hindi.R.string.Attention;
+import static com.maq.xprize.chimple.hindi.R.string.dataPath;
+import static com.maq.xprize.chimple.hindi.R.string.dialogInfo;
+import static com.maq.xprize.chimple.hindi.R.string.dialogNo;
+import static com.maq.xprize.chimple.hindi.R.string.dialogYes;
 import static org.cocos2dx.cpp.AppActivity.pathToAppDelegate;
 import static org.cocos2dx.cpp.AppActivity.sharedPref;
 
@@ -42,7 +47,7 @@ public class SplashScreenActivity extends Activity {
     File obbFile;
     ZipFile obbZipFile;
     Zip zipFileHandler;
-    String dataFilePathtoZip;
+    String unzipDataFilePath;
     File packageDir;
     int mainFileVersion;
     int patchFileVersion;
@@ -66,34 +71,32 @@ public class SplashScreenActivity extends Activity {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void customDialog() {
-        final android.support.v7.app.AlertDialog.Builder builderSingle = new android.support.v7.app.AlertDialog.Builder(this);
-        builderSingle.setTitle("Attention");
-        builderSingle.setMessage("Do you want to save app data in your SD card");
+        final Builder builderSingle = new Builder(this);
+        builderSingle.setTitle(Attention);
+        builderSingle.setMessage(dialogInfo);
         final SharedPreferences.Editor editor = sharedPref.edit();
         builderSingle.setNegativeButton(
-                "No",
+                dialogNo,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.d(TAG, "onClick: No Called.");
-                        editor.putInt(getString(R.string.dataPath), 1);
+                        editor.putInt(getString(dataPath), 1);
                         editor.apply();
                         startExtraction();
                     }
                 });
 
         builderSingle.setPositiveButton(
-                "Yes",
+                dialogYes,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Log.d(TAG, "onClick: Yes Called.");
-                        editor.putInt(getString(R.string.dataPath), 2);
+                        editor.putInt(getString(dataPath), 2);
                         editor.apply();
                         startExtraction();
                     }
                 });
-//        to initialize pathToAppDelegate with the selected path
+//      to initialize pathToAppDelegate with the selected path
         String junkDataFilePath = getDataFilePath();
         builderSingle.show();
     }
@@ -114,13 +117,13 @@ public class SplashScreenActivity extends Activity {
             int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
             decorView.setSystemUiVisibility(uiOptions);
         }
-        setContentView(R.layout.activity_splash_screen);
-        if (isSDcard() && sharedPref.getInt(getString(R.string.dataPath), 0) == 0) {
+        setContentView(layout.activity_splash_screen);
+        if (isSDcard() && sharedPref.getInt(getString(dataPath), 0) == 0) {
             flagSwitchToInternal = true;
             customDialog();
         } else {
             final SharedPreferences.Editor editor = sharedPref.edit();
-            editor.putInt(getString(R.string.dataPath), 1);
+            editor.putInt(getString(dataPath), 1);
             editor.apply();
             new DownloadFile().execute(null, null, null);
         }
@@ -147,24 +150,22 @@ public class SplashScreenActivity extends Activity {
     public void unzipFile() {
         int totalSize = getTotalSize();
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), 0);
-        patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), 0);
+        mainFileVersion = sharedPref.getInt(getString(string.mainFileVersion), 0);
+        patchFileVersion = sharedPref.getInt(getString(string.patchFileVersion), 0);
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 if (xf.mIsMain && xf.mFileVersion != mainFileVersion || !xf.mIsMain && xf.mFileVersion != patchFileVersion) {
-                    obbFilePath = getOBBFilePath() + File.separator +
-                            Helpers.getExpansionAPKFileName(this, xf.mIsMain, xf.mFileVersion);
-                    obbFile = new File(obbFilePath);
+                    obbFile = getOBBFilePath(xf);
                     obbZipFile = new ZipFile(obbFile);
                     zipFileHandler = new Zip(obbZipFile, this);
-                    dataFilePathtoZip = getDataFilePath();
-                    pathToAppDelegate = dataFilePathtoZip;
-                    packageDir = new File(dataFilePathtoZip);
+                    unzipDataFilePath = getDataFilePath();
+                    pathToAppDelegate = unzipDataFilePath;
+                    packageDir = new File(unzipDataFilePath);
                     if (xf.mIsMain && packageDir.exists()) {
                         DownloadExpansionFile.deleteDir(packageDir);
                         packageDir.mkdirs();
                     }
-                    zipFileHandler.unzip(dataFilePathtoZip, totalSize, xf.mIsMain, xf.mFileVersion);
+                    zipFileHandler.unzip(unzipDataFilePath, totalSize, xf.mIsMain, xf.mFileVersion);
                     zipFileHandler.close();
                 }
             }
@@ -177,10 +178,7 @@ public class SplashScreenActivity extends Activity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public boolean isSDcard() {
         File[] fileList = getObbDirs();
-        if (fileList.length >= 2) {
-            return true;
-        }
-        return false;
+        return fileList.length >= 2;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -194,57 +192,62 @@ public class SplashScreenActivity extends Activity {
                     file.isDirectory() &&
                     file.canRead() &&
                     isSDcard() &&
-                    sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+                    sharedPref.getInt(getString(dataPath), 0) == 2) {
 //              For external storage path
-                externalDataFilePath = file.getAbsolutePath() + "/";
-            } else if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 1 || !flagSwitchToInternal) && internalDataFilePath == null) {
+                externalDataFilePath = file.getAbsolutePath() + File.separator;
+            } else if ((sharedPref.getInt(getString(dataPath), 0) == 1 || !flagSwitchToInternal) && internalDataFilePath == null) {
 //              For internal storage path
-                internalDataFilePath = file.getAbsolutePath() + "/";
+                internalDataFilePath = file.getAbsolutePath() + File.separator;
             }
         }
         if (externalDataFilePath == null) {
             DataFilePath = internalDataFilePath;
-        } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+        } else if (sharedPref.getInt(getString(dataPath), 0) == 2) {
             DataFilePath = externalDataFilePath;
         }
         return DataFilePath;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public String getOBBFilePath() {
+    public File getOBBFilePath(DownloadExpansionFile.XAPKFile xf) {
+        sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
+        mainFileVersion = sharedPref.getInt(getString(string.mainFileVersion), 0);
+        patchFileVersion = sharedPref.getInt(getString(string.patchFileVersion), 0);
         String internalOBBFilePath = null;
         String externalOBBFilePath = null;
-        String OBBFilePath = null;
+        File externalOBBFile = null;
+        File internalOBBFile = null;
         File[] fileList = getObbDirs();
         for (File file : fileList) {
             if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/obb/" + getPackageName()) &&
                     file.isDirectory() &&
                     file.canRead() &&
-                    isSDcard() &&
-                    sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+                    isSDcard()) {
 //              For external storage path
-                externalOBBFilePath = file.getAbsolutePath();
-            } else if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 1 || !flagSwitchToInternal) && internalOBBFilePath == null) {
+                externalOBBFilePath = file.getAbsolutePath() + File.separator +
+                        Helpers.getExpansionAPKFileName(this, xf.mIsMain, xf.mFileVersion);
+                externalOBBFile = new File(externalOBBFilePath);
+            } else {
 //              For internal storage path
-                internalOBBFilePath = file.getAbsolutePath();
+                internalOBBFilePath = file.getAbsolutePath() + File.separator +
+                        Helpers.getExpansionAPKFileName(this, xf.mIsMain, xf.mFileVersion);
+                internalOBBFile = new File(internalOBBFilePath);
             }
         }
-        if (externalOBBFilePath == null) {
-            OBBFilePath = internalOBBFilePath;
-        } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
-            OBBFilePath = externalOBBFilePath;
+        if (externalOBBFile.exists()) {
+            return externalOBBFile;
+        } else {
+            return internalOBBFile;
         }
-        return OBBFilePath;
     }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public int getTotalSize() {
         int totalSize = 0;
         try {
             for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
                 if (!xf.mIsMain && (xf.mFileVersion != patchFileVersion) || xf.mIsMain && (xf.mFileVersion != mainFileVersion)) {
-                    obbFilePath = getOBBFilePath() + File.separator +
-                            Helpers.getExpansionAPKFileName(this, xf.mIsMain, xf.mFileVersion);
-                    obbFile = new File(obbFilePath);
+                    obbFile = getOBBFilePath(xf);
                     obbZipFile = new ZipFile(obbFile);
                     totalSize += obbZipFile.size();
                 }

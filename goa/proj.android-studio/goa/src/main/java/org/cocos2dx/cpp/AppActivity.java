@@ -82,6 +82,7 @@ public class AppActivity extends Cocos2dxActivity {
     public static int width;
     // Return Intent extra
     public static SharedPreferences sharedPref;
+    protected static String pathToAppDelegate = null;
     private static Activity _activity;
     private static AppActivity _appActivity;
     private static Context _context;
@@ -95,54 +96,10 @@ public class AppActivity extends Cocos2dxActivity {
     private Handler handler = null;
     private TextToSpeech textToSpeechInstance;
 
-    //    LauncherScreen variables and functions from Bali
+    //  LauncherScreen variables and functions from Bali
     public static native void setMultipleChoiceQuiz(String[] jsonInfo);
 
     public static native void setBagOfChoiceQuiz(String[] jsonInfo);
-
-    //      Initializing only if it is not passed null to AppDelegate.cpp
-    protected static String pathToAppDelegate = "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/";
-
-    //  Method to check if SD card is mounted
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public boolean isSDcard() {
-        File[] fileList = getObbDirs();
-        if (fileList.length >= 2) {
-            return true;
-        }
-        return false;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public String getDataFilePath() {
-        String internalDataFilePath = null;
-        String externalDataFilePath = null;
-        String DataFilePath = null;
-        File[] fileList = getExternalFilesDirs(null);
-        for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + getPackageName() + "files") &&
-                    file.isDirectory() &&
-                    file.canRead() &&
-                    isSDcard() &&
-                    sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
-//              For external storage path
-                externalDataFilePath = file.getAbsolutePath() + "/";
-            } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 1 && internalDataFilePath == null) {
-//              For internal storage path
-                internalDataFilePath = file.getAbsolutePath() + "/";
-            }
-        }
-        if (externalDataFilePath == null) {
-            DataFilePath = internalDataFilePath;
-        } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
-            DataFilePath = externalDataFilePath;
-        }
-        if (DataFilePath != null)
-            pathToAppDelegate = DataFilePath;
-        else
-            return pathToAppDelegate;
-        return DataFilePath;
-    }
 
     //  Method called by AppDelegate.cpp
     public static String getPathToAppDelegate() {
@@ -336,15 +293,49 @@ public class AppActivity extends Cocos2dxActivity {
 
     public static native void updateInformation(String jsonInfo);
 
+    //  Method to check if SD card is mounted
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public boolean isSDcard() {
+        File[] fileList = getObbDirs();
+        return fileList.length >= 2;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    public String getDataFilePath() {
+        String internalDataFilePath = null;
+        String externalDataFilePath = null;
+        String dataFilePath = null;
+        File[] fileList = getExternalFilesDirs(null);
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + getPackageName() + "files") &&
+                    file.isDirectory() &&
+                    file.canRead() &&
+                    isSDcard() &&
+                    sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+//              For external storage path
+                externalDataFilePath = file.getAbsolutePath() + File.separator;
+            } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 1 && internalDataFilePath == null) {
+//              For internal storage path
+                internalDataFilePath = file.getAbsolutePath() + File.separator;
+            }
+        }
+        if (externalDataFilePath == null) {
+            dataFilePath = internalDataFilePath;
+        } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+            dataFilePath = externalDataFilePath;
+        }
+        pathToAppDelegate = dataFilePath;
+
+        return dataFilePath;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("StaticFieldLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-
 //      Don't remove this. Used to Initialize the pathToAppDelegate with the selected path
         String initializeDataPath = getDataFilePath();
-
         int defaultFileVersion = 0;
         boolean extractionRequired = false;
 
