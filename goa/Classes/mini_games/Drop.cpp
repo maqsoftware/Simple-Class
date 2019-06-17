@@ -622,7 +622,7 @@ void Drop::addEvents(Sprite* clickedObject)
 		{
 			auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
 
-			cocostudio1::timeline::ActionTimeline* holderTimeline;
+			cocostudio::timeline::ActionTimeline* holderTimeline;
 			Sprite* holderImage;
 			auto helpSpriteName = target->getName();
 			if (helpSpriteName.compare("touchSprite") == 0)
