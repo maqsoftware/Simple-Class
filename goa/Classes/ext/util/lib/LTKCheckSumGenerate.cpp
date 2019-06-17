@@ -109,7 +109,7 @@ void LTKCheckSumGenerate::initCRC32Table()
 	{
 		m_CRC32Table[i]=reflect(i, 8) << 24;
 		for (int j = 0; j < 8; j++)
-			m_CRC32Table[i] = (m_CRC32Table[i] << 1) ^ ((m_CRC32Table[i] & (-2147483648)) ? ulPolynomial : 0);
+			m_CRC32Table[i] = (m_CRC32Table[i] << 1) ^ ((m_CRC32Table[i] & -2147483648) ? ulPolynomial : 0);
 		m_CRC32Table[i] = reflect(m_CRC32Table[i], 32);
 	}
 	LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) << 

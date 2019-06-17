@@ -264,7 +264,6 @@ void Drop::gameStart(cocos2d::EventCustom *eventCustom)
 	//aab->drawRect(Vec2((visibleSize.width*0.13) - _removalPole->getContentSize().width / 2, (visibleSize.height*_sceneBasedNumericalVal.at("floatBoxHeightFactor"))- _removalPole->getContentSize().height*0.1), Vec2((visibleSize.width*0.13) + _removalPole->getContentSize().width / 2, visibleSize.height *_sceneBasedNumericalVal.at("floatBoxHeightFactor") + _removalPole->getContentSize().height/2), Color4F(0, 0, 255, 22));
 
 	//bool levelForSpeaker = isSpeakerAddLevel();
-	//bool levelForSpeaker = false;
 	if (false)//levelForSpeaker
 	{
 		std::ostringstream boardName;
@@ -622,7 +621,7 @@ void Drop::addEvents(Sprite* clickedObject)
 		{
 			auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
 
-			cocostudio1::timeline::ActionTimeline* holderTimeline;
+			cocostudio::timeline::ActionTimeline* holderTimeline;
 			Sprite* holderImage;
 			auto helpSpriteName = target->getName();
 			if (helpSpriteName.compare("touchSprite") == 0)

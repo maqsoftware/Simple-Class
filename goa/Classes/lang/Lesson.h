@@ -82,7 +82,7 @@ CC_CONSTRUCTOR_ACCESS:
 protected:
     int _sessionId = 0; //Setting an initial value
     int _complexity = 0; //Setting an initial value
-    CONCEPT _concept = LETTER; //Setting an initial value
+    CONCEPT _concept; //Setting an initial value
 };
 
 #endif /* Lesson_h */

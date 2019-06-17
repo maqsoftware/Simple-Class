@@ -378,12 +378,12 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
         }
     }
 
-//    /**
-//     * Go through each of the Expansion APK files and open each as a zip file.
-//     * Calculate the CRC for each file and return false if any fail to match.
-//     *
-//     * @return true if XAPKZipFile is successful
-//     */
+    /**
+     * Go through each of the Expansion APK files and open each as a zip file.
+     * Calculate the CRC for each file and return false if any fail to match.
+     *
+     * @return true if XAPKZipFile is successful
+     */
     void validateXAPKZipFiles() {
         @SuppressLint("StaticFieldLeak") AsyncTask<Object, DownloadProgressInfo, Boolean> validationTask = new AsyncTask<Object, DownloadProgressInfo, Boolean>() {
 

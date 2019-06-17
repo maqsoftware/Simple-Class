@@ -1891,8 +1891,6 @@ void MenuContext::showAnswer(std::string type, std::string header)
 			if (blockSize % 2 == 1) {
 				y -= obj1->getContentSize().height * 1.2;
 			}
-			//labelWidth = label1->getContentSize().width;
-			//labelHeight = label1->getContentSize().height;
 			blockSize++;
 			numberOfWordShow++;
 			if (numberOfWordShow == 10) {

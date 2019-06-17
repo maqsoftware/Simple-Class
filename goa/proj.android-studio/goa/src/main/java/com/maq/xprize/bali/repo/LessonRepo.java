@@ -295,8 +295,8 @@ public class LessonRepo {
                 String answer = luc.objectUnit.name;
                 String[] answers = wordMap.get(answer);
                 Set<String> choiceCloneSet = new HashSet<>(choiceSet);
-                for (String answer1 : answers) {
-                    choiceCloneSet.remove(answer1);
+                for (String answerA : answers) {
+                    choiceCloneSet.remove(answerA);
                 }
                 List<String> choiceList = new LinkedList<>(choiceCloneSet);
                 Collections.shuffle(choiceList);

@@ -468,9 +468,12 @@ bool Animation::isCompleted() const
             return false;
         }
 
-        if(std::any_of(_animationStates.begin(), _animationStates.end(), [](auto animateState){return !animateState->isCompleted()}))
+        for (const auto animationState : _animationStates)
         {
-            return false;
+            if (!animationState->isCompleted())
+            {
+                return false;
+            }
         }
 
         return true;

@@ -630,7 +630,6 @@ m_offset(0)
 
 	void LTKImageWriter::drawUnipenFileToImage(const string& unipenFileName,const string& imgFileName)
 	{
-		//int errorCode;
 		LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) << 
 		  " Entering: LTKImageWriter::drawUnipenFileToImage(const string&,const string&)" << endl;
 
@@ -647,8 +646,6 @@ m_offset(0)
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
                   <<"LTKImageWriter::drawUnipenFileToImage(const string&,const string&)" <<endl;
-
-		//	errorCode = EINK_FILE_OPEN;
 		}
 
 		drawLTKTraceGroupToImage(traceGroup,imgFileName);

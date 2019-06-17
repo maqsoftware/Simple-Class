@@ -115,7 +115,7 @@ public class SplashScreenActivity extends Activity {
             }
             toCallApplication();
         } catch (IOException e) {
-            System.out.println("An Exception has occured");
+            System.out.println(e);
         }
     }
 
