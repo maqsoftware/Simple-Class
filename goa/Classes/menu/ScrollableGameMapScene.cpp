@@ -293,11 +293,28 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
         std::map<std::string, int> topBarGamesIndexes = {{"story-catalogue", 0}};
         int index = 0;
         int yOffset = 70;
+
+        _pageView->setContentSize(visibleSize);
+        _pageView->setDirection(cocos2d::ui::ScrollView::Direction::BOTH);
+        _pageView->setInnerContainerSize(Size(visibleSize.width * numberOfPages, visibleSize.height));
+
+        // ui::ScrollView *scrollView = ui::ScrollView::create();
+        // scrollView->setDirection( ui::ScrollView::Direction::VERTICAL );
+        // scrollView->setContentSize( Size(visibleSize.width, visibleSize.height) );
+        // scrollView->setInnerContainerSize ( Size(1920, 2600) );
+        // scrollView->setTouchEnabled(true);
+        // scrollView->setBounceEnabled(true);
+        // scrollView->setAnchorPoint( Vec2(0, 1) );
+        // scrollView->setPosition ( Vec2(origin.y, origin.y) );
         
+        // this->addChild(scrollView);
+
+        // _pageView->addChild(scrollView);
+
         for(int k = 0; k < numberOfPages; k++) {
             auto page = ui::Widget::create();
-            page->setContentSize(visibleSize);
-            _pageView->addPage(page);
+            page->setContentSize( Size(visibleSize.width, visibleSize.height) );
+            _pageView->addChild(page);
 //            Texture2D *texture = Director::getInstance()->getTextureCache()->addImage("black_concrete.png");
 //            Texture2D::TexParams tp = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
 //            texture->setTexParameters(&tp);
@@ -307,29 +324,46 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
             
 //            auto node = CSLoader::createNode("gamemap/gamemap_bg.csb");
 //            page->addChild(node);
-            
+
+            float difference = 100;
+            int latestRow = 1;
+
+            ui::ScrollView *scrollView = ui::ScrollView::create();
+            scrollView->setDirection( ui::ScrollView::Direction::VERTICAL );
+            // scrollView->setContentSize( Size(visibleSize.width-700, visibleSize.height - 500) );
+            scrollView->setContentSize( visibleSize );
+            scrollView->setInnerContainerSize ( Size(visibleSize.width-700, visibleSize.height + difference ) );
+            // scrollView->setInnerContainerPosition (Vec2(50, 50));
+            scrollView->setTouchEnabled(true);
+            scrollView->setBounceEnabled(true);
+            scrollView->setAnchorPoint( _pageView->getAnchorPoint() );
+            scrollView->setPosition(Vec2(0, difference));
+            scrollView->setScrollBarEnabled(false);
             
             if(k == 0) {
                 
                 backButton->setPosition(Vec2((0.5) * visibleSize.width / numCols, visibleSize.height + 50 - (0.5) * (visibleSize.height + 50) / (NUMBER_OF_BUTTONS_ROWS + 1)));
-                page->addChild(backButton);
+                // page->addChild(backButton);
             }
-            
+
+            // scrollView->addChild(backButton); 
+            page->addChild(scrollView);
             for (int i = 0; i < numRows; i++) {
                 for (int j = 0; j < numCols; j++) {
                     if(index < orderedGameIndexes.size()) {
-                        isLastRow = false;
-                        if (i == numRows - 1)
-                            isLastRow = true;
+                        // isLastRow = false;
+                        // if (i == numRows - 1)
+                        //     isLastRow = true;
                         int dIndex = orderedGameIndexes[index];
                         const rapidjson::Value& game = d[dIndex];
                         auto gameName = game["name"].GetString();
                         bool active = !lockAll ||  (game.HasMember("unlock") && game["unlock"].GetBool()) || (doc.IsObject() && doc.HasMember(gameName));
                         auto button = createButton(game, active);
                         if(button != nullptr) {
+                            latestRow = i + 1;
                             button->setPosition(Vec2((j + 0.5) * visibleSize.width / numCols, visibleSize.height + yOffset - (i + 1.5) * ((visibleSize.height + yOffset) / (numRows + 1))));
-                            
                             page->addChild(button);
+                            scrollView->addChild( button );
                             if(std::find(topBarGames.begin(), topBarGames.end(), gameName) != topBarGames.end()) {
                                 topBarGamesIndexes[gameName] = dIndex;
                             }
@@ -338,10 +372,19 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
                     index++;
                 }
             }
-            
+
+            if (latestRow < 4)
+            {
+                scrollView->setInnerContainerSize ( Size(visibleSize.width-700, visibleSize.height ) );
+                scrollView->setPosition(Vec2(0, 0));
+            }
+
+            // page->addChild(scrollView);
+            page->addChild(backButton);
             
         }
         
+        // _pageView->addChild(scrollView);
         
 
 //        for (auto it = topBarGames.begin() ; it != topBarGames.end(); ++it) {
@@ -354,9 +397,10 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
 //            addChild(topBarButton);
 //        }
 
-        _pageView->setContentSize(visibleSize);
-        _pageView->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
-        _pageView->setInnerContainerSize(Size(visibleSize.width * numberOfPages, visibleSize.height));
+        // _pageView->addChild(backButton);
+        // _pageView->setContentSize(visibleSize);
+        // _pageView->setDirection(cocos2d::ui::ScrollView::Direction::BOTH);
+        // _pageView->setInnerContainerSize(Size(visibleSize.width * numberOfPages, visibleSize.height));
     }
     return true;
 }
@@ -427,11 +471,11 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
          * If the module section displays the games in the very last row.
          * Then display English and Hindi text in the same line.
         **/
-        if (isLastRow) 
-        {
-            gameTitleHindi = gameJson["_title_comment"].GetString();
-            gameTitleEnglish += "/" + gameTitleHindi;
-        }
+        // if (isLastRow) 
+        // {
+        //     gameTitleHindi = gameJson["_title_comment"].GetString();
+        //     gameTitleEnglish += "/" + gameTitleHindi;
+        // }
 
         // IF THE LAST ROW IS NOT ENABLED
         button->setName(gameJson["name"].GetString());
@@ -454,13 +498,13 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
          * If the module of the game is not in the last row.
          * Then display English and Hindi text in separate lines.
         **/
-        if (!isLastRow)
-        {
+        // if (!isLastRow)
+        // {
             Label *engText = Label::createWithTTF(gameTitleHindi, "fonts/Chanakya.ttf", 140);
             engText->setPosition(Vec2(label->getPositionX(), label->getPositionY() - 130));
             engText->setColor(titleColor);
             button->addChild(engText);
-        }
+        // }
         return button;
     }
     return nullptr;
