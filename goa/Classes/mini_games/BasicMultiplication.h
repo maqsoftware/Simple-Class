@@ -44,7 +44,7 @@ public:
 
 	void topBoardSetting();
 
-	void gridGrayAndListnerController(string gridName,int row, int column);
+	void gridGrayAndListnerController(string const& gridName,int row, int column);
 
 	void addEventsOnGrid(cocos2d::Sprite * object);
 
@@ -52,7 +52,7 @@ public:
 
 	void topBoardEquationControllerQuiz(Sprite * target);
 
-	void playAnimationAnimal(string gridName);
+	void playAnimationAnimal(string const& gridName);
 
 	void IndexValuePopup(Sprite * target);
 

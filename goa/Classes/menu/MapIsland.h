@@ -35,7 +35,7 @@ protected:
     
     std::unordered_map<std::string, std::string> attributes;
     
-    void setAttributes(std::unordered_map<std::string, std::string> attributes);
+    void setAttributes(std::unordered_map<std::string, std::string> const& attributes);
     
     std::unordered_map<std::string, std::string> getAttributes();
     

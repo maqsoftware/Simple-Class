@@ -36,7 +36,8 @@ GraphemeGrid* GraphemeGrid::create(GLfloat width, GLfloat height, int numRows, i
 
 }
 
-bool GraphemeGrid::init(GLfloat width, GLfloat height, int numRows, int numCols, std::string const& spriteName, std::vector<std::vector<std::string>> const& graphemes, std::string const& graphemeUnselectedBackground, std::string graphemeSelec const& tedB ackground) {
+bool GraphemeGrid::init(GLfloat width, GLfloat height, int numRows, int numCols, std::string const& spriteName, std::vector<std::vector<std::string>> graphemes, std::string const& graphemeUnselectedBackground, std::string const& graphemeSelectedBackground)
+{
     if (!Layer::init()) {
         return false;
     }

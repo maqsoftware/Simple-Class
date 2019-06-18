@@ -158,7 +158,7 @@ protected:
     void removeMenuOnly();
 
     void unlockNextStory();
-    void createUnlockStoryDocument(std::string storyToUnlock);
+    void createUnlockStoryDocument(std::string const& storyToUnlock);
     
     
 	void showRewards();

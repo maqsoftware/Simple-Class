@@ -118,7 +118,7 @@ StoryWordBoard* StoryWordBoard::create() {
     return nullptr;
 }
 
-StoryWordBoard *StoryWordBoard::createWithWords(std::string const &storyId, std::vector<std::string> const& words, int currentIndex, std::string const& baseDir, int totalPoints, int currentPoints)
+StoryWordBoard *StoryWordBoard::createWithWords(std::string const& storyId, std::vector<std::string> const& words, int currentIndex, std::string const& baseDir, int totalPoints, int currentPoints)
 {
     StoryWordBoard* word = new (std::nothrow) StoryWordBoard();
     word->_currentIndex = currentIndex;
