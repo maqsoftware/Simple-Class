@@ -1441,7 +1441,7 @@ void StoryPlaying::previousStory(Ref* pSender, cocos2d::ui::Widget::TouchEventTy
 }
 
 
-void StoryPlaying::showText(const std::string nodeName) {
+void StoryPlaying::showText( std::string const& nodeName) {
     if(_wordBubbleNode != nullptr)
     {
         _wordBubbleNode->setVisible(true);

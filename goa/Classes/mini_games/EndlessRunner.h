@@ -100,7 +100,7 @@ public:
 	void addFirstBlockSecondLayer(float dt);
 	int getSpeedForMonsterRunning();
 
-	Sprite* CreateSprites(std::string name, int PositionX, int positionY, float scaleX, float scaleY, int zOrder, std::string vectorType);
+	Sprite* CreateSprites(std::string const& name, int PositionX, int positionY, float scaleX, float scaleY, int zOrder, std::string const& vectorType);
 	void mountainLayer1();
 	void scheduleMethod();
 	void startGame();

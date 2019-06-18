@@ -112,7 +112,7 @@ std::string QuestionHandler::getBaseDir() {
     return _baseDir;
 }
 
-bool QuestionHandler::initWithStoryId(const std::string storyId, const std::string baseDir) {
+bool QuestionHandler::initWithStoryId( std::string const& storyId, std::string const& baseDir) {
     _storyId = storyId;
     _baseDir = baseDir;
     std::string questionsJson = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".questions.json";

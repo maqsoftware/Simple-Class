@@ -17,7 +17,7 @@ bool Sqlite3Helper::instanceFlag = false;
 Sqlite3Helper* Sqlite3Helper::shared = NULL;
 
 
-Sqlite3Helper::Sqlite3Helper(const std::string connectionUrl, const std::string dbName):
+Sqlite3Helper::Sqlite3Helper( std::string connectionUrl, std::string dbName):
 dataBaseConnection(nullptr),
 connectionUrl("")
 {
@@ -29,7 +29,7 @@ connectionUrl("")
 
 
 
-Sqlite3Helper* Sqlite3Helper::getInstance(const std::string connectionUrl, const std::string dbName) {
+Sqlite3Helper* Sqlite3Helper::getInstance( std::string connectionUrl, std::string dbName) {
     
     if(! instanceFlag)
     {

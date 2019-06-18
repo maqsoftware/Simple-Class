@@ -35,9 +35,9 @@ public:
 
 	Speaker();
 	~Speaker();
-	Speaker* createSpeaker(string word, Vec2 position, bool selectionMode = false);
+	Speaker* createSpeaker(string const& word, Vec2 position, bool selectionMode = false);
 	string getStringInSpeaker();
-	void setStringInSpeaker(string newWord);
+	void setStringInSpeaker(string const& newWord);
 	void setFreezCheckBoxTickStatus(bool freezSelectionOption);
 	bool getFreezCheckBoxTickStatus();
 	void setCurrentSpeakerStatus(bool currentSpeaker);

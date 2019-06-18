@@ -68,7 +68,7 @@ std::string StoryTextField::getOriginalText() {
 }
 
 
-void StoryTextField::setOriginalText(const std::string text) {
+void StoryTextField::setOriginalText( std::string const& text) {
     _originalText = text;
 }
 

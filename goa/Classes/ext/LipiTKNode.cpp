@@ -130,8 +130,7 @@ bool LipiTKNode::initialize(int width, int height, Point position) {
 cocos2d::ui::Button *LipiTKNode::createButton(std::string const &normalImage,
                                               std::string const& selectedImage,
                                               std::string const& disableImage,
-                                              Vec2 position)
-{
+                                              Vec2 position) {
     cocos2d::ui::Button* button = cocos2d::ui::Button::create(normalImage, selectedImage, disableImage, cocos2d::ui::Widget::TextureResType::LOCAL);
     button->setPosition(position);
     

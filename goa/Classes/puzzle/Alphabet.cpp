@@ -126,6 +126,6 @@ bool Alphabet::initWithSize(std::string alphabet, float fontSize) {
 }
 
 
-void Alphabet::updateChar(const std::string alphabet) {
+void Alphabet::updateChar( std::string const& alphabet) {
     _alphabet = alphabet;
 }

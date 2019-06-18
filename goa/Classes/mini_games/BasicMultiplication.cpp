@@ -110,7 +110,7 @@ void BasicMultiplication::topBoardSetting() {
 	_questionValue = getRandomValueRange(1, 10, 5);
 }
 
-void BasicMultiplication::gridGrayAndListnerController(const string gridName, int row , int column ) {
+void BasicMultiplication::gridGrayAndListnerController( string const& gridName, int row , int column ) {
 	int rowValue = 6;
 	if (gridName != "gridlearning")
 		rowValue = 8;
@@ -256,7 +256,7 @@ void BasicMultiplication::topBoardEquationControllerQuiz(Sprite* target) {
 	}
 }
 
-void BasicMultiplication::playAnimationAnimal(const string gridName) {
+void BasicMultiplication::playAnimationAnimal( string const& gridName) {
 
 	for (int rows = 1; rows <= 6; rows++) {
 		for (int columns = 1; columns <= 10; columns++) {

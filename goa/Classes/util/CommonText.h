@@ -19,7 +19,7 @@ public:
     virtual void onEnterTransitionDidFinish() override;
     virtual void  onExitTransitionDidStart() override;
     void setCommonTextInStory(bool fromStory);
-    void setSplitFileNameInStory(std::string fileName);
+    void setSplitFileNameInStory(std::string const& fileName);
 CC_CONSTRUCTOR_ACCESS:
     CommonText();
     virtual ~CommonText();
