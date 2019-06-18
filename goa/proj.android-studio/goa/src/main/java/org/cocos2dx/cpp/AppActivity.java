@@ -302,7 +302,7 @@ public class AppActivity extends Cocos2dxActivity {
         String dataFilePath = null;
         File[] fileList = getExternalFilesDirs(null);
         for (File file : fileList) {
-            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + getPackageName() + "files") &&
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + getPackageName() + "/files") &&
                     file.isDirectory() &&
                     file.canRead() &&
                     isSDcard() &&
