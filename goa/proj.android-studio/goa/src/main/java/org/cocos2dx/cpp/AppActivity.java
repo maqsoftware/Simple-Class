@@ -335,12 +335,12 @@ public class AppActivity extends Cocos2dxActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-//      Don't remove this. Used to Initialize the pathToAppDelegate with the selected path
-        String initializeDataPath = getDataFilePath();
         int defaultFileVersion = 0;
         boolean extractionRequired = false;
-
-        if (sharedPref.getInt(getString(R.string.dataPath), 0) == 0) {
+        needExtraction();
+//      Used to initialize the pathToAppDelegate with the selected path
+        String initializeDataPath = getDataFilePath();
+        if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 0)) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
             editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
@@ -390,6 +390,27 @@ public class AppActivity extends Cocos2dxActivity {
                 }
             }
         });
+    }
+
+    private void needExtraction() {
+        File[] fileList = getExternalFilesDirs(null);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        for (File file : fileList) {
+            File flagFile = new File(".success.txt");
+            file = new File(file + File.separator + flagFile);
+            /*
+             * Checks if any older version has been installed and extracted successfully
+             * if extracted successfully, then set the existing path location as the preference.
+             */
+            if (file.exists()) {
+                if (file.toString().contains("emulated")) {
+                    editor.putInt(getString(R.string.dataPath), 1);
+                } else {
+                    editor.putInt(getString(R.string.dataPath), 2);
+                }
+                editor.apply();
+            }
+        }
     }
 
     @Override
