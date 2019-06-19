@@ -299,7 +299,7 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
 
         for(int k = 0; k < numberOfPages; k++) {
             auto page = ui::Widget::create();
-            page->setContentSize( Size(visibleSize.width, visibleSize.height) );
+            page->setContentSize(Size(visibleSize.width, visibleSize.height));
             _pageView->addPage(page);
 //            Texture2D *texture = Director::getInstance()->getTextureCache()->addImage("black_concrete.png");
 //            Texture2D::TexParams tp = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
@@ -311,21 +311,25 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
 //            auto node = CSLoader::createNode("gamemap/gamemap_bg.csb");
 //            page->addChild(node);
 
+            /*
+             * Add a scroll view for different sections
+             * making each button a child of the scrollview
+             * for making the view scrollable. 
+            */
             float difference = 100;
             int latestRow = 1;
 
             ui::ScrollView *scrollView = ui::ScrollView::create();
-            scrollView->setDirection( ui::ScrollView::Direction::VERTICAL );
-            scrollView->setContentSize( visibleSize );
-            scrollView->setInnerContainerSize ( Size(visibleSize.width-700, visibleSize.height + difference ) );
+            scrollView->setDirection(ui::ScrollView::Direction::VERTICAL);
+            scrollView->setContentSize(visibleSize);
+            scrollView->setInnerContainerSize (Size(visibleSize.width - 700, visibleSize.height + difference));
             scrollView->setTouchEnabled(true);
             scrollView->setBounceEnabled(true);
-            scrollView->setAnchorPoint( _pageView->getAnchorPoint() );
+            scrollView->setAnchorPoint(_pageView->getAnchorPoint());
             scrollView->setPosition(Vec2(0, difference));
             scrollView->setScrollBarEnabled(false);
             
             if(k == 0) {
-                
                 backButton->setPosition(Vec2((0.5) * visibleSize.width / numCols, visibleSize.height + 50 - (0.5) * (visibleSize.height + 50) / (NUMBER_OF_BUTTONS_ROWS + 1)));
             }
 
@@ -352,9 +356,13 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
                 }
             }
 
+            /*
+             * Setting up those sections non-scrollable
+             * which do not have their content overflown.
+            */
             if (latestRow < 4)
             {
-                scrollView->setInnerContainerSize ( Size(visibleSize.width-700, visibleSize.height ) );
+                scrollView->setInnerContainerSize (Size(visibleSize.width - 700, visibleSize.height));
                 scrollView->setPosition(Vec2(0, 0));
             }
             page->addChild(backButton);

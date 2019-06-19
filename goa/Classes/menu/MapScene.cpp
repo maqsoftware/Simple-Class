@@ -185,7 +185,11 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode) {
                         englishName = "Mining Town";
 					}
 
-
+                    /* 
+                     * Make the text of the map section
+                     * bilingual by adding an English label 
+                     * above the Hindi label.
+                    */
                     std::string mapText = this->currentLangUtil->translateString(lName);
                     node->setPosition(Vec2(node->getPosition().x, node->getPosition().y + 40));
                     
