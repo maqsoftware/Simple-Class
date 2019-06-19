@@ -327,11 +327,11 @@ public class AppActivity extends Cocos2dxActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-//      Don't remove this. Used to Initialize the pathToAppDelegate with the selected path
-        String initializeDataPath = getDataFilePath();
         int defaultFileVersion = 0;
         boolean extractionRequired = false;
         needExtraction();
+//      Don't remove this. Used to Initialize the pathToAppDelegate with the selected path
+        String initializeDataPath = getDataFilePath();
         if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 0)) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
@@ -384,13 +384,11 @@ public class AppActivity extends Cocos2dxActivity {
         });
     }
 
-    private boolean needExtraction() {
+    private void needExtraction() {
         File[] fileList = getExternalFilesDirs(null);
         SharedPreferences.Editor editor = sharedPref.edit();
-
         for (File file : fileList) {
-            String temp = file.toString();
-            File flagFile = new File("/.success.txt");
+            File flagFile = new File(".success.txt");
             file = new File(file + File.separator + flagFile);
             if (file.exists()) {
                 if (file.toString().contains("emulated")) {
@@ -399,10 +397,8 @@ public class AppActivity extends Cocos2dxActivity {
                     editor.putInt(getString(R.string.dataPath), 2);
                 }
                 editor.apply();
-                return true;
             }
         }
-        return false;
     }
 
     @Override
