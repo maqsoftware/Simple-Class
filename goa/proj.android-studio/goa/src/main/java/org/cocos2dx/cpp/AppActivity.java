@@ -330,7 +330,7 @@ public class AppActivity extends Cocos2dxActivity {
         int defaultFileVersion = 0;
         boolean extractionRequired = false;
         needExtraction();
-//      Don't remove this. Used to Initialize the pathToAppDelegate with the selected path
+//      Used to initialize the pathToAppDelegate with the selected path
         String initializeDataPath = getDataFilePath();
         if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 0)) {
             SharedPreferences.Editor editor = sharedPref.edit();
@@ -390,6 +390,10 @@ public class AppActivity extends Cocos2dxActivity {
         for (File file : fileList) {
             File flagFile = new File(".success.txt");
             file = new File(file + File.separator + flagFile);
+            /*
+             * Checks if any older version has been installed and extracted successfully
+             * if extracted successfully, then set the existing path location as the preference.
+             */
             if (file.exists()) {
                 if (file.toString().contains("emulated")) {
                     editor.putInt(getString(R.string.dataPath), 1);
