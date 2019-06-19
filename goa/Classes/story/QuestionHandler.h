@@ -34,7 +34,7 @@ CC_CONSTRUCTOR_ACCESS:
     QuestionHandler();
     virtual ~QuestionHandler();
     virtual bool init() override;
-    bool initWithStoryId(std::string storyId, std::string baseDir);
+    bool initWithStoryId(std::string const& storyId, std::string const& baseDir);
 
 protected:
     std::string _storyId;

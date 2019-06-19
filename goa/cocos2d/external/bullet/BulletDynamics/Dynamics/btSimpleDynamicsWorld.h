@@ -48,42 +48,41 @@ public:
 	virtual ~btSimpleDynamicsWorld();
 		
 	///maxSubSteps/fixedTimeStep for interpolation is currently ignored for btSimpleDynamicsWorld, use btDiscreteDynamicsWorld instead
-	virtual int	stepSimulation( btScalar timeStep,int maxSubSteps=1, btScalar fixedTimeStep=btScalar(1.)/btScalar(60.));
+	virtual int	stepSimulation( btScalar timeStep,int maxSubSteps=1, btScalar fixedTimeStep=btScalar(1.)/btScalar(60.)) override;
 
-	virtual void	setGravity(const btVector3& gravity);
+	virtual void	setGravity(const btVector3& gravity) override;
 
-	virtual btVector3 getGravity () const;
+	virtual btVector3 getGravity() const override;
 
-	virtual void	addRigidBody(btRigidBody* body);
+	virtual void addRigidBody(btRigidBody *body) override;
 
-	virtual void	addRigidBody(btRigidBody* body, short group, short mask);
+	virtual void addRigidBody(btRigidBody *body, short group, short mask) override;
 
-	virtual void	removeRigidBody(btRigidBody* body);
+	virtual void removeRigidBody(btRigidBody *body) override;
 
-	virtual void	debugDrawWorld();
-				
-	virtual void	addAction(btActionInterface* action);
+	virtual void debugDrawWorld() override;
 
-	virtual void	removeAction(btActionInterface* action);
+	virtual void addAction(btActionInterface *action) override;
+
+	virtual void removeAction(btActionInterface *action) override;
 
 	///removeCollisionObject will first check if it is a rigid body, if so call removeRigidBody otherwise call btCollisionWorld::removeCollisionObject
 	virtual void	removeCollisionObject(btCollisionObject* collisionObject);
 	
 	virtual void	updateAabbs();
 
-	virtual void	synchronizeMotionStates();
+	virtual void synchronizeMotionStates() override;
 
-	virtual void	setConstraintSolver(btConstraintSolver* solver);
+	virtual void setConstraintSolver(btConstraintSolver *solver) override;
 
-	virtual btConstraintSolver* getConstraintSolver();
+	virtual btConstraintSolver *getConstraintSolver() override;
 
-	virtual btDynamicsWorldType	getWorldType() const
+	virtual btDynamicsWorldType getWorldType() const override
 	{
 		return BT_SIMPLE_DYNAMICS_WORLD;
 	}
 
-	virtual void	clearForces();
-
+	virtual void clearForces() override;
 };
 
 #endif //BT_SIMPLE_DYNAMICS_WORLD_H

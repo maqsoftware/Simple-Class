@@ -105,7 +105,7 @@ ActionInterval *Alphamon::shakeAction() {
     return TargetedAction::create(_monster, shake);
 }
 
-void Alphamon::setHealth(int value, std::string color) {
+void Alphamon::setHealth(int value, std::string const color) {
     _hp = value;
     if(!_hpMeter) {
         _hpMeter = HPMeter::createWithTextureAndPercent("battle_ground/white_bar.png", "battle_ground/" + color + "_bar.png", "", _hp); //currently points are percentage
@@ -223,7 +223,7 @@ void Alphamon::alphamonEyeAnimation(std::string animationName, bool loop) {
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
-		if (str.find("eye") == 0) {
+		if (str.compare(0, 3, "eye") == 0) {
 			auto eyeTimeline = CSLoader::createTimeline(CCString::createWithFormat("eye_ani/%s.csb", str.c_str())->getCString());
 			monsterItem->runAction(eyeTimeline);
 			//eyeTimeline->gotoFrameAndPlay(0, true);
@@ -239,8 +239,8 @@ void Alphamon::alphamonLegAnimation(std::string animationName, bool loop) {
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
-		if (str.find("skate") == 0) {
-			auto legTimeline = CSLoader::createTimeline(CCString::createWithFormat("leg_ani/%s.csb", str.c_str())->getCString());
+        if (str.compare(0, 5, "skate") == 0) {
+            auto legTimeline = CSLoader::createTimeline(CCString::createWithFormat("leg_ani/%s.csb", str.c_str())->getCString());
 			monsterItem->runAction(legTimeline);
 			legTimeline->play(animationName, loop);
 			legAnimation.pushBack(legTimeline);
@@ -254,7 +254,7 @@ void Alphamon::alphamonMouthAnimation(std::string animationName, bool loop) {
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;
 		std::string str = monsterItem->getName().c_str();
-		if (str.find("mouth") == 0) {
+		if (str.compare(0, 5, "mouth") == 0) {
 			auto mouthTimeline = CSLoader::createTimeline(CCString::createWithFormat("mouth_ani/%s.csb", str.c_str())->getCString());
 			monsterItem->runAction(mouthTimeline);
 			mouthTimeline->play(animationName, loop);

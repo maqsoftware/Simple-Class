@@ -36,7 +36,8 @@ GraphemeGrid* GraphemeGrid::create(GLfloat width, GLfloat height, int numRows, i
 
 }
 
-bool GraphemeGrid::init(GLfloat width, GLfloat height, int numRows, int numCols, std::string spriteName, std::vector<std::vector<std::string>> graphemes, std::string graphemeUnselectedBackground, std::string graphemeSelectedBackground) {
+bool GraphemeGrid::init(GLfloat width, GLfloat height, int numRows, int numCols, std::string const& spriteName, std::vector<std::vector<std::string>> graphemes, std::string const& graphemeUnselectedBackground, std::string const& graphemeSelectedBackground)
+{
     if (!Layer::init()) {
         return false;
     }
@@ -86,7 +87,7 @@ void GraphemeGrid::resize(GLfloat width, GLfloat height, int numRows, int numCol
     }
 }
 
-Rect GraphemeGrid::getGraphemeRect(std::string alphabet) {
+Rect GraphemeGrid::getGraphemeRect( std::string const& alphabet) {
     for (int i = 0; i < _numRows; i++) {
         for (int j = 0; j < _numCols; j++) {
             if(_graphemeMatrix.at(i).at(j)->getGraphemeString() == alphabet) {

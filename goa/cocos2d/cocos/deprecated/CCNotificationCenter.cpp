@@ -224,7 +224,6 @@ int __NotificationCenter::getObserverHandlerByName(const std::string& name)
         if ( observer->getName() == name )
         {
             return observer->getHandler();
-            break;
         }
     }
     

@@ -703,7 +703,7 @@ int EndlessRunner::getSpeedForMonsterRunning()
 		if (highLevelSpeed)
 			return 2;
 		return 3;
-	}else if (_totalCounterAlphabets > floor(totalAlphabets * 0)) {
+	}else if (_totalCounterAlphabets > 0) {
 		if (highLevelSpeed)
 			return 3;
 		return 4;
@@ -744,7 +744,7 @@ void EndlessRunner::AddRocksInSecondLayerPath() {
 	}
 }
 
-Sprite* EndlessRunner::CreateSprites(std::string name, int PositionX, int positionY, float scaleX, float scaleY, int zOrder, std::string vectorType) {
+Sprite* EndlessRunner::CreateSprites( std::string const& name, int PositionX, int positionY, float scaleX, float scaleY, int zOrder, std::string const& vectorType) {
 	Sprite* sprite = Sprite::createWithSpriteFrameName(name);
 	sprite->setPosition(Vec2(PositionX, positionY));
 	sprite->setAnchorPoint(Vec2(0, 0));

@@ -116,7 +116,7 @@ bool MenuContext::_gameIsStatic = false;
 std::string MenuContext::_lastAudioId = "";
 bool MenuContext::_isInStoryDialogSpeechCurrentlyActive = false;
 
-MenuContext* MenuContext::create(Node* main, std::string gameName, bool launchCustomEventOnExit, std::string sceneName) {
+MenuContext* MenuContext::create(Node* main, std::string const& gameName, bool launchCustomEventOnExit, std::string const& sceneName) {
     MenuContext* menuContext = new (std::nothrow) MenuContext();
     menuContext->gameName = gameName;
     menuContext->sceneName = sceneName;
@@ -343,10 +343,10 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
     }
 }
 
-cocos2d::ui::Button* MenuContext::createMenuItem(const std::string normalImage,
-                                 const std::string selectedImage ,
-                                 const std::string disableImage,
-                                 float xPosOffSet) {
+cocos2d::ui::Button* MenuContext::createMenuItem( std::string const& normalImage,
+                                                  std::string const& selectedImage ,
+                                                  std::string const& disableImage,
+                                                  float xPosOffSet) {
     cocos2d::ui::Button* _menu = Button::create(normalImage, selectedImage, disableImage, Widget::TextureResType::LOCAL);
     _menu->setPosition(_menuButton->getPosition());
     addChild(_menu);
@@ -358,10 +358,10 @@ cocos2d::ui::Button* MenuContext::createMenuItem(const std::string normalImage,
     return _menu;
 }
 
-cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(const std::string normalImage,
-                                                 const std::string selectedImage ,
-                                                 const std::string disableImage,
-                                                 float xPosOffSet) {
+cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(std::string const& normalImage,
+                                                         std::string const& selectedImage ,
+                                                         std::string const& disableImage,
+                                                         float xPosOffSet) {
     
     ClippingNode* clipper = ClippingNode::create();
     clipper->setPosition(_menuButton->getPosition());
@@ -475,10 +475,10 @@ cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(const std::string norma
 }
 
 
-cocos2d::Node* MenuContext::createAvatarMenuItem(const std::string normalImage,
-                                                         const std::string selectedImage ,
-                                                         const std::string disableImage,
-                                                         float xPosOffSet) {
+cocos2d::Node* MenuContext::createAvatarMenuItem(std::string const& normalImage,
+                                                 std::string const& selectedImage ,
+                                                 std::string const& disableImage,
+                                                 float xPosOffSet) {
     
     std::string cachedCharacterInformation;
     localStorageGetItem("cachedCharacterConfig", &cachedCharacterInformation);
@@ -688,7 +688,7 @@ void MenuContext::pickAlphabet(char targetAlphabet, char chosenAlphabet, bool ch
     SafariAnalyticsManager::getInstance()->insertAnalyticsInfo(targetAlphabetStr.c_str(), chosenAlphabetStr.c_str(), gameName.c_str());
 }
 
-void MenuContext::pickWord(std::string targetWord, std::string chosenString, bool choose) {
+void MenuContext::pickWord( std::string const& targetWord, std::string const& chosenString, bool choose) {
     int points = -1;
     if((choose && targetWord == chosenString) || (!choose && targetWord != chosenString)) {
         points = 1;
@@ -941,7 +941,7 @@ void MenuContext::showMap(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEvent
     }
 }
 
-void MenuContext::launchGame(std::string gameName) {
+void MenuContext::launchGame( std::string const& gameName) {
     launchGameFromJS(gameName);
 }
 
@@ -1257,7 +1257,7 @@ void MenuContext::changePhoto(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 }
 
 
-void MenuContext::createNewlockStoryDocument(std::string storyToUnlock) {
+void MenuContext::createNewlockStoryDocument( std::string const& storyToUnlock) {
     rapidjson::Document documentUnlock;
     rapidjson::Document::AllocatorType& allocator = documentUnlock.GetAllocator();
     documentUnlock.SetObject();
@@ -1274,7 +1274,7 @@ void MenuContext::createNewlockStoryDocument(std::string storyToUnlock) {
 
 
 
-void MenuContext::createNewUnlockStoryDocument(std::string storyToUnlock) {
+void MenuContext::createNewUnlockStoryDocument( std::string const& storyToUnlock) {
     rapidjson::Document documentUnlock;
     rapidjson::Document::AllocatorType& allocator = documentUnlock.GetAllocator();
     documentUnlock.SetObject();
@@ -1290,7 +1290,7 @@ void MenuContext::createNewUnlockStoryDocument(std::string storyToUnlock) {
 }
 
 
-void MenuContext::createUnlockStoryDocument(std::string storyToUnlock) {
+void MenuContext::createUnlockStoryDocument( std::string const& storyToUnlock) {
     std::string unlockStoryStr;
     localStorageGetItem(storyToUnlock + LEVEL, &unlockStoryStr);
     
@@ -1436,9 +1436,7 @@ void MenuContext::showScore() {
         rapidjson::Document::AllocatorType& allocator = d.GetAllocator();
         if(progressStr.empty()) {
             d.SetArray();
-            int x = d.Size();
             d.PushBack(0, allocator);
-            int y = d.Size();
         } else {
             d.Parse(progressStr.c_str());
         }
@@ -1789,10 +1787,8 @@ void MenuContext::showAnswer(std::string type, std::string header)
 	
 	
 
-	float x = 0;
 	float y = bg->getContentSize().height * 0.8;
 	int blockSize = 0;
-	float labelWidth, labelHeight;
 	auto headerBlock = Sprite::createWithSpriteFrameName("dash/button.png");
 	headerBlock->setPositionX(visibleSize.width / 2);
 	headerBlock->setPositionY(visibleSize.height - headerBlock->getContentSize().height / 1.5);
@@ -1867,8 +1863,6 @@ void MenuContext::showAnswer(std::string type, std::string header)
 			if (blockSize % 2 == 1) {
 				y -= obj1->getContentSize().height * 1.2;
 			}
-			labelWidth = label1->getContentSize().width;
-			labelHeight = label1->getContentSize().height;
 			blockSize++;
 			_showAnswerLayer->addChild(duplicatNode);
 			numberOfWordShow++;
@@ -1897,8 +1891,6 @@ void MenuContext::showAnswer(std::string type, std::string header)
 			if (blockSize % 2 == 1) {
 				y -= obj1->getContentSize().height * 1.2;
 			}
-			labelWidth = label1->getContentSize().width;
-			labelHeight = label1->getContentSize().height;
 			blockSize++;
 			numberOfWordShow++;
 			if (numberOfWordShow == 10) {

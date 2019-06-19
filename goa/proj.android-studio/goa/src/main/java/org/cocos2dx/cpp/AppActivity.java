@@ -28,7 +28,6 @@ package org.cocos2dx.cpp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
 import android.arch.lifecycle.LiveData;
 import android.content.ContentValues;
 import android.content.Context;
@@ -39,12 +38,10 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
-import android.os.Vibrator;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
-import android.view.Display;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.maq.xprize.bali.db.entity.User;
@@ -57,6 +54,7 @@ import java.io.File;
 import java.util.Locale;
 
 import chimple.DownloadExpansionFile;
+
 import static chimple.DownloadExpansionFile.xAPKs;
 
 public class AppActivity extends Cocos2dxActivity {
@@ -82,8 +80,12 @@ public class AppActivity extends Cocos2dxActivity {
     public static int width;
     // Return Intent extra
     public static SharedPreferences sharedPref;
+    protected static String pathToAppDelegate = null;
+    @SuppressLint("StaticFieldLeak")
     private static Activity _activity;
+    @SuppressLint("StaticFieldLeak")
     private static AppActivity _appActivity;
+    @SuppressLint("StaticFieldLeak")
     private static Context _context;
     private static String currentGameName;
     private static boolean supportForTTSEnabled = false;
@@ -95,11 +97,15 @@ public class AppActivity extends Cocos2dxActivity {
     private Handler handler = null;
     private TextToSpeech textToSpeechInstance;
 
-    //    LauncherScreen variables and functions from Bali
+    //  LauncherScreen variables and functions from Bali
     public static native void setMultipleChoiceQuiz(String[] jsonInfo);
 
     public static native void setBagOfChoiceQuiz(String[] jsonInfo);
 
+    //  Method called by AppDelegate.cpp
+    public static String getPathToAppDelegate() {
+        return pathToAppDelegate;
+    }
 
     public static void queryMultipleChoiceQuiz(int numQuizes, int numChoices, int answerFormat, int choiceFormat) {
         System.out.println("entry queryMultipleChoiceQuiz");
@@ -124,6 +130,7 @@ public class AppActivity extends Cocos2dxActivity {
                 if (cursor == null) {
 
                 } else if (cursor.getCount() < 1) {
+                    cursor.close();
                 } else {
                     System.out.println("got data getContentResolver");
                     String[] columnNames = cursor.getColumnNames();
@@ -154,6 +161,7 @@ public class AppActivity extends Cocos2dxActivity {
                             setMultipleChoiceQuiz(finalSendArray);
                         }
                     });
+                    cursor.close();
                 }
                 return null;
             }
@@ -188,6 +196,7 @@ public class AppActivity extends Cocos2dxActivity {
                 if (cursor == null) {
 
                 } else if (cursor.getCount() < 1) {
+                    cursor.close();
                 } else {
                     System.out.println("got data getContentResolver");
                     String[] columnNames = cursor.getColumnNames();
@@ -215,6 +224,7 @@ public class AppActivity extends Cocos2dxActivity {
                             setBagOfChoiceQuiz(finalSendArray);
                         }
                     });
+                    cursor.close();
                 }
                 return null;
             }
@@ -288,21 +298,54 @@ public class AppActivity extends Cocos2dxActivity {
 
     public static native void updateInformation(String jsonInfo);
 
-    @SuppressLint("StaticFieldLeak")
+    //  Method to check if SD card is mounted
+    public boolean isSDcard() {
+        File[] fileList = getObbDirs();
+        return fileList.length >= 2;
+    }
+
+    public String getDataFilePath() {
+        String internalDataFilePath = null;
+        String externalDataFilePath = null;
+        String dataFilePath = null;
+        File[] fileList = getExternalFilesDirs(null);
+        for (File file : fileList) {
+            if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + getPackageName() + "/files") &&
+                    file.isDirectory() &&
+                    file.canRead() &&
+                    isSDcard() &&
+                    sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+//              For external storage path
+                externalDataFilePath = file.getAbsolutePath() + File.separator;
+            } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 1 && internalDataFilePath == null) {
+//              For internal storage path
+                internalDataFilePath = file.getAbsolutePath() + File.separator;
+            }
+        }
+        if (externalDataFilePath == null) {
+            dataFilePath = internalDataFilePath;
+        } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
+            dataFilePath = externalDataFilePath;
+        }
+        pathToAppDelegate = dataFilePath;
+
+        return dataFilePath;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         sharedPref = getSharedPreferences("ExpansionFile", MODE_PRIVATE);
-        String flagFilePath = "/storage/emulated/0/Android/data/" + getPackageName() + "/files/.success.txt";
         int defaultFileVersion = 0;
-        File flagFile = new File(flagFilePath);
         boolean extractionRequired = false;
-
-        if (!flagFile.exists()) {
+        needExtraction();
+//      Used to initialize the pathToAppDelegate with the selected path
+        String initializeDataPath = getDataFilePath();
+        if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 0)) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
             editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
             editor.apply();
-            extractionRequired = !flagFile.exists();
+            extractionRequired = true;
         } else {
             int mainFileVersion = sharedPref.getInt(getString(R.string.mainFileVersion), defaultFileVersion);
             int patchFileVersion = sharedPref.getInt(getString(R.string.patchFileVersion), defaultFileVersion);
@@ -312,7 +355,6 @@ public class AppActivity extends Cocos2dxActivity {
                     break;
                 }
             }
-
         }
         if (extractionRequired) {
             Intent intent = new Intent(AppActivity.this, SplashScreenActivity.class);
@@ -348,6 +390,27 @@ public class AppActivity extends Cocos2dxActivity {
                 }
             }
         });
+    }
+
+    private void needExtraction() {
+        File[] fileList = getExternalFilesDirs(null);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        for (File file : fileList) {
+            File flagFile = new File(".success.txt");
+            file = new File(file + File.separator + flagFile);
+            /*
+             * Checks if any older version has been installed and extracted successfully
+             * if extracted successfully, then set the existing path location as the preference.
+             */
+            if (file.exists()) {
+                if (file.toString().contains("emulated")) {
+                    editor.putInt(getString(R.string.dataPath), 1);
+                } else {
+                    editor.putInt(getString(R.string.dataPath), 2);
+                }
+                editor.apply();
+            }
+        }
     }
 
     @Override
@@ -391,7 +454,6 @@ public class AppActivity extends Cocos2dxActivity {
         super.onStop();
     }
 
-    @Override
     protected void onResume() {
         super.onResume();
         Intent intent = new Intent();

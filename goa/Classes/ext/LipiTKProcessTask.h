@@ -22,9 +22,9 @@ class LipiTKProcessTask : public AsyncTask
 public:
     LipiTKProcessTask(LipiTKInterface* lipiTKInterface, std::vector<Stroke*> strokes, LipiTKNode* node);
     ~LipiTKProcessTask();
-    void onPreExecute();
-    void doInBackground();
-    void onPostExecute();
+    void onPreExecute() override;
+    void doInBackground() override;
+    void onPostExecute() override;
     bool isFinished();
     std::string decodeSymbol(int shapeId);
     std::vector<std::string> getRecognizedCharacters();

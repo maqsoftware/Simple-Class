@@ -215,7 +215,7 @@ bool ImageView::isScale9Enabled()const
 
 void ImageView::ignoreContentAdaptWithSize(bool ignore)
 {
-    if (!_scale9Enabled || (_scale9Enabled && !ignore))
+    if (!_scale9Enabled || (!ignore))
     {
         Widget::ignoreContentAdaptWithSize(ignore);
         _prevIgnoreSize = ignore;

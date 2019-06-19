@@ -452,7 +452,6 @@ m_offset(0)
 	void LTKImageWriter::drawRawInkFileToImage(const string fileName, const string imgFileName,
 														int imgWidth,int imgHeight)
 	{
-		int errorCode;
 		LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) << 
 		  " Entering: LTKImageWriter::drawRawInkFileToImage(const string, const string,int,int)" << endl;
 
@@ -464,13 +463,12 @@ m_offset(0)
 		{
 			LTKInkFileReader::readRawInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
                   <<"LTKImageWriter::drawRawInkFileToImage(const string, const string,int,int)" <<endl;
 
-		errorCode = EINK_FILE_OPEN;
 		}
 
 		drawLTKTraceGroupToImage(traceGroup,imgFileName,imgWidth,imgHeight);
@@ -497,7 +495,6 @@ m_offset(0)
 
 	void LTKImageWriter::drawRawInkFileToImage(const string fileName, const string imgFileName)
 	{
-		int errorCode;
 		LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) << 
 		  " Entering: LTKImageWriter::drawRawInkFileToImage(const string, const string)" << endl;
 
@@ -510,13 +507,12 @@ m_offset(0)
 		{
 			LTKInkFileReader::readRawInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
                   <<"LTKImageWriter::drawRawInkFileToImage(const string, const string)" <<endl;
 
-			errorCode = EINK_FILE_OPEN;
 		}
 
 		drawLTKTraceGroupToImage(traceGroup,imgFileName);
@@ -544,7 +540,6 @@ m_offset(0)
 
 	void LTKImageWriter::drawRawInkFileToImage(const string fileName,const string imgFileName,int size)
 	{
-		int errorCode;
 		LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) << 
 			" Entering: LTKImageWriter::drawRawInkFileToImage(const string,const string,int)" << endl;
 
@@ -556,13 +551,12 @@ m_offset(0)
 		{
 			LTKInkFileReader::readRawInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
                   <<"LTKImageWriter::drawRawInkFileToImage(const string,const string,int)" <<endl;
 
-			errorCode = EINK_FILE_OPEN;
 		}
 
 		drawLTKTraceGroupToImage(traceGroup,imgFileName,size);
@@ -593,7 +587,6 @@ m_offset(0)
 
 	void LTKImageWriter::drawUnipenFileToImage(const string unipenFileName,const string imgFileName,int imgWidth,int imgHeight)
 	{
-		int errorCode;
 		LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) << 
 		  " Entering: LTKImageWriter::drawUnipenFileToImage(const string,const string,int,int)" << endl;
 
@@ -605,13 +598,12 @@ m_offset(0)
 		{
 			LTKInkFileReader::readUnipenInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
                   <<"LTKImageWriter::drawUnipenFileToImage(const string,const string,int,int)" <<endl;
 
-			errorCode = EINK_FILE_OPEN;
 		}
 		drawLTKTraceGroupToImage(traceGroup,imgFileName,imgWidth,imgHeight);
 		
@@ -638,7 +630,6 @@ m_offset(0)
 
 	void LTKImageWriter::drawUnipenFileToImage(const string& unipenFileName,const string& imgFileName)
 	{
-		int errorCode;
 		LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) << 
 		  " Entering: LTKImageWriter::drawUnipenFileToImage(const string&,const string&)" << endl;
 
@@ -650,13 +641,11 @@ m_offset(0)
 		{
 			LTKInkFileReader::readUnipenInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
                   <<"LTKImageWriter::drawUnipenFileToImage(const string&,const string&)" <<endl;
-
-			errorCode = EINK_FILE_OPEN;
 		}
 
 		drawLTKTraceGroupToImage(traceGroup,imgFileName);
@@ -686,7 +675,6 @@ m_offset(0)
 
 	void LTKImageWriter::drawUnipenFileToImage(const string& unipenFileName,const string& imgFileName,int size)
 	{
-		int errorCode;
 		LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) << 
 		 " Entering: LTKImageWriter::drawUnipenFileToImage(const string&,const string&,int)" << endl;
 
@@ -699,14 +687,13 @@ m_offset(0)
 		{
 			LTKInkFileReader::readUnipenInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 			LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
                   <<"LTKImageWriter::drawUnipenFileToImage(const string&,const string&,int)" <<endl;
 
 
-			errorCode = EINK_FILE_OPEN;
 		}
 
 		drawLTKTraceGroupToImage(traceGroup,imgFileName,size);
@@ -735,7 +722,6 @@ m_offset(0)
 
 	void LTKImageWriter::drawUnipenFileToImageWithBB(const string& unipenFileName,const string& imgFileName,int size)
 	{
-		int errorCode;
 		LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) << 
 		  " Entering: LTKImageWriter::drawUnipenFileToImageWithBB()" << endl;
 
@@ -747,13 +733,12 @@ m_offset(0)
 		{
 			LTKInkFileReader::readUnipenInkFile(strFileName,traceGroup,captureDevice,screenContext);
 		}
-		catch(LTKException e)
+		catch(LTKException &e)
 		{
 		LOG(LTKLogger::LTK_LOGLEVEL_ERR)
                   <<"Error : "<< EINK_FILE_OPEN <<":"<< getErrorMessage(EINK_FILE_OPEN)
                   <<"LTKImageWriter::drawUnipenFileToImageWithBB()" <<endl;
 
-			errorCode = EINK_FILE_OPEN;
 		}
 		drawLTKTraceGroupToImageWithBB(traceGroup,screenContext,imgFileName,size);
 		
@@ -1234,7 +1219,6 @@ m_offset(0)
 			short type;
 			int size;
 			short reserved1;
-			short reserved2;
 			int offset;
 			int i,j;
 			int biSize,biWidth,biHeight;
@@ -1261,7 +1245,6 @@ m_offset(0)
 
 			size = 54 + ( ( 3 * width ) + padding ) *  height;
 			reserved1 = 0;
-			reserved2 = 0;
 			fwrite(&type,sizeof(short),1,bmp);
 			fwrite(&size,sizeof(int),1,bmp);
 			fwrite(&reserved1,sizeof(short),1,bmp);

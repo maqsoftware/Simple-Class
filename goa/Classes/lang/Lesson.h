@@ -80,8 +80,8 @@ CC_CONSTRUCTOR_ACCESS:
     virtual ~Lesson();
     
 protected:
-    int _sessionId;
-    int _complexity;
+    int _sessionId = 0; //Setting an initial value
+    int _complexity = 0; //Setting an initial value
     CONCEPT _concept;
 };
 

@@ -181,7 +181,6 @@ bool DinoGame::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)
 		std::stringstream ss;
 		ss << targetName.at(0);
 		//target->setLocalZOrder(1);
-		std::string mystr = ss.str();
 		std::string path = LangUtil::getInstance()->getAlphabetSoundFileName(targetName.at(0));
 		CCLOG("path = %s", path.c_str());
 		_audioEffect->playEffect(path.c_str());
@@ -294,7 +293,7 @@ void DinoGame::onTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event)
 	}
 }
 
-void DinoGame::alphabetHint(std::string letter)
+void DinoGame::alphabetHint( std::string const& letter)
 {
 	std::string child = letter + _mapping.at("png");
 	auto alpha = _dinoNode->getChildByName(child);

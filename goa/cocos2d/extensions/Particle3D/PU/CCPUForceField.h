@@ -115,11 +115,11 @@ public:
         double frequency, 
         double amplitude, 
         double persistence, 
-        const Vec3& worldSize);
+        const Vec3& worldSize) override;
 
     /** Override from ForceFieldCalculationFactory
     */
-    virtual void determineForce(const Vec3& position, Vec3& force, float delta);
+    virtual void determineForce(const Vec3& position, Vec3& force, float delta) override;
 };
 //-------------------------------------------------------------------------
 //-------------------------------------------------------------------------

@@ -19,7 +19,7 @@ public:
     static CommonTextField *create();
     virtual void onEnterTransitionDidFinish() override;
     virtual void  onExitTransitionDidStart() override;
-    void setOriginalText(std::string text);
+    void setOriginalText(std::string const& text);
     std::string getOriginalText();
     
 CC_CONSTRUCTOR_ACCESS:

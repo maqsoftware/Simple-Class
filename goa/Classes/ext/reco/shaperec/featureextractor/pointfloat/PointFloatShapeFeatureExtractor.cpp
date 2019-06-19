@@ -128,7 +128,7 @@ int PointFloatShapeFeatureExtractor::readConfig(const string& cfgFilePath)
 		configurableProperties = new LTKConfigFileReader(cfgFilePath);
 	}
 
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		delete configurableProperties;
 
@@ -168,7 +168,6 @@ int PointFloatShapeFeatureExtractor::extractFeatures(const LTKTraceGroup& inTrac
         "PointFloatShapeFeatureExtractor::extractFeatures()" << endl;
     
     PointFloatShapeFeature *featurePtr = NULL;
-	float x,y,deltax;
 	int numPoints=0;						// number of pts
 	int count=0;
 	int currentStrokeSize;

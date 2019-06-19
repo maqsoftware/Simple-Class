@@ -81,7 +81,7 @@ int createShapeRecognizer_Dll(const LTKControlInfo& controlInfo,
 		*ptrObj = new NNShapeRecognizer(controlInfo);
 		return SUCCESS;
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		LTKReturnError(e.getErrorCode());
 	}
@@ -110,7 +110,7 @@ int deleteShapeRecognizer(LTKShapeRecognizer *obj)
 			obj = NULL;
 		}
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		LTKReturnError(e.getErrorCode());
 	}

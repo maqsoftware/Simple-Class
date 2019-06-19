@@ -509,9 +509,9 @@ int LTKTraceGroup::getBoundingBox(float& outXMin,float& outYMin,
 
 	int numTraces = getNumTraces();	//	number of traces in the trace group
 
-	int numPoints = -1;				//	number of points in a trace
+	int numPoints;				//	number of points in a trace
 
-	int pointIndex = -1;			//	variable to loop over points of a trace
+	int pointIndex;			//	variable to loop over points of a trace
 
 	int errorCode;
 

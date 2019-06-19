@@ -61,15 +61,14 @@ void ChocolateFactory::onEnterTransitionDidFinish()
 	std::sort(sortedRandomNumber.begin(), sortedRandomNumber.end());
 	
 	Vector <Node*> children = chocolatefactoryBackground->getChildren();
-	int size = children.size();
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 	Node * monsterItem = *item;
 	std::string str = monsterItem->getName().c_str();
-	if (str.find("abox") == 0)
+	if (str.compare(0, 4, "abox") == 0)
 	{
 		_nodeName.push_back(str);
 	}
-	else if (str.find("conveyor") == 0)
+	else if (str.compare(0, 8, "conveyor") == 0)
 	{
 		for (int j = 0; j < monsterItem->getChildren().size(); j++)
 		{
@@ -119,7 +118,7 @@ void ChocolateFactory::onEnterTransitionDidFinish()
 		for (int j=0; j<sprite->getChildren().size(); j++)
 		{ 
 			 std::string str = sprite->getChildren().at(j)->getName();
-			 if(str.find("milkcarton")==0)
+			 if(str.compare(0, 10, "milkcarton") == 0)
 			 sprite->getChildren().at(j)->setVisible(false);
 		}
 	}
@@ -228,17 +227,17 @@ void ChocolateFactory::update(float dt)
 }
 void ChocolateFactory::machineDynamicMotion(std::vector<int> randomNumbers, std::vector<int> sortedRandomNumbers, int index, cocostudio::timeline::ActionTimeline* timeline)
 {
-	int correctOrderIndex;
+	int correctOrderIndex = NULL;
 	auto a = (randomNumbers[index]);
 	
-		for (int k = 0;k < sortedRandomNumbers.size(); k++)
+	for (int k = 0;k < sortedRandomNumbers.size(); k++)
+	{
+		if (a == sortedRandomNumbers[k])
 		{
-			if (a == sortedRandomNumbers[k])
-			{
-				correctOrderIndex = k;
-				break;
-			}
-	    }
+			correctOrderIndex = k;
+			break;
+		}
+	}
 	if (a != 0)
 	{
 		for (int j = 1; j <= a; j++)

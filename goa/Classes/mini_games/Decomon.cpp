@@ -475,7 +475,6 @@ void Decomon::onTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event)
 				CCLOG("on touch end");
 				_movedNodes.pushBack(target);
 			}
-			Node * temp = target;
 			_iconLayer->removeChild(target);
 			auto vector1 = _costumeLayer->getChildren();
 			auto it1 = std::find(vector1.begin(), vector1.end(), target);
@@ -577,7 +576,7 @@ void Decomon::creatSpriteOnAlphabet(std::string fileName, float x, float y, floa
 		(visibleSize.height / 2 - 500 < y) && (visibleSize.height / 2 + 700 > y)) {
 
 		cocos2d::Node * eye;
-		if (fileName.find(".png") == -1) {
+		if (fileName.compare(fileName.size() - 4, 4, ".png") != 0) {
 			eye = CSLoader::createNode(fileName);
 			eye->setAnchorPoint(Vec2(0.5, 0.5));
 			eye->setPosition(Vec2(x, y));
@@ -586,15 +585,15 @@ void Decomon::creatSpriteOnAlphabet(std::string fileName, float x, float y, floa
 			_alphabetLayer->addChild(eye);
 			auto animation = CSLoader::createTimeline(fileName);
 			eye->runAction(animation);
-			if (fileName.find("decomon/decomon_eye") == 0) {
+			if (fileName.compare(0, 19, "decomon/decomon_eye") == 0) {
 				eye->setContentSize(eye->getChildByName("contantsize")->getContentSize());
 				animation->play("blink", true);
 			}
-			else if (fileName.find("decomon/decomon_mouth") == 0) {
+			else if (fileName.compare(0, 21, "decomon/decomon_mouth") == 0) {
 				eye->setContentSize(eye->getChildByName("contantsize")->getContentSize());
 				animation->play("smile1", true);
 			}
-			else if (fileName.find("decomon/decomon_skate") == 0) {
+			else if (fileName.compare(0, 21, "decomon/decomon_skate") == 0) {
 				eye->setContentSize(eye->getChildByName("skate")->getContentSize());
 				animation->play("walk", true);
 			}

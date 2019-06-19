@@ -1,5 +1,6 @@
 package com.maq.xprize.bali.application;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.content.Context;
 import android.util.Log;
@@ -20,6 +21,7 @@ import org.acra.annotation.ReportsCrashes;
  * Created by shyamalupadhyaya on 08/09/17.
  */
 
+@SuppressLint("Registered")
 @ReportsCrashes(
         customReportContent = {
                 ReportField.APP_VERSION_CODE,
@@ -33,6 +35,7 @@ import org.acra.annotation.ReportsCrashes;
 )
 public class BaliApplication extends Application {
     private static final String TAG = BaliApplication.class.getName();
+    @SuppressLint("StaticFieldLeak")
     private static Context context;
     private static final int COIN_NOTIFICATION = 1;
     public static int INITIAL_COIN = 0;
@@ -45,9 +48,6 @@ public class BaliApplication extends Application {
 
 
     private static final int TOTAL_COINS = 10;
-
-    //    private FtpManager ftpManager;
-    private ThreadManager threadManager;
 
     public static final String ftpHost = "192.168.0.1";
     public static final int ftpPort = 21;
@@ -86,7 +86,8 @@ public class BaliApplication extends Application {
     private void initializationComplete() {
         Log.d(TAG, "Initialization complete...");
 //        ftpManager = BaliContext.getInstance().getFtpManager();
-        threadManager = BaliContext.getInstance().getThreadManager();
+        //    private FtpManager ftpManager;
+        ThreadManager threadManager = BaliContext.getInstance().getThreadManager();
     }
 
     public static Context getContext() {

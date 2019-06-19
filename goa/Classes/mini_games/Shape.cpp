@@ -430,7 +430,6 @@ void Shape::createTrans()
 			int Yend = _ShapeBg->getChildByName("water_level")->getPositionY() + _water->getBoundingBox().size.height - TransSpriteDetails._sprite->getContentSize().height / 2;
 
 			float Y = Ystart + (std::rand() % (Yend - Ystart + 1));
-			float X = Xstart + (std::rand() % (Xend - Xstart + 1));
 
 			int _ind = std::rand() % _position.size();
 

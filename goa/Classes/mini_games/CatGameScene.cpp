@@ -89,7 +89,7 @@ bool CatGame::init()
 }
 
 
-void CatGame::generateBuildingLayer(std::string str)
+void CatGame::generateBuildingLayer( std::string const& str)
 {
 	auto text = TextGenerator::getInstance();
     int level = std::ceil(_menuContext->getCurrentLevel() / 8.0);
@@ -160,7 +160,7 @@ void CatGame::tailAnimation()
 	_catTailAnimation->play("tail", true);
 }
 
-void CatGame::callAPI(std::string str)
+void CatGame::callAPI( std::string const& str)
 {
 	_gameState = str;
 		hippo1 = new (std::nothrow) Cat();
@@ -217,7 +217,7 @@ void CatGame::update(float ft) {
 					for (auto item = children.rbegin(); item != children.rend(); ++item) {
 						Node * monsterItem = *item;
 						std::string str = monsterItem->getName().c_str();
-						if (str.find("up") == 0) {
+						if (str.compare(0, 2, "up") == 0) {
 							CCLOG("child %s", str.c_str());
 							_buildingLayer->removeChildByName(str);
 						}
@@ -246,7 +246,7 @@ void CatGame::update(float ft) {
 					for (auto item = children.rbegin(); item != children.rend(); ++item) {
 						Node * monsterItem = *item;
 						std::string str = monsterItem->getName().c_str();
-						if (str.find("stright") == 0) {
+						if (str.compare(0, 7, "stright") == 0) {
 							CCLOG("child %s", str.c_str());
 							_buildingLayer->removeChildByName(str);
 						}
@@ -262,7 +262,7 @@ void CatGame::update(float ft) {
 	}
 }
 
-void CatGame::buildingAfterGap(std::string str)
+void CatGame::buildingAfterGap( std::string const& str)
 {
 	int randNum = RandomHelper::random_int(0, 4);
 	_checkBox = Sprite::create("crossthebridge/barrier.png");

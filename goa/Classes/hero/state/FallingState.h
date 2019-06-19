@@ -20,13 +20,13 @@ public:
     FallingState();
     ~FallingState();
     
-    virtual void enter(cocos2d::Vec2 forceVector, SkeletonCharacterState previousStateCommand);
-    
-    virtual void exit();
-    
-    virtual SkeletonCharacterState handleInput(SkeletonCharacterState command);
-    
-    virtual SkeletonCharacterState getState();
+    virtual void enter(cocos2d::Vec2 forceVector, SkeletonCharacterState previousStateCommand) override;
+
+    virtual void exit() override;
+
+    virtual SkeletonCharacterState handleInput(SkeletonCharacterState command) override;
+
+    virtual SkeletonCharacterState getState() override;
 };
 
 #endif /* FallingState_h */

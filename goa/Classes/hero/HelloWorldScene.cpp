@@ -285,10 +285,10 @@ void HelloWorld::closeBagPack(Ref* pSender, ui::Widget::TouchEventType eEventTyp
     }
 }
 
-
-cocos2d::ui::Button* HelloWorld::createMenuItem(const std::string normalImage,
-                                                 const std::string selectedImage ,
-                                                const std::string disableImage) {
+cocos2d::ui::Button *HelloWorld::createMenuItem(std::string const& normalImage,
+                                                std::string const& selectedImage,
+                                                std::string const& disableImage)
+{
     _bagPackMenu = cocos2d::ui::Button::create(normalImage, selectedImage, disableImage, cocos2d::ui::Widget::TextureResType::LOCAL);
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -2053,7 +2053,7 @@ void HelloWorld::processMessage(std::vector<MessageContent*>*messages) {
     std::string ownerOfMessage;
     int howTextManyMessages = 0;
     int howUseManyMessages = 0;
-    for (std::vector<MessageContent* >::iterator it = messages->begin() ; it != messages->end(); ++it)
+    for (std::vector<MessageContent*>::iterator it = messages->begin(); it != messages->end(); ++it)
     {
         MessageContent* content = (MessageContent*) *it;
         if(content->getAction() == "say") {
@@ -2065,7 +2065,7 @@ void HelloWorld::processMessage(std::vector<MessageContent*>*messages) {
         }
     }
     
-    for (std::vector<MessageContent* >::iterator it = messages->begin() ; it != messages->end(); ++it)
+    for (std::vector<MessageContent*>::iterator it = messages->begin() ; it != messages->end(); ++it)
     {
         MessageContent* content = (MessageContent*) *it;
         

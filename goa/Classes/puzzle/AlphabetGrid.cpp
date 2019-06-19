@@ -106,7 +106,7 @@ bool AlphabetGrid::onTouchBegan(Touch* touch, Event* event){
 }
 
 
-std::vector<Alphabet *> AlphabetGrid::getAlphabetsWhichMatch(std::string a) {
+std::vector<Alphabet *> AlphabetGrid::getAlphabetsWhichMatch( std::string const& a) {
     std::vector<Alphabet *> matchingAlphabets = std::vector<Alphabet *>();
     for (int i = 0; i < _numRows; i++) {
         for (int j = 0; j < _numCols; j++) {
@@ -120,7 +120,7 @@ std::vector<Alphabet *> AlphabetGrid::getAlphabetsWhichMatch(std::string a) {
     return matchingAlphabets;
 }
 
-int AlphabetGrid::getCountOfAlphabetsWhichMatch(std::string a) {
+int AlphabetGrid::getCountOfAlphabetsWhichMatch( std::string const& a) {
     int count = 0;
     for (int i = 0; i < _numRows; i++) {
         for (int j = 0; j < _numCols; j++) {

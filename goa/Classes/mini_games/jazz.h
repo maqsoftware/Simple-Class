@@ -23,7 +23,7 @@ protected:
 	std::string getGridBackground() override;
 	void createChoice() override;
 	int getGridHeight() override;
-	void gameOver(bool correct);
+	void gameOver(bool correct) override;
 	std::vector<Node*> _gorilla;
 	std::vector<cocostudio::timeline::ActionTimeline *> _jumpingRef;
 	std::vector<cocostudio::timeline::ActionTimeline *> _blinkingRef;

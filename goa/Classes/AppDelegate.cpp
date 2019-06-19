@@ -166,7 +166,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setContentScaleFactor(scaleFactor);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    string devicePath = "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/";
+//  Fetch extracted resource path by calling getPathToAppDelegate() in AppActivity.java
+    string devicePath = JniHelper::callStaticStringMethod("org/cocos2dx/cpp/AppActivity", "getPathToAppDelegate");
     FileUtils::getInstance()->setDefaultResourceRootPath(devicePath);
 #endif
 
@@ -195,16 +196,11 @@ int AppDelegate::printExtendedSceneGraph(int fd, Node *node, int level)
     int total = 1;
     //    for(int i=0; i<level; ++i)
     //        Console::Utility::sendToConsole(fd, "-", 1);
-    float x = 0.0;
-    float y = 0.0;
     if (node->getParent() != nullptr)
     {
         auto nodeInWorld = node->getParent()->convertToWorldSpace(node->getPosition());
-        x = nodeInWorld.x;
-        y = nodeInWorld.y;
     }
-    //    Console::Utility::mydprintf(fd, " %s x=%f y=%f\n", node->getDescription().c_str(), x, y);
-
+    
     for (const auto &child : node->getChildren())
         total += printExtendedSceneGraph(fd, child, level + 1);
 

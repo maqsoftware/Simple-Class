@@ -127,13 +127,9 @@ bool LipiTKNode::initialize(int width, int height, Point position) {
     return true;
 }
 
-
-
-
-
-cocos2d::ui::Button* LipiTKNode::createButton(const std::string normalImage,
-                                                 const std::string selectedImage ,
-                                                 const std::string disableImage,
+cocos2d::ui::Button *LipiTKNode::createButton(std::string const &normalImage,
+                                              std::string const& selectedImage,
+                                              std::string const& disableImage,
                                               Vec2 position) {
     cocos2d::ui::Button* button = cocos2d::ui::Button::create(normalImage, selectedImage, disableImage, cocos2d::ui::Widget::TextureResType::LOCAL);
     button->setPosition(position);
@@ -297,9 +293,9 @@ void LipiTKNode::removeClearButton() {
 	_drawingBoard->removeChild(_clearButton, true);
 }
 
-void LipiTKNode::setClearButtonTexture(const std::string normalImage,
-	const std::string selectedImage,
-	const std::string disableImage) {
+void LipiTKNode::setClearButtonTexture( std::string const& normalImage,
+	                                    std::string const& selectedImage,
+	                                    std::string const& disableImage) {
 
 	_clearButton->loadTextures(normalImage, selectedImage, disableImage, cocos2d::ui::Widget::TextureResType::PLIST);
 

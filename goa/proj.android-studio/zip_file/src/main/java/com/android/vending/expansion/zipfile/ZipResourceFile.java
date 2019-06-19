@@ -1,4 +1,3 @@
-
 package com.android.vending.expansion.zipfile;
 
 /*
@@ -16,6 +15,7 @@ package com.android.vending.expansion.zipfile;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import android.content.res.AssetFileDescriptor;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
@@ -45,15 +45,13 @@ public class ZipResourceFile {
     static final boolean LOGV = false;
 
     // 4-byte number
-    static private int swapEndian(int i)
-    {
+    static private int swapEndian(int i) {
         return ((i & 0xff) << 24) + ((i & 0xff00) << 8) + ((i & 0xff0000) >>> 8)
                 + ((i >>> 24) & 0xff);
     }
 
     // 2-byte number
-    static private int swapEndian(short i)
-    {
+    static private int swapEndian(short i) {
         return ((i & 0x00FF) << 8 | (i & 0xFF00) >>> 8);
     }
 
@@ -140,7 +138,7 @@ public class ZipResourceFile {
         /**
          * Calculates the offset of the start of the Zip file entry within the
          * Zip file.
-         * 
+         *
          * @return the offset, in bytes from the start of the file of the entry
          */
         public long getOffset() {
@@ -149,7 +147,7 @@ public class ZipResourceFile {
 
         /**
          * isUncompressed
-         * 
+         *
          * @return true if the file is stored in uncompressed form
          */
         public boolean isUncompressed() {
@@ -217,10 +215,10 @@ public class ZipResourceFile {
      * MediaPlayer. It also allows for the class to be used in a content
      * provider that can feed video players. The file must be stored
      * (non-compressed) in the Zip file for this to work.
-     * 
+     *
      * @param assetPath
      * @return the asset file descriptor for the file, or null if the file isn't
-     *         present or is stored compressed
+     * present or is stored compressed
      */
     public AssetFileDescriptor getAssetFileDescriptor(String assetPath) {
         ZipEntryRO entry = mHashMap.get(assetPath);
@@ -234,7 +232,7 @@ public class ZipResourceFile {
      * getInputStream returns an AssetFileDescriptor.AutoCloseInputStream
      * associated with the asset that is contained in the Zip file, or a
      * standard ZipInputStream if necessary to uncompress the file
-     * 
+     *
      * @param assetPath
      * @return an input stream for the named asset path, or null if not found
      * @throws IOException
@@ -264,13 +262,12 @@ public class ZipResourceFile {
     static private int read4LE(RandomAccessFile f) throws EOFException, IOException {
         return swapEndian(f.readInt());
     }
-    
+
     /*
      * Opens the specified file read-only. We memory-map the entire thing and
      * close the file before returning.
      */
-    void addPatchFile(String zipFileName) throws IOException
-    {
+    void addPatchFile(String zipFileName) throws IOException {
         File file = new File(zipFileName);
         RandomAccessFile f = new RandomAccessFile(file, "r");
         long fileLength = f.length();
@@ -324,8 +321,7 @@ public class ZipResourceFile {
         // EOCD == 0x50, 0x4b, 0x05, 0x06
         int eocdIdx;
         for (eocdIdx = buffer.length - kEOCDLen; eocdIdx >= 0; eocdIdx--) {
-            if (buffer[eocdIdx] == 0x50 && bbuf.getInt(eocdIdx) == kEOCDSignature)
-            {
+            if (buffer[eocdIdx] == 0x50 && bbuf.getInt(eocdIdx) == kEOCDSignature) {
                 if (LOGV) {
                     Log.v(LOG_TAG, "+++ Found EOCD at index: " + eocdIdx);
                 }

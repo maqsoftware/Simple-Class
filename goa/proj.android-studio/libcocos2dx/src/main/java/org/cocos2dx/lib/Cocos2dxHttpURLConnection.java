@@ -1,25 +1,25 @@
 /****************************************************************************
-Copyright (c) 2010-2014 cocos2d-x.org
+ Copyright (c) 2010-2014 cocos2d-x.org
 
-http://www.cocos2d-x.org
+ http://www.cocos2d-x.org
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
@@ -52,10 +52,9 @@ import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
 
-public class Cocos2dxHttpURLConnection
-{
-    private static final String POST_METHOD = "POST" ;
-    private static final String PUT_METHOD = "PUT" ;
+public class Cocos2dxHttpURLConnection {
+    private static final String POST_METHOD = "POST";
+    private static final String PUT_METHOD = "PUT";
 
     static HttpURLConnection createHttpURLConnection(String linkURL) {
         URL url;
@@ -79,10 +78,10 @@ public class Cocos2dxHttpURLConnection
         urlConnection.setConnectTimeout(connectMiliseconds);
     }
 
-    static void setRequestMethod(HttpURLConnection urlConnection, String method){
+    static void setRequestMethod(HttpURLConnection urlConnection, String method) {
         try {
             urlConnection.setRequestMethod(method);
-            if(method.equalsIgnoreCase(POST_METHOD) || method.equalsIgnoreCase(PUT_METHOD)) {
+            if (method.equalsIgnoreCase(POST_METHOD) || method.equalsIgnoreCase(PUT_METHOD)) {
                 urlConnection.setDoOutput(true);
             }
         } catch (ProtocolException e) {
@@ -92,17 +91,17 @@ public class Cocos2dxHttpURLConnection
     }
 
     static void setVerifySSL(HttpURLConnection urlConnection, String sslFilename) {
-        if(!(urlConnection instanceof HttpsURLConnection))
+        if (!(urlConnection instanceof HttpsURLConnection))
             return;
-        
 
-        HttpsURLConnection httpsURLConnection = (HttpsURLConnection)urlConnection;
+
+        HttpsURLConnection httpsURLConnection = (HttpsURLConnection) urlConnection;
 
         try {
             InputStream caInput = null;
             if (sslFilename.startsWith("/")) {
                 caInput = new BufferedInputStream(new FileInputStream(sslFilename));
-            }else {
+            } else {
                 String assetString = "assets/";
                 String assetsfilenameString = sslFilename.substring(assetString.length());
                 caInput = new BufferedInputStream(Cocos2dxHelper.getActivity().getAssets().open(assetsfilenameString));
@@ -161,7 +160,7 @@ public class Cocos2dxHttpURLConnection
     static void sendRequest(HttpURLConnection http, byte[] byteArray) {
         try {
             OutputStream out = http.getOutputStream();
-            if(null !=  byteArray) {
+            if (null != byteArray) {
                 out.write(byteArray);
                 out.flush();
             }
@@ -179,7 +178,7 @@ public class Cocos2dxHttpURLConnection
 
         String header = "";
 
-        for (Entry<String, List<String>> entry: headers.entrySet()) {
+        for (Entry<String, List<String>> entry : headers.entrySet()) {
             String key = entry.getKey();
             if (null == key) {
                 header += listToString(entry.getValue(), ",") + "\n";
@@ -200,7 +199,7 @@ public class Cocos2dxHttpURLConnection
         String header = null;
 
         int counter = 0;
-        for (Entry<String, List<String>> entry: headers.entrySet()) {
+        for (Entry<String, List<String>> entry : headers.entrySet()) {
             if (counter == idx) {
                 String key = entry.getKey();
                 if (null == key) {
@@ -228,7 +227,7 @@ public class Cocos2dxHttpURLConnection
 
         String header = null;
 
-        for (Entry<String, List<String>> entry: headers.entrySet()) {
+        for (Entry<String, List<String>> entry : headers.entrySet()) {
             if (key.equalsIgnoreCase(entry.getKey())) {
                 if ("set-cookie".equalsIgnoreCase(key)) {
                     header = combinCookies(entry.getValue(), http.getURL().getHost());
@@ -254,17 +253,16 @@ public class Cocos2dxHttpURLConnection
 
     static byte[] getResponseContent(HttpURLConnection http) {
         InputStream in;
-        try {            
+        try {
             in = http.getInputStream();
             String contentEncoding = http.getContentEncoding();
             if (contentEncoding != null) {
-                if(contentEncoding.equalsIgnoreCase("gzip")){
+                if (contentEncoding.equalsIgnoreCase("gzip")) {
                     in = new GZIPInputStream(http.getInputStream()); //reads 2 bytes to determine GZIP stream!
-                }
-                else if(contentEncoding.equalsIgnoreCase("deflate")){
+                } else if (contentEncoding.equalsIgnoreCase("deflate")) {
                     in = new InflaterInputStream(http.getInputStream());
                 }
-            }       
+            }
         } catch (IOException e) {
             in = http.getErrorStream();
         } catch (Exception e) {
@@ -274,13 +272,12 @@ public class Cocos2dxHttpURLConnection
 
         try {
             byte[] buffer = new byte[1024];
-            int size   = 0;
+            int size = 0;
             ByteArrayOutputStream bytestream = new ByteArrayOutputStream();
-            while((size = in.read(buffer, 0 , 1024)) != -1)
-            {
+            while ((size = in.read(buffer, 0, 1024)) != -1) {
                 bytestream.write(buffer, 0, size);
             }
-            byte retbuffer[] = bytestream.toByteArray();
+            byte[] retbuffer = bytestream.toByteArray();
             bytestream.close();
             return retbuffer;
         } catch (Exception e) {
@@ -289,7 +286,7 @@ public class Cocos2dxHttpURLConnection
 
         return null;
     }
-    
+
     static int getResponseCode(HttpURLConnection http) {
         int code = 0;
         try {
@@ -333,10 +330,10 @@ public class Cocos2dxHttpURLConnection
 
     public static String combinCookies(List<String> list, String hostDomain) {
         StringBuilder sbCookies = new StringBuilder();
-        String domain    = hostDomain;
+        String domain = hostDomain;
         String tailmatch = "FALSE";
-        String path      = "/";
-        String secure    = "FALSE";
+        String path = "/";
+        String secure = "FALSE";
         String key = null;
         String value = null;
         String expires = null;
@@ -347,16 +344,16 @@ public class Cocos2dxHttpURLConnection
                 if (-1 == firstIndex)
                     continue;
 
-                String[] item =  {part.substring(0, firstIndex), part.substring(firstIndex + 1)};
+                String[] item = {part.substring(0, firstIndex), part.substring(firstIndex + 1)};
                 if ("expires".equalsIgnoreCase(item[0].trim())) {
                     expires = str2Seconds(item[1].trim());
-                } else if("path".equalsIgnoreCase(item[0].trim())) {
+                } else if ("path".equalsIgnoreCase(item[0].trim())) {
                     path = item[1];
-                } else if("secure".equalsIgnoreCase(item[0].trim())) {
+                } else if ("secure".equalsIgnoreCase(item[0].trim())) {
                     secure = item[1];
-                } else if("domain".equalsIgnoreCase(item[0].trim())) {
+                } else if ("domain".equalsIgnoreCase(item[0].trim())) {
                     domain = item[1];
-                } else if("version".equalsIgnoreCase(item[0].trim()) || "max-age".equalsIgnoreCase(item[0].trim())) {
+                } else if ("version".equalsIgnoreCase(item[0].trim()) || "max-age".equalsIgnoreCase(item[0].trim())) {
                     //do nothing
                 } else {
                     key = item[0];

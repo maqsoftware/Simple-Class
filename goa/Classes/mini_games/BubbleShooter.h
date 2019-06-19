@@ -110,7 +110,7 @@ public:
 	void playerDie(float tilex, float tiley, int type);
 	std::vector<std::vector<TileData *>> findFloatingClusters();
 	void nextBubble();
-	void DataCard(std::string gamestatus);
+	void DataCard(std::string const& gamestatus);
 	void stateRemoveCluster();
 	int getExistingColor();
 	std::vector<int> findColors();

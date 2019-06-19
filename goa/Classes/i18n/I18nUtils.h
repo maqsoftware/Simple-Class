@@ -60,7 +60,7 @@ public:
      * Append a MO, through domain string save.
      * @see MO::MO
      */
-    void addMO(MO mo, string domain = DEFAULT_DOMAIN);
+    void addMO(MO const& mo, string domain = DEFAULT_DOMAIN);
     
     /**
      * Append a MO, through domain string save.

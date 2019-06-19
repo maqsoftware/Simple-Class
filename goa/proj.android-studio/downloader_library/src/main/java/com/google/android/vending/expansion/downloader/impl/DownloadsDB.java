@@ -94,8 +94,8 @@ public class DownloadsDB {
         try {
             itemcur = sqldb.query(DownloadColumns.TABLE_NAME, DC_PROJECTION,
                     DownloadColumns.FILENAME + " = ?",
-                    new String[] {
-                        fileName
+                    new String[]{
+                            fileName
                     }, null, null, null);
             if (null != itemcur && itemcur.moveToFirst()) {
                 return getDownloadInfoFromCursor(itemcur);
@@ -140,13 +140,13 @@ public class DownloadsDB {
         }
 
         private String createTableQueryFromArray(String paramString,
-                String[][] paramArrayOfString) {
+                                                 String[][] paramArrayOfString) {
             StringBuilder localStringBuilder = new StringBuilder();
             localStringBuilder.append("CREATE TABLE ");
             localStringBuilder.append(paramString);
             localStringBuilder.append(" (");
             int i = paramArrayOfString.length;
-            for (int j = 0;; j++) {
+            for (int j = 0; ; j++) {
                 if (j >= i) {
                     localStringBuilder
                             .setLength(localStringBuilder.length() - 1);
@@ -208,7 +208,7 @@ public class DownloadsDB {
         }
 
         public void onUpgrade(SQLiteDatabase paramSQLiteDatabase,
-                int paramInt1, int paramInt2) {
+                              int paramInt1, int paramInt2) {
             Log.w(DownloadsContentDBHelper.class.getName(),
                     "Upgrading database from version " + paramInt1 + " to "
                             + paramInt2 + ", which will destroy all old data");
@@ -229,8 +229,8 @@ public class DownloadsDB {
                 {
                         APKVERSION, "INTEGER"
                 }, {
-                        DOWNLOAD_STATUS, "INTEGER"
-                },
+                DOWNLOAD_STATUS, "INTEGER"
+        },
                 {
                         FLAGS, "INTEGER"
                 }
@@ -262,33 +262,33 @@ public class DownloadsDB {
                 {
                         INDEX, "INTEGER UNIQUE"
                 }, {
-                        URI, "TEXT"
-                },
+                URI, "TEXT"
+        },
                 {
                         FILENAME, "TEXT UNIQUE"
                 }, {
-                        ETAG, "TEXT"
-                },
+                ETAG, "TEXT"
+        },
                 {
                         TOTALBYTES, "INTEGER"
                 }, {
-                        CURRENTBYTES, "INTEGER"
-                },
+                CURRENTBYTES, "INTEGER"
+        },
                 {
                         LASTMOD, "INTEGER"
                 }, {
-                        STATUS, "INTEGER"
-                },
+                STATUS, "INTEGER"
+        },
                 {
                         CONTROL, "INTEGER"
                 }, {
-                        NUM_FAILED, "INTEGER"
-                },
+                NUM_FAILED, "INTEGER"
+        },
                 {
                         RETRY_AFTER, "INTEGER"
                 }, {
-                        REDIRECT_COUNT, "INTEGER"
-                }
+                REDIRECT_COUNT, "INTEGER"
+        }
         };
         public static final String TABLE_NAME = "DownloadColumns";
         public static final String _ID = "DownloadColumns._id";
@@ -319,7 +319,7 @@ public class DownloadsDB {
 
     /**
      * This function will add a new file to the database if it does not exist.
-     * 
+     *
      * @param di DownloadInfo that we wish to store
      * @return the row id of the record to be updated/inserted, or -1
      */
@@ -396,7 +396,7 @@ public class DownloadsDB {
         } else {
             return true;
         }
-    };
+    }
 
     public boolean updateStatus(int status) {
         if (mStatus != status) {
@@ -411,7 +411,7 @@ public class DownloadsDB {
         } else {
             return true;
         }
-    };
+    }
 
     public boolean updateMetadata(ContentValues cv) {
         final SQLiteDatabase sqldb = mHelper.getWritableDatabase();
@@ -440,7 +440,7 @@ public class DownloadsDB {
         } else {
             return false;
         }
-    };
+    }
 
     public boolean updateFromDb(DownloadInfo di) {
         final SQLiteDatabase sqldb = mHelper.getReadableDatabase();
@@ -448,8 +448,8 @@ public class DownloadsDB {
         try {
             cur = sqldb.query(DownloadColumns.TABLE_NAME, DC_PROJECTION,
                     DownloadColumns.FILENAME + "= ?",
-                    new String[] {
-                        di.mFileName
+                    new String[]{
+                            di.mFileName
                     }, null, null, null);
             if (null != cur && cur.moveToFirst()) {
                 setDownloadInfoFromCursor(di, cur);
@@ -479,7 +479,7 @@ public class DownloadsDB {
     public DownloadInfo getDownloadInfoFromCursor(Cursor cur) {
         DownloadInfo di = new DownloadInfo(cur.getInt(INDEX_IDX),
                 cur.getString(FILENAME_IDX), this.getClass().getPackage()
-                        .getName());
+                .getName());
         setDownloadInfoFromCursor(di, cur);
         return di;
     }

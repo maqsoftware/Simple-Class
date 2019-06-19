@@ -44,12 +44,12 @@ protected:
 	float _xPos, _yPos, _previousX = 0.0f, _previousY = 900.0f;
 	std::string _randomWord;
 	cocos2d::Layer * _buildingLayer, *_catLayer, *_buildingLayer2, *_buildingLayer1, *_hippoLayer;
-	void generateBuildingLayer(std::string str);
-	void callAPI(std::string str);
+	void generateBuildingLayer(std::string const& str);
+	void callAPI(std::string const& str);
 	bool _checkUpDown = true;
 	float _blockSetPosY = 0.0f;
 	void update(float ft) override;
-	void buildingAfterGap(std::string str);
+	void buildingAfterGap(std::string const& str);
 	static const char* gameName() { return CAT.c_str(); }
 	void onEnterTransitionDidFinish();
 	void gameEnd(float ft);

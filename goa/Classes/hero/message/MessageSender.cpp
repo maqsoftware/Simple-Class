@@ -54,7 +54,7 @@ void MessageSender::sendTextOnTapMessageEvent(EventCustom * event) {
 
 }
 
-void MessageSender::createMessagesForNodeWithKey(const std::string key) {
+void MessageSender::createMessagesForNodeWithKey(std::string const& key) {
     CCLOG("creating message for %s", key.c_str());
     assert(this->sqlite3Helper != NULL);
     assert(!key.empty());

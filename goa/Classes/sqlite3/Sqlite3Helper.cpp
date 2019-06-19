@@ -17,7 +17,7 @@ bool Sqlite3Helper::instanceFlag = false;
 Sqlite3Helper* Sqlite3Helper::shared = NULL;
 
 
-Sqlite3Helper::Sqlite3Helper(std::string connectionUrl, std::string dbName):
+Sqlite3Helper::Sqlite3Helper( std::string connectionUrl, std::string dbName):
 dataBaseConnection(nullptr),
 connectionUrl("")
 {
@@ -29,7 +29,7 @@ connectionUrl("")
 
 
 
-Sqlite3Helper* Sqlite3Helper::getInstance(std::string connectionUrl, std::string dbName) {
+Sqlite3Helper* Sqlite3Helper::getInstance( std::string connectionUrl, std::string dbName) {
     
     if(! instanceFlag)
     {
@@ -329,11 +329,11 @@ std::string Sqlite3Helper::trim(const std::string &s)
 {
     std::string::const_iterator it = s.begin();
     while (it != s.end() && isspace(*it))
-        it++;
+        ++it;
     
     std::string::const_reverse_iterator rit = s.rbegin();
     while (rit.base() != it && isspace(*rit))
-        rit++;
+        ++rit;
     
     return std::string(it, rit.base());
 }
