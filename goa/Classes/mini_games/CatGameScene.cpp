@@ -89,7 +89,7 @@ bool CatGame::init()
 }
 
 
-void CatGame::generateBuildingLayer(const std::string str)
+void CatGame::generateBuildingLayer( std::string const& str)
 {
 	auto text = TextGenerator::getInstance();
     int level = std::ceil(_menuContext->getCurrentLevel() / 8.0);
@@ -160,7 +160,7 @@ void CatGame::tailAnimation()
 	_catTailAnimation->play("tail", true);
 }
 
-void CatGame::callAPI(const std::string str)
+void CatGame::callAPI( std::string const& str)
 {
 	_gameState = str;
 		hippo1 = new (std::nothrow) Cat();
@@ -262,7 +262,7 @@ void CatGame::update(float ft) {
 	}
 }
 
-void CatGame::buildingAfterGap(const std::string str)
+void CatGame::buildingAfterGap( std::string const& str)
 {
 	int randNum = RandomHelper::random_int(0, 4);
 	_checkBox = Sprite::create("crossthebridge/barrier.png");

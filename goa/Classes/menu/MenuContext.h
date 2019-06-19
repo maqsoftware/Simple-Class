@@ -42,10 +42,10 @@ public:
         MULTIPLY = 3
     };
     
-    static MenuContext* create(Node *main, std::string gameName = "", bool lauchCustomEventOnExit = false, std::string sceneName = "");
+    static MenuContext* create(Node *main, std::string const& gameName = "", bool lauchCustomEventOnExit = false, std::string const& sceneName = "");
     
     void pickAlphabet(char targetAlphabet, char chosenAlphabet, bool choose = true, cocos2d::Vec2 position = cocos2d::Vec2::ZERO);
-    void pickWord(std::string targetWord, std::string chosenString, bool choose = true);
+    void pickWord(std::string const& targetWord, std::string const& chosenString, bool choose = true);
     void writeAlphabet(char targetAlphabet, bool correct);
     void pickNumber(int targetNumber, int chosenNumber, MenuContext::MATH_OPERATION op);
     int getPoints();
@@ -102,11 +102,11 @@ CC_CONSTRUCTOR_ACCESS:
     void onChimpTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
     
     void transitToScrollableGameMap();
-    void launchGame(std::string gameName);
+    void launchGame(std::string const& gameName);
     void removeMenu();
     
-    void createNewUnlockStoryDocument(std::string storyToUnlock);
-    void createNewlockStoryDocument(std::string storyTolock);
+    void createNewUnlockStoryDocument(std::string const& storyToUnlock);
+    void createNewlockStoryDocument(std::string const& storyTolock);
     
     static void launchGameFromJS(std::string gameName);
     static void launchGameFinally(std::string gameName);
@@ -158,7 +158,7 @@ protected:
     void removeMenuOnly();
 
     void unlockNextStory();
-    void createUnlockStoryDocument(std::string storyToUnlock);
+    void createUnlockStoryDocument(std::string const& storyToUnlock);
     
     
 	void showRewards();

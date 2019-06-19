@@ -17,7 +17,7 @@ USING_NS_CC;
 
 static LipiTKInterface* _singletonLipiTKInterface = nullptr;
 
-LipiTKInterface* LipiTKInterface::getInstance(std::string const projectPath) {
+LipiTKInterface* LipiTKInterface::getInstance(std::string const& projectPath) {
     if(!_singletonLipiTKInterface)
     {
         _singletonLipiTKInterface = new (std::nothrow) LipiTKInterface(projectPath);
@@ -27,7 +27,7 @@ LipiTKInterface* LipiTKInterface::getInstance(std::string const projectPath) {
 }
 
 
-LipiTKInterface::LipiTKInterface(std::string const lipiDirectoryPath):
+LipiTKInterface::LipiTKInterface(std::string const& lipiDirectoryPath):
 _lipiDirectory(""),
 _projectRecognizeStr(""),
 _lipiEngine(nullptr),

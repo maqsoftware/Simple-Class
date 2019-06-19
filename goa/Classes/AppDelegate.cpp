@@ -200,8 +200,7 @@ int AppDelegate::printExtendedSceneGraph(int fd, Node *node, int level)
     {
         auto nodeInWorld = node->getParent()->convertToWorldSpace(node->getPosition());
     }
-    //    Console::Utility::mydprintf(fd, " %s x=%f y=%f\n", node->getDescription().c_str(), x, y);
-
+    
     for (const auto &child : node->getChildren())
         total += printExtendedSceneGraph(fd, child, level + 1);
 

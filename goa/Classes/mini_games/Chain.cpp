@@ -289,7 +289,7 @@ Grapheme* ChainGrid::createGrapheme(std::string graphemeString, float size) {
 	return ChainGrapheme::create(graphemeString, size);
 }
 
-Grapheme* ChainGrid::createAndAddGrapheme(const std::string graphemeString, float size) {
+Grapheme* ChainGrid::createAndAddGrapheme( std::string const& graphemeString, float size) {
 	auto grapheme = createGrapheme(graphemeString, size);
 	addChild(grapheme);
 	if (!_graphemeUnselectedBackground.empty()) {

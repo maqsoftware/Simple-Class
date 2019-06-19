@@ -99,14 +99,14 @@ void LangUtil::changeLanguage(SupportedLanguages lang) {
 
 
 //"You have chosen the %s1 hat.
-std::string LangUtil::translateParameterizedString(const std::string parameterizedString, const std::string substituteString) {
+std::string LangUtil::translateParameterizedString( std::string const& parameterizedString, std::string const& substituteString) {
     return I18N::i18nFormatStr(translateString(parameterizedString),translateString(substituteString).c_str());
 }
 
 //"There are birds %s1 in the %s2."
-std::string LangUtil::translateTwoParameterizedString(const std::string parameterizedString, 
-                                                        const std::string substituteString1, 
-                                                        const std::string substituteString2) {
+std::string LangUtil::translateTwoParameterizedString( std::string const& parameterizedString, 
+                                                       std::string const& substituteString1, 
+                                                       std::string const& substituteString2) {
 
     return I18N::i18nFormatStr(translateString(parameterizedString), translateString(substituteString1).c_str(), translateString(substituteString2).c_str());
 }

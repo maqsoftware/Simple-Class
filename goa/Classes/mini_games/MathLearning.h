@@ -43,8 +43,8 @@ public:
 	
 	void setAllSpriteProperties(Sprite* object, int zOrder, float posX, float posY, bool visibility, float anchorPointX, float anchorPointY, float rotation, float scaleX, float scaleY);
 	LabelTTF* setAllLabelProperties(std::string letter, int zOrder, float posX, float posY, bool visibility, float anchorPointX, float anchorPointY, float rotation, float scaleX, float scaleY, int labelSizeInPixel);
-	string getGridNameInString(int ballNumber, string direction);
-	Sprite * getGridWithIndex(int ballNumber, string direction, bool flag);
+	string getGridNameInString(int ballNumber, string const& direction);
+	Sprite * getGridWithIndex(int ballNumber, string const& direction, bool flag);
 	void addTouchEvents(Sprite* touchSprite, bool flag); 
 	void quizTouchEvents(Sprite* touchSprite);
 	void touchEffectForAddition(Sprite *obj);

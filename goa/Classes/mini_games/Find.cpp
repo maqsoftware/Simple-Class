@@ -170,7 +170,7 @@ void Find::onEnterTransitionDidFinish()
 	this->scheduleUpdate();
 }
 
-string Find::StringandIntConcat(const string data, int number) {
+string Find::StringandIntConcat( string const& data, int number) {
 
 	std::ostringstream value;
 	value << data << number;

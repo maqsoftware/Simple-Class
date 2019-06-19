@@ -38,7 +38,7 @@ protected:
 	std::map<int, std::map<std::string, std::string>> _levelConfig;
 	std::map<std::string, std::string> _mapping;
 	std::vector<std::string> _alphabets;
-	void alphabetHint(std::string letter);
+	void alphabetHint(std::string const& letter);
 	void helpLayer();
 	void enableTouchOnAlphabet(float ft);
 	void gameStart(float ft);

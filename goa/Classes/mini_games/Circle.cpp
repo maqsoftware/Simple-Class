@@ -132,66 +132,6 @@ void Circle::startGame(cocos2d::EventCustom *eventCustom)
 	_sceneMap = _differntSceneMapping.at(theme[index]);
 	_title = vmc[0].help + " : ";
 
-	//
-
-	/*if (division >= 1 && division < 6) {
-	int roundLevel = std::ceil(level / 15.0);
-	int inner = division + ((roundLevel - 1) * 5);
-	int subLevel = 1;
-	if (inner < 16) {
-	subLevel = (std::ceil(inner / 3.0));
-	}
-	else {
-	inner = inner - 15;
-	subLevel = (std::ceil(inner / 2.0));
-	subLevel += 5;
-	}
-	CCLOG("Sysnonyms sub Level = %d", subLevel);
-	themeName = "candy";
-	_wordPair = TextGenerator::getInstance()->getSynonyms(10, subLevel);
-	_title = LangUtil::getInstance()->translateString("Make word of same meaning as : ");
-	_header = LangUtil::getInstance()->translateString("List of same meaning words");
-	}
-	else if (division >5 && division < 11) {
-	int roundLevel = std::ceil(level / 15.0);
-	int inner = division - 5 + ((roundLevel - 1) * 5);
-
-	int subLevel = 1;
-	if (inner < 16) {
-	subLevel = (std::ceil(inner / 3.0));
-	}
-	else {
-	inner = inner - 15;
-	subLevel = (std::ceil(inner / 2.0));
-	subLevel += 5;
-	}
-	CCLOG("Antonyms Sub Level = %d", subLevel);
-	themeName = "iceLand";
-	_wordPair = TextGenerator::getInstance()->getAntonyms(10, subLevel);
-	_title = LangUtil::getInstance()->translateString("Make opposite of : ");
-	_header = LangUtil::getInstance()->translateString("List of opposite words");
-	}
-	else {
-	int roundLevel = std::ceil(level / 15.0);
-	int inner = division - 10 + ((roundLevel - 1) * 5);
-
-	int subLevel = 1;
-	if (inner < 16) {
-	subLevel = (std::ceil(inner / 3.0));
-	}
-	else {
-	inner = inner - 15;
-	subLevel = (std::ceil(inner / 2.0));
-	subLevel += 5;
-	}
-	CCLOG("Homonyms SubLevel = %d", subLevel);
-	themeName = "candy";
-	_wordPair = TextGenerator::getInstance()->getHomonyms(10, subLevel);
-	_title = LangUtil::getInstance()->translateString("Make same sounding word as : ");
-	_header = LangUtil::getInstance()->translateString("List of same sounding words");
-	}
-	*/
-
 	for (auto it = _wordPair.begin(); it != _wordPair.end(); ++it) {
 		_mapKey.push_back(it->first);
 	}
