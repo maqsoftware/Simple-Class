@@ -196,7 +196,6 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                 {
                     button->addTouchEventListener(CC_CALLBACK_2(MainMenuHome::mainMenuSelected, this));
                 }
-                
             }
             else
             {

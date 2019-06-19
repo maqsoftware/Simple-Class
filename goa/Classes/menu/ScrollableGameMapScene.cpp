@@ -68,7 +68,6 @@
 
 USING_NS_CC;
 static const bool KIOSK = true;
-bool isLastRow = false;
 const static string delimiter = "$#$";
 
 std::map<std::string, cocos2d::Color3B> ScrollableGameMapScene::BUTTON_TEXT_COLOR_MAP = {
@@ -358,9 +357,7 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
                 scrollView->setInnerContainerSize ( Size(visibleSize.width-700, visibleSize.height ) );
                 scrollView->setPosition(Vec2(0, 0));
             }
-
             page->addChild(backButton);
-            
         }
         
 //        for (auto it = topBarGames.begin() ; it != topBarGames.end(); ++it) {
