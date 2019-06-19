@@ -331,8 +331,8 @@ public class AppActivity extends Cocos2dxActivity {
         String initializeDataPath = getDataFilePath();
         int defaultFileVersion = 0;
         boolean extractionRequired = false;
-
-        if (sharedPref.getInt(getString(R.string.dataPath), 0) == 0) {
+        needExtraction();
+        if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 0)) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
             editor.putInt(getString(R.string.patchFileVersion), defaultFileVersion);
@@ -382,6 +382,27 @@ public class AppActivity extends Cocos2dxActivity {
                 }
             }
         });
+    }
+
+    private boolean needExtraction() {
+        File[] fileList = getExternalFilesDirs(null);
+        SharedPreferences.Editor editor = sharedPref.edit();
+
+        for (File file : fileList) {
+            String temp = file.toString();
+            File flagFile = new File("/.success.txt");
+            file = new File(file + File.separator + flagFile);
+            if (file.exists()) {
+                if (file.toString().contains("emulated")) {
+                    editor.putInt(getString(R.string.dataPath), 1);
+                } else {
+                    editor.putInt(getString(R.string.dataPath), 2);
+                }
+                editor.apply();
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
