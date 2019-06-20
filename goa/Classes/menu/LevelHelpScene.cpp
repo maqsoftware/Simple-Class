@@ -323,18 +323,39 @@ void LevelHelpScene::onEnterTransitionDidFinish()
         _text = Text::create(videoText, "fonts/Chanakya.ttf", 70);
     }
     else{
-        _text = Text::create(videoText, "fonts/Chanakya.ttf", 110);
+        _text = Text::create(videoText, "arial", 110);
     }
+
+    auto textHeight = _text->getAutoRenderSize();
+    CCLOG("videotext is :: %s", videoText.c_str());
+
+    cocos2d::ui::ListView* listview = ListView::create();
+    addChild(listview);
+    listview->setContentSize(Size(2000, 490));
+    listview->setAnchorPoint(textField->getAnchorPoint());
+    listview->setPosition(textField->getPosition());
+    listview->setBounceEnabled(true);
+    listview->setScrollBarEnabled(true);
+
+
     _text->setTextColor(Color4B::BLACK);
     auto pos = textField->getPosition();
     auto wpos = bg->convertToWorldSpace(pos);
-    _text->setPosition(wpos);
+    // if (textHeight.height < 500)
+    //     _text->setPosition(wpos);
     _text->setTextAreaSize(Size(2000, 0));
     _text->ignoreContentAdaptWithSize(true);
     _text->setEnabled(false);
     _text->setTouchEnabled(false);
     _text->setFocusEnabled(false);
-    addChild(_text);
+
+    // if (textHeight.height < 500)
+    //     addChild(_text);
+    // else
+    listview->addChild(_text);
+        
+    listview->requestDoLayout();
+
     bg->removeChild(textField);
     videoPlayStart();
 }
