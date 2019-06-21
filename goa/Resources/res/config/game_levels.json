@@ -15,7 +15,7 @@
              "levels": [
                         1
                         ],
-             "help": "ç¿¢ÂÜ ×ð¢ ¥æÂ·UUUæ Sßæ»Ì ãñÐ",
+             "help": "Welcome to Chimple!\n\nचिंपल में आपका स्वागत है।",
 			 "_help_comment": "चिंपल में आपका स्वागत है|",
              "video": "MainMenuHome_help.webm"
              }
@@ -548,7 +548,7 @@
       "concepts": [
         "alphabet"
       ],
-      "help": "Choose the correct alphabet below to give power to the alphabet monster. If you choose correctly, your monster will get more power and defeat the opposite monster\n\nवर्णमाला राक्षस को शक्ति देने के लिए नीचे दिए गए अक्षरों का सही चयन करें | यदि आप सही ढंग से चुनते हैं तो आपके राक्षस को अधिक शक्ति मिलेगी और वह विपरीत राक्षस को परास्त करेगा |",
+      "help": "Choose the correct alphabet below to give power to the alphabet monster. If you choose correctly, your monster will get more power and defeat the opposite monster.\n\nवर्णमाला राक्षस को शक्ति देने के लिए नीचे दिए गए अक्षरों का सही चयन करें | यदि आप सही ढंग से चुनते हैं तो आपके राक्षस को अधिक शक्ति मिलेगी और वह विपरीत राक्षस को परास्त करेगा |",
 	  "_help_comment":"वर्णमाला राक्षस को शक्ति देने के लिए नीचे दिए गए अक्षरों का सही चयन करें | यदि आप सही ढंग से चुनते हैं तो आपके राक्षस को अधिक शक्ति मिलेगी और वह विपरीत राक्षस को परास्त करेगा |",
       "video": "AlphamonCombat.webm"
     }
@@ -871,7 +871,7 @@
       "concepts": [
         "word"
       ],
-      "help": "Choose the correct alphabets to form the word and see the flowers bloom.\n\nसही अक्षर चुनके शब्द बनाओ और फूलों को िखलते देखो |",
+      "help": "Choose the correct alphabets to form the word and see the flowers bloom.\n\nसही अक्षर चुनके शब्द बनाओ और फूलों को खिलते देखो|",
 	  "_help_comment":"सही अक्षर चुनके शब्द बनाओ और फूलों को िखलते देखो |",
       "video": "jasmin.webm"
     }

@@ -306,7 +306,7 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             CCLOG("Reached Level screen: %s", _videos[_currentVideo].c_str());
             if (_videos[_currentVideo].substr(fileFound + 1).size() < 9 && _videos[_currentVideo].find("pos.webm") == std::string::npos)
             {
-                videoText = "ß‡æü×æÜæ";
+                videoText = "वर्णमाला";
             }
             else
             {
@@ -323,38 +323,20 @@ void LevelHelpScene::onEnterTransitionDidFinish()
         _text = Text::create(videoText, "fonts/Chanakya.ttf", 70);
     }
     else{
-        _text = Text::create(videoText, "arial", 110);
+        _text = Text::create(videoText, "arial", 60);
     }
-
-    auto textHeight = _text->getAutoRenderSize();
-    CCLOG("videotext is :: %s", videoText.c_str());
-
-    cocos2d::ui::ListView* listview = ListView::create();
-    addChild(listview);
-    listview->setContentSize(Size(2000, 490));
-    listview->setAnchorPoint(textField->getAnchorPoint());
-    listview->setPosition(textField->getPosition());
-    listview->setBounceEnabled(true);
-    listview->setScrollBarEnabled(true);
-
 
     _text->setTextColor(Color4B::BLACK);
     auto pos = textField->getPosition();
     auto wpos = bg->convertToWorldSpace(pos);
-    // if (textHeight.height < 500)
-    //     _text->setPosition(wpos);
+    _text->setPosition(wpos);
     _text->setTextAreaSize(Size(2000, 0));
     _text->ignoreContentAdaptWithSize(true);
     _text->setEnabled(false);
     _text->setTouchEnabled(false);
     _text->setFocusEnabled(false);
 
-    // if (textHeight.height < 500)
-    //     addChild(_text);
-    // else
-    listview->addChild(_text);
-        
-    listview->requestDoLayout();
+    addChild(_text);
 
     bg->removeChild(textField);
     videoPlayStart();

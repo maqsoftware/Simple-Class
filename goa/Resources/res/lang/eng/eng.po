@@ -7,550 +7,443 @@ msgstr ""
 "Project-Id-Version: Swahili\n"
 "Language: en\n"
 
-#: 
-msgid "bannan"
-msgstr "banana"
-
-#: 
-msgid "busboard"
-msgstr "bus board"
-
-#: 
-msgid "busg"
-msgstr "bush"
-
-#: 
-msgid "chaor"
-msgstr "chair"
-
-#: 
-msgid "cheeta"
-msgstr "cheetah"
-
-#: 
-msgid "chimpanzeeanzee"
-msgstr "chimpanzee"
-
-#: 
-msgid "cow_2"
-msgstr "cow"
-
-#: 
-msgid "crocodileodile"
-msgstr "crocodile"
-
-#: 
-msgid "dinning"
-msgstr "dining"
-
-#: 
-msgid "dustbin"
-msgstr "dust bin"
-
-#: 
-msgid "fahali_hill"
-msgstr "hill"
-
-#: 
-msgid "fish blowl"
-msgstr "fish bowl"
-
-#: 
-msgid "fisi_grass"
-msgstr "grass"
-
-#: 
-msgid "fisi_tree"
-msgstr "tree"
-
-#: 
-msgid "hosue"
-msgstr "house"
-
-#: 
-msgid "lighting"
-msgstr "lightning"
-
-#: 
-msgid "map"
-msgstr "Map"
-
-#: 
-msgid "men_2"
-msgstr "men"
-
-#: 
-msgid "palmtree fruit"
-msgstr "palm tree fruit"
-
-#: 
-msgid "rainbowhang"
-msgstr "rainbow"
-
-#: 
-msgid "rainbowinbucket"
-msgstr "bucket"
-
-#: 
-msgid "rainbowman"
-msgstr "man"
-
-#: 
-msgid "sadhu"
-msgstr "monk"
-
-#: 
-msgid "stallhat"
-msgstr "hat"
-
-#: 
-msgid "stallshirt"
-msgstr "shirt"
-
-#: 
-msgid "treasurebox"
-msgstr "treasure box"
-
-#: 
-msgid "tree_1qwe"
-msgstr "tree"
-
-#: 
-msgid "vesselin"
-msgstr "vessel"
-
-#: 
-msgid "vesselout"
-msgstr "vessel"
-
-#: 
-msgid "wallb"
-msgstr "wall"
-
-#: 
-msgid "wallc"
-msgstr "wall"
-
-#: 
-msgid "waterin"
-msgstr "water"
-
-#: 
-msgid "watersplash"
-msgstr "water splash"
-
-#: 
-msgid "wind_char"
-msgstr "wind"
-
-#: 
-msgid "windchar"
-msgstr "wind"
-
-#: 
-msgid "choose Character"
-msgstr "Choose Character"
-
-#: 
-msgid "icecream"
-msgstr "ice cream"
-
-#: 
 msgid "addition"
-msgstr "1 cake, 1 cake, 1 and 1 together becomes 2\n"
-"5 candies, 3 candies, 5 + 3 is 8"
+msgstr ""
+" एक  केक  एक  केक। एक और एक मिलकर दो हो "
+"जाते हैं। पांच  कैंडीज प्लस तीन  कैंडीज बराबर होते हैं आठ कैंडीज "
+"के"
 
-#: 
 msgid "addition_carryover_1"
-msgstr "62 + 31, first we add the units, 2 + 1 = 3\n"
-"Then the tens, 6 + 3 = 9. Answer is 39"
+msgstr ""
+"62 + 31 पहले हम इकाइयों को जोड़ते हैं, 2 + 1 बराबर 3\n"
+"फिर दसियों, 6 + 3 बराबर 9, 93"
 
-#: 
 msgid "addition_carryover_2"
-msgstr "24 + 18, first we add the units, 4 + 8 = 12. Carry the ten to next position, left with 2.\n"
-"2 + 1 + 1 from carry over equals 4. Answer is 44"
+msgstr ""
+"24 + 18, पहले हम इकाइयों को जोड़ते हैं. दस को अगली स्थिति में ले "
+"जाते हैं, 2 को छोड़ देते हैं, 4 + 8 बराबर 12\n"
+"कैरी ओवर से 1 को 2 + 1 में जोड़ें जो बराबर है 4 के, 42"
 
-#: 
 msgid "addition_carryover_3"
-msgstr "37 + 25, first we add the units, 7 + 5 = 12, carry the ten to next position, left with 2\n"
-"3 + 2 + 1 from carry over equals 6. Answer is 62"
+msgstr ""
+"37 + 25, पहले हम इकाइयों को जोड़ते हैं, 7 + 5 = 12, दस को अगली "
+"स्थिति में ले जाते हैं, 2 को छोड़ देते हैं \n"
+"कैरीओवर से 1 को 3 + 2 में जोड़ें जो बराबर है 6 के, 62"
 
-#: 
 msgid "adjective"
-msgstr "Adjectives can specify the quality, the size, and the number of nouns or pronouns.\n"
-"It is a BIG truck."
+msgstr ""
+"çßàæðá‡æ »é‡æß}ææ, ¥æ·UUUæÚ ¥æñÚ â¢™ææ Øæ âßüÙæ× ·UUUè â¢wØæ çÙçÎüC ·UUUUÚ "
+"â·UUUUÌð ãñ¢ \n"
 
-#: 
 msgid "adverb"
-msgstr "Adverbs describe adjectives, verbs, or another adverb. \n"
-"He was QUICKLY brought down."
+msgstr ""
+"çRUUUUØæçßàæðá‡æ çßàæðá‡æ, çRUUUUØæ Øæ ç·UUUUâè ¥‹Ø çRUUUUØæ çßàæðá‡æ ·UUUæ "
+"ß‡æüÙ ·UUUUÚÌæ ãñ"
 
-#: 
+msgid "almirah"
+msgstr "¥Ü×æÚè"
+
 msgid "alphabet"
-msgstr "Alphabet"
+msgstr "वर्णमाला"
 
-#: 
 msgid "antonym"
-msgstr "Two words are opposites of each other if their meanings are totally different from each other.\n"
-"Happy, Sad, Left, Right, Down, Up, Big, Small"
+msgstr ""
+"Îô àæyÎ °·UUUU ÎêâÚð ·ðUUU çßÂÚèÌ ãñ¢, ØçÎ ©Ù·ðUUU ¥Íü °·UUUU ÎêâÚð âð "
+"çÕÜ·éUUUÜ ¥Ü» ãñ¢"
 
-#: 
 msgid "article"
-msgstr "Articles are words that you use before the noun like A and THE.\n"
-"She looked into THE water"
+msgstr ""
+"¥æçÅü·UUUUÜ , ßð àæyÎ ãñ¢ çÁÙ·UUUæ ¥æÂ â¢™ææ âð ÂãÜð ©ÂØô» ·UUUUÚÌð ãñ¢ "
 
-#: 
+msgid "avacado"
+msgstr "°ßô·ñUUUÇô"
+
+msgid "baby mother"
+msgstr "×æ¢"
+
+msgid "bank mainground"
+msgstr "×¢çÁÜ"
+
+msgid "bannan"
+msgstr "·ðUUUÜæ"
+
+msgid "base upper"
+msgstr "ªUUUUÂÚè ×¢çÁÜ"
+
+msgid "bathroomwall"
+msgstr "ÎèßæÚ"
+
+msgid "bookstand"
+msgstr "ÂéSÌ·UUUU ¥aæ"
+
+msgid "box back"
+msgstr "çÇyÕæ"
+
+msgid "box back    "
+msgstr "çÇyÕæ"
+
+msgid "box front"
+msgstr "çÇyÕæ"
+
+msgid "busboard"
+msgstr "Õâ ·UUUæ ÕôÇü"
+
+msgid "busg"
+msgstr "ÛææÇ¸è"
+
+msgid "cafedoor"
+msgstr "·UUUæÈ¸UUUèãæ©â ·UUUæ ÎÚßæÁæ"
+
+msgid "cafeowner"
+msgstr "·UUUæÈ¸UUUèãæ©â ·UUUæ ×æçÜ·UUUU"
+
+msgid "calender"
+msgstr "çÌçÍ-Â˜æ"
+
+msgid "cartback"
+msgstr "»æÇ¸è"
+
+msgid "cartonbox"
+msgstr "»}æð ·UUUæ çÇyÕæ"
+
+msgid "cds"
+msgstr "âèÇè"
+
+msgid "chaor"
+msgstr "·éUUUâèü"
+
+msgid "cheeta"
+msgstr "Ìð¢Îé¥æ"
+
+msgid "chimpanzeeanzee"
+msgstr "ç¿¢Âæ¢Á¸è"
+
+msgid "choose Character"
+msgstr "Âæ˜æ ¿éÙð¢"
+
+msgid "clothshop door"
+msgstr "·UUUUÂÇ¸ð ·UUUè Îé·UUUæÙ ·UUUæ ÎÚßæÁæ"
+
+msgid "clubside"
+msgstr "â¢ƒæ"
+
 msgid "conjunction"
-msgstr "A conjunction joins words and phrases together. \n"
-"branches sway AND leaves tremble"
+msgstr "â¢ØôÁÙ àæyÎô¢ ¥æñÚ ßævØæ¢àæô¢ ·UUUUô °·UUUU âæÍ ÁôÇ¸Ìæ ãñ"
 
-#: 
+msgid "cottons"
+msgstr "·UUUUÂæâ"
+
+msgid "cow_2"
+msgstr "»æØ"
+
+msgid "crocodileodile"
+msgstr "×»Ú×‘À"
+
+msgid "curton"
+msgstr "»}æð ·UUUæ çÇyÕæ"
+
 msgid "day"
-msgstr "There are seven days in a week. \n"
-"They are Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday"
+msgstr "°·UUUU â#æã ×ð¢ âæÌ çÎÙ ãôÌð ãñ¢।"
 
-#: 
+msgid "dinning"
+msgstr "ÖôÁÙ"
+
+msgid "dramadoor"
+msgstr "ÙæÅ·UUUU ·UUUæ ÎÚßæÁæ"
+
+msgid "dustbin"
+msgstr "·UUUU¿Úð ·UUUæ çÇyÕæ"
+
 msgid "even_odd"
-msgstr "An odd number cannot be divided into equal groups, such as 1, 3, 5, 7, 9.\n"
-"An even number can be divided into equal groups. 2, 4, 6, 8, 10."
+msgstr ""
+"°·UUUU çßá× â¢wØæ ·UUUUô â×æÙ â×êãô¢ ×ð¢ çßÖæçÁÌ Ùãè¢ ç·UUUUØæ Áæ â·UUUUÌæ "
+"ãñÐ.\n"
+"1 ¥æñÚ °·UUUU â×æÙ â¢wØæ ·UUUUô â×æÙ â×êãô¢ ×ð¢ çßÖæçÁÌ ç·UUUUØæ Áæ â·UUUUÌæ "
+"ãñ। 2 3 4 5 6 7 8 9"
 
-#: 
+msgid "fahali_hill"
+msgstr "ÂãæÇ¸"
+
+msgid "firestationdoor"
+msgstr "Î×·UUUUÜ ·ð¢UUU¼ý ·UUUæ ÎÚßæÁæ"
+
+msgid "fish blowl"
+msgstr "×ÀÜè ·UUUæ ·UUUUÅôÚæ"
+
+msgid "fisi_grass"
+msgstr "ƒææâ"
+
+msgid "fisi_tree"
+msgstr "ÂðÇ¸"
+
+msgid "floorgrass"
+msgstr "ƒææâ"
+
+msgid "floorstone"
+msgstr "ÂˆÍÚ"
+
+msgid "floortile"
+msgstr "¹ÂÚæ"
+
+msgid "floortile1 "
+msgstr "¹ÂÚæ"
+
+msgid "foreground"
+msgstr "Öêç×"
+
+msgid "grammar"
+msgstr "ßævØ"
+
+msgid "grocerycomp"
+msgstr "·¢UUUŒØêÅÚ"
+
+msgid "gymdoor"
+msgstr "ÃØæØæ× ·UUUæ ÎÚßæÁæ"
+
 msgid "homonym"
-msgstr "Two or more words can have the same pronunciation but different meanings. \n"
-"Ant Aunt, Pair Pear, Mail Male, Plane Plain"
+msgstr ""
+"Îô ¥æñÚ ¥çÏ·UUUU àæyÎô¢ ·ðUUU °·UUUU ãè ©‘¿æÚ‡æ ãô â·UUUUÌð ãñ¢ Üðç·UUUUÙ "
+"¥Ü»-¥Ü» ¥Íü ãôÌð ãñ¢।\n"
 
-#: 
+msgid "hospitalbed"
+msgstr "¥SÂÌæÜ ·UUUæ çÕSÌÚ"
+
+msgid "hospitaldoor"
+msgstr "¥SÂÌæÜ ·UUUæ ÎÚßæÁæ"
+
+msgid "hospitallights"
+msgstr "¥SÂÌæÜ ·UUUæ  ÎèÂ·UUUU"
+
+msgid "hospitalside"
+msgstr "¥SÂÌæÜ ·UUUæ Âÿæ"
+
+msgid "hosue"
+msgstr "×·UUUæÙ"
+
+msgid "houseside"
+msgstr "×·UUUæÙ ·UUUæ Âÿæ"
+
+msgid "icecream"
+msgstr "¥æ§âRUUUè×"
+
 msgid "interjection"
-msgstr "An interjection is an abrupt remark. \n"
-"Well! Now we know"
+msgstr "ãSÌÿæðÂ °·UUUU ¥¿æÙ·UUUU çÅŒÂ‡æè ãñ।\n"
 
-#: 
+msgid "library"
+msgstr "·UUUUãæçÙØæ¡"
+
+msgid "lighting"
+msgstr "¥æ·UUUæàæèØ çÕÁÜè"
+
+msgid "livingroom floor"
+msgstr "ÕñÆ·UUUU ·UUUUÿæ ·UUUæ ÈUUUUàæü"
+
+msgid "mainground"
+msgstr "Öêç×"
+
+msgid "map"
+msgstr "Ùvàææ"
+
+msgid "maths"
+msgstr "»ç‡æÌ"
+
+msgid "men_2"
+msgstr "ÂéLUUUUáô¢"
+
 msgid "month"
-msgstr "There are 12 months in a year. \n"
-"January, February, March, April, May, June, \n"
-"July, August, September, October, November, December"
+msgstr "âæÜ ·ðUUU 12 ×ãèÙð \n"
 
-#: 
 msgid "multiplication"
-msgstr "Multiplication is repeated addition. \n"
-"See the lot of 5 balls. Take 2 of them. Add them up to get 10. 5 x 2 = 10\n"
-"See the basket of 5 cakes. Take 3 of them. Add them up to get 15. 5 x 3 = 15"
+msgstr ""
+"»é‡æÙ ÕæÚ-ÕæÚ ÁôÇ¸æ ÁæÌæ ãñÐ\n"
+"5 ·UUUUô 2 âð »é‡ææ ·UUUUÚð¢, Âæ¢¿ »ð¢Îô¢ ·UUUUô Îð¹ð¢, 2 ·UUUUô Üð¢ ¥æñÚ "
+"©‹ãð¢ ÁôÇ¸ Îð¢, 10 Âýæ# ·UUUUÚÙð ·ðUUU çÜ°Ð\n"
+"6 ·UUUUô 2 âð »é‡ææ ·UUUUÚð¢, 6 »ð¢Îô¢ ·UUUUô Îð¹ð¢, 2 ·UUUUô Üð¢ ¥æñÚ ©‹ãð¢ "
+"ÁôÇ¸ Îð¢, 12 Âýæ# ·UUUUÚÙð ·ðUUU çÜ°Ð\n"
+"5 ·UUUUô 3 âð »é‡ææ ·UUUUÚð¢, 5 ·ðUUU·UUUU ·UUUè Åô·UUUUÚè Îð¹ð¢, 3 "
+"Åô·UUUUÚè Üð¢ ¥æñÚ ©‹ãð¢ 15 Âýæ# ·UUUUÚÙð ·ðUUU çÜ° ÁôÇ¸ Îð¢Ð\n"
+"6 ·UUUUô 3 âð »é‡ææ ·UUUUÚð¢, 6 ·ðUUU·UUUU ·UUUè Åô·UUUUÚè Îð¹ð¢, 3 "
+"Åô·UUUUÚè Üð¢ ¥æñÚ ©‹ãð¢ 18 Âýæ# ·UUUUÚÙð ·ðUUU çÜ° ÁôÇ¸ Îð¢Ð"
 
-#: 
 msgid "noun"
-msgstr "A noun is used to name a person, thing, animal or place.\n"
-"The SUN shines"
+msgstr ""
+"एक संज्ञा का उपयोग किसी व्यक्ति, वस्तु, जानवर या स्थान के नाम "
+"के लिए किया जाता है।\n"
 
-#: 
 msgid "number"
-msgstr "Count with your fingers. \n"
+msgstr ""
+"अपनी उंगलियों से गिनें।\n"
 "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
 
-#: 
-msgid "plural"
-msgstr "Singular indicates one whereas Plural indicates many. \n"
-"One Cat, Many Cats. One Bus, Many Buses. One Lady, Many Ladies. \n"
-"One Knife, Many Knives. One Tooth, Many Teeth"
+msgid "palmtree fruit"
+msgstr "ÌæÇ¸ ·ðUUU ÂðÇ¸ ·UUUæ ÈUUUUÜ"
 
-#: 
-msgid "pos"
-msgstr "Words are categorized into different parts of speech.\n"
-"Noun. Pronoun. Adjective. Verb. Adverb. Preposition. Conjunction. Interjection. Article."
-
-#: 
-msgid "preposition"
-msgstr "Preposition is used to specify location or a location in time\n"
-"I love TO read"
-
-#: 
-msgid "pronoun"
-msgstr "A pronoun replaces the noun in the sentence. \n"
-"HE wants to eat."
-
-#: 
-msgid "subtraction"
-msgstr "Here are 2 sheep. One sheep goes out. How many sheep are left. 2 -  1 = 1\n"
-"Here are 4 sheep. One sheep goes out. How many sheep are left. 4 -  3 = 1"
-
-#: 
-msgid "subtraction_carryover_1"
-msgstr "46 - 14. First subtract the candies on the right. 6 - 4 = 2. \n"
-"Now subtract the candy boxes. 4 - 1 = 3. The answer is 32"
-
-#: 
-msgid "subtraction_carryover_2"
-msgstr "34 - 16. First subtract the candies on the right. You cannot. \n"
-"So borrow one candy box with 10 candies from the left. Now you can subtract. 14 - 6 = 8. \n"
-"Now subtract the candy boxes. As one candy box has already gone to the right, you only have 2. 2 - 1 = 1. \n"
-"The answer is 18"
-
-#: 
-msgid "subtraction_carryover_3"
-msgstr "42 - 27. First subtract the candies on the right. You cannot. \n"
-"So borrow one candy box with 10 candies from the left. Now you can subtract. 12 - 7 = 5. \n"
-"Now subtract the candy boxes. As one candy box has already gone to the right, you only have 3. 3 - 2 = 1. \n"
-"The answer is 15"
-
-#: 
-msgid "synonym"
-msgstr "Synonyms are words that have the same meaning. \n"
-"Sofa, Couch. Hat, Cap. Hole, Gap. Earth, Soil"
-
-#: 
-msgid "table10"
-msgstr "These are the multiplication tables of 10."
-
-#: 
-msgid "table2"
-msgstr "These are the multiplication tables of 2."
-
-#: 
-msgid "table3"
-msgstr "These are the multiplication tables of 3."
-
-#: 
-msgid "table4"
-msgstr "These are the multiplication tables of 4."
-
-#: 
-msgid "table5"
-msgstr "These are the multiplication tables of 5."
-
-#: 
-msgid "table6"
-msgstr "These are the multiplication tables of 6."
-
-#: 
-msgid "table7"
-msgstr "These are the multiplication tables of 7."
-
-#: 
-msgid "table8"
-msgstr "These are the multiplication tables of 8."
-
-#: 
-msgid "table9"
-msgstr "These are the multiplication tables of 9."
-
-#: 
-msgid "verb"
-msgstr "A verb shows an action. \n"
-"She is STRETCHING"
-
-#: 
-msgid "word"
-msgstr "We can put different alphabets together to make a word. \n"
-"C A T is CAT. D O G is DOG. B A L L is BALL. S T A R is STAR."
-
-#: 
-msgid "almirah"
-msgstr "cupboard"
-
-#: 
-msgid "avacado"
-msgstr "avocado"
-
-#: 
-msgid "baby mother"
-msgstr "mother"
-
-#: 
-msgid "bank mainground"
-msgstr "floor"
-
-#: 
-msgid "base upper"
-msgstr "upper floor"
-
-#: 
-msgid "bathroomwall"
-msgstr "wall"
-
-#: 
-msgid "bookstand"
-msgstr "book stand"
-
-#: 
-msgid "box back"
-msgstr "box"
-
-#: 
-msgid "box back    "
-msgstr "box"
-
-#: 
-msgid "box front"
-msgstr "box"
-
-#: 
-msgid "cafedoor"
-msgstr "cafe door"
-
-#: 
-msgid "cafeowner"
-msgstr "cafe owner"
-
-#: 
-msgid "calender"
-msgstr "calendar"
-
-#: 
-msgid "cartback"
-msgstr "cart"
-
-#: 
-msgid "cartonbox"
-msgstr "carton"
-
-#: 
-msgid "cds"
-msgstr "cd"
-
-#: 
-msgid "clothshop door"
-msgstr "cloth shop door"
-
-#: 
-msgid "clubside"
-msgstr "club"
-
-#: 
-msgid "cottons"
-msgstr "cotton"
-
-#: 
-msgid "curton"
-msgstr "carton"
-
-#: 
-msgid "dramadoor"
-msgstr "drama door"
-
-#: 
-msgid "firestationdoor"
-msgstr "firestation door"
-
-#: 
-msgid "floorgrass"
-msgstr "grass"
-
-#: 
-msgid "floorstone"
-msgstr "stone"
-
-#: 
-msgid "floortile"
-msgstr "tile"
-
-#: 
-msgid "floortile1 "
-msgstr "tile"
-
-#: 
-msgid "foreground"
-msgstr "ground"
-
-#: 
-msgid "grocerycomp"
-msgstr "computer"
-
-#: 
-msgid "gymdoor"
-msgstr "gym door"
-
-#: 
-msgid "hospitalbed"
-msgstr "hospital bed"
-
-#: 
-msgid "hospitaldoor"
-msgstr "hospital door"
-
-#: 
-msgid "hospitallights"
-msgstr "hospital lights"
-
-#: 
-msgid "hospitalside"
-msgstr "hospital side"
-
-#: 
-msgid "houseside"
-msgstr "house side"
-
-#: 
-msgid "livingroom floor"
-msgstr "living room floor"
-
-#: 
-msgid "mainground"
-msgstr "ground"
-
-#: 
 msgid "pc"
-msgstr "computer"
+msgstr "·¢UUUŒØêÅÚ"
 
-#: 
 msgid "piller"
-msgstr "pillar"
+msgstr "SÌ¢Ö"
 
-#: 
 msgid "pineaple"
-msgstr "pineapple"
+msgstr "¥ÙæÙæâ"
 
-#: 
+msgid "plural"
+msgstr ""
+"°·UUUUß¿Ù °·UUUU §¢ç»Ì ·UUUUÚÌæ ãñ ÁÕç·UUUU Õãéß¿Ù ·UUUU§ü §¢ç»Ì ·UUUUÚÌæ "
+"ãñÐ\n"
+
 msgid "policeman"
-msgstr "police man"
+msgstr "ÂéçÜâ×ñÙ"
 
-#: 
 msgid "policestationside"
-msgstr "police station side"
+msgstr "ÂéçÜâ SÅðàæÙ ·UUUè ÌÚÈUUUU"
 
-#: 
+msgid "pos"
+msgstr ""
+"àæyÎô¢ ·UUUUô Öæá‡æ ·ðUUU çßçÖóæ Öæ»ô¢ ×ð¢ ß»èü·ëUUUÌ ç·UUUUØæ ÁæÌæ ãñÐ\n"
+"â¢™ææ âßüÙæ× çßàæðá‡æ  çßàæðá‡æ çRUUUUØæ çRUUUUØæ çßàæðá‡æ Âêßüâ»ü â¢ØôÁÙ "
+"·ðUUU MUUUUÂ çßS×ØæçÎÕôÏ·UUUU ¥æçÅü·UUUUÜ"
+
+msgid "preposition"
+msgstr ""
+"समय या स्थान को निर्दिष्ट करने के लिए पूर्वसर्ग का उपयोग किया "
+"जाता है|\n"
+
+msgid "pronoun"
+msgstr "एक सर्वनाम वाक्य में संज्ञा की जगह लेता है |\n"
+
+msgid "rainbowhang"
+msgstr "§¢¼ýÏÙéá"
+
+msgid "rainbowinbucket"
+msgstr "ÕæËÅè"
+
+msgid "rainbowman"
+msgstr "¥æÎ×è"
+
+msgid "sadhu"
+msgstr "âæÏé"
+
 msgid "schooldoor"
-msgstr "school door"
+msgstr "çßlæÜØ ·UUUæ ÎÚßæÁæ"
 
-#: 
-msgid "step big"
-msgstr "big step"
-
-#: 
-msgid "tissueroll"
-msgstr "tissue roll"
-
-#: 
-msgid "waterbottle"
-msgstr "water bottle"
-
-#: 
-msgid "watercane"
-msgstr "water can"
-
-#: 
-msgid "waterstand"
-msgstr "water stand"
-
-#: 
 msgid "shapes"
-msgstr "Numbers"
+msgstr "¥¢·UUUU"
 
-#: 
-msgid "writing"
-msgstr "Writing"
+msgid "stallhat"
+msgstr "ÅôÂè"
 
-#: 
+msgid "stallshirt"
+msgstr "·UUUU×èÁ"
+
+msgid "step big"
+msgstr "ÕÇ¸æ ·UUUUÎ×"
+
+msgid "subtraction"
+msgstr ""
+"दो भेड़ें हैं, एक भेड़ बाहर जाती है। कितने भेड़ बचे हैं? 2 -  1 = 1\n"
+"यहाँ चार भेड़ें हैं, 3 भेड़ें बाहर जाती हैं। कितने भेड़ बचे हैं? 1।  4  "
+"- 3  = 1"
+
+msgid "subtraction_carryover_1"
+msgstr ""
+"46 - 14 पहले दाईं ओर कैंडीज घटाएं 6 - 4 = 2 \n"
+"अब कैंडी बॉक्स को घटाएं 4 - 1 = 3 उत्तर 32 है"
+
+msgid "subtraction_carryover_2"
+msgstr ""
+"34 - 16. पहले दाईं ओर कैंडीज घटाएं। आप नहीं कर सकते। \n"
+"इसलिए बाईं ओर से 10 कैंडीज के साथ एक कैंडी बॉक्स उधार लें। अब "
+"आप घटा सकते हैं। 14 - 6 = 8. \n"
+"अब कैंडी बक्से को घटाएं क्योंकि 1 कैंडी  बॉक्स पहले से ही"
+
+msgid "subtraction_carryover_3"
+msgstr ""
+"42 - 27. पहले दाईं ओर कैंडीज घटाएं। आप नहीं कर सकते।\n"
+"इसलिए बाईं ओर से 10 कैंडीज के साथ एक कैंडी बॉक्स उधार लें, अब "
+"आप घटा सकते हैं।  12 - 7 = 5. \n"
+"अब कैंडी बक्से को घटाएं क्योंकि 1 कैंडी  बॉक्स पहले से है |"
+
+msgid "synonym"
+msgstr "समानार्थी शब्द वे शब्द हैं जिनका अर्थ समान है\n"
+
+msgid "table10"
+msgstr "Øð 10 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+
+msgid "table2"
+msgstr "Øð 2 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+
+msgid "table3"
+msgstr "Øð 3 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+
+msgid "table4"
+msgstr "Øð 4 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+
+msgid "table5"
+msgstr "Øð 5 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+
+msgid "table6"
+msgstr "Øð 6 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+
+msgid "table7"
+msgstr "यØð 7 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+
+msgid "table8"
+msgstr "Øð 8 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+
+msgid "table9"
+msgstr "Øð 9 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+
+msgid "tissueroll"
+msgstr "ªUUUUÌ·UUUU ÚôÜ"
+
+msgid "treasurebox"
+msgstr "¹Á¸æÙð ·UUUæ ÇyÕæ"
+
+msgid "tree_1qwe"
+msgstr "ÂðÇ¸"
+
+msgid "verb"
+msgstr "çRUUUUØæ °·UUUU ·UUUæØü çÎ¹æÌè ãñ\n"
+
+msgid "vesselin"
+msgstr "ÂÌèÜæ"
+
+msgid "vesselout"
+msgstr "ÂÌèÜæ"
+
+msgid "wallb"
+msgstr "ÎèßæÚ"
+
+msgid "wallc"
+msgstr "ÎèßæÚ"
+
+msgid "waterbottle"
+msgstr "ÂæÙè ·UUUè ÕôÌÜ"
+
+msgid "watercane"
+msgstr "ÂæÙè ·UUUæ ·UUUUÙSÌÚ"
+
+msgid "waterin"
+msgstr "ÂæÙè"
+
+msgid "watersplash"
+msgstr "ÂæÙè ·UUUè ÀÂæ·UUUU"
+
+msgid "waterstand"
+msgstr "ÂæÙè ·UUUæ ¥aæ"
+
+msgid "wind_char"
+msgstr "ãßæ"
+
+msgid "windchar"
+msgstr "ãßæ"
+
+msgid "word"
+msgstr "हम एक शब्द बनाने के लिए अलग-अलग अक्षर रख सकते हैं\n"
+
 msgid "words"
-msgstr "Words"
+msgstr "àæyÎ"
 
-#: 
-msgid "maths"
-msgstr "Maths"
-
-#: 
-msgid "grammar"
-msgstr "Sentences"
-
-#: 
-msgid "library"
-msgstr "Stories"
-
+msgid "writing"
+msgstr "Üð¹"
