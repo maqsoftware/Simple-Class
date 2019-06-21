@@ -160,7 +160,7 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
             cocos2d::ui::Button *button = dynamic_cast<cocos2d::ui::Button *>(node);
             if (button)
             {
-                button->setTitleText(""); 
+                button->setTitleText("");
                 button->setScale(0.90);
                 Vec2 buttonPosition = button->getPosition();
 
@@ -241,7 +241,7 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                     }
 
 
-                    Label *mainMenuHindiText = Label::createWithTTF(translatedString, "fonts/Chanakya.ttf", 90);
+                    Label *mainMenuHindiText = Label::createWithSystemFont(translatedString, "arial", 70);
                     mainMenuHindiText->setPosition(Vec2(textTitle->getPositionX(), textTitle->getPositionY() - 90));
                     mainMenuHindiText->setColor(Color3B::WHITE);
                     this->addChild(mainMenuHindiText);
