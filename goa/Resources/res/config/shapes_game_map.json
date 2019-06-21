@@ -1,7 +1,7 @@
 [
   {
     "name": "sortit",
-    "title": "RUUUU×Õh",
+    "title": "RUUUU×Õh$#$Sort It",
 	"_title_comment":"क्रमबद्ध",
     "unlock": true,
     "cIcon": "gameicons/sortit_pressed.png",
@@ -41,7 +41,7 @@
   },
   {
     "name": "shape",
-    "title": "ÀðÎô¢ ·UUUUô ÖÚð¢",
+    "title": "ÀðÎô¢ ·UUUUô ÖÚð¢$#$Shape",
 	"_title_comment":"छेदों को भरें",
     "unlock": true,
     "cIcon": "gameicons/shape_pressed.png",
@@ -83,7 +83,7 @@
   },
   {
     "name": "Dots",
-    "title": "Ù¢ÕÚ ÇæòÅ÷â",
+    "title": "Ù¢ÕÚ ÇæòÅ÷â$#$Dots",
 	"_title_comment":"नंबर डॉट्स",
     "unlock": true,
     "cIcon": "gameicons/numberdot_pressed.png",
@@ -124,7 +124,7 @@
   },
   {
     "name": "popcount",
-    "title": "×ÀÜè ·UUUUô ç»Ùð¢",
+    "title": "×ÀÜè ·UUUUô ç»Ùð¢$#$Pop Count",
 	"_title_comment":"मछली को गिनें",
     "unlock": true,
     "cIcon": "gameicons/popcount_pressed.png",
@@ -168,7 +168,7 @@
   },
   {
     "name": "spot",
-    "title": "Âàæé Âã¿æÙð",
+    "title": "Âàæé Âã¿æÙð$#$Spot",
 	"_title_comment":"पशु पहचाने",
     "unlock": true,
     "cIcon": "gameicons/spot_pressed.png",
@@ -210,7 +210,7 @@
   },
   {
     "name": "Item",
-    "title": "ÌæÜæÕ ÖÚ Îô",
+    "title": "ÌæÜæÕ ÖÚ Îô$#$Item",
 	"_title_comment":"तालाब भर दो",
     "unlock": true,
     "cIcon": "gameicons/item_pressed.png",
@@ -256,7 +256,7 @@
   },
   {
     "name": "ConnectTheDots",
-    "title": "çÕ¢Îé¥ô ·UUUUô ÁôÇô",
+    "title": "çÕ¢Îé¥ô ·UUUUô ÁôÇô$#$Connect The Dots",
 	"_title_comment":"बिंदुओ को जोडो",
     "unlock": true,
     "cIcon": "gameicons/coonectthedot_pressed.png",
@@ -297,7 +297,7 @@
   },
   {
     "name": "chocolateFactory",
-    "title": "ÎêÏ ·UUUæ ·UUUæÚ¹æÙæ",
+    "title": "ÎêÏ ·UUUæ ·UUUæÚ¹æÙæ$#$Chocolate Factory",
 	"_title_comment":"दूध का कारखाना",
     "unlock": true,
     "cIcon": "gameicons/chocolatefactory_pressed.png",
@@ -343,7 +343,7 @@
   },
   {
     "name": "step",
-    "title": "¿Ú‡æô¢ ·UUUUô ÃØçÃâÍÌ ·UUUUÚð¢",
+    "title": "¿Ú‡æô¢ ·UUUUô ÃØçÃâÍÌ ·UUUUÚð¢$#$Step",
 	"_title_comment":"चरणों को व्यव्सिथत करें",
     "unlock": true,
     "cIcon": "gameicons/step_pressed.png",
@@ -388,7 +388,7 @@
   },
   {
     "name": "Line",
-    "title": "·ñ¢UUUÇè Üæ§Ù",
+    "title": "·ñ¢UUUÇè Üæ§Ù$#$Line",
 	"_title_comment":"कैंडी लाइन",
     "unlock": true,
     "cIcon": "gameicons/line_pressed.png",
@@ -430,7 +430,7 @@
   },
   {
     "name": "mathlearning",
-    "title": "ÁôÇ¸ ƒæÅæß",
+    "title": "ÁôÇ¸ ƒæÅæß$#$Math Learning",
 	"_title_comment":"जोड़ घटाव",
     "unlock": true,
     "cIcon": "gameicons/mathlearning_pressed.png",
@@ -474,7 +474,7 @@
   },
   {
     "name": "balloonMath",
-	"title":"»éyÕæÚæ ÈUUUUôÇ¸ð¢",
+	"title":"»éyÕæÚæ ÈUUUUôÇ¸ð¢$#$Balloon Math",
     "_title_comment": "गुब्बारा फोड़ें",
     "unlock": true,
     "cIcon": "gameicons/balloonpop_pressed.png",
@@ -516,7 +516,7 @@
   },
   {
     "name": "shop",
-    "title": "ç·UUUUÚæÙð ·UUUè Îé·UUUæÙ",
+    "title": "ç·UUUUÚæÙð ·UUUè Îé·UUUæÙ$#$Shop",
 	"_title_comment":"किराने की दुकान",
     "unlock": true,
     "cIcon": "gameicons/shopping_pressed.png",
@@ -558,7 +558,7 @@
   },
   {
     "name": "Units",
-    "title": "°·UUUU  çÂ”ææ ÕÙæ¥ô",
+    "title": "°·UUUU  çÂ”ææ ÕÙæ¥ô$#$Units",
 	"_title_comment":"एक  पिज्जा बनाओ",
     "unlock": true,
     "cIcon": "gameicons/pizza_pressed.png",
@@ -600,7 +600,7 @@
   },
   {
     "name": "atm",
-    "title": "Âñâô¢ ·UUUè ×àæèÙ",
+    "title": "Âñâô¢ ·UUUè ×àæèÙ$#$Atm",
 	"_title_comment":"पैसों की मशीन",
     "unlock": true,
     "cIcon": "gameicons/ATM_pressed.png",
@@ -642,8 +642,8 @@
   },
   {
     "name": "jumpingNumbers",
-    "title": "âÈUUUUÜÌæ ·UUUè âèÉ¸çØæ¢",
-	"_title_comment":"सफलता की सीढ़ियां",
+    "title": "·¤êÎð$#$Jump",
+	"_title_comment":"कूदे ",
     "unlock": true,
     "cIcon": "gameicons/jumping numbers_pressed.png",
     "icon": "gameicons/jumping numbers.png",
@@ -684,7 +684,7 @@
   },
   {
     "name": "card",
-	"title":"·UUUæÇü ÁôÇ¸ð¢",
+	"title":"·UUUæÇü ÁôÇ¸ð¢$#$Card",
     "_title_comment": "कार्ड जोड़ें",
     "unlock": true,
     "cIcon": "gameicons/card_pressed.png",
@@ -726,8 +726,8 @@
   },
   {
     "name": "Bounce",
-    "title": "¥æ§âRUUUè× ç»Úæ¥ô",
-	"_title_comment":"आइसक्रीम गिराओ",
+    "title": "¥æ§âRUUUè×$#$Ice-Cream",
+	"_title_comment":"आइसक्रीम",
     "unlock": true,
     "cIcon": "gameicons/icecream_pressed.png",
     "icon": "gameicons/icecream.png",
@@ -754,7 +754,7 @@
   },
   {
     "name": "BasicMultiplication",
-    "title": "×êÜ »é‡æÙ",
+    "title": "×êÜ »é‡æÙ$#$Multiplication",
 	"_title_comment":"मूल गुणन",
     "unlock": true,
     "cIcon": "gameicons/BasicMultiplication_pressed.png",
@@ -798,7 +798,7 @@
   },
   {
     "name": "table",
-    "title": "»é‡ææ",
+    "title": "»é‡ææ$#$Table",
 	"_title_comment":"गुणा",
     "unlock": true,
     "cIcon": "gameicons/table_pressed.png",

@@ -160,7 +160,9 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
             cocos2d::ui::Button *button = dynamic_cast<cocos2d::ui::Button *>(node);
             if (button)
             {
-                button->setTitleText("");
+                button->setTitleText(""); 
+                button->setScale(0.90);
+                Vec2 buttonPosition = button->getPosition();
 
                 if (_leftMostX >= button->getBoundingBox().origin.x)
                 {
@@ -170,6 +172,15 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                 if (button->getPosition().x + button->getBoundingBox().size.width <= _rightMostX)
                 {
                     _rightMostX = button->getPosition().x + button->getBoundingBox().size.width;
+                }
+
+                if (button->getName() == "alphabet" || button->getName() == "writing" || button->getName() == "grammar")
+                {
+                    button->setPosition(Vec2 (buttonPosition.x, buttonPosition.y - 40));
+                }
+                else if (button->getName() == "map" || button->getName() == "library" || button->getName() == "shapes")
+                {
+                    button->setPosition(Vec2 (buttonPosition.x, buttonPosition.y - 70));
                 }
 
                 if (button->getName() == "library")
@@ -194,15 +205,46 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                 if (textTitle)
                 {
                     std::string translatedString = this->currentLangUtil->translateString(textTitle->getName());
-                    textTitle->setText(translatedString);
+                    string gameName = textTitle->getName().c_str();
+                    string mainMenuEnglishText = "";
+                    if (gameName == "alphabet")
+                        mainMenuEnglishText = "Alphabet";
+                    else if (gameName == "shapes")
+                        mainMenuEnglishText = "Numbers";
+                    else if (gameName == "writing")
+                        mainMenuEnglishText = "Writing";
+                    else if (gameName == "library")
+                        mainMenuEnglishText = "Library";
+                    else if (gameName == "grammar")
+                        mainMenuEnglishText = "Grammar";
+                    else if (gameName == "map")
+                        mainMenuEnglishText = "Map";
+
+                    textTitle->setText(mainMenuEnglishText);
                     textTitle->setTextHorizontalAlignment(TextHAlignment::CENTER);
                     textTitle->setTextVerticalAlignment(TextVAlignment::TOP);
                     textTitle->setEnabled(false);
                     textTitle->setTouchEnabled(false);
                     textTitle->setFocusEnabled(false);
-                    textTitle->setFontName("fonts/Chanakya.ttf");
+                    textTitle->setFontName("arial");
                     textTitle->setTextColor(Color4B(Color3B::WHITE));
-                    textTitle->setFontSize(100);
+                    textTitle->setFontSize(70);
+                    Vec2 englishTextPosition = textTitle->getPosition();
+
+                    if (gameName == "alphabet" || gameName == "writing" || gameName == "grammar")
+                    {
+                        textTitle->setPosition(Vec2 (englishTextPosition.x, englishTextPosition.y + 130));
+                    }
+                    else if (gameName == "map" || gameName == "library" || gameName == "shapes")
+                    {
+                        textTitle->setPosition(Vec2 (englishTextPosition.x, englishTextPosition.y + 100));
+                    }
+
+
+                    Label *mainMenuHindiText = Label::createWithSystemFont(translatedString, "arial", 70);
+                    mainMenuHindiText->setPosition(Vec2(textTitle->getPositionX(), textTitle->getPositionY() - 90));
+                    mainMenuHindiText->setColor(Color3B::WHITE);
+                    this->addChild(mainMenuHindiText);
                 }
             }
         }
