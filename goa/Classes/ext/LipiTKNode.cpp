@@ -78,7 +78,7 @@ Sprite* LipiTKNode::createDrawingAreaUsingFileName(Vec2 anchorPoint, Vec2 positi
 
 
 bool LipiTKNode::initialize(int width, int height, Point position) {
-    auto path = "res";
+    std::string path = "res";
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
         //initialize lipiTK
             path = "res";
@@ -90,7 +90,11 @@ bool LipiTKNode::initialize(int width, int height, Point position) {
     
         #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             //initialize lipiTK
-             path = "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/res/android-lipitk";
+                // fileName refers to the path of the file lipiengine.cfg in the resources folder
+                const std::string& fileName = "res/android-lipitk/projects/lipiengine.cfg";
+                path = FileUtils::getInstance()->fullPathForFilename(fileName);
+                // Remove "/projects/lipiengine.cfg" from the path
+                path = path.substr(0, path.length() - 24);
         #endif
 
         
