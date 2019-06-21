@@ -90,10 +90,11 @@ bool LipiTKNode::initialize(int width, int height, Point position) {
     
         #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             //initialize lipiTK
-                std::string fileName = "res/android-lipitk/projects/lipiengine.cfg";
-                std::string path1 = FileUtils::getInstance()->fullPathForFilename(fileName);
-                int length = path1.length();
-                path = path1.substr(0, path1.length() - 24);
+                // fileName refers to the path of the file lipiengine.cfg in the resources folder
+                const std::string& fileName = "res/android-lipitk/projects/lipiengine.cfg";
+                path = FileUtils::getInstance()->fullPathForFilename(fileName);
+                // Remove "/projects/lipiengine.cfg" from the path
+                path = path.substr(0, path.length() - 24);
         #endif
 
         
