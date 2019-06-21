@@ -339,7 +339,7 @@ public class AppActivity extends Cocos2dxActivity {
         boolean extractionRequired = false;
         needExtraction();
 //      Used to initialize the pathToAppDelegate with the selected path
-        String initializeDataPath = getDataFilePath();
+        getDataFilePath();
         if ((sharedPref.getInt(getString(R.string.dataPath), 0) == 0)) {
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.mainFileVersion), defaultFileVersion);
