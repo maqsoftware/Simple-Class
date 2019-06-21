@@ -192,7 +192,7 @@ msgid "foreground"
 msgstr "Öêç×"
 
 msgid "grammar"
-msgstr "ßævØ"
+msgstr "वाक्य"
 
 msgid "grocerycomp"
 msgstr "·¢UUUŒØêÅÚ"
@@ -230,7 +230,7 @@ msgid "interjection"
 msgstr "ãSÌÿæðÂ °·UUUU ¥¿æÙ·UUUU çÅŒÂ‡æè ãñ।\n"
 
 msgid "library"
-msgstr "·UUUUãæçÙØæ¡"
+msgstr "कहानियाँ"
 
 msgid "lighting"
 msgstr "¥æ·UUUæàæèØ çÕÁÜè"
@@ -242,7 +242,7 @@ msgid "mainground"
 msgstr "Öêç×"
 
 msgid "map"
-msgstr "Ùvàææ"
+msgstr "नक्शा"
 
 msgid "maths"
 msgstr "»ç‡æÌ"
@@ -328,7 +328,7 @@ msgid "schooldoor"
 msgstr "çßlæÜØ ·UUUæ ÎÚßæÁæ"
 
 msgid "shapes"
-msgstr "¥¢·UUUU"
+msgstr "अंक"
 
 msgid "stallhat"
 msgstr "ÅôÂè"
@@ -446,4 +446,4 @@ msgid "words"
 msgstr "àæyÎ"
 
 msgid "writing"
-msgstr "Üð¹"
+msgstr "लेख"
