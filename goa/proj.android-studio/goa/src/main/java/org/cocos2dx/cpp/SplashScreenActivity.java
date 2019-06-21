@@ -82,7 +82,7 @@ public class SplashScreenActivity extends Activity {
                     }
                 });
 //      to initialize pathToAppDelegate with the selected path
-        String junkDataFilePath = getDataFilePath();
+        getDataFilePath();
         return builder.create();
     }
 
@@ -105,7 +105,7 @@ public class SplashScreenActivity extends Activity {
             final SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(getString(R.string.dataPath), 1);
             editor.apply();
-            new DownloadFile().execute(null, null, null);
+            startExtraction();
         }
     }
 
