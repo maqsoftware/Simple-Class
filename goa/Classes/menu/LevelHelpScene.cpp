@@ -306,7 +306,7 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             CCLOG("Reached Level screen: %s", _videos[_currentVideo].c_str());
             if (_videos[_currentVideo].substr(fileFound + 1).size() < 9 && _videos[_currentVideo].find("pos.webm") == std::string::npos)
             {
-                videoText = "ß‡æü×æÜæ";
+                videoText = "वर्णमाला";
             }
             else
             {
@@ -323,8 +323,9 @@ void LevelHelpScene::onEnterTransitionDidFinish()
         _text = Text::create(videoText, "fonts/Chanakya.ttf", 70);
     }
     else{
-        _text = Text::create(videoText, "fonts/Chanakya.ttf", 110);
+        _text = Text::create(videoText, "arial", 60);
     }
+
     _text->setTextColor(Color4B::BLACK);
     auto pos = textField->getPosition();
     auto wpos = bg->convertToWorldSpace(pos);
@@ -334,7 +335,9 @@ void LevelHelpScene::onEnterTransitionDidFinish()
     _text->setEnabled(false);
     _text->setTouchEnabled(false);
     _text->setFocusEnabled(false);
+
     addChild(_text);
+
     bg->removeChild(textField);
     videoPlayStart();
 }

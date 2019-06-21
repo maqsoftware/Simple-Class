@@ -160,7 +160,7 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
             cocos2d::ui::Button *button = dynamic_cast<cocos2d::ui::Button *>(node);
             if (button)
             {
-                button->setTitleText(""); 
+                button->setTitleText("");
                 button->setScale(0.90);
                 Vec2 buttonPosition = button->getPosition();
 
