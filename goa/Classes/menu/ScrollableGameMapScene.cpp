@@ -68,6 +68,7 @@
 
 USING_NS_CC;
 static const bool KIOSK = true;
+const static string delimiter = "$#$";
 
 std::map<std::string, cocos2d::Color3B> ScrollableGameMapScene::BUTTON_TEXT_COLOR_MAP = {
     {"alphabet", Color3B(0xFF, 0xC0, 0xC0)},
@@ -290,11 +291,15 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
         topBarGames.insert(topBarGames.begin(), "story-catalogue");
         std::map<std::string, int> topBarGamesIndexes = {{"story-catalogue", 0}};
         int index = 0;
-        int yOffset = 50;
-        
+        int yOffset = 70;
+
+        _pageView->setContentSize(visibleSize);
+        _pageView->setDirection(cocos2d::ui::ScrollView::Direction::BOTH);
+        _pageView->setInnerContainerSize(Size(visibleSize.width * numberOfPages, visibleSize.height));
+
         for(int k = 0; k < numberOfPages; k++) {
             auto page = ui::Widget::create();
-            page->setContentSize(visibleSize);
+            page->setContentSize(Size(visibleSize.width, visibleSize.height));
             _pageView->addPage(page);
 //            Texture2D *texture = Director::getInstance()->getTextureCache()->addImage("black_concrete.png");
 //            Texture2D::TexParams tp = {GL_LINEAR, GL_LINEAR, GL_REPEAT, GL_REPEAT};
@@ -305,14 +310,30 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
             
 //            auto node = CSLoader::createNode("gamemap/gamemap_bg.csb");
 //            page->addChild(node);
-            
+
+            /*
+             * Add a scroll view for different sections
+             * making each button a child of the scrollview
+             * for making the view scrollable. 
+            */
+            float difference = 100;
+            int latestRow = 1;
+
+            ui::ScrollView *scrollView = ui::ScrollView::create();
+            scrollView->setDirection(ui::ScrollView::Direction::VERTICAL);
+            scrollView->setContentSize(visibleSize);
+            scrollView->setInnerContainerSize (Size(visibleSize.width - 700, visibleSize.height + difference));
+            scrollView->setTouchEnabled(true);
+            scrollView->setBounceEnabled(true);
+            scrollView->setAnchorPoint(_pageView->getAnchorPoint());
+            scrollView->setPosition(Vec2(0, difference));
+            scrollView->setScrollBarEnabled(false);
             
             if(k == 0) {
-                
                 backButton->setPosition(Vec2((0.5) * visibleSize.width / numCols, visibleSize.height + 50 - (0.5) * (visibleSize.height + 50) / (NUMBER_OF_BUTTONS_ROWS + 1)));
-                page->addChild(backButton);
             }
-            
+
+            page->addChild(scrollView);
             for (int i = 0; i < numRows; i++) {
                 for (int j = 0; j < numCols; j++) {
                     if(index < orderedGameIndexes.size()) {
@@ -322,9 +343,10 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
                         bool active = !lockAll ||  (game.HasMember("unlock") && game["unlock"].GetBool()) || (doc.IsObject() && doc.HasMember(gameName));
                         auto button = createButton(game, active);
                         if(button != nullptr) {
+                            latestRow = i + 1;
                             button->setPosition(Vec2((j + 0.5) * visibleSize.width / numCols, visibleSize.height + yOffset - (i + 1.5) * ((visibleSize.height + yOffset) / (numRows + 1))));
-                            
                             page->addChild(button);
+                            scrollView->addChild( button );
                             if(std::find(topBarGames.begin(), topBarGames.end(), gameName) != topBarGames.end()) {
                                 topBarGamesIndexes[gameName] = dIndex;
                             }
@@ -333,12 +355,19 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
                     index++;
                 }
             }
-            
-            
+
+            /*
+             * Setting up those sections non-scrollable
+             * which do not have their content overflown.
+            */
+            if (latestRow < 4)
+            {
+                scrollView->setInnerContainerSize (Size(visibleSize.width - 700, visibleSize.height));
+                scrollView->setPosition(Vec2(0, 0));
+            }
+            page->addChild(backButton);
         }
         
-        
-
 //        for (auto it = topBarGames.begin() ; it != topBarGames.end(); ++it) {
 //            const rapidjson::Value& game = d[topBarGamesIndexes[*it]];
 //            auto gameName = game["name"].GetString();
@@ -349,9 +378,6 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
 //            addChild(topBarButton);
 //        }
 
-        _pageView->setContentSize(visibleSize);
-        _pageView->setDirection(cocos2d::ui::ScrollView::Direction::HORIZONTAL);
-        _pageView->setInnerContainerSize(Size(visibleSize.width * numberOfPages, visibleSize.height));
     }
     return true;
 }
@@ -411,11 +437,16 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
             button->loadTextureDisabled(buttonNormalIcon);
             button->addTouchEventListener(CC_CALLBACK_2(ScrollableGameMapScene::disabledGameSelected, this));
         }
-        
+
+        string gameTitle = gameJson["title"].GetString();
+
+        // splitting the string into its chanakya component
+        string gameTitleHindi = gameTitle.substr(0, gameTitle.find(delimiter));
+        string gameTitleEnglish = gameTitle.substr(gameTitle.find(delimiter) + delimiter.size(), gameTitle.size() - 1);
+
         button->setName(gameJson["name"].GetString());
-        button->setTitleText(LangUtil::getInstance()->translateString(gameJson["title"].GetString()));
+        button->setTitleText(LangUtil::getInstance()->translateString(gameTitleEnglish));
         button->setTitleAlignment(TextHAlignment::CENTER, TextVAlignment::BOTTOM);
-        button->setTitleFontName("fonts/Chanakya.ttf");
         auto titleColor = Color3B(0xFF, 0xF2, 0x00);
         if(!_subGameMenuToNavigate.empty()) {
             auto it = BUTTON_TEXT_COLOR_MAP.find(_subGameMenuToNavigate);
@@ -424,10 +455,15 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
             }
         }
         button->setTitleColor(titleColor);
-        button->setTitleFontSize(150);
+        button->setTitleFontSize(100);
         auto label = button->getTitleRenderer();
         label->setPosition(Vec2(label->getPositionX(), label->getPositionY()- 300));
         button->setScale(0.5);
+        
+        Label *engText = Label::createWithTTF(gameTitleHindi, "fonts/Chanakya.ttf", 140);
+        engText->setPosition(Vec2(label->getPositionX(), label->getPositionY() - 130));
+        engText->setColor(titleColor);
+        button->addChild(engText);
         return button;
     }
     return nullptr;
