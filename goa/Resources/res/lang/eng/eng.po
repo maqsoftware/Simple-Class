@@ -440,7 +440,7 @@ msgid "windchar"
 msgstr "हवा"
 
 msgid "word"
-msgstr "हम एक शब्द बनाने के लिए अलग-अलग अक्षर रख सकते हैै।\n"
+msgstr "हम एक शब्द बनाने के लिए अलग-अलग अक्षर रख सकते है।\n"
 
 msgid "words"
 msgstr "शब्द"
