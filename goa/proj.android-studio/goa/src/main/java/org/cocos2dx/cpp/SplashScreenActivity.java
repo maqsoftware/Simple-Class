@@ -36,7 +36,6 @@ import static org.cocos2dx.cpp.AppActivity.sharedPref;
 public class SplashScreenActivity extends Activity {
 
     Intent intent = null;
-    String obbFilePath;
     File obbFile;
     ZipFile obbZipFile;
     Zip zipFileHandler;
