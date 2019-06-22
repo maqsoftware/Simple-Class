@@ -32,238 +32,238 @@ msgstr ""
 
 msgid "adjective"
 msgstr ""
-"çßàæðá‡æ »é‡æß}ææ, ¥æ·UUUæÚ ¥æñÚ â¢™ææ Øæ âßüÙæ× ·UUUè â¢wØæ çÙçÎüC ·UUUUÚ "
-"â·UUUUÌð ãñ¢ \n"
+"विशेषण गुणवत्ता, आकार और संज्ञा या सर्वनाम की संख्या निर्दिष्ट कर "
+"सकते हैं \n"
 
 msgid "adverb"
 msgstr ""
-"çRUUUUØæçßàæðá‡æ çßàæðá‡æ, çRUUUUØæ Øæ ç·UUUUâè ¥‹Ø çRUUUUØæ çßàæðá‡æ ·UUUæ "
-"ß‡æüÙ ·UUUUÚÌæ ãñ"
+"क्रियाविशेषण विशेषण, क्रिया या किसी अन्य क्रिया विशेषण का "
+"वर्णन करता है"
 
 msgid "almirah"
-msgstr "¥Ü×æÚè"
+msgstr "अलमारी"
 
 msgid "alphabet"
 msgstr "वर्णमाला"
 
 msgid "antonym"
 msgstr ""
-"Îô àæyÎ °·UUUU ÎêâÚð ·ðUUU çßÂÚèÌ ãñ¢, ØçÎ ©Ù·ðUUU ¥Íü °·UUUU ÎêâÚð âð "
-"çÕÜ·éUUUÜ ¥Ü» ãñ¢"
+"दो शब्द एक दूसरे के विपरीत हैं, यदि उनके अर्थ एक दूसरे से "
+"बिलकुल अलग हैं|"
 
 msgid "article"
 msgstr ""
-"¥æçÅü·UUUUÜ , ßð àæyÎ ãñ¢ çÁÙ·UUUæ ¥æÂ â¢™ææ âð ÂãÜð ©ÂØô» ·UUUUÚÌð ãñ¢ "
+"आर्टिकल , वे शब्द हैं जिनका आप संज्ञा से पहले उपयोग करते हैं "
 
 msgid "avacado"
-msgstr "°ßô·ñUUUÇô"
+msgstr "एवोकैडो"
 
 msgid "baby mother"
-msgstr "×æ¢"
+msgstr "मां"
 
 msgid "bank mainground"
-msgstr "×¢çÁÜ"
+msgstr "मंजिल"
 
 msgid "bannan"
-msgstr "·ðUUUÜæ"
+msgstr "केला"
 
 msgid "base upper"
-msgstr "ªUUUUÂÚè ×¢çÁÜ"
+msgstr "ऊपरी मंजिल"
 
 msgid "bathroomwall"
-msgstr "ÎèßæÚ"
+msgstr "दीवार"
 
 msgid "bookstand"
-msgstr "ÂéSÌ·UUUU ¥aæ"
+msgstr "पुस्तक अड्डा"
 
 msgid "box back"
-msgstr "çÇyÕæ"
+msgstr "डिब्बा"
 
 msgid "box back    "
-msgstr "çÇyÕæ"
+msgstr "डिब्बा"
 
 msgid "box front"
-msgstr "çÇyÕæ"
+msgstr "डिब्बा"
 
 msgid "busboard"
-msgstr "Õâ ·UUUæ ÕôÇü"
+msgstr "बस का बोर्ड"
 
 msgid "busg"
-msgstr "ÛææÇ¸è"
+msgstr "झाड़ी"
 
 msgid "cafedoor"
-msgstr "·UUUæÈ¸UUUèãæ©â ·UUUæ ÎÚßæÁæ"
+msgstr "काफ़ीहाउस का दरवाजा"
 
 msgid "cafeowner"
-msgstr "·UUUæÈ¸UUUèãæ©â ·UUUæ ×æçÜ·UUUU"
+msgstr "काफ़ीहाउस का मालिक"
 
 msgid "calender"
-msgstr "çÌçÍ-Â˜æ"
+msgstr "तिथि-पत्र"
 
 msgid "cartback"
-msgstr "»æÇ¸è"
+msgstr "गाड़ी"
 
 msgid "cartonbox"
-msgstr "»}æð ·UUUæ çÇyÕæ"
+msgstr "गत्ते का डिब्बा"
 
 msgid "cds"
-msgstr "âèÇè"
+msgstr "सीडी"
 
 msgid "chaor"
-msgstr "·éUUUâèü"
+msgstr "कुर्सी"
 
 msgid "cheeta"
-msgstr "Ìð¢Îé¥æ"
+msgstr "तेंदुआ"
 
 msgid "chimpanzeeanzee"
-msgstr "ç¿¢Âæ¢Á¸è"
+msgstr "चिंपांज़ी"
 
 msgid "choose Character"
-msgstr "Âæ˜æ ¿éÙð¢"
+msgstr "पात्र चुनें"
 
 msgid "clothshop door"
-msgstr "·UUUUÂÇ¸ð ·UUUè Îé·UUUæÙ ·UUUæ ÎÚßæÁæ"
+msgstr "कपड़े की दुकान का दरवाजा"
 
 msgid "clubside"
-msgstr "â¢ƒæ"
+msgstr "संघ"
 
 msgid "conjunction"
-msgstr "â¢ØôÁÙ àæyÎô¢ ¥æñÚ ßævØæ¢àæô¢ ·UUUUô °·UUUU âæÍ ÁôÇ¸Ìæ ãñ"
+msgstr "संयोजन शब्दों और वाक्यांशों को एक साथ जोड़ता है"
 
 msgid "cottons"
-msgstr "·UUUUÂæâ"
+msgstr "कपास"
 
 msgid "cow_2"
-msgstr "»æØ"
+msgstr "गाय"
 
 msgid "crocodileodile"
-msgstr "×»Ú×‘À"
+msgstr "मगरमच्छ"
 
 msgid "curton"
-msgstr "»}æð ·UUUæ çÇyÕæ"
+msgstr "गत्ते का डिब्बा"
 
 msgid "day"
-msgstr "°·UUUU â#æã ×ð¢ âæÌ çÎÙ ãôÌð ãñ¢।"
+msgstr "एक सप्ताह में सात दिन होते हैं।"
 
 msgid "dinning"
-msgstr "ÖôÁÙ"
+msgstr "भोजन"
 
 msgid "dramadoor"
-msgstr "ÙæÅ·UUUU ·UUUæ ÎÚßæÁæ"
+msgstr "नाटक का दरवाजा"
 
 msgid "dustbin"
-msgstr "·UUUU¿Úð ·UUUæ çÇyÕæ"
+msgstr "कचरे का डिब्बा"
 
 msgid "even_odd"
 msgstr ""
-"°·UUUU çßá× â¢wØæ ·UUUUô â×æÙ â×êãô¢ ×ð¢ çßÖæçÁÌ Ùãè¢ ç·UUUUØæ Áæ â·UUUUÌæ "
-"ãñÐ.\n"
-"1 ¥æñÚ °·UUUU â×æÙ â¢wØæ ·UUUUô â×æÙ â×êãô¢ ×ð¢ çßÖæçÁÌ ç·UUUUØæ Áæ â·UUUUÌæ "
-"ãñ। 2 3 4 5 6 7 8 9"
+"एक विषम संख्या को समान समूहों में विभाजित नहीं किया जा सकता "
+"है।\n"
+"1 और एक समान संख्या को समान समूहों में विभाजित किया जा सकता "
+"है। 2 3 4 5 6 7 8 9"
 
 msgid "fahali_hill"
-msgstr "ÂãæÇ¸"
+msgstr "पहाड़"
 
 msgid "firestationdoor"
-msgstr "Î×·UUUUÜ ·ð¢UUU¼ý ·UUUæ ÎÚßæÁæ"
+msgstr "दमकल केंद्र का दरवाजा"
 
 msgid "fish blowl"
-msgstr "×ÀÜè ·UUUæ ·UUUUÅôÚæ"
+msgstr "मछली का कटोरा"
 
 msgid "fisi_grass"
-msgstr "ƒææâ"
+msgstr "घास"
 
 msgid "fisi_tree"
-msgstr "ÂðÇ¸"
+msgstr "पेड़"
 
 msgid "floorgrass"
-msgstr "ƒææâ"
+msgstr "घास"
 
 msgid "floorstone"
-msgstr "ÂˆÍÚ"
+msgstr "पत्थर"
 
 msgid "floortile"
-msgstr "¹ÂÚæ"
+msgstr "खपरा"
 
 msgid "floortile1 "
-msgstr "¹ÂÚæ"
+msgstr "खपरा"
 
 msgid "foreground"
-msgstr "Öêç×"
+msgstr "भूमि"
 
 msgid "grammar"
 msgstr "वाक्य"
 
 msgid "grocerycomp"
-msgstr "·¢UUUŒØêÅÚ"
+msgstr "कंप्यूटर"
 
 msgid "gymdoor"
-msgstr "ÃØæØæ× ·UUUæ ÎÚßæÁæ"
+msgstr "व्यायाम का दरवाजा"
 
 msgid "homonym"
 msgstr ""
-"Îô ¥æñÚ ¥çÏ·UUUU àæyÎô¢ ·ðUUU °·UUUU ãè ©‘¿æÚ‡æ ãô â·UUUUÌð ãñ¢ Üðç·UUUUÙ "
-"¥Ü»-¥Ü» ¥Íü ãôÌð ãñ¢।\n"
+"दो और अधिक शब्दों के एक ही उच्चारण हो सकते हैं लेकिन "
+"अलग-अलग अर्थ होते हैं।"
 
 msgid "hospitalbed"
-msgstr "¥SÂÌæÜ ·UUUæ çÕSÌÚ"
+msgstr "अस्पताल का बिस्तर"
 
 msgid "hospitaldoor"
-msgstr "¥SÂÌæÜ ·UUUæ ÎÚßæÁæ"
+msgstr "अस्पताल का दरवाजा"
 
 msgid "hospitallights"
-msgstr "¥SÂÌæÜ ·UUUæ  ÎèÂ·UUUU"
+msgstr "अस्पताल का  दीपक"
 
 msgid "hospitalside"
-msgstr "¥SÂÌæÜ ·UUUæ Âÿæ"
+msgstr "अस्पताल का पक्ष"
 
 msgid "hosue"
-msgstr "×·UUUæÙ"
+msgstr "मकान"
 
 msgid "houseside"
-msgstr "×·UUUæÙ ·UUUæ Âÿæ"
+msgstr "मकान का पक्ष"
 
 msgid "icecream"
-msgstr "¥æ§âRUUUè×"
+msgstr "आइसक्रीम"
 
 msgid "interjection"
-msgstr "ãSÌÿæðÂ °·UUUU ¥¿æÙ·UUUU çÅŒÂ‡æè ãñ।\n"
+msgstr "हस्तक्षेप एक अचानक टिप्पणी है।\n"
 
 msgid "library"
 msgstr "कहानियाँ"
 
 msgid "lighting"
-msgstr "¥æ·UUUæàæèØ çÕÁÜè"
+msgstr "आकाशीय बिजली"
 
 msgid "livingroom floor"
-msgstr "ÕñÆ·UUUU ·UUUUÿæ ·UUUæ ÈUUUUàæü"
+msgstr "बैठक कक्ष का फर्श"
 
 msgid "mainground"
-msgstr "Öêç×"
+msgstr "भूमि"
 
 msgid "map"
 msgstr "नक्शा"
 
 msgid "maths"
-msgstr "»ç‡æÌ"
+msgstr "गणित"
 
 msgid "men_2"
-msgstr "ÂéLUUUUáô¢"
+msgstr "पुरुषों"
 
 msgid "month"
-msgstr "âæÜ ·ðUUU 12 ×ãèÙð \n"
+msgstr "साल के 12 महीने \n"
 
 msgid "multiplication"
 msgstr ""
-"»é‡æÙ ÕæÚ-ÕæÚ ÁôÇ¸æ ÁæÌæ ãñÐ\n"
-"5 ·UUUUô 2 âð »é‡ææ ·UUUUÚð¢, Âæ¢¿ »ð¢Îô¢ ·UUUUô Îð¹ð¢, 2 ·UUUUô Üð¢ ¥æñÚ "
-"©‹ãð¢ ÁôÇ¸ Îð¢, 10 Âýæ# ·UUUUÚÙð ·ðUUU çÜ°Ð\n"
-"6 ·UUUUô 2 âð »é‡ææ ·UUUUÚð¢, 6 »ð¢Îô¢ ·UUUUô Îð¹ð¢, 2 ·UUUUô Üð¢ ¥æñÚ ©‹ãð¢ "
-"ÁôÇ¸ Îð¢, 12 Âýæ# ·UUUUÚÙð ·ðUUU çÜ°Ð\n"
-"5 ·UUUUô 3 âð »é‡ææ ·UUUUÚð¢, 5 ·ðUUU·UUUU ·UUUè Åô·UUUUÚè Îð¹ð¢, 3 "
-"Åô·UUUUÚè Üð¢ ¥æñÚ ©‹ãð¢ 15 Âýæ# ·UUUUÚÙð ·ðUUU çÜ° ÁôÇ¸ Îð¢Ð\n"
-"6 ·UUUUô 3 âð »é‡ææ ·UUUUÚð¢, 6 ·ðUUU·UUUU ·UUUè Åô·UUUUÚè Îð¹ð¢, 3 "
-"Åô·UUUUÚè Üð¢ ¥æñÚ ©‹ãð¢ 18 Âýæ# ·UUUUÚÙð ·ðUUU çÜ° ÁôÇ¸ Îð¢Ð"
+"गुणन बार-बार जोड़ा जाता है।\n"
+"5 को 2 से गुणा करें, पांच गेंदों को देखें, 2 को लें और "
+"उन्हें जोड़ दें, 10 प्राप्त करने के लिए।\n"
+"6 को 2 से गुणा करें, 6 गेंदों को देखें, 2 को लें और उन्हें "
+"जोड़ दें, 12 प्राप्त करने के लिए।\n"
+"5 को 3 से गुणा करें, 5 केक की टोकरी देखें, 3 "
+"टोकरी लें और उन्हें 15 प्राप्त करने के लिए जोड़ दें।\n"
+"6 को 3 से गुणा करें, 6 केक की टोकरी देखें, 3 "
+"टोकरी लें और उन्हें 18 प्राप्त करने के लिए जोड़ दें।"
 
 msgid "noun"
 msgstr ""
@@ -276,33 +276,33 @@ msgstr ""
 "1, 2, 3, 4, 5, 6, 7, 8, 9, 10"
 
 msgid "palmtree fruit"
-msgstr "ÌæÇ¸ ·ðUUU ÂðÇ¸ ·UUUæ ÈUUUUÜ"
+msgstr "ताड़ के पेड़ का फल"
 
 msgid "pc"
-msgstr "·¢UUUŒØêÅÚ"
+msgstr "कंप्यूटर"
 
 msgid "piller"
-msgstr "SÌ¢Ö"
+msgstr "स्तंभ"
 
 msgid "pineaple"
-msgstr "¥ÙæÙæâ"
+msgstr "अनानास"
 
 msgid "plural"
 msgstr ""
-"°·UUUUß¿Ù °·UUUU §¢ç»Ì ·UUUUÚÌæ ãñ ÁÕç·UUUU Õãéß¿Ù ·UUUU§ü §¢ç»Ì ·UUUUÚÌæ "
-"ãñÐ\n"
+"एकवचन एक इंगित करता है जबकि बहुवचन कई इंगित करता "
+"है।\n"
 
 msgid "policeman"
-msgstr "ÂéçÜâ×ñÙ"
+msgstr "पुलिसमैन"
 
 msgid "policestationside"
-msgstr "ÂéçÜâ SÅðàæÙ ·UUUè ÌÚÈUUUU"
+msgstr "पुलिस स्टेशन की तरफ"
 
 msgid "pos"
 msgstr ""
-"àæyÎô¢ ·UUUUô Öæá‡æ ·ðUUU çßçÖóæ Öæ»ô¢ ×ð¢ ß»èü·ëUUUÌ ç·UUUUØæ ÁæÌæ ãñÐ\n"
-"â¢™ææ âßüÙæ× çßàæðá‡æ  çßàæðá‡æ çRUUUUØæ çRUUUUØæ çßàæðá‡æ Âêßüâ»ü â¢ØôÁÙ "
-"·ðUUU MUUUUÂ çßS×ØæçÎÕôÏ·UUUU ¥æçÅü·UUUUÜ"
+"शब्दों को भाषण के विभिन्न भागों में वर्गीकृत किया जाता है।\n"
+"संज्ञा सर्वनाम विशेषण  विशेषण क्रिया क्रिया विशेषण पूर्वसर्ग संयोजन "
+"के रूप विस्मयादिबोधक आर्टिकल"
 
 msgid "preposition"
 msgstr ""
@@ -313,31 +313,31 @@ msgid "pronoun"
 msgstr "एक सर्वनाम वाक्य में संज्ञा की जगह लेता है |\n"
 
 msgid "rainbowhang"
-msgstr "§¢¼ýÏÙéá"
+msgstr "इंद्रधनुष"
 
 msgid "rainbowinbucket"
-msgstr "ÕæËÅè"
+msgstr "बाल्टी"
 
 msgid "rainbowman"
-msgstr "¥æÎ×è"
+msgstr "आदमी"
 
 msgid "sadhu"
-msgstr "âæÏé"
+msgstr "साधु"
 
 msgid "schooldoor"
-msgstr "çßlæÜØ ·UUUæ ÎÚßæÁæ"
+msgstr "विद्यालय का दरवाजा"
 
 msgid "shapes"
 msgstr "अंक"
 
 msgid "stallhat"
-msgstr "ÅôÂè"
+msgstr "टोपी"
 
 msgid "stallshirt"
-msgstr "·UUUU×èÁ"
+msgstr "कमीज"
 
 msgid "step big"
-msgstr "ÕÇ¸æ ·UUUUÎ×"
+msgstr "बड़ा कदम"
 
 msgid "subtraction"
 msgstr ""
@@ -368,82 +368,82 @@ msgid "synonym"
 msgstr "समानार्थी शब्द वे शब्द हैं जिनका अर्थ समान है\n"
 
 msgid "table10"
-msgstr "Øð 10 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+msgstr "ये 10 के गुणन सारणी हैं"
 
 msgid "table2"
-msgstr "Øð 2 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+msgstr "ये 2 के गुणन सारणी हैं"
 
 msgid "table3"
-msgstr "Øð 3 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+msgstr "ये 3 के गुणन सारणी हैं"
 
 msgid "table4"
-msgstr "Øð 4 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+msgstr "ये 4 के गुणन सारणी हैं"
 
 msgid "table5"
-msgstr "Øð 5 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+msgstr "ये 5 के गुणन सारणी हैं"
 
 msgid "table6"
-msgstr "Øð 6 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+msgstr "ये 6 के गुणन सारणी हैं"
 
 msgid "table7"
-msgstr "यØð 7 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+msgstr "ये 7 के गुणन सारणी हैं"
 
 msgid "table8"
-msgstr "Øð 8 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+msgstr "ये 8 के गुणन सारणी हैं"
 
 msgid "table9"
-msgstr "Øð 9 ·ðUUU »é‡æÙ âæÚ‡æè ãñ¢"
+msgstr "ये 9 के गुणन सारणी हैं"
 
 msgid "tissueroll"
-msgstr "ªUUUUÌ·UUUU ÚôÜ"
+msgstr "ऊतक रोल"
 
 msgid "treasurebox"
-msgstr "¹Á¸æÙð ·UUUæ ÇyÕæ"
+msgstr "खज़ाने का डब्बा"
 
 msgid "tree_1qwe"
-msgstr "ÂðÇ¸"
+msgstr "पेड़"
 
 msgid "verb"
-msgstr "çRUUUUØæ °·UUUU ·UUUæØü çÎ¹æÌè ãñ\n"
+msgstr "क्रिया एक कार्य दिखाती है\n"
 
 msgid "vesselin"
-msgstr "ÂÌèÜæ"
+msgstr "पतीला"
 
 msgid "vesselout"
-msgstr "ÂÌèÜæ"
+msgstr "पतीला"
 
 msgid "wallb"
-msgstr "ÎèßæÚ"
+msgstr "दीवार"
 
 msgid "wallc"
-msgstr "ÎèßæÚ"
+msgstr "दीवार"
 
 msgid "waterbottle"
-msgstr "ÂæÙè ·UUUè ÕôÌÜ"
+msgstr "पानी की बोतल"
 
 msgid "watercane"
-msgstr "ÂæÙè ·UUUæ ·UUUUÙSÌÚ"
+msgstr "पानी का कनस्तर"
 
 msgid "waterin"
 msgstr "ÂæÙè"
 
 msgid "watersplash"
-msgstr "ÂæÙè ·UUUè ÀÂæ·UUUU"
+msgstr "पानी की छपाक"
 
 msgid "waterstand"
-msgstr "ÂæÙè ·UUUæ ¥aæ"
+msgstr "पानी का अड्डा"
 
 msgid "wind_char"
-msgstr "ãßæ"
+msgstr "हवा"
 
 msgid "windchar"
-msgstr "ãßæ"
+msgstr "हवा"
 
 msgid "word"
 msgstr "हम एक शब्द बनाने के लिए अलग-अलग अक्षर रख सकते हैं\n"
 
 msgid "words"
-msgstr "àæyÎ"
+msgstr "शब्द"
 
 msgid "writing"
 msgstr "लेख"
