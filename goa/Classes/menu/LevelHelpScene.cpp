@@ -318,19 +318,25 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             videoText = "";
         }
     }
+
+    listviewScroll = cocos2d::ui::ListView::create();
+    addChild(listviewScroll);
+    listviewScroll->setContentSize({2000, 490});
+    listviewScroll->setAnchorPoint(textField->getAnchorPoint());
+    listviewScroll->setBounceEnabled(true);
+    listviewScroll->setPosition(textField->getPosition());
     
-    _text = Text::create(videoText, "arial", 60);
+    _text = Text::create(videoText, "arial", 110);
     _text->setTextColor(Color4B::BLACK);
-    auto pos = textField->getPosition();
-    auto wpos = bg->convertToWorldSpace(pos);
-    _text->setPosition(wpos);
     _text->setTextAreaSize(Size(2000, 0));
-    _text->ignoreContentAdaptWithSize(true);
+    _text->ignoreContentAdaptWithSize(false);
     _text->setEnabled(false);
     _text->setTouchEnabled(false);
     _text->setFocusEnabled(false);
 
-    addChild(_text);
+
+    listviewScroll->addChild(_text);
+    listviewScroll->requestDoLayout();
 
     bg->removeChild(textField);
     videoPlayStart();
@@ -464,6 +470,11 @@ void LevelHelpScene::gotoGame(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
             if (_currentVideo + 1 == _videos.size())
             {
                 _text->setString(LangUtil::getInstance()->translateString(_helpText));
+                auto labelText = Label::createWithSystemFont(_helpText, "arial", 110);
+                labelText->setDimensions(2000, 0);
+                Size contentSizeLabel = labelText->getContentSize();
+                _text->setContentSize(contentSizeLabel);
+                listviewScroll->requestDoLayout();
             }
             else
             {
