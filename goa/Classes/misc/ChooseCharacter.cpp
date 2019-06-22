@@ -95,7 +95,7 @@ void ChooseCharacter::processChildNodes(cocos2d::Node *rootNode) {
             std::string chooseText = LangUtil::getInstance()->translateString(CHOOSE_CHARACTER_TEXT);
             chooseLabel->setString(chooseText);
             chooseLabel->setFontSize(150);
-            chooseLabel->setFontName("fonts/Chanakya.ttf");
+            chooseLabel->setFontName("arial");
             chooseLabel->setTextColor(Color4B::WHITE);
         }
     }
