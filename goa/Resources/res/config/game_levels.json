@@ -598,7 +598,7 @@
       "concepts": [
         "number"
       ],
-      "help": "ÕéÜÕéÜð ·UUUUô »ôÜè ×æÚô ¥æñÚ âãè â¢wØæ ·UUUæ ×ðÜ ·UUUUÚð¢Ð",
+      "help": "Shoot the bubble and match the correct letter.\n\nबुलबुले को गोली मारो और सही संख्या का मेल करें|",
 	  "_help_comment":"बुलबुले को गोली मारो और सही संख्या का मेल करें |",
       "video": "bubbleshooter_number_1.webm"
     }
@@ -1448,7 +1448,7 @@
       "levels": [
         1
       ],
-      "help": "¹ÁæÙæ ÂæÙð ·ðUUU çÜ° ªUUUUÂÚ çÎ¹æ° »° ¥ÿæÚ çÜ¹ð¢Ð",
+      "help": "Write the letters shown above to get the treasure.\n\nखजाना पाने के लिए ऊपर दिखाए गए अक्षर लिखें।",
 	  "_help_comment":"खजाना पाने के लिए ऊपर दिखाए गए अक्षर लिखें।",
       "video": "treasurehunt.webm"
     }
