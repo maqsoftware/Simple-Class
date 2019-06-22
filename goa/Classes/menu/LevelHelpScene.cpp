@@ -318,14 +318,8 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             videoText = "";
         }
     }
-    if (_videos[_currentVideo] == "concepts/multiplication.webm")
-    {
-        _text = Text::create(videoText, "fonts/Chanakya.ttf", 70);
-    }
-    else{
-        _text = Text::create(videoText, "arial", 60);
-    }
-
+    
+    _text = Text::create(videoText, "arial", 60);
     _text->setTextColor(Color4B::BLACK);
     auto pos = textField->getPosition();
     auto wpos = bg->convertToWorldSpace(pos);
