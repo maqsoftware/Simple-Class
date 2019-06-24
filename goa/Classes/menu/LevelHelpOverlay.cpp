@@ -70,6 +70,11 @@ void LevelHelpOverlay::gotoGame(Ref* pSender, cocos2d::ui::Widget::TouchEventTyp
             getChildByName("bg")->getChildByName("screen_1")->removeChild(_resumeButton);
             if(_currentVideo + 1 == _videos.size()) {
                 _text->setString(LangUtil::getInstance()->translateString(_helpText));
+                /* 
+                 * To resize the text widget according to the text height
+                 * an additional label is used with the same width, font 
+                 * and font size as the text widget.
+                */
                 auto labelText = Label::createWithSystemFont(_helpText, "arial", 110);
                 labelText->setDimensions(2000, 0);
                 Size contentSizeLabel = labelText->getContentSize();

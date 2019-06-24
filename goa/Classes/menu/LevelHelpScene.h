@@ -17,7 +17,6 @@ public:
     static cocos2d::Scene *createScene(std::string gameName);
     static LevelHelpScene *create(std::string gameName);
 	cocos2d::ui::Button *_resumeButton;
-    static cocos2d::ui::ListView *listviewScroll_static;
     cocos2d::ui::ListView *listviewScroll;
     void onEnterTransitionDidFinish() override;
     void onExitTransitionDidStart() override;
