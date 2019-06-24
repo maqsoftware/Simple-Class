@@ -318,33 +318,19 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             videoText = "";
         }
     }
-
-    /*
-     * The width and height of the listview 
-     * is set to the same width and height of
-     * the white portition initially.
-     * 
-     * The position is also set to coincide with
-     * the original area the text was displayed.
-    */
-    listviewScroll = cocos2d::ui::ListView::create();
-    addChild(listviewScroll);
-    listviewScroll->setContentSize({2000, 490});
-    listviewScroll->setAnchorPoint(textField->getAnchorPoint());
-    listviewScroll->setBounceEnabled(true);
-    listviewScroll->setPosition(textField->getPosition());
     
     _text = Text::create(videoText, "arial", 75);
     _text->setTextColor(Color4B::BLACK);
+    auto pos = textField->getPosition();
+    auto wpos = bg->convertToWorldSpace(pos);
+    _text->setPosition(wpos);
     _text->setTextAreaSize(Size(2000, 0));
-    _text->ignoreContentAdaptWithSize(false);
+    _text->ignoreContentAdaptWithSize(true);
     _text->setEnabled(false);
     _text->setTouchEnabled(false);
     _text->setFocusEnabled(false);
 
-
-    listviewScroll->addChild(_text);
-    listviewScroll->requestDoLayout();
+    addChild(_text);
 
     bg->removeChild(textField);
     videoPlayStart();
@@ -478,16 +464,6 @@ void LevelHelpScene::gotoGame(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
             if (_currentVideo + 1 == _videos.size())
             {
                 _text->setString(LangUtil::getInstance()->translateString(_helpText));
-                /* 
-                 * To resize the text widget according to the text height
-                 * an additional label is used with the same width, font 
-                 * and font size as the text widget.
-                */
-                auto labelText = Label::createWithSystemFont(_helpText, "arial", 110);
-                labelText->setDimensions(2000, 0);
-                Size contentSizeLabel = labelText->getContentSize();
-                _text->setContentSize(contentSizeLabel);
-                listviewScroll->requestDoLayout();
             }
             else
             {
