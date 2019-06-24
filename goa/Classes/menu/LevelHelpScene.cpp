@@ -306,7 +306,7 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             CCLOG("Reached Level screen: %s", _videos[_currentVideo].c_str());
             if (_videos[_currentVideo].substr(fileFound + 1).size() < 9 && _videos[_currentVideo].find("pos.webm") == std::string::npos)
             {
-                videoText = "वर्णमाला";
+                videoText = "Alphabet\n\nवर्णमाला";
             }
             else
             {
@@ -334,7 +334,7 @@ void LevelHelpScene::onEnterTransitionDidFinish()
     listviewScroll->setBounceEnabled(true);
     listviewScroll->setPosition(textField->getPosition());
     
-    _text = Text::create(videoText, "arial", 110);
+    _text = Text::create(videoText, "arial", 75);
     _text->setTextColor(Color4B::BLACK);
     _text->setTextAreaSize(Size(2000, 0));
     _text->ignoreContentAdaptWithSize(false);
