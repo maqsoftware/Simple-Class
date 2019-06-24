@@ -683,7 +683,7 @@ public:
 	}
 
 	/** Output current computed vertex data to the vertex buffers for all cloths in the solver. */
-	virtual void copySoftBodyToVertexBuffer( const btSoftBody * const softBody, btVertexBufferDescriptor *vertexBuffer );
+	virtual void copySoftBodyToVertexBuffer( const btSoftBody * const softBody, btVertexBufferDescriptor *vertexBuffer ) override;
 };
 
 #endif // #ifndef BT_ACCELERATED_SOFT_BODY_DX11_SOLVER_H

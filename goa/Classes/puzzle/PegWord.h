@@ -51,7 +51,7 @@ class PegGrapheme : public Grapheme {
 public:
     static PegGrapheme* create(std::string graphemeString);
     void onEnterTransitionDidFinish() override;
-    void changeBackground();
+    void changeBackground() override;
     cocos2d::Vec2 getRandomLocation();
     cocos2d::Vec2 getUnoccupiedRandomLocation();
 

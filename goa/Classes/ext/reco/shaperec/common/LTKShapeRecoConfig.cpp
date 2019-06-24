@@ -239,8 +239,10 @@ int LTKShapeRecoConfig::readConfigInfo(const string& configFile)
 
 	LOG( LTKLogger::LTK_LOGLEVEL_DEBUG) <<  "Exiting LTKShapeRecoConfig::readConfig"  << endl;
 
-	delete mainProperties;
-	delete shapesetProperties;
+	if(m_numShapes > 0){
+		delete mainProperties;
+		delete shapesetProperties;
+	}
 	delete profileProperties;
 	return SUCCESS;
 	

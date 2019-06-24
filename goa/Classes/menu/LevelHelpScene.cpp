@@ -95,7 +95,6 @@ bool LevelHelpScene::initWithGame(std::string gameName)
         if (d.HasMember(gameName.c_str()))
         {
             const rapidjson::Value &game = d[gameName.c_str()];
-            std::string lvl = "";
             assert(game.IsArray());
             for (rapidjson::SizeType i = 0; i < game.Size(); i++)
             {
@@ -103,7 +102,6 @@ bool LevelHelpScene::initWithGame(std::string gameName)
                 int videoLevel = 0;
                 int videoLevelIndex = 0;
                 std::string video;
-                std::vector<std::string> conceptVideos;
                 auto levelStr = LangUtil::getInstance()->getLang() + "_levels";
                 if (helpMap.HasMember(levelStr.c_str()))
                 {
@@ -308,7 +306,7 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             CCLOG("Reached Level screen: %s", _videos[_currentVideo].c_str());
             if (_videos[_currentVideo].substr(fileFound + 1).size() < 9 && _videos[_currentVideo].find("pos.webm") == std::string::npos)
             {
-                videoText = "ß‡æü×æÜæ";
+                videoText = "वर्णमाला";
             }
             else
             {
@@ -320,8 +318,8 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             videoText = "";
         }
     }
-
-    _text = Text::create(videoText, "fonts/Chanakya.ttf", 110);
+    
+    _text = Text::create(videoText, "arial", 60);
     _text->setTextColor(Color4B::BLACK);
     auto pos = textField->getPosition();
     auto wpos = bg->convertToWorldSpace(pos);
@@ -331,7 +329,9 @@ void LevelHelpScene::onEnterTransitionDidFinish()
     _text->setEnabled(false);
     _text->setTouchEnabled(false);
     _text->setFocusEnabled(false);
+
     addChild(_text);
+
     bg->removeChild(textField);
     videoPlayStart();
 }

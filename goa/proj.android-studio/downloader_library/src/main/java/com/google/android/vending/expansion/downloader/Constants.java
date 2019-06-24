@@ -23,8 +23,10 @@ import java.io.File;
  * Contains the internal constants that are used in the download manager.
  * As a general rule, modifying these constants should be done with care.
  */
-public class Constants {    
-    /** Tag used for debugging/logging */
+public class Constants {
+    /**
+     * Tag used for debugging/logging
+     */
     public static final String TAG = "LVLDL";
 
     /**
@@ -32,17 +34,25 @@ public class Constants {
      */
     public static final String EXP_PATH = File.separator + "Android"
             + File.separator + "obb" + File.separator;
-    
-    /** The intent that gets sent when the service must wake up for a retry */
+
+    /**
+     * The intent that gets sent when the service must wake up for a retry
+     */
     public static final String ACTION_RETRY = "android.intent.action.DOWNLOAD_WAKEUP";
 
-    /** the intent that gets sent when clicking a successful download */
+    /**
+     * the intent that gets sent when clicking a successful download
+     */
     public static final String ACTION_OPEN = "android.intent.action.DOWNLOAD_OPEN";
 
-    /** the intent that gets sent when clicking an incomplete/failed download  */
+    /**
+     * the intent that gets sent when clicking an incomplete/failed download
+     */
     public static final String ACTION_LIST = "android.intent.action.DOWNLOAD_LIST";
 
-    /** the intent that gets sent when deleting the notification of a completed download */
+    /**
+     * the intent that gets sent when deleting the notification of a completed download
+     */
     public static final String ACTION_HIDE = "android.intent.action.DOWNLOAD_HIDE";
 
     /**
@@ -51,19 +61,29 @@ public class Constants {
      */
     public static final String FILENAME_SEQUENCE_SEPARATOR = "-";
 
-    /** The default user agent used for downloads */
+    /**
+     * The default user agent used for downloads
+     */
     public static final String DEFAULT_USER_AGENT = "Android.LVLDM";
 
-    /** The buffer size used to stream the data */
+    /**
+     * The buffer size used to stream the data
+     */
     public static final int BUFFER_SIZE = 4096;
 
-    /** The minimum amount of progress that has to be done before the progress bar gets updated */
+    /**
+     * The minimum amount of progress that has to be done before the progress bar gets updated
+     */
     public static final int MIN_PROGRESS_STEP = 4096;
 
-    /** The minimum amount of time that has to elapse before the progress bar gets updated, in ms */
+    /**
+     * The minimum amount of time that has to elapse before the progress bar gets updated, in ms
+     */
     public static final long MIN_PROGRESS_TIME = 1000;
 
-    /** The maximum number of rows in the database (FIFO) */
+    /**
+     * The maximum number of rows in the database (FIFO)
+     */
     public static final int MAX_DOWNLOADS = 1000;
 
     /**
@@ -96,16 +116,22 @@ public class Constants {
      */
     public static final int RETRY_FIRST_DELAY = 30;
 
-    /** Enable separate connectivity logging */
+    /**
+     * Enable separate connectivity logging
+     */
     public static final boolean LOGX = true;
 
-    /** Enable verbose logging */
+    /**
+     * Enable verbose logging
+     */
     public static final boolean LOGV = false;
-    
-    /** Enable super-verbose logging */
+
+    /**
+     * Enable super-verbose logging
+     */
     private static final boolean LOCAL_LOGVV = false;
     public static final boolean LOGVV = LOCAL_LOGVV && LOGV;
-    
+
     /**
      * This download has successfully completed.
      * Warning: there might be other status values that indicate success
@@ -226,11 +252,11 @@ public class Constants {
     /**
      * The wake duration to check to see if a download is possible.
      */
-    public static final long WATCHDOG_WAKE_TIMER = 60*1000;    
+    public static final long WATCHDOG_WAKE_TIMER = 60 * 1000;
 
     /**
      * The wake duration to check to see if the process was killed.
      */
-    public static final long ACTIVE_THREAD_WATCHDOG = 5*1000;    
+    public static final long ACTIVE_THREAD_WATCHDOG = 5 * 1000;
 
 }

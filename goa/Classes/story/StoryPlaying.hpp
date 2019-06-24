@@ -170,7 +170,7 @@ private:
     
     void createWordBubble();
     
-    void showText(std::string nodeName);
+    void showText(std::string const& nodeName);
     
     bool translatedText(std::string text);
     

@@ -329,7 +329,6 @@ namespace cocostudio
             else if (name == "FileData")
             {
                 std::string texture;
-                std::string texturePng;
                 
                 auto attributeFileData = child->FirstAttribute();
                 

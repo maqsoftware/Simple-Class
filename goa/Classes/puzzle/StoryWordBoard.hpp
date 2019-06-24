@@ -16,7 +16,7 @@ public:
     static cocos2d::Scene* createScene();
     static cocos2d::Scene* createSceneWithWords(std::string storyId, std::vector<std::string> words, int currentIndex, std::string baseDir, int totalPoints, int currentPoints);
     static StoryWordBoard* create();
-    static StoryWordBoard* createWithWords(std::string storyId, std::vector<std::string> words, int currentIndex, std::string baseDir,int totalPoints, int currentPoints);
+    static StoryWordBoard* createWithWords(std::string const& storyId, std::vector<std::string> const& words, int currentIndex, std::string const& baseDir,int totalPoints, int currentPoints);
     void checkAnswer() override;    
     void onEnterTransitionDidFinish() override;
     

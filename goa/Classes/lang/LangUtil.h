@@ -41,8 +41,8 @@ public:
     virtual bool isGraphemeStart(uint32_t prevCodePoint, uint32_t currentCodePoint) = 0;
     std::string translateString(std::string input);
     void changeLanguage(SupportedLanguages lang);
-    std::string translateParameterizedString(std::string input, std::string param);
-    std::string translateTwoParameterizedString(std::string parameterizedString, std::string substituteString1, std::string substituteString2);
+    std::string translateParameterizedString(std::string const& input, std::string const& param);
+    std::string translateTwoParameterizedString(std::string const& parameterizedString, std::string const& substituteString1, std::string const& substituteString2);
     
     virtual std::string getPronounciationFileNameForWord(std::string word) = 0;
     virtual bool isTextToSpeechSupported() = 0;

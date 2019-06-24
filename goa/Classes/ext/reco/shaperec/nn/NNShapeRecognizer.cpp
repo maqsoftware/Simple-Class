@@ -255,7 +255,7 @@ m_libHandlerFE(NULL)
 	    }
 
 	}
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		
 		deletePreprocessor();
@@ -300,7 +300,7 @@ int NNShapeRecognizer::readClassifierConfig()
     {
         shapeRecognizerProperties = new LTKConfigFileReader(m_nnCfgFilePath);
     }
-    catch(LTKException e)
+    catch(LTKException &e)
     {
         LOG(LTKLogger::LTK_LOGLEVEL_INFO)<< "Info: " <<
             "Config file not found, using default values of the parameters" <<
@@ -569,7 +569,7 @@ int NNShapeRecognizer::readClassifierConfig()
                 // If AdaptivekNN is set to false, simply assign the value to m_nearestNeighbors
                 // If AdaptivekNN is set, NearestNeighbors should be greater than than the
                 // minimum no.of nearest neighbors allowed (MIN_NEARESTNEIGHBORS defined as macro)
-                if(!m_adaptivekNN || (m_adaptivekNN && tempIntegerVar >= MIN_NEARESTNEIGHBORS))
+                if(!m_adaptivekNN || (tempIntegerVar >= MIN_NEARESTNEIGHBORS))
                 {
                     m_nearestNeighbors = tempIntegerVar;
                     LOG(LTKLogger::LTK_LOGLEVEL_DEBUG)<<
@@ -2747,7 +2747,7 @@ int NNShapeRecognizer::performClustering(const vector<LTKShapeSample> & shapeSam
         }
         distanceMatrix = hc.getProximityMatrix();
     }
-	catch(LTKException e)
+	catch(LTKException &e)
 	{
 		errorCode = e.getErrorCode();
                 LOG(LTKLogger::LTK_LOGLEVEL_ERR) << "Error: " << errorCode << " " <<
@@ -4486,7 +4486,6 @@ int NNShapeRecognizer::processPrototypeSetForLVQ()
 
 	int codeVecIndex = 5;
 	int trainSize = m_trainSet.size() ;
-	int train_index = 0;
 
 	//Number of iterations for LVQ
 	long length = m_prototypeSet.size() * m_LVQIterationScale;
@@ -4495,7 +4494,7 @@ int NNShapeRecognizer::processPrototypeSetForLVQ()
 	// learning parameter
 	double c_alpha=m_LVQInitialAlpha;
 
-        int errorCode = SUCCESS;
+    int errorCode = SUCCESS;
 
 	// initialize random seed
 	unsigned int randSeedVal ;
@@ -4632,7 +4631,7 @@ int NNShapeRecognizer::morphVector(const LTKShapeSample& dataShapeSample,
 	int bestFVSize = bestFeatureVector.size();
 	int dataFVSize = dataFeatureVector.size();
 
-        int errorCode = SUCCESS;
+    int errorCode = SUCCESS;
 
 	if(bestFVSize !=dataFVSize)
 	{
@@ -4722,7 +4721,7 @@ int NNShapeRecognizer::trainRecognize(LTKShapeSample& inShapeSample,
 	//The top choice distance (FLT_MAX indicates the maximum value for float)
 	float bestMinDist = FLT_MAX;
 
-        int errorCode = SUCCESS;
+    int errorCode = SUCCESS;
 
 	for(int j = 0; prototypeSetIter != prototypeSetIterEnd; ++prototypeSetIter, j++)
 	{

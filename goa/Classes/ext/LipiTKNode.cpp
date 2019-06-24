@@ -78,7 +78,7 @@ Sprite* LipiTKNode::createDrawingAreaUsingFileName(Vec2 anchorPoint, Vec2 positi
 
 
 bool LipiTKNode::initialize(int width, int height, Point position) {
-    auto path = "res";
+    std::string path = "res";
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
         //initialize lipiTK
             path = "res";
@@ -90,7 +90,11 @@ bool LipiTKNode::initialize(int width, int height, Point position) {
     
         #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
             //initialize lipiTK
-             path = "/storage/emulated/0/Android/data/com.maq.xprize.chimple.hindi/files/res/android-lipitk";
+                // fileName refers to the path of the file lipiengine.cfg in the resources folder
+                const std::string& fileName = "res/android-lipitk/projects/lipiengine.cfg";
+                path = FileUtils::getInstance()->fullPathForFilename(fileName);
+                // Remove "/projects/lipiengine.cfg" from the path
+                path = path.substr(0, path.length() - 24);
         #endif
 
         
@@ -127,13 +131,9 @@ bool LipiTKNode::initialize(int width, int height, Point position) {
     return true;
 }
 
-
-
-
-
-cocos2d::ui::Button* LipiTKNode::createButton(const std::string normalImage,
-                                                 const std::string selectedImage ,
-                                                 const std::string disableImage,
+cocos2d::ui::Button *LipiTKNode::createButton(std::string const &normalImage,
+                                              std::string const& selectedImage,
+                                              std::string const& disableImage,
                                               Vec2 position) {
     cocos2d::ui::Button* button = cocos2d::ui::Button::create(normalImage, selectedImage, disableImage, cocos2d::ui::Widget::TextureResType::LOCAL);
     button->setPosition(position);
@@ -297,9 +297,9 @@ void LipiTKNode::removeClearButton() {
 	_drawingBoard->removeChild(_clearButton, true);
 }
 
-void LipiTKNode::setClearButtonTexture(const std::string normalImage,
-	const std::string selectedImage,
-	const std::string disableImage) {
+void LipiTKNode::setClearButtonTexture( std::string const& normalImage,
+	                                    std::string const& selectedImage,
+	                                    std::string const& disableImage) {
 
 	_clearButton->loadTextures(normalImage, selectedImage, disableImage, cocos2d::ui::Widget::TextureResType::PLIST);
 

@@ -26,8 +26,8 @@ public:
     static LanguageManager* getInstance();
     std::string translateString(std::string input);
     void changeLanguage(SupportedLanguages lang);
-    std::string translateParameterizedString(std::string input, std::string param);
-    std::string translateTwoParameterizedString(std::string parameterizedString, std::string substituteString1, std::string substituteString2);
+    std::string translateParameterizedString(std::string const& input, std::string const& param);
+    std::string translateTwoParameterizedString(std::string const& parameterizedString, std::string const& substituteString1, std::string const& substituteString2);
 };
 
 

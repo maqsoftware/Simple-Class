@@ -278,7 +278,7 @@ int LTKShapeRecoUtil::isProjectDynamic(const string& configFilePath,
 
 
     }
-    catch(LTKException e)
+    catch(LTKException &e)
     {	
         delete projectCfgAttrs;	
         throw e;

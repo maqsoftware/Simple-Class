@@ -16,19 +16,7 @@
 
 package com.google.android.vending.expansion.downloader.impl;
 
-import com.google.android.vending.expansion.downloader.Constants;
-import com.google.android.vending.expansion.downloader.DownloadProgressInfo;
-import com.google.android.vending.expansion.downloader.DownloaderServiceMarshaller;
-import com.google.android.vending.expansion.downloader.Helpers;
-import com.google.android.vending.expansion.downloader.IDownloaderClient;
-import com.google.android.vending.expansion.downloader.IDownloaderService;
-import com.google.android.vending.expansion.downloader.IStub;
-import com.google.android.vending.licensing.AESObfuscator;
-import com.google.android.vending.licensing.APKExpansionPolicy;
-import com.google.android.vending.licensing.LicenseChecker;
-import com.google.android.vending.licensing.LicenseCheckerCallback;
-import com.google.android.vending.licensing.Policy;
-
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -49,6 +37,19 @@ import android.os.SystemClock;
 import android.provider.Settings.Secure;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import com.google.android.vending.expansion.downloader.Constants;
+import com.google.android.vending.expansion.downloader.DownloadProgressInfo;
+import com.google.android.vending.expansion.downloader.DownloaderServiceMarshaller;
+import com.google.android.vending.expansion.downloader.Helpers;
+import com.google.android.vending.expansion.downloader.IDownloaderClient;
+import com.google.android.vending.expansion.downloader.IDownloaderService;
+import com.google.android.vending.expansion.downloader.IStub;
+import com.google.android.vending.licensing.AESObfuscator;
+import com.google.android.vending.licensing.APKExpansionPolicy;
+import com.google.android.vending.licensing.LicenseChecker;
+import com.google.android.vending.licensing.LicenseCheckerCallback;
+import com.google.android.vending.licensing.Policy;
 
 import java.io.File;
 
@@ -229,7 +230,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
      * This download has successfully completed. Warning: there might be other
      * status values that indicate success in the future. Use isSucccess() to
      * capture the entire category.
-     * 
+     *
      * @hide
      */
     public static final int STATUS_SUCCESS = 200;
@@ -256,7 +257,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
 
     /**
      * This download was canceled
-     * 
+     *
      * @hide
      */
     public static final int STATUS_CANCELED = 490;
@@ -273,7 +274,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
      * Typically, that's because the filesystem is missing or full. Use the more
      * specific {@link #STATUS_INSUFFICIENT_SPACE_ERROR} and
      * {@link #STATUS_DEVICE_NOT_FOUND_ERROR} when appropriate.
-     * 
+     *
      * @hide
      */
     public static final int STATUS_FILE_ERROR = 492;
@@ -281,7 +282,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * This download couldn't be completed because of an HTTP redirect response
      * that the download manager couldn't handle.
-     * 
+     *
      * @hide
      */
     public static final int STATUS_UNHANDLED_REDIRECT = 493;
@@ -289,7 +290,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * This download couldn't be completed because of an unspecified unhandled
      * HTTP code.
-     * 
+     *
      * @hide
      */
     public static final int STATUS_UNHANDLED_HTTP_CODE = 494;
@@ -297,7 +298,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * This download couldn't be completed because of an error receiving or
      * processing data at the HTTP level.
-     * 
+     *
      * @hide
      */
     public static final int STATUS_HTTP_DATA_ERROR = 495;
@@ -305,7 +306,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * This download couldn't be completed because of an HttpException while
      * setting up the request.
-     * 
+     *
      * @hide
      */
     public static final int STATUS_HTTP_EXCEPTION = 496;
@@ -313,7 +314,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * This download couldn't be completed because there were too many
      * redirects.
-     * 
+     *
      * @hide
      */
     public static final int STATUS_TOO_MANY_REDIRECTS = 497;
@@ -321,7 +322,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * This download couldn't be completed due to insufficient storage space.
      * Typically, this is because the SD card is full.
-     * 
+     *
      * @hide
      */
     public static final int STATUS_INSUFFICIENT_SPACE_ERROR = 498;
@@ -329,21 +330,21 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * This download couldn't be completed because no external storage device
      * was found. Typically, this is because the SD card is not mounted.
-     * 
+     *
      * @hide
      */
     public static final int STATUS_DEVICE_NOT_FOUND_ERROR = 499;
 
     /**
      * This download is allowed to run.
-     * 
+     *
      * @hide
      */
     public static final int CONTROL_RUN = 0;
 
     /**
      * This download must pause at the first opportunity.
-     * 
+     *
      * @hide
      */
     public static final int CONTROL_PAUSED = 1;
@@ -351,7 +352,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * This download is visible but only shows in the notifications while it's
      * in progress.
-     * 
+     *
      * @hide
      */
     public static final int VISIBILITY_VISIBLE = 0;
@@ -359,14 +360,14 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * This download is visible and shows in the notifications while in progress
      * and after completion.
-     * 
+     *
      * @hide
      */
     public static final int VISIBILITY_VISIBLE_NOTIFY_COMPLETED = 1;
 
     /**
      * This download doesn't show in the UI or in the notifications.
-     * 
+     *
      * @hide
      */
     public static final int VISIBILITY_HIDDEN = 2;
@@ -375,7 +376,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
      * Bit flag for {@link #setAllowedNetworkTypes} corresponding to
      * {@link ConnectivityManager#TYPE_MOBILE}.
      */
-    public static final int NETWORK_MOBILE = 1 << 0;
+    public static final int NETWORK_MOBILE = 1;
 
     /**
      * Bit flag for {@link #setAllowedNetworkTypes} corresponding to
@@ -456,7 +457,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
     /**
      * Updates the network type based upon the type and subtype returned from
      * the connectivity manager. Subtype is only used for cellular signals.
-     * 
+     *
      * @param type
      * @param subType
      */
@@ -496,10 +497,10 @@ public abstract class DownloaderService extends CustomIntentService implements I
                         break;
                     case TelephonyManager.NETWORK_TYPE_LTE: // 4G
                     case TelephonyManager.NETWORK_TYPE_EHRPD: // 3G ++ interop
-                                                              // with 4G
+                        // with 4G
                     case TelephonyManager.NETWORK_TYPE_HSPAP: // 3G ++ but
-                                                              // marketed as
-                                                              // 4G
+                        // marketed as
+                        // 4G
                         mIsAtLeast3G = true;
                         mIsAtLeast4G = true;
                         break;
@@ -572,14 +573,13 @@ public abstract class DownloaderService extends CustomIntentService implements I
             mConnectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         }
         if (null == mWifiManager) {
-            mWifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+            mWifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
         }
         if (mConnectivityManager == null) {
             Log.w(Constants.TAG,
                     "couldn't get connectivity manager to poll network state");
         } else {
-            NetworkInfo activeInfo = mConnectivityManager
-                    .getActiveNetworkInfo();
+            NetworkInfo activeInfo = mConnectivityManager.getActiveNetworkInfo();
             updateNetworkState(activeInfo);
         }
     }
@@ -594,7 +594,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
 
     /**
      * Returns true if the LVL check is required
-     * 
+     *
      * @param db a downloads DB synchronized with the latest state
      * @param pi the package info for the project
      * @return returns true if the filenames need to be returned
@@ -610,7 +610,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
 
     /**
      * Careful! Only use this internally.
-     * 
+     *
      * @return whether we think the service is running
      */
     private static synchronized boolean isServiceRunning() {
@@ -622,7 +622,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
     }
 
     public static int startDownloadServiceIfRequired(Context context,
-            Intent intent, Class<?> serviceClass) throws NameNotFoundException {
+                                                     Intent intent, Class<?> serviceClass) throws NameNotFoundException {
         final PendingIntent pendingIntent = (PendingIntent) intent
                 .getParcelableExtra(EXTRA_PENDING_INTENT);
         return startDownloadServiceIfRequired(context, pendingIntent,
@@ -630,9 +630,8 @@ public abstract class DownloaderService extends CustomIntentService implements I
     }
 
     public static int startDownloadServiceIfRequired(Context context,
-            PendingIntent pendingIntent, Class<?> serviceClass)
-            throws NameNotFoundException
-    {
+                                                     PendingIntent pendingIntent, Class<?> serviceClass)
+            throws NameNotFoundException {
         String packageName = context.getPackageName();
         String className = serviceClass.getName();
 
@@ -652,15 +651,15 @@ public abstract class DownloaderService extends CustomIntentService implements I
      * to wait to hear about any updated APK expansion files. Note that this
      * does mean that the application MUST be run for the first time with a
      * network connection, even if Market delivers all of the files.
-     * 
+     *
      * @param context
      * @param thisIntent
      * @return true if the app should wait for more guidance from the
-     *         downloader, false if the app can continue
+     * downloader, false if the app can continue
      * @throws NameNotFoundException
      */
     public static int startDownloadServiceIfRequired(Context context,
-            PendingIntent pendingIntent, String classPackage, String className)
+                                                     PendingIntent pendingIntent, String classPackage, String className)
             throws NameNotFoundException {
         // first: do we need to do an LVL update?
         // we begin by getting our APK version from the package manager
@@ -750,7 +749,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
         public void run() {
             setServiceRunning(true);
             mNotification.onDownloadStateChanged(IDownloaderClient.STATE_FETCHING_URL);
-            String deviceId = Secure.getString(mContext.getContentResolver(),
+            @SuppressLint("HardwareIds") String deviceId = Secure.getString(mContext.getContentResolver(),
                     Secure.ANDROID_ID);
 
             final APKExpansionPolicy aep = new APKExpansionPolicy(mContext,
@@ -861,8 +860,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
 
                 @Override
                 public void dontAllow(int reason) {
-                    try
-                    {
+                    try {
                         switch (reason) {
                             case Policy.NOT_LICENSED:
                                 mNotification
@@ -893,11 +891,11 @@ public abstract class DownloaderService extends CustomIntentService implements I
 
         }
 
-    };
+    }
 
     /**
      * Updates the LVL information from the server.
-     * 
+     *
      * @param context
      */
     public void updateLVL(final Context context) {
@@ -912,14 +910,14 @@ public abstract class DownloaderService extends CustomIntentService implements I
      * nothing as the file is guaranteed to be the same. If the file does not
      * have the same name, we download it if it hasn't already been delivered by
      * Market.
-     * 
-     * @param index the index of the file from market (0 = main, 1 = patch)
+     *
+     * @param index    the index of the file from market (0 = main, 1 = patch)
      * @param filename the name of the new file
      * @param fileSize the size of the new file
      * @return
      */
     public boolean handleFileUpdated(DownloadsDB db, int index,
-            String filename, long fileSize) {
+                                     String filename, long fileSize) {
         DownloadInfo di = db.getDownloadInfoByFileName(filename);
         if (null != di) {
             String oldFile = di.mFileName;
@@ -960,7 +958,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
         alarms.set(
                 AlarmManager.RTC_WAKEUP,
                 System.currentTimeMillis() + wakeUp, mAlarmIntent
-                );
+        );
     }
 
     private void cancelAlarms() {
@@ -998,7 +996,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
                 context.startService(fileIntent);
             }
         }
-    };
+    }
 
     /**
      * This is the main thread for the Downloader. This thread is responsible
@@ -1014,8 +1012,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
             final PendingIntent pendingIntent = (PendingIntent) intent
                     .getParcelableExtra(EXTRA_PENDING_INTENT);
 
-            if (null != pendingIntent)
-            {
+            if (null != pendingIntent) {
                 mNotification.setClientIntent(pendingIntent);
                 mPendingIntent = pendingIntent;
             } else if (null != mPendingIntent) {
@@ -1249,7 +1246,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
 
     /**
      * @return a non-localized string appropriate for logging corresponding to
-     *         one of the NETWORK_* constants.
+     * one of the NETWORK_* constants.
      */
     public String getLogMessageForNetworkError(int networkError) {
         switch (networkError) {
@@ -1312,7 +1309,7 @@ public abstract class DownloaderService extends CustomIntentService implements I
                         totalBytesSoFar,
                         timeRemaining,
                         mAverageDownloadSpeed)
-                );
+        );
 
     }
 

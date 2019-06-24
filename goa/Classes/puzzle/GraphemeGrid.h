@@ -22,12 +22,12 @@ public:
     std::function<bool(cocos2d::Touch*, cocos2d::Event*)> touchBeganCallback;
     std::function<void(cocos2d::Touch*, cocos2d::Event*)> touchMovedCallback;
     std::function<void(cocos2d::Touch*, cocos2d::Event*)> touchEndedCallback;
-    cocos2d::Rect getGraphemeRect(std::string alphabet);
+    cocos2d::Rect getGraphemeRect(std::string const& alphabet);
 
 CC_CONSTRUCTOR_ACCESS:
     GraphemeGrid();
     virtual ~GraphemeGrid();
-    bool init(GLfloat width, GLfloat height, int numRows, int numCols, std::string spriteName, std::vector<std::vector<std::string>> graphemes, std::string graphemeUnselectedBackground, std::string graphemeSelectedBackground);
+    bool init(GLfloat width, GLfloat height, int numRows, int numCols, std::string const& spriteName, std::vector<std::vector<std::string>> graphemes, std::string const& graphemeUnselectedBackground, std::string const& graphemeSelectedBackground);
     bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
     void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
     void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);

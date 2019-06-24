@@ -52,7 +52,6 @@ bool Pillar::init()
 		return false;
 	}
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	float toplabelX = visibleSize.width / 2 - 30;
 	 _differntSceneMapping = {
 		{
 			{ "candy",  
@@ -135,8 +134,6 @@ void Pillar::startGame(cocos2d::EventCustom *eventCustom)
 	CCLOG("onEnterTransitionDidFinish begin");
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Node::onEnterTransitionDidFinish();
-	int level = menu->getCurrentLevel();
-	std::string themeName;
 	std::map<int, std::string> sceneMapping = {
 		{ 1,	"candy" },
 		{ 2,	"iceLand" },

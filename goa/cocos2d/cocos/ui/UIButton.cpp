@@ -233,7 +233,7 @@ void Button::ignoreContentAdaptWithSize(bool ignore)
         return;
     }
 
-    if (!_scale9Enabled || (_scale9Enabled && !ignore))
+    if (!_scale9Enabled || (!ignore))
     {
         Widget::ignoreContentAdaptWithSize(ignore);
         _prevIgnoreSize = ignore;

@@ -1,5 +1,6 @@
 package chimple;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -44,6 +45,7 @@ import java.util.zip.CRC32;
 
 import services.ExpansionDownloaderService;
 
+@SuppressLint("Registered")
 public class DownloadExpansionFile extends Activity implements IDownloaderClient {
     /**
      * Here is where you place the data that the validator will use to determine
@@ -56,13 +58,13 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
     public static final XAPKFile[] xAPKs = {
             new XAPKFile(
                     true, // true signifies a main file
-                    7, // the version of the main obb that is uploaded
-                    1721211311L  // the length of the file in bytes
+                    12, // the version of the main obb that is uploaded
+                    1450833724L  // the length of the file in bytes
             ),
             new XAPKFile(
                     false, // false signifies a patch file
                     0, // the version of the patch that is uploaded
-                    842558L  // the length of the file in bytes
+                    0L  // the length of the file in bytes
             )
     };
     /* expansion service*/
@@ -97,8 +99,8 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
     public static boolean deleteDir(File dir) {
         if (dir.isDirectory()) {
             String[] children = dir.list();
-            for (int i = 0; i < children.length; i++) {
-                boolean success = deleteDir(new File(dir, children[i]));
+            for (String child : children) {
+                boolean success = deleteDir(new File(dir, child));
                 if (!success) {
                     return false;
                 }
@@ -163,7 +165,6 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
                     // The DownloaderService has started downloading the files,
                     // show progress
                     initializeDownloadUI();
-                    return;
 
                 } // otherwise, download not needed so we fall through to
                 // starting the movie
@@ -384,7 +385,7 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
      * @return true if XAPKZipFile is successful
      */
     void validateXAPKZipFiles() {
-        AsyncTask<Object, DownloadProgressInfo, Boolean> validationTask = new AsyncTask<Object, DownloadProgressInfo, Boolean>() {
+        @SuppressLint("StaticFieldLeak") AsyncTask<Object, DownloadProgressInfo, Boolean> validationTask = new AsyncTask<Object, DownloadProgressInfo, Boolean>() {
 
             @Override
             protected Boolean doInBackground(Object... params) {
@@ -537,6 +538,7 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
         mPauseButton.setText(stringResourceID);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onDownloadProgress(DownloadProgressInfo progress) {
         mAverageSpeed.setText(getString(R.string.kilobytes_per_second,
@@ -544,7 +546,6 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
         mTimeRemaining.setText(getString(R.string.time_remaining,
                 Helpers.getTimeRemaining(progress.mTimeRemaining)));
 
-        progress.mOverallTotal = progress.mOverallTotal;
         mPB.setMax((int) (progress.mOverallTotal >> 8));
         mPB.setProgress((int) (progress.mOverallProgress >> 8));
         mProgressPercent.setText(progress.mOverallProgress * 100 / progress.mOverallTotal + "%");
@@ -557,8 +558,7 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
         try {
             AssetManager assetManager = getAssets();
             InputStream istr = assetManager.open(strName);
-            Bitmap bitmap = BitmapFactory.decodeStream(istr);
-            return bitmap;
+            return BitmapFactory.decodeStream(istr);
         } catch (Exception e) {
             return null;
         }

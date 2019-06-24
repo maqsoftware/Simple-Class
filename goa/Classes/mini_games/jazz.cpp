@@ -39,8 +39,6 @@ Node* jazz::loadNode() {
 
 void jazz::createChoice() {
 
-	float wid = Director::getInstance()->getVisibleSize().width;
-	float hei = Director::getInstance()->getVisibleSize().height;
 
 	_choice = Node::create();
 	//	_choice->setPosition(Vec2(500, 900));

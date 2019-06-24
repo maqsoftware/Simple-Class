@@ -42,7 +42,7 @@ public:
 	void onEnterTransitionDidFinish();
 	void update(float dt);
 	void addTouchEvents(Sprite* touchSprite);
-	string StringandIntConcat(string data, int number);
+	string StringandIntConcat(string const& data, int number);
 	void shake(Node *sprite);
 	void namePopup(float dt);
 	string getConvertInUpperCase(string data);

@@ -40,7 +40,7 @@ CC_CONSTRUCTOR_ACCESS:
     WordScene();
     virtual ~WordScene();
     virtual bool init() override;
-    bool initWithWord(std::string word);
+    bool initWithWord(std::string const& word);
     
     
 protected:

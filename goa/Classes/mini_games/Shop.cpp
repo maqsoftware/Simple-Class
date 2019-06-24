@@ -20,7 +20,6 @@ void Shop::onEnterTransitionDidFinish()
 	CCSpriteFrameCache* framecache1 = CCSpriteFrameCache::sharedSpriteFrameCache();
 	framecache1->addSpriteFramesWithFile("shoping/shoping.plist");
 
-	int gameCurrentLevel = _menuContext->getCurrentLevel();
 
 	_vegePrice = {
 
@@ -73,11 +72,10 @@ void Shop::onEnterTransitionDidFinish()
 	 textOnMachine();
 
 	Vector <Node*> children = shopingBackground->getChildren();
-	int size = children.size();
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monsterItem = *item;	
 		std::string str = monsterItem->getName().c_str();
-		if (str.find("coin") == 0)
+		if (str.compare(0, 4, "coin") == 0)
 		{
 			monsterItem->setZOrder(1);
 		}
@@ -119,7 +117,7 @@ void Shop::customerEnter(Node* Bg, vector<string> vegetableNodeName)
 	for (int k = 0; k < Bg->getChildren().size(); k++)
 	{
 		std::string str = Bg->getChildren().at(k)->getName().c_str();
-		if (str.find("coin") == 0)
+		if (str.compare(0, 4, "coin") == 0)
 		{
 			for (int v = 0; v < Bg->getChildren().at(k)->getChildren().size(); v++)
 			{
@@ -277,7 +275,7 @@ void Shop::update(float dt)
 			for (int k = 0; k < myBg->getChildren().size(); k++)
 			{
 				std::string coinParent = myBg->getChildren().at(k)->getName().c_str();
-				if (coinParent.find("coin") == 0)
+				if (coinParent.compare(0, 4, "coin") == 0)
 				{
 					for (int v = 0; v < myBg->getChildren().at(k)->getChildren().size(); v++)
 					{

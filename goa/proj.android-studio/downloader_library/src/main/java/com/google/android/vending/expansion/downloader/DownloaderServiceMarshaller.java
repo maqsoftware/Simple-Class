@@ -16,8 +16,7 @@
 
 package com.google.android.vending.expansion.downloader;
 
-import com.google.android.vending.expansion.downloader.impl.DownloaderService;
-
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,12 +24,13 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 
+import com.google.android.vending.expansion.downloader.impl.DownloaderService;
 
 
 /**
  * This class is used by the client activity to proxy requests to the Downloader
  * Service.
- *
+ * <p>
  * Most importantly, you must call {@link #CreateProxy} during the {@link
  * IDownloaderClient#onServiceConnected} callback in your activity in order to instantiate
  * an {@link IDownloaderService} object that you can then use to issue commands to the {@link
@@ -108,6 +108,7 @@ public class DownloaderServiceMarshaller {
 
     private static class Stub implements IStub {
         private IDownloaderService mItf = null;
+        @SuppressLint("HandlerLeak")
         final Messenger mMessenger = new Messenger(new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -157,7 +158,7 @@ public class DownloaderServiceMarshaller {
 
     /**
      * Returns a proxy that will marshall calls to IDownloaderService methods
-     * 
+     *
      * @param ctx
      * @return
      */
@@ -169,7 +170,7 @@ public class DownloaderServiceMarshaller {
      * Returns a stub object that, when connected, will listen for marshalled
      * IDownloaderService methods and translate them into calls to the supplied
      * interface.
-     * 
+     *
      * @param itf An implementation of IDownloaderService that will be called
      *            when remote method calls are unmarshalled.
      * @return

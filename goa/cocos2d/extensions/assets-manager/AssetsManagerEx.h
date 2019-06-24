@@ -129,9 +129,9 @@ protected:
     void setStoragePath(const std::string& storagePath);
     
     void adjustPath(std::string &path);
-    
-    void dispatchUpdateEvent(EventAssetsManagerEx::EventCode code, const std::string &message = "", const std::string &assetId = "", int curle_code = 0, int curlm_code = 0);
-    
+
+    void dispatchUpdateEvent(EventAssetsManagerEx::EventCode code, const std::string &assetId = "", const std::string &message = "", int curle_code = 0, int curlm_code = 0);
+
     void downloadVersion();
     void parseVersion();
     void downloadManifest();

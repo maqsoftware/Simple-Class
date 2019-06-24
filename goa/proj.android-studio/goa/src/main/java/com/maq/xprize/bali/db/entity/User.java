@@ -16,6 +16,7 @@
 
 package com.maq.xprize.bali.db.entity;
 
+import android.annotation.SuppressLint;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.Ignore;
@@ -52,6 +53,7 @@ public class User {
         this.uuid = uuid;
     }
 
+    @SuppressLint("HardwareIds")
     @Ignore
     public User(String[] columns) {
         if (columns.length < 6) {

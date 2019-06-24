@@ -327,8 +327,9 @@ int LTKAdapt::readAdaptConfig()
                 if(tempIntegerVar > 0)
                 {
                     m_minNumberSamplesPerClass = tempIntegerVar;
-                }
-                else
+		    delete adaptConfigReader;
+		}
+		else
                 {
                     LOG(LTKLogger::LTK_LOGLEVEL_ERR)<< "Error: " << ECONFIG_FILE_RANGE
                         <<ADAPT_MIN_NUMBER_SAMPLES_PER_CLASS << " is out of permitted range" 
@@ -355,16 +356,15 @@ int LTKAdapt::readAdaptConfig()
             m_minNumberSamplesPerClass = ADAPT_DEF_MIN_NUMBER_SAMPLES_PER_CLASS;
             LOG(LTKLogger::LTK_LOGLEVEL_INFO) << "Info: " <<
                 "Using default value of MinimumNumerOfSamplesPerClass: "<<
-                m_minNumberSamplesPerClass <<
-                " LTKAdapt::readAdaptConfig()"<<endl;
-        }
+                m_minNumberSamplesPerClass <<" LTKAdapt::readAdaptConfig()"<<endl;
+		
+	    delete adaptConfigReader;
+	}
 
-	if(adaptConfigReader)
-			delete adaptConfigReader;
 
 	LOG(LTKLogger::LTK_LOGLEVEL_DEBUG)
-							<<"Exit Adapt::readAdaptConfig"
-							<<endl;
+		<< "Exit Adapt::readAdaptConfig"
+		<< endl;
 
 	return SUCCESS;
 }

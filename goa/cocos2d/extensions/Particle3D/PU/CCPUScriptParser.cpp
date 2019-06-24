@@ -92,7 +92,7 @@ void PUScriptParser::parse(PUConcreteNodeList& nodes,const PUScriptTokenList& to
                         ++i;
                         if(i == end || ((*i)->type != TID_WORD && (*i)->type != TID_QUOTE))
                         {
-                            printf("Except,expected import target at line :%d,ScriptParser::parse",node->line);
+                            printf("Except,expected import target at line :%u,ScriptParser::parse",node->line);
                         }
                         PUConcreteNode* temp = new (std::nothrow) PUConcreteNode;
                         temp->parent = node;
@@ -110,7 +110,7 @@ void PUScriptParser::parse(PUConcreteNodeList& nodes,const PUScriptTokenList& to
                         ++i;
                         if(i == end || ((*i)->type != TID_WORD && (*i)->type != TID_QUOTE))
                         {
-                            printf("expected import source at line :%d,ScriptParser::parse",node->line);
+                            printf("expected import source at line :%u,ScriptParser::parse",node->line);
                         }
                         temp = new (std::nothrow) PUConcreteNode;
                         temp->parent = node;
@@ -166,7 +166,7 @@ void PUScriptParser::parse(PUConcreteNodeList& nodes,const PUScriptTokenList& to
                         ++i;
                         if(i == end || ((*i)->type != TID_WORD && (*i)->type != TID_QUOTE))
                         {
-                            printf("expected variable value at line %d ScriptParser::parse\n",node->line);
+                            printf("expected variable value at line %u ScriptParser::parse\n",node->line);
                         }
                         temp = new (std::nothrow) PUConcreteNode;
                         temp->parent = node;
@@ -289,7 +289,7 @@ void PUScriptParser::parse(PUConcreteNodeList& nodes,const PUScriptTokenList& to
                     j = skipNewlines(j, end);
                     if(j == end || ((*j)->type != TID_WORD && (*j)->type != TID_QUOTE)) {
                     
-                        printf("expected object identifier at line %d ScriptParser::parse\n",node->line);
+                        printf("expected object identifier at line %u ScriptParser::parse\n",node->line);
                     }
                     
                     while(j != end && ((*j)->type == TID_WORD || (*j)->type == TID_QUOTE))

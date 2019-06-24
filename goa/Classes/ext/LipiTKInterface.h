@@ -22,9 +22,9 @@
 class LipiTKInterface {
 public:
     
-    static LipiTKInterface* getInstance(std::string projectPath);
+    static LipiTKInterface* getInstance(std::string const& projectPath);
     
-    LipiTKInterface(std::string projectPath);
+    LipiTKInterface(std::string const& projectPath);
     ~LipiTKInterface();
     
     

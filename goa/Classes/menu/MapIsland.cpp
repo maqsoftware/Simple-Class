@@ -57,7 +57,7 @@ cocos2d::Node* MapIsland::getNode() {
     return this->node;
 }
 
-void MapIsland::setAttributes(std::unordered_map<std::string, std::string> attributes) {
+void MapIsland::setAttributes( std::unordered_map<std::string, std::string> const& attributes) {
     this->attributes = attributes;
     //process it
     

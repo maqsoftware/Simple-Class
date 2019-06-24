@@ -23,7 +23,7 @@ subject to the following restrictions:
 class btSolveProjectedGaussSeidel : public btMLCPSolverInterface
 {
 public:
-	virtual bool solveMLCP(const btMatrixXu & A, const btVectorXu & b, btVectorXu& x, const btVectorXu & lo,const btVectorXu & hi,const btAlignedObjectArray<int>& limitDependency, int numIterations, bool useSparsity = true)
+	virtual bool solveMLCP(const btMatrixXu & A, const btVectorXu & b, btVectorXu& x, const btVectorXu & lo,const btVectorXu & hi,const btAlignedObjectArray<int>& limitDependency, int numIterations, bool useSparsity = true) override
 	{
 		//A is a m-n matrix, m rows, n columns
 		btAssert(A.rows() == b.rows());

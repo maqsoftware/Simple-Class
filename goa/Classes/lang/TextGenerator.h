@@ -37,13 +37,13 @@ public:
     
     static TextGenerator* getInstance();
     
-    std::vector<std::vector<std::string>> generateMatrix(std::string word, int numRows, int numCols);
+    std::vector<std::vector<std::string>> generateMatrix(std::string const& word, int numRows, int numCols);
     std::string generateAWord(int level = 1, int length = 0);
-    int getNumGraphemesInString(std::string word);
+    int getNumGraphemesInString(std::string const& word);
     std::vector<std::string> getGraphemes(std::string word);
     std::string generateASentence(int level = 1);
     std::vector<std::string> getAllChars();
-    std::vector<std::string> getValidCombinations(std::string chars, int maxLength);
+    std::vector<std::string> getValidCombinations(std::string const& chars, int maxLength);
     std::map<std::string, std::string> getSynonyms(int maxNum, int level = 1);
     std::map<std::string, std::string> getAntonyms(int maxNum, int level = 1);
     std::map<std::string, std::string> getHomonyms(int maxNum, int level = 1);
@@ -68,12 +68,12 @@ public:
     std::vector<std::vector<std::string>> getSegmentsNotForPhonic(int level, int maxNum);
 protected:
     std::map<int, int> getRandomLocations(int numLoc, int totalNum);
-    std::map<std::string, std::map<std::string, std::string>> getMapOfWords(std::string type, int maxNum, int maxChoices, int level);
-    std::map<std::string, std::string> getPairs(std::string type, int maxNum, int level);
-    std::map<std::string, std::string> getPairsNotForLevel(std::string type, int maxNum, int level);
-    std::string getSingle(std::string type, int level, int length = 0);
-    std::vector<std::string> getWordList(std::string type, int level, int maxNum = 0);
-    std::vector<std::vector<std::string>> getListsOfWords(std::string type, int level, int maxNum = 0);
+    std::map<std::string, std::map<std::string, std::string>> getMapOfWords(std::string const& type, int maxNum, int maxChoices, int level);
+    std::map<std::string, std::string> getPairs(std::string const& type, int maxNum, int level);
+    std::map<std::string, std::string> getPairsNotForLevel(std::string const& type, int maxNum, int level);
+    std::string getSingle(std::string const& type, int level, int length = 0);
+    std::vector<std::string> getWordList(std::string const& type, int level, int maxNum = 0);
+    std::vector<std::vector<std::string>> getListsOfWords(std::string const& type, int level, int maxNum = 0);
 };
 
 #endif /* TextGenerator_h */

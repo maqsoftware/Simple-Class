@@ -160,7 +160,7 @@ void AlphamonFeed::startGame(cocos2d::EventCustom *eventCustom) {
 	for (auto item = children.rbegin(); item != children.rend(); ++item) {
 		Node * monster = *item;
 		std::string str = monster->getName().c_str();
-		if (str.find("skate") == 0) {
+		if (str.compare(0, 5, "skate") == 0) {
 			legReff.pushBack(monster);
 		}
 	}
@@ -234,7 +234,6 @@ void AlphamonFeed:: update(float dt) {
                 if ((monster).intersectsRect(fruit)) {
                     audio = CocosDenshion::SimpleAudioEngine::getInstance();
                     auto soundPath = (fruitReff.at(i)->getName());
-                    std::string::size_type sz;   // alias of size_t
                     int i_dec = atoi(soundPath.c_str());//std::stoi(soundPath, &sz);
                     wchar_t testing = (wchar_t)i_dec;
                     auto path = LangUtil::getInstance()->getAlphabetSoundFileName(testing);

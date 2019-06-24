@@ -16,6 +16,13 @@
 
 package com.google.android.vending.expansion.downloader.impl;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.net.Proxy;
+import android.os.PowerManager;
+import android.os.Process;
+import android.util.Log;
+
 import com.google.android.vending.expansion.downloader.Constants;
 import com.google.android.vending.expansion.downloader.Helpers;
 import com.google.android.vending.expansion.downloader.IDownloaderClient;
@@ -25,12 +32,6 @@ import org.apache.http.HttpHost;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.conn.params.ConnRouteParams;
-
-import android.content.Context;
-import android.net.Proxy;
-import android.os.PowerManager;
-import android.os.Process;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -55,7 +56,7 @@ public class DownloadThread {
     private String mUserAgent;
 
     public DownloadThread(DownloadInfo info, DownloaderService service,
-            DownloadNotification notification) {
+                          DownloadNotification notification) {
         mContext = service;
         mInfo = info;
         mService = service;
@@ -118,8 +119,8 @@ public class DownloadThread {
      */
     private class StopRequest extends Throwable {
         /**
-		 * 
-		 */
+         *
+         */
         private static final long serialVersionUID = 6338592678988347973L;
         public int mFinalStatus;
 
@@ -141,8 +142,8 @@ public class DownloadThread {
     private class RetryDownload extends Throwable {
 
         /**
-		 * 
-		 */
+         *
+         */
         private static final long serialVersionUID = 6196036036517540229L;
     }
 
@@ -150,17 +151,17 @@ public class DownloadThread {
      * Returns the preferred proxy to be used by clients. This is a wrapper
      * around {@link android.net.Proxy#getHost()}. Currently no proxy will be
      * returned for localhost or if the active network is Wi-Fi.
-     * 
+     *
      * @param context the context which will be passed to
-     *            {@link android.net.Proxy#getHost()}
-     * @param url the target URL for the request
-     * @note Calling this method requires permission
-     *       android.permission.ACCESS_NETWORK_STATE
+     *                {@link android.net.Proxy#getHost()}
+     * @param url     the target URL for the request
      * @return The preferred proxy to be used by clients, or null if there is no
-     *         proxy.
+     * proxy.
+     * @note Calling this method requires permission
+     * android.permission.ACCESS_NETWORK_STATE
      */
     public HttpHost getPreferredHttpHost(Context context,
-            String url) {
+                                         String url) {
         if (!isLocalHost(url) && !mService.isWiFi()) {
             final String proxyHost = Proxy.getHost(context);
             if (proxyHost != null) {
@@ -200,6 +201,7 @@ public class DownloadThread {
     /**
      * Executes the download in a separate thread
      */
+    @SuppressLint("InvalidWakeLockTag")
     public void run() {
         Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
 
@@ -211,7 +213,7 @@ public class DownloadThread {
         try {
             PowerManager pm = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
             wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, Constants.TAG);
-            wakeLock.acquire();
+            wakeLock.acquire(10*60*1000L);   /*10 minutes*/
 
             if (Constants.LOGV) {
                 Log.v(Constants.TAG, "initiating download for " + mInfo.mFileName);
@@ -257,7 +259,7 @@ public class DownloadThread {
             finalStatus = error.mFinalStatus;
             // fall through to finally block
         } catch (Throwable ex) { // sometimes the socket code throws unchecked
-                                 // exceptions
+            // exceptions
             Log.w(Constants.TAG, "Exception for " + mInfo.mFileName + ": " + ex);
             finalStatus = DownloaderService.STATUS_UNKNOWN_ERROR;
             // falls through to the code that reports an error
@@ -283,7 +285,7 @@ public class DownloadThread {
     private void executeDownload(State state, AndroidHttpClient client, HttpGet request)
             throws StopRequest, RetryDownload {
         InnerState innerState = new InnerState();
-        byte data[] = new byte[Constants.BUFFER_SIZE];
+        byte[] data = new byte[Constants.BUFFER_SIZE];
 
         checkPausedOrCanceled(state);
 
@@ -333,13 +335,13 @@ public class DownloadThread {
     /**
      * Transfer as much data as possible from the HTTP response to the
      * destination file.
-     * 
-     * @param data buffer to use to read data
+     *
+     * @param data         buffer to use to read data
      * @param entityStream stream for reading the HTTP response entity
      */
     private void transferData(State state, InnerState innerState, byte[] data,
-            InputStream entityStream) throws StopRequest {
-        for (;;) {
+                              InputStream entityStream) throws StopRequest {
+        for (; ; ) {
             int bytesRead = readFromResponse(state, innerState, data, entityStream);
             if (bytesRead == -1) { // success, end of stream already reached
                 handleEndOfStream(state, innerState);
@@ -445,10 +447,9 @@ public class DownloadThread {
     private void checkPausedOrCanceled(State state) throws StopRequest {
         if (mService.getControl() == DownloaderService.CONTROL_PAUSED) {
             int status = mService.getStatus();
-            switch (status) {
-                case DownloaderService.STATUS_PAUSED_BY_APP:
-                    throw new StopRequest(mService.getStatus(),
-                            "download paused");
+            if (status == DownloaderService.STATUS_PAUSED_BY_APP) {
+                throw new StopRequest(mService.getStatus(),
+                        "download paused");
             }
         }
     }
@@ -484,13 +485,13 @@ public class DownloadThread {
 
     /**
      * Write a data buffer to the destination file.
-     * 
-     * @param data buffer containing the data to write
+     *
+     * @param data      buffer containing the data to write
      * @param bytesRead how many bytes to write from the buffer
      */
     private void writeDataToDestination(State state, byte[] data, int bytesRead)
             throws StopRequest {
-        for (;;) {
+        for (; ; ) {
             try {
                 if (state.mStream == null) {
                     state.mStream = new FileOutputStream(state.mFilename, true);
@@ -548,14 +549,14 @@ public class DownloadThread {
 
     /**
      * Read some data from the HTTP response stream, handling I/O errors.
-     * 
-     * @param data buffer to use to read data
+     *
+     * @param data         buffer to use to read data
      * @param entityStream stream for reading the HTTP response entity
      * @return the number of bytes actually read or -1 if the end of the stream
-     *         has been reached
+     * has been reached
      */
     private int readFromResponse(State state, InnerState innerState, byte[] data,
-            InputStream entityStream) throws StopRequest {
+                                 InputStream entityStream) throws StopRequest {
         try {
             return entityStream.read(data);
         } catch (IOException ex) {
@@ -576,7 +577,7 @@ public class DownloadThread {
 
     /**
      * Open a stream for the HTTP response entity, handling I/O errors.
-     * 
+     *
      * @return an InputStream to read the response entity
      */
     private InputStream openResponseEntity(State state, HttpResponse response)
@@ -595,7 +596,7 @@ public class DownloadThread {
             Log.i(Constants.TAG,
                     "Net "
                             + (mService.getNetworkAvailabilityState(mDB) == DownloaderService.NETWORK_OK ? "Up"
-                                    : "Down"));
+                            : "Down"));
         }
     }
 
@@ -886,7 +887,7 @@ public class DownloadThread {
     private void setupDestinationFile(State state, InnerState innerState)
             throws StopRequest {
         if (state.mFilename != null) { // only true if we've already run a
-                                       // thread for this download
+            // thread for this download
             if (!Helpers.isFilenameValid(state.mFilename)) {
                 // this should never happen
                 throw new StopRequest(DownloaderService.STATUS_FILE_ERROR,

@@ -1,4 +1,3 @@
-
 #include <sstream>
 
 #include "ProjectConfig/ProjectConfig.h"

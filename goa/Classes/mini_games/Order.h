@@ -38,7 +38,7 @@ protected:
 	bool _cartFloating = false, _touched = true;
 	float _yy, _cartMove;
 	float _lastBoxPosition;
-	void checkUserSortList(std::vector<int> list);
+	void checkUserSortList(std::vector<int> const& list);
 	void animationWithRandomInterval();
 	cocos2d::Vector<cocos2d::Sprite *> _boxes;
 	void cartAnimation(std::string animationName, bool loop);

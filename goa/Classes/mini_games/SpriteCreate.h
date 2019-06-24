@@ -12,7 +12,7 @@ public:
 
 	std::string currentRockName, NextRockName, LayerTypeName;
 	
-	static SpriteCreate* createSprite(std::string spriteName, int postionX, int postionY, float anchorX, float anchorY, std::string currentRockName, std::string NextRockName, std::string LayerTypeName);
+	static SpriteCreate* createSprite(std::string const& spriteName, int postionX, int postionY, float anchorX, float anchorY, std::string const& currentRockName, std::string const& NextRockName, std::string const& LayerTypeName);
 
 private:
 };

@@ -48,7 +48,7 @@ I18nUtils::~I18nUtils()
 {
 }
 
-void I18nUtils::addMO(MO mo, string domain/*=DEFAULT_DOMAIN*/)
+void I18nUtils::addMO( MO const& mo, string domain/*=DEFAULT_DOMAIN*/)
 {
     domain = (!domain.empty() ? domain : DEFAULT_DOMAIN);
     _moMap[domain] = mo;

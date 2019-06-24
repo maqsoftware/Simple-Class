@@ -55,7 +55,7 @@ CC_CONSTRUCTOR_ACCESS:
 
 protected:
 	Grapheme* createGrapheme(std::string graphemeString, float size=200) override;
-	Grapheme* createAndAddGrapheme(std::string graphemeString, float size=200) override;
+	Grapheme* createAndAddGrapheme(std::string const& graphemeString, float size=200);
 };
 
 class ChainGrapheme : public Grapheme

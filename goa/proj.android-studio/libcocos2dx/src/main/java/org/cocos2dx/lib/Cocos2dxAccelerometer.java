@@ -1,25 +1,25 @@
 /****************************************************************************
-Copyright (c) 2010-2011 cocos2d-x.org
+ Copyright (c) 2010-2011 cocos2d-x.org
 
-http://www.cocos2d-x.org
+ http://www.cocos2d-x.org
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
  ****************************************************************************/
 package org.cocos2dx.lib;
 
@@ -82,11 +82,11 @@ public class Cocos2dxAccelerometer implements SensorEventListener {
 
     public void setInterval(float interval) {
         // Honeycomb version is 11
-        if(android.os.Build.VERSION.SDK_INT < 11) {
+        if (android.os.Build.VERSION.SDK_INT < 11) {
             this.mSensorManager.registerListener(this, this.mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
         } else {
             //convert seconds to microseconds
-            this.mSensorManager.registerListener(this, this.mAccelerometer, (int)(interval*100000));
+            this.mSensorManager.registerListener(this, this.mAccelerometer, (int) (interval * 100000));
         }
     }
 
@@ -128,15 +128,14 @@ public class Cocos2dxAccelerometer implements SensorEventListener {
             }
 
 
-            Cocos2dxGLSurfaceView.queueAccelerometer(x,y,z,sensorEvent.timestamp);
+            Cocos2dxGLSurfaceView.queueAccelerometer(x, y, z, sensorEvent.timestamp);
 
             /*
             if(BuildConfig.DEBUG) {
                 Log.d(TAG, "x = " + sensorEvent.values[0] + " y = " + sensorEvent.values[1] + " z = " + pSensorEvent.values[2]);
             }
             */
-        }
-        else if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
+        } else if (sensorEvent.sensor.getType() == Sensor.TYPE_MAGNETIC_FIELD) {
             // needed by VR code
             this.compassFieldValues[0] = sensorEvent.values[0];
             this.compassFieldValues[1] = sensorEvent.values[1];
@@ -150,7 +149,7 @@ public class Cocos2dxAccelerometer implements SensorEventListener {
 
     // ===========================================================
     // Methods
-        // Native method called from Cocos2dxGLSurfaceView (To be in the same thread)
+    // Native method called from Cocos2dxGLSurfaceView (To be in the same thread)
     // ===========================================================
 
     public static native void onSensorChanged(final float x, final float y, final float z, final long timestamp);

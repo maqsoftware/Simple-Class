@@ -93,9 +93,10 @@ void TreasureHuntNode::removeClearButton() {
 	_drawingBoard->removeChild(_clearButton, true);
 }
 
-void TreasureHuntNode::setClearButtonTexture(const std::string normalImage,
-	const std::string selectedImage,
-	const std::string disableImage) {
+void TreasureHuntNode::setClearButtonTexture(std::string const& normalImage,
+											 std::string const& selectedImage,
+											 std::string const& disableImage)
+{
 
 	_clearButton->loadTextures(normalImage, selectedImage, disableImage, cocos2d::ui::Widget::TextureResType::PLIST);
 

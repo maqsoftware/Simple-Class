@@ -518,10 +518,10 @@ public:
 			btVector3	position;
 		};		
 		btVector3					m_rpos[2];
-		void						Prepare(btScalar dt,int iterations);
-		void						Solve(btScalar dt,btScalar sor);
-		void						Terminate(btScalar dt);
-		eType::_					Type() const { return(eType::Linear); }
+		void						Prepare(btScalar dt,int iterations) override;
+		void Solve(btScalar dt, btScalar sor) override;
+		void						Terminate(btScalar dt) override;
+		eType::_ Type() const { return (eType::Linear)override; }
 	};
 	/* AJoint		*/ 
 	struct	AJoint : Joint
@@ -540,10 +540,10 @@ public:
 		};		
 		btVector3					m_axis[2];
 		IControl*					m_icontrol;
-		void						Prepare(btScalar dt,int iterations);
-		void						Solve(btScalar dt,btScalar sor);
-		void						Terminate(btScalar dt);
-		eType::_					Type() const { return(eType::Angular); }
+		void Prepare(btScalar dt, int iterations) override;
+		void						Solve(btScalar dt,btScalar sor) override;
+		void Terminate(btScalar dt) override;
+		eType::_ Type() const { return (eType::Angular)override; }
 	};
 	/* CJoint		*/ 
 	struct	CJoint : Joint
@@ -553,10 +553,10 @@ public:
 		btVector3					m_rpos[2];
 		btVector3					m_normal;
 		btScalar					m_friction;
-		void						Prepare(btScalar dt,int iterations);
-		void						Solve(btScalar dt,btScalar sor);
-		void						Terminate(btScalar dt);
-		eType::_					Type() const { return(eType::Contact); }
+		void Prepare(btScalar dt, int iterations) override;
+		void Solve(btScalar dt, btScalar sor) override;
+		void Terminate(btScalar dt) override;
+		eType::_ Type() const { return (eType::Contact)override; }
 	};
 	/* Config		*/ 
 	struct	Config

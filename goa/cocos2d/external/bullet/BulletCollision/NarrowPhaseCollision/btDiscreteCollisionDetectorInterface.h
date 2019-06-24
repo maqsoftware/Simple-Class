@@ -73,7 +73,7 @@ struct btStorageResult : public btDiscreteCollisionDetectorInterface::Result
 		}
 		virtual ~btStorageResult() {};
 
-		virtual void addContactPoint(const btVector3& normalOnBInWorld,const btVector3& pointInWorld,btScalar depth)
+		virtual void addContactPoint(const btVector3& normalOnBInWorld,const btVector3& pointInWorld,btScalar depth) override
 		{
 			if (depth < m_distance)
 			{

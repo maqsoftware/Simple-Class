@@ -80,7 +80,7 @@ public class Cocos2dxWebView extends WebView {
     class Cocos2dxWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, final String urlString) {
-            Cocos2dxActivity activity = (Cocos2dxActivity)getContext();
+            Cocos2dxActivity activity = (Cocos2dxActivity) getContext();
 
             try {
                 URI uri = URI.create(urlString);
@@ -97,7 +97,7 @@ public class Cocos2dxWebView extends WebView {
                 Log.d(TAG, "Failed to create URI from url");
             }
 
-            boolean[] result = new boolean[] { true };
+            boolean[] result = new boolean[]{true};
             CountDownLatch latch = new CountDownLatch(1);
 
             // run worker on cocos thread
@@ -116,7 +116,7 @@ public class Cocos2dxWebView extends WebView {
         @Override
         public void onPageFinished(WebView view, final String url) {
             super.onPageFinished(view, url);
-            Cocos2dxActivity activity = (Cocos2dxActivity)getContext();
+            Cocos2dxActivity activity = (Cocos2dxActivity) getContext();
             activity.runOnGLThread(new Runnable() {
                 @Override
                 public void run() {
@@ -128,7 +128,7 @@ public class Cocos2dxWebView extends WebView {
         @Override
         public void onReceivedError(WebView view, int errorCode, String description, final String failingUrl) {
             super.onReceivedError(view, errorCode, description, failingUrl);
-            Cocos2dxActivity activity = (Cocos2dxActivity)getContext();
+            Cocos2dxActivity activity = (Cocos2dxActivity) getContext();
             activity.runOnGLThread(new Runnable() {
                 @Override
                 public void run() {
