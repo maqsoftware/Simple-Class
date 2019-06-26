@@ -19,12 +19,12 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class VoiceMold {
+class VoiceMold {
     private static final String SPEAK_UTTERANCE_ID = "com.enuma.voice_engine_a.speak";
     private static final String SYNTH_UTTERANCE_ID = "com.enuma.voice_engine_a.synth";
 
-    public TextToSpeechWrapper wrapper;
-    public String locale;
+    private TextToSpeechWrapper wrapper;
+    private String locale;
 
 
     VoiceMold(String locale) {
@@ -58,7 +58,7 @@ public class VoiceMold {
             return;
         }
 
-        if (!wrapper.isGood()) {
+        if (wrapper.isGood()) {
             String header = " ";
             text = header + text;
         }
@@ -84,7 +84,7 @@ public class VoiceMold {
             return Float.NaN;
         }
 
-        if (!wrapper.isGood()) {
+        if (wrapper.isGood()) {
             String header = " ";
             text = header + text;
         }
@@ -121,13 +121,13 @@ public class VoiceMold {
     }
 
     private HashMap<String, String> createParamsForSpeak() {
-        HashMap<String, String> params = new HashMap<String, String>();
+        HashMap<String, String> params = new HashMap<>();
         params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, SPEAK_UTTERANCE_ID);
         return params;
     }
 
     private HashMap<String, String> createParamsForSynth() {
-        HashMap<String, String> params = new HashMap<String, String>();
+        HashMap<String, String> params = new HashMap<>();
         params.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, SYNTH_UTTERANCE_ID);
         return params;
     }
