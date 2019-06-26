@@ -26,7 +26,6 @@
  ****************************************************************************/
 package org.cocos2dx.cpp;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.arch.lifecycle.LiveData;
 import android.content.ContentValues;
@@ -80,12 +79,9 @@ public class AppActivity extends Cocos2dxActivity {
     public static int width;
     // Return Intent extra
     public static SharedPreferences sharedPref;
+    public static Activity _activity;
     protected static String pathToAppDelegate = null;
-    @SuppressLint("StaticFieldLeak")
-    private static Activity _activity;
-    @SuppressLint("StaticFieldLeak")
     private static AppActivity _appActivity;
-    @SuppressLint("StaticFieldLeak")
     private static Context _context;
     private static String currentGameName;
     private static boolean supportForTTSEnabled = false;
@@ -96,6 +92,10 @@ public class AppActivity extends Cocos2dxActivity {
 
     private Handler handler = null;
     private TextToSpeech textToSpeechInstance;
+
+    public static AppActivity instance() {
+        return _appActivity;
+    }
 
     //  LauncherScreen variables and functions from Bali
     public static native void setMultipleChoiceQuiz(String[] jsonInfo);
@@ -379,7 +379,7 @@ public class AppActivity extends Cocos2dxActivity {
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS) {
-                    int result = textToSpeechInstance.setLanguage(Locale.US);
+                    int result = textToSpeechInstance.setLanguage(new Locale("hi", "IN"));
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
                         Log.e("TTS", "This Language is not supported");
                     } else {

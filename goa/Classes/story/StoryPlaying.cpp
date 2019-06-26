@@ -10,8 +10,7 @@
 #include "../ext/util/lib/LTKStringUtil.h"
 #include "../lang/TextGenerator.h"
 #include "QuestionHandler.h"
-
-
+#include <Managers/VoiceMoldManager.h> 
 static const std::string STORY_JSON = ".storyJSON";
 static const std::string SOUND_ENABLED_FOR_STORIES = ".soundEnabledForStories";
 
@@ -342,8 +341,6 @@ bool StoryPlaying::onTouchBeganOnNode(Touch* touch, Event* event){
             return true;
         }
     }
-    
-    
     return false;
 }
 
@@ -585,7 +582,6 @@ void StoryPlaying::loadTimings() {
     if(!timeFileUrl.empty() && FileUtils::getInstance()->isFileExist(timeFileUrl))
     {
         std::string jsonData = FileUtils::getInstance()->getStringFromFile(timeFileUrl);
-        CCLOG("got data %s", jsonData.c_str());
         rapidjson::Document coverPageTextDocument;
         if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
             // document is ok
@@ -659,8 +655,6 @@ void StoryPlaying::createWordBubble() {
     if(!mappingFileUrl.empty() && FileUtils::getInstance()->isFileExist(mappingFileUrl))
     {
         std::string jsonData = FileUtils::getInstance()->getStringFromFile(mappingFileUrl);
-        CCLOG("got data %s", jsonData.c_str());
-        
         
         rapidjson::Document mappingDocument;
         if (false == mappingDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
@@ -697,11 +691,10 @@ void StoryPlaying::createWordBubble() {
 }
 
 void StoryPlaying::loadContentPageText() {
-    std::string textFileUrl = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".json";
-    if(!textFileUrl.empty() && FileUtils::getInstance()->isFileExist(textFileUrl))
+    _jsonFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".json";
+    if (!_jsonFile.empty() && FileUtils::getInstance()->isFileExist(_jsonFile))
     {
-        std::string jsonData = FileUtils::getInstance()->getStringFromFile(textFileUrl);
-        CCLOG("got data %s", jsonData.c_str());
+        std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
         rapidjson::Document coverPageTextDocument;
         if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
             // document is ok
@@ -728,27 +721,38 @@ void StoryPlaying::loadContentPageText() {
             }
         }
     }
-    
-    
 }
+
 void StoryPlaying::renderTextAndPlayDialog(Node* parentNode, Node* storyTextNode) {
     renderStoryText(parentNode, storyTextNode);
     std::string pageI = MenuContext::to_string(_pageIndex + 1);
-    _soundFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + "/" + _baseDir + "_"  + pageI + ".ogg";
-    bool isSplitWordsEffectedLoaded = _loadedSplitWordsEffects.size() > 0;
-    
-    if(_soundEnabled.compare("true") == 0 && (isSplitWordsEffectedLoaded || (!_soundFile.empty() && FileUtils::getInstance()->isFileExist(_soundFile)))) {
-        
-        this->scheduleOnce(schedule_selector(StoryPlaying::narrateDialog), 1.0f);
-        this->scheduleOnce(schedule_selector(StoryPlaying::highlightedNarrateWord), 1.0f);
+    _jsonFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".json";
+    std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
+    rapidjson::Document coverPageTextDocument;
+    if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()){
+        // document is ok
+        rapidjson::Value::MemberIterator M;
+        const char *key, *value;
+        int i = 0;
+        for (M = coverPageTextDocument.MemberBegin(); M != coverPageTextDocument.MemberEnd(); M++)
+        {
+            key = M->name.GetString();
+            value = M->value.GetString();
+            std::string sValue = value;
+            if (i == _pageIndex + 1)
+            {
+                std::string _contentPageText = value;
 
-//        if(_isAudionEngineInitialized && _loadedSplitWordsEffects.size() > 0)
-//        {
-//            this->scheduleOnce(schedule_selector(StoryPlaying::highlightedNarrateDialog), 1.0f);
-//        } else {
-//            this->scheduleOnce(schedule_selector(StoryPlaying::narrateDialog), 1.0f);
-//            this->scheduleOnce(schedule_selector(StoryPlaying::highlightedNarrateWord), 1.0f);
-//        }
+                bool isSplitWordsEffectedLoaded = _loadedSplitWordsEffects.size() > 0;
+
+                if (_soundEnabled.compare("true") == 0 && (isSplitWordsEffectedLoaded || !_contentPageText.empty()))
+                {
+                    VoiceMoldManager::shared()->speak(_contentPageText);
+                }
+                break;
+            }
+            i++;
+        }
     }
 }
 
@@ -1061,37 +1065,45 @@ void StoryPlaying::playSound(Ref* pSender, cocos2d::ui::Widget::TouchEventType e
                 localStorageSetItem(SOUND_ENABLED_FOR_STORIES, _soundEnabled);
                 
                 std::string pageI = MenuContext::to_string(_pageIndex + 1);
-                _soundFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + "/" + _baseDir + "_"  + pageI + ".ogg";
-                bool isSplitWordsEffectedLoaded = _loadedSplitWordsEffects.size() > 0;
-                
-                if(_soundEnabled.compare("true") == 0 && (isSplitWordsEffectedLoaded || (!_soundFile.empty() && FileUtils::getInstance()->isFileExist(_soundFile)))) {
-                    
-                    CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(1.0f);
-                    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(_soundFile.c_str(), false);
-                    this->scheduleOnce(schedule_selector(StoryPlaying::highlightedNarrateWord), 0.0f);
+                _jsonFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".json";
+                std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
+                rapidjson::Document coverPageTextDocument;
+                if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError())
+                {
+                    // document is ok
+                    rapidjson::Value::MemberIterator M;
+                    const char *key, *value;
+                    int i = 0;
+                    for (M = coverPageTextDocument.MemberBegin(); M != coverPageTextDocument.MemberEnd(); M++)
+                    {
+                        key = M->name.GetString();
+                        value = M->value.GetString();
+                        std::string sValue = value;
+                        if (i == _pageIndex + 1)
+                        {
+                            std::string _contentPageText = value;
+                            CCLOG("got data playSound : %s", _contentPageText.c_str());
 
-//                    if(_isAudionEngineInitialized && _loadedSplitWordsEffects.size() > 0)
-//                    {
-////                        this->scheduleOnce(schedule_selector(StoryPlaying::highlightedNarrateDialog), 1.0f);
-//                    } else {
-//                        CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(1.0f);
-//                        CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(_soundFile.c_str(), false);
-//                    }
+                            bool isSplitWordsEffectedLoaded = _loadedSplitWordsEffects.size() > 0;
+
+                            if (_soundEnabled.compare("true") == 0 && (isSplitWordsEffectedLoaded || !_contentPageText.empty()))
+                            {
+                                VoiceMoldManager::shared()->speak(_contentPageText);
+                                CCLOG("got data play playSound");
+                            }
+                            break;
+                        }
+                        i++;
+                    }
                 }
-                
-                
-                
             }
-            
             break;
         }
-            
         case cocos2d::ui::Widget::TouchEventType::CANCELED:
             break;
         default:
             break;
     }
-    
 }
 
 void StoryPlaying::enableTouchAndDisableTextShown() {
