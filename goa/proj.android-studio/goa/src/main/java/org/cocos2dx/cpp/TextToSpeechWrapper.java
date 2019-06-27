@@ -39,8 +39,6 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class TextToSpeechWrapper {
     private static final String MOCK_TTS_ENGINE = "com.android.cts.stub";
-    //public static final String FREE_TO_USE_TTS_ENGINE = "com.svox.pico";
-    //public static final String FREE_TO_USE_TTS_ENGINE = "com.example.android.ttsengine";
     private static final String FREE_TO_USE_TTS_ENGINE = "com.enuma.voice_engine_a";
     private static final String LOG_TAG = "TextToSpeechServiceTest";
     /**
