@@ -1163,10 +1163,6 @@ void MenuContext::launchGameFinally(std::string gameName) {
 		else if (gameName == BASICLETTERCASE) {
 			Director::getInstance()->replaceScene(BasicLetterCase::createScene());
 		}
-		else{
-
-        }
-        
 }
 
 void MenuContext::transitToScrollableGameMap() {
