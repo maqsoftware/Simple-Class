@@ -13,8 +13,8 @@ public:
     // NB(xenosoz, 2018): To copy these std::string prevent crash
     //   on some device. I'm very sad I don't know why, but it works.
 
-    std::string getDefaultLocale(std::string locale);
-    void setDefaultLocale(std::string locale);
+    std::string getDefaultLocale(std::string const& locale);
+    void setDefaultLocale(std::string const& locale);
 
     // NB(xenosoz, 2018): Issue an (android) intent to install voice data.
     void secureVoiceData();

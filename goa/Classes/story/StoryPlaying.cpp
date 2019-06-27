@@ -137,7 +137,6 @@ bool StoryPlaying::onTouchBeganOnSkeleton(Touch* touch, Event* event){
 
 
 void StoryPlaying::playAnimationOnNode(std::string animationName, Node* node) {
-    CCLOG("_animationToPlayWhenTouched %s", _animationToPlayWhenTouched.c_str());
     Action* action = node->getActionManager()->getActionByTag(node->getTag(), node);
     
     if(action != NULL) {
@@ -152,7 +151,6 @@ void StoryPlaying::playAnimationOnNode(std::string animationName, Node* node) {
         }
     }
     
-    CCLOG("_animationToPlayWhenTouched for node %s", node->getName().c_str());
     std::string dbNodeStartsWith = "db_";
     if (node->getName().find(dbNodeStartsWith) != std::string::npos)
     {
@@ -204,7 +202,6 @@ void StoryPlaying::cleanUpWhenTouchEnded(cocos2d::Touch *touch, cocos2d::Event *
     }
     _animationToPlayWhenTouched = "";
     
-    CCLOG("_animationToPlayWhenTouched for node %s", target->getName().c_str());
     std::string dbNodeStartsWith = "db_";
     if (target->getName().find(dbNodeStartsWith) != std::string::npos)
     {
@@ -249,7 +246,6 @@ bool StoryPlaying::onTouchBeganOnComposite(Touch* touch, Event* event){
     }
     
     Node* target = event->getCurrentTarget();
-    CCLOG("target name %s", target->getName().c_str());
     auto n = convertTouchToNodeSpace(touch);
     
     auto boundingBox = utils::getCascadeBoundingBox(target);
@@ -317,12 +313,6 @@ bool StoryPlaying::onTouchBeganOnNode(Touch* touch, Event* event){
                     Point p1 = v2.at(0);
                     Point p2 = v2.at(1);
                     Point p3 = v2.at(2);
-                    //                    CCLOG("p1.x %f", p1.x);
-                    //                    CCLOG("p1.y %f", p1.y);
-                    //                    CCLOG("p2.x %f", p2.x);
-                    //                    CCLOG("p2.y %f", p2.y);
-                    //                    CCLOG("p3.x %f", p3.x);
-                    //                    CCLOG("p3.y %f", p3.y);
                     if(pointInTriangle(tLocation, p1, p2, p3)) {
                         result = true;
                         break;
@@ -367,13 +357,10 @@ void StoryPlaying::bindEventsToTarget(Node* node) {
     
     if(data != NULL && !data->getCustomProperty().empty()) {
         
-        CCLOG("found user data for child %s", node->getName().c_str());
-        CCLOG("user data for child %s", data->getCustomProperty().c_str());
         
         std::vector<std::string> contentPageInfo = _menuContext->split(data->getCustomProperty(), ';');
         for (std::vector<std::string>::iterator it = contentPageInfo.begin() ; it != contentPageInfo.end(); ++it) {
             std::string token = *it;
-            CCLOG("token %s", token.c_str());
             LTKStringUtil::trimString(token);
             if(token.compare("drag") == 0) {
                 _isNodeDraggable = true;
@@ -430,7 +417,6 @@ void StoryPlaying::changeSkinColor(cocostudio::timeline::BoneNode* bone, bool re
     cocos2d::Vector<cocostudio::timeline::SkinNode*> skins = bone->getSkins();
     for (std::vector<cocostudio::timeline::SkinNode*>::iterator it = skins.begin() ; it != skins.end(); ++it) {
         cocostudio::timeline::SkinNode* skin = *it;
-        CCLOG("skin %s", skin->getName().c_str());
         if(revert) {
             if(skinColors.find(skin->getName()) != skinColors.end()) {
                 Color3B originalColor = skinColors.at(skin->getName());
@@ -448,7 +434,6 @@ void StoryPlaying::processScene(Node* parent) {
         auto children = parent->getChildren();
         for (std::vector<Node*>::iterator it = children.begin() ; it != children.end(); ++it) {
             cocos2d::Node* node = *it;
-            CCLOG("Processing node %s", node->getName().c_str());
             
             std::size_t panelFound = node->getName().find("Panel");
             if (panelFound != std::string::npos) {
@@ -457,7 +442,6 @@ void StoryPlaying::processScene(Node* parent) {
                 //process skeleton and non-skeleton nodes
                 bool isSkeletonCharacter = dynamic_cast<cocostudio::timeline::SkeletonNode *>(node);
                 if(isSkeletonCharacter) {
-                    CCLOG("Processing skeleton node %s", node->getName().c_str());
                     cocostudio::timeline::SkeletonNode* skeletonNode = dynamic_cast<cocostudio::timeline::SkeletonNode *>(node);
                     if(skeletonNode != NULL) {
                         
@@ -475,10 +459,8 @@ void StoryPlaying::processScene(Node* parent) {
                     
                 } else {
                     if(node->getChildrenCount() > 0) {
-                        CCLOG("Processing composite node %s", node->getName().c_str());
                         bindListenerToCompositeNode(node);
                     } else {
-                        CCLOG("Processing node %s", node->getName().c_str());
                         bindListenerToNode(node);
                     }
                 }
@@ -508,7 +490,7 @@ void StoryPlaying::load() {
     
     rapidjson::Document d;
     
-    if (false == d.Parse<0>(contents.c_str()).HasParseError()) {
+    if (!d.Parse<0>(contents.c_str()).HasParseError()) {
         const rapidjson::Value& storyConfigs = d["stories"];
         assert(storyConfigs.IsArray());
         const rapidjson::Value& story = storyConfigs[storyIndex];
@@ -516,7 +498,6 @@ void StoryPlaying::load() {
         
         _totalStoryPages = dsStoryPages.Size();
         const std::string contentPageName = dsStoryPages[this->_pageIndex]["contentJson"].GetString();
-        CCLOG("contentPageName %s", contentPageName.c_str());
         std::vector<std::string> contentPageInfo = _menuContext->split(contentPageName, '/');
         if(contentPageInfo.size() > 0) {
             _baseDir = contentPageInfo.at(0);
@@ -583,15 +564,15 @@ void StoryPlaying::loadTimings() {
     {
         std::string jsonData = FileUtils::getInstance()->getStringFromFile(timeFileUrl);
         rapidjson::Document coverPageTextDocument;
-        if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
+        if (!coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
             // document is ok
-            rapidjson::Value::MemberIterator M;
+            rapidjson::Value::MemberIterator jsonIterator;
             const char *key,*value;
             int i = 0;
-            for (M=coverPageTextDocument.MemberBegin(); M!=coverPageTextDocument.MemberEnd(); M++)
+            for (jsonIterator=coverPageTextDocument.MemberBegin(); jsonIterator!=coverPageTextDocument.MemberEnd(); jsonIterator++)
             {
-                key   = M->name.GetString();
-                value = M->value.GetString();
+                key   = jsonIterator->name.GetString();
+                value = jsonIterator->value.GetString();
                 std::string sValue = value;
                 
                 if(i == _pageIndex + 1) {
@@ -657,14 +638,14 @@ void StoryPlaying::createWordBubble() {
         std::string jsonData = FileUtils::getInstance()->getStringFromFile(mappingFileUrl);
         
         rapidjson::Document mappingDocument;
-        if (false == mappingDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
+        if (!mappingDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
             // document is ok
-            rapidjson::Value::MemberIterator M;
+            rapidjson::Value::MemberIterator jsonIterator;
             const char *key,*value;
-            for (M=mappingDocument.MemberBegin(); M!=mappingDocument.MemberEnd(); M++)
+            for (jsonIterator=mappingDocument.MemberBegin(); jsonIterator!=mappingDocument.MemberEnd(); jsonIterator++)
             {
-                key   = M->name.GetString();
-                value = M->value.GetString();
+                key   = jsonIterator->name.GetString();
+                value = jsonIterator->value.GetString();
                 std::string sValue = value;
                 
                 _wordMappings.insert({key,sValue});
@@ -696,15 +677,15 @@ void StoryPlaying::loadContentPageText() {
     {
         std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
         rapidjson::Document coverPageTextDocument;
-        if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
+        if (!coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
             // document is ok
-            rapidjson::Value::MemberIterator M;
+            rapidjson::Value::MemberIterator jsonIterator;
             const char *key,*value;
             int i = 0;
-            for (M=coverPageTextDocument.MemberBegin(); M!=coverPageTextDocument.MemberEnd(); M++)
+            for (jsonIterator=coverPageTextDocument.MemberBegin(); jsonIterator!=coverPageTextDocument.MemberEnd(); jsonIterator++)
             {
-                key   = M->name.GetString();
-                value = M->value.GetString();
+                key   = jsonIterator->name.GetString();
+                value = jsonIterator->value.GetString();
                 std::string sValue = value;
                 
                 if(i == _pageIndex + 1) {
@@ -729,15 +710,15 @@ void StoryPlaying::renderTextAndPlayDialog(Node* parentNode, Node* storyTextNode
     _jsonFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".json";
     std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
     rapidjson::Document coverPageTextDocument;
-    if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()){
+    if (!coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()){
         // document is ok
-        rapidjson::Value::MemberIterator M;
+        rapidjson::Value::MemberIterator jsonIterator;
         const char *key, *value;
         int i = 0;
-        for (M = coverPageTextDocument.MemberBegin(); M != coverPageTextDocument.MemberEnd(); M++)
+        for (jsonIterator = coverPageTextDocument.MemberBegin(); jsonIterator != coverPageTextDocument.MemberEnd(); jsonIterator++)
         {
-            key = M->name.GetString();
-            value = M->value.GetString();
+            key = jsonIterator->name.GetString();
+            value = jsonIterator->value.GetString();
             std::string sValue = value;
             if (i == _pageIndex + 1)
             {
@@ -849,13 +830,7 @@ void StoryPlaying::createDialogBubble() {
             }
         }
         
-        Node* chooseText = _talkBubbleNode->getChildByName(STORY_TEXT);
-        CCLOG("_talkBubbleNode width %f", _talkBubbleNode->getBoundingBox().size.width);
-        CCLOG("_talkBubbleNode height %f", _talkBubbleNode->getBoundingBox().size.height);
-        
-        CCLOG("chooseText width %f", chooseText->getBoundingBox().size.width);
-        CCLOG("chooseText height %f", chooseText->getBoundingBox().size.height);
-        
+        Node* chooseText = _talkBubbleNode->getChildByName(STORY_TEXT);        
         
         renderTextAndPlayDialog(_talkBubbleNode, chooseText);
         
@@ -969,11 +944,6 @@ void StoryPlaying::renderStoryText(Node* parentNode, Node* storyTextNode) {
 
 
 void StoryPlaying::playNextSplitWordCallBack(int id, const std::string& file) {
-    CCLOG("%s> id=%d,file=%s,time=%g/%g",__func__,id
-          ,file.c_str()
-          ,cocos2d::experimental::AudioEngine::getCurrentTime(id)
-          ,cocos2d::experimental::AudioEngine::getDuration(id)
-          );
     
     AudioEngine::stop(id);
     CommonText* preHighlighteWord = _contentCommonTextTokens.at(_currentSplitWordIndex - 1);
@@ -1068,28 +1038,26 @@ void StoryPlaying::playSound(Ref* pSender, cocos2d::ui::Widget::TouchEventType e
                 _jsonFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".json";
                 std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
                 rapidjson::Document coverPageTextDocument;
-                if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError())
+                if (!coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError())
                 {
                     // document is ok
-                    rapidjson::Value::MemberIterator M;
+                    rapidjson::Value::MemberIterator jsonIterator;
                     const char *key, *value;
                     int i = 0;
-                    for (M = coverPageTextDocument.MemberBegin(); M != coverPageTextDocument.MemberEnd(); M++)
+                    for (jsonIterator = coverPageTextDocument.MemberBegin(); jsonIterator != coverPageTextDocument.MemberEnd(); jsonIterator++)
                     {
-                        key = M->name.GetString();
-                        value = M->value.GetString();
+                        key = jsonIterator->name.GetString();
+                        value = jsonIterator->value.GetString();
                         std::string sValue = value;
                         if (i == _pageIndex + 1)
                         {
                             std::string _contentPageText = value;
-                            CCLOG("got data playSound : %s", _contentPageText.c_str());
 
                             bool isSplitWordsEffectedLoaded = _loadedSplitWordsEffects.size() > 0;
 
                             if (_soundEnabled.compare("true") == 0 && (isSplitWordsEffectedLoaded || !_contentPageText.empty()))
                             {
                                 VoiceMoldManager::shared()->speak(_contentPageText);
-                                CCLOG("got data play playSound");
                             }
                             break;
                         }
@@ -1208,12 +1176,7 @@ void StoryPlaying::onFrameEvent(cocostudio::timeline::Frame* frame) {
         if(eventFrame != NULL) {
             Node* node = frame->getNode();
             std::string event = eventFrame->getEvent();
-            
-            CCLOG("node in event:%s", node->getName().c_str());
-            CCLOG("event: %s", event.c_str());
-            
             this->playFrameEventEffect(event);
-            
         }
     }
 }
@@ -1234,24 +1197,18 @@ void StoryPlaying::processPixelPerfectNodes(Node* parent) {
     if(!pixelPerfectMappingUrl.empty() && FileUtils::getInstance()->isFileExist(pixelPerfectMappingUrl))
     {
         std::string jsonData = FileUtils::getInstance()->getStringFromFile(pixelPerfectMappingUrl);
-        CCLOG("got data %s", jsonData.c_str());
-        
-        
         rapidjson::Document mappingDocument;
-        if (false == mappingDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
-            rapidjson::Value::MemberIterator M;
+        if (!mappingDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
+            rapidjson::Value::MemberIterator jsonIterator;
             const char *key;
-            for (M=mappingDocument.MemberBegin(); M!=mappingDocument.MemberEnd(); M++)
+            for (jsonIterator=mappingDocument.MemberBegin(); jsonIterator!=mappingDocument.MemberEnd(); jsonIterator++)
             {
-                key   = M->name.GetString();
+                key   = jsonIterator->name.GetString();
                 const rapidjson::Value& mappings = mappingDocument[key];
                 
                 for (rapidjson::Value::ConstMemberIterator itr = mappings.MemberBegin();
                      itr != mappings.MemberEnd(); ++itr)
                 {
-                    CCLOG("%s ", itr->name.GetString());
-                    CCLOG("%s ", itr->value.GetString());
-                    
                     _pixelPerfectMapping.insert({itr->name.GetString(), itr->value.GetString()});
                 }
                 
@@ -1261,19 +1218,14 @@ void StoryPlaying::processPixelPerfectNodes(Node* parent) {
     
     
     cocos2d::Vector<Node*> nodes = parent->getChildren();
-    CCLOG("n hererer parent %s", parent->getName().c_str());
     for (std::vector<Node*>::iterator it = nodes.begin() ; it != nodes.end(); ++it) {
         Node* n = *it;
-        CCLOG("n hererer %s", n->getName().c_str());
         //if name starts with db_* then it is Dragon Bone Parent Node
         std::string dbNodeStartsWith = "db_";
         if (n->getName().find(dbNodeStartsWith) != std::string::npos)
         {
             std::string dbNodeName = n->getName();
-            CCLOG("n dragon bone parent %s", n->getName().c_str());
             std::string::size_type i = dbNodeName.find(dbNodeStartsWith);
-            CCLOG("n dragon bone name %s", dbNodeName.c_str());
-            
             this->createDragonBoneNode(n, dbNodeName);
             
         }
@@ -1282,7 +1234,6 @@ void StoryPlaying::processPixelPerfectNodes(Node* parent) {
         if (n->getName().find(dbDisplayText) != std::string::npos)
         {
             std::string displayTextNodeName = n->getName();
-            CCLOG("displayTextNodeName %s",displayTextNodeName.c_str());
             _displayTextNode = dynamic_cast<cocos2d::ui::TextField *>(n);
             if(_displayTextNode != NULL) {
                 _displayTextNode->setTouchEnabled(false);
@@ -1299,7 +1250,6 @@ void StoryPlaying::processPixelPerfectNodes(Node* parent) {
         }
         
         if(_pixelPerfectMapping.find(n->getName()) != _pixelPerfectMapping.end()) {
-            CCLOG("pixel processing node %s", n->getName().c_str());
             std::string spriteUrl = _pixelPerfectMapping.at(n->getName());
             Sprite* sprite = dynamic_cast<Sprite *>(n);
             if(sprite != NULL)

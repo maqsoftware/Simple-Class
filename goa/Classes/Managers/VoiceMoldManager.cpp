@@ -15,7 +15,7 @@
 using namespace cocos2d;
 using namespace std;
 
-std::string VoiceMoldManager::getDefaultLocale(std::string locale)
+std::string VoiceMoldManager::getDefaultLocale(std::string const& locale)
 {
     JniMethodInfo t;
     if (JniHelper::getStaticMethodInfo(t,
@@ -35,7 +35,7 @@ std::string VoiceMoldManager::getDefaultLocale(std::string locale)
     return "";
 }
 
-void VoiceMoldManager::setDefaultLocale(std::string locale)
+void VoiceMoldManager::setDefaultLocale(std::string const& locale)
 {
     JniMethodInfo t;
     if (JniHelper::getStaticMethodInfo(t,

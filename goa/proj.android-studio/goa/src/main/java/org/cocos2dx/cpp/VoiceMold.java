@@ -24,13 +24,12 @@ class VoiceMold {
     private static final String SYNTH_UTTERANCE_ID = "com.enuma.voice_engine_a.synth";
 
     private TextToSpeechWrapper wrapper;
-    private String locale;
 
 
     VoiceMold(String locale) {
         Context context = AppActivity.instance();
         try {
-            this.locale = locale;
+            String locale1 = locale;
             wrapper = TextToSpeechWrapper.createTextToSpeechWrapper(context, locale);
 
             Intent ttsIntent = new Intent();
@@ -62,7 +61,6 @@ class VoiceMold {
             String header = " ";
             text = header + text;
         }
-
         wrapper.getTts().speak(text, TextToSpeech.QUEUE_FLUSH, createParamsForSpeak());
     }
 
