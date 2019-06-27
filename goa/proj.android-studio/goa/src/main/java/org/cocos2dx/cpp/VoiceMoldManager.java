@@ -16,14 +16,14 @@ import java.util.HashMap;
 public class VoiceMoldManager {
     // ----
     private static VoiceMoldManager _shared;
-    public String defaultLocale = "hi-IN";
-    public HashMap<String, VoiceMold> moldForLocaleCache;
+    private String defaultLocale = "hi-IN";
+    private final HashMap<String, VoiceMold> moldForLocaleCache;
 
-    public VoiceMoldManager() {
-        moldForLocaleCache = new HashMap<String, VoiceMold>();
+    private VoiceMoldManager() {
+        moldForLocaleCache = new HashMap<>();
     }
 
-    public static VoiceMoldManager shared() {
+    private static VoiceMoldManager shared() {
         if (_shared == null) {
             _shared = new VoiceMoldManager();
         }

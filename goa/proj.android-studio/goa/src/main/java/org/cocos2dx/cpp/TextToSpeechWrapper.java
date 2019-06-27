@@ -38,10 +38,10 @@ import java.util.concurrent.locks.ReentrantLock;
  * Wrapper for {@link TextToSpeech} with some handy test functionality.
  */
 public class TextToSpeechWrapper {
-    public static final String MOCK_TTS_ENGINE = "com.android.cts.stub";
+    private static final String MOCK_TTS_ENGINE = "com.android.cts.stub";
     //public static final String FREE_TO_USE_TTS_ENGINE = "com.svox.pico";
     //public static final String FREE_TO_USE_TTS_ENGINE = "com.example.android.ttsengine";
-    public static final String FREE_TO_USE_TTS_ENGINE = "com.enuma.voice_engine_a";
+    private static final String FREE_TO_USE_TTS_ENGINE = "com.enuma.voice_engine_a";
     private static final String LOG_TAG = "TextToSpeechServiceTest";
     /**
      * maximum time to wait for tts to be initialized
@@ -168,8 +168,8 @@ public class TextToSpeechWrapper {
         }
     }
 
-    public boolean waitForComplete(String utteranceId) throws InterruptedException {
-        return mUtteranceListener.waitForComplete(utteranceId);
+    public void waitForComplete(String utteranceId) throws InterruptedException {
+        mUtteranceListener.waitForComplete(utteranceId);
     }
 
     public TextToSpeech getTts() {
@@ -177,7 +177,7 @@ public class TextToSpeechWrapper {
     }
 
     public boolean isGood() {
-        return _goodEngine;
+        return !_goodEngine;
     }
 
     public boolean isEnergetic() {
@@ -199,14 +199,14 @@ public class TextToSpeechWrapper {
         public void onInit(int status) {
             mLock.lock();
             try {
-                mStatus = new Integer(status);
+                mStatus = status;
                 mDone.signal();
             } finally {
                 mLock.unlock();
             }
         }
 
-        public boolean waitForInit() throws InterruptedException {
+        boolean waitForInit() throws InterruptedException {
             long timeOutNanos = TimeUnit.MILLISECONDS.toNanos(TTS_INIT_MAX_WAIT_TIME);
             mLock.lock();
             try {
@@ -229,7 +229,7 @@ public class TextToSpeechWrapper {
     private static class UtteranceWaitListener implements OnUtteranceCompletedListener {
         private final Lock mLock = new ReentrantLock();
         private final Condition mDone = mLock.newCondition();
-        private final HashSet<String> mCompletedUtterances = new HashSet<String>();
+        private final HashSet<String> mCompletedUtterances = new HashSet<>();
 
         public void onUtteranceCompleted(String utteranceId) {
             mLock.lock();
@@ -241,7 +241,7 @@ public class TextToSpeechWrapper {
             }
         }
 
-        public boolean waitForComplete(String utteranceId)
+        boolean waitForComplete(String utteranceId)
                 throws InterruptedException {
             long timeOutNanos = TimeUnit.MILLISECONDS.toNanos(TTS_INIT_MAX_WAIT_TIME);
             mLock.lock();
