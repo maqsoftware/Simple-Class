@@ -14,7 +14,7 @@
 #include "StoryCoverPage.hpp"
 #include "StoryPlaying.hpp"
 #include "QuestionHandler.h"
-#include <Managers/VoiceMoldManager.h> 
+#include "Managers/VoiceMoldManager.h"
 
 static const std::string STORY_JSON = ".storyJSON";
 static const std::string SOUND_ENABLED_FOR_STORIES = ".soundEnabledForStories";
@@ -163,7 +163,6 @@ void StoryCoverPage::loadCoverPage(std::string coverPageUrl) {
         }
     }
     
-    _soundFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + "/" + _baseDir + "_0.ogg";
     _jsonFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".json";
 
     //get configuration
@@ -446,8 +445,6 @@ void StoryCoverPage::highlightWord(float time, cocos2d::ui::Text* text) {
 
 void StoryCoverPage::onEnterTransitionDidFinish() {
     Node::onEnterTransitionDidFinish();
-    // this->scheduleOnce(schedule_selector(StoryCoverPage::narrateDialog), 1.0f);
-    // this->scheduleOnce(schedule_selector(StoryCoverPage::highlightedNarrateWord), 1.0f);
     std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
     rapidjson::Document coverPageTextDocument;
     if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError())
@@ -493,10 +490,21 @@ void StoryCoverPage::playSound(Ref* pSender, ui::Widget::TouchEventType eEventTy
                 clickedButton->setHighlighted(true);
                 localStorageSetItem(SOUND_ENABLED_FOR_STORIES, _soundEnabled);
                 
-                CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(_soundFile.c_str(), false);
-                CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(1.0f);
-                this->scheduleOnce(schedule_selector(StoryCoverPage::highlightedNarrateWord), 0.0f);
-                
+                std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
+                rapidjson::Document coverPageTextDocument;
+                if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError())
+                {
+                    // document is ok
+                    rapidjson::Value::MemberIterator M;
+                    const char *key, *value;
+                    int i = 0;
+                    M = coverPageTextDocument.MemberBegin();
+                    key = M->name.GetString();
+                    value = M->value.GetString();
+                    std::string sValue = value;
+                    std::string _contentPageText = value;
+                    VoiceMoldManager::shared()->speak(_contentPageText);
+                }
             }
             
             break;
