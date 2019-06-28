@@ -332,7 +332,6 @@ void LevelHelpScene::onEnterTransitionDidFinish()
     listviewScroll->setContentSize({2000, 420});
     listviewScroll->setAnchorPoint(textField->getAnchorPoint());
     listviewScroll->setBounceEnabled(true);
-    // listviewScroll->setPosition(textField->getPosition());
     listviewScroll->setPosition(Size(textField->getPosition().x, textField->getPosition().y - 30)); // To give some padding at the top, the listView is shifted downwards
 
     _text = Text::create(videoText, "arial", 75);
