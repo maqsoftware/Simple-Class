@@ -1058,7 +1058,6 @@ void StoryPlaying::playSound(Ref* pSender, cocos2d::ui::Widget::TouchEventType e
 
                             if (_soundEnabled.compare("true") == 0 && (isSplitWordsEffectedLoaded || !_contentPageText.empty()))
                             {
-                                //In order to prevent TTS from pausing at every '\n', it is replaced by space
                                 std::replace(_contentPageText.begin(), _contentPageText.end(), '\n', ' ');
                                 VoiceMoldManager::shared()->speak(_contentPageText);
                             }

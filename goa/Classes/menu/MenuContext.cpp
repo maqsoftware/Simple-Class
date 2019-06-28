@@ -1574,7 +1574,6 @@ void MenuContext::pronounceWord(std::string word, bool shouldReplaceWithSpace) {
     if(!MenuContext::_lastAudioId.empty()) {
         CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect(MenuContext::_lastAudioId.c_str());
     }
-    // To avoid underscore to be read out loud, the underscore is replaced by space
     std::replace(word.begin(), word.end(), '_', ' ');
     word = LangUtil::getInstance()->translateString(word);
     LTKStringUtil::trimString(word);
