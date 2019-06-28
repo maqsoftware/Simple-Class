@@ -180,6 +180,7 @@ void Meaning::adjustButtons() {
         "8"
     };
     std::random_shuffle ( buttons.begin(), buttons.end() );
+    // A new parameter is added to the setButtonProperties function in order to handle the change in the font size in the "Meanings" questions. The font size is set to 50.
     QuestionHandler::setButtonProperties(bg->getChildByName("Node_1")->getChildByName("Button_1"), "1", _questions[1], CC_CALLBACK_2(Meaning::buttonSelected, this), CC_CALLBACK_2(Meaning::soundSelected, this), 16, 50);
     QuestionHandler::setButtonProperties(bg->getChildByName("Node_2")->getChildByName("Button_2"), "2", _questions[3], CC_CALLBACK_2(Meaning::buttonSelected, this), CC_CALLBACK_2(Meaning::soundSelected, this), 16, 50);
     QuestionHandler::setButtonProperties(bg->getChildByName("Node_3")->getChildByName("Button_3"), "3", _questions[5], CC_CALLBACK_2(Meaning::buttonSelected, this), CC_CALLBACK_2(Meaning::soundSelected, this), 16, 50);
