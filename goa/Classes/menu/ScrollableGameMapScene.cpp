@@ -327,7 +327,7 @@ bool ScrollableGameMapScene::init(std::string subGameMenuName) {
             scrollView->setBounceEnabled(true);
             scrollView->setAnchorPoint(_pageView->getAnchorPoint());
             scrollView->setPosition(Vec2(0, difference));
-            scrollView->setScrollBarEnabled(false);
+            scrollView->setScrollBarEnabled(true);
             
             if(k == 0) {
                 backButton->setPosition(Vec2((0.5) * visibleSize.width / numCols, visibleSize.height + 50 - (0.5) * (visibleSize.height + 50) / (NUMBER_OF_BUTTONS_ROWS + 1)));
