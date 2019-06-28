@@ -124,6 +124,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
          ../../Classes/lang/WordManager.cpp \
          ../../Classes/lang/Lesson.cpp \
          ../../Classes/lang/StudySession.cpp \
+         ../../Classes/Managers/VoiceMoldManager.cpp \
          ../../Classes/menu/Award.cpp \
          ../../Classes/menu/GameMapScene.cpp \
          ../../Classes/menu/GameScene.cpp \
