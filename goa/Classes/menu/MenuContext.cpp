@@ -1574,7 +1574,10 @@ void MenuContext::pronounceWord(std::string word, bool shouldReplaceWithSpace) {
     if(!MenuContext::_lastAudioId.empty()) {
         CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect(MenuContext::_lastAudioId.c_str());
     }
-    std::replace(word.begin(), word.end(), '_', ' ');
+    if(shouldReplaceWithSpace)
+    {
+       std::replace(word.begin(), word.end(), '_', ' ');
+    }
     word = LangUtil::getInstance()->translateString(word);
     LTKStringUtil::trimString(word);
     VoiceMoldManager::shared()->speak(word);

@@ -728,7 +728,6 @@ void StoryPlaying::renderTextAndPlayDialog(Node* parentNode, Node* storyTextNode
 
                 if (_soundEnabled.compare("true") == 0 && (isSplitWordsEffectedLoaded || !_contentPageText.empty()))
                 {
-                    std::replace(_contentPageText.begin(), _contentPageText.end(), '\n', ' ');
                     VoiceMoldManager::shared()->speak(_contentPageText);
                 }
                 break;
@@ -1058,7 +1057,6 @@ void StoryPlaying::playSound(Ref* pSender, cocos2d::ui::Widget::TouchEventType e
 
                             if (_soundEnabled.compare("true") == 0 && (isSplitWordsEffectedLoaded || !_contentPageText.empty()))
                             {
-                                std::replace(_contentPageText.begin(), _contentPageText.end(), '\n', ' ');
                                 VoiceMoldManager::shared()->speak(_contentPageText);
                             }
                             break;
