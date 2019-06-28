@@ -71,6 +71,7 @@ private:
     std::string _baseDir;
     MenuContext* _menuContext;
     std::string _soundFile;
+    std::string _jsonFile;
     std::string _soundEnabled;
     std::string _storyId;
     int _pageIndex;

@@ -24,6 +24,7 @@
 #include "../puzzle/DuelScene.h"
 #include "../puzzle/WordBoard.h"
 #include "../puzzle/PegWord.h"
+#include "Managers/VoiceMoldManager.h"
 #include "../mini_games/PatchTheWallScene.h"
 #include "../mini_games/CrossTheBridgeScene.h"
 #include "../mini_games/SmashTheRockScene.h"
@@ -318,7 +319,6 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
 //                std::string latestPhotoPath = SafariAnalyticsManager::getInstance()->getLatestUserPhoto();
 //                
 //                if(!latestPhotoPath.empty()) {
-//                    CCLOG("got path for menu %s", latestPhotoPath.c_str());
 //                }
                 
                 auto moveTo = MoveTo::create(0.5, Vec2(150, _menuButton->getPosition().y));
@@ -396,7 +396,6 @@ cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(std::string const& norm
             {
                 std::string config = *(it);
                 int configId = atoi(config.c_str());
-                CCLOG("configId %d", configId);
                 const rapidjson::Value& ds = d["data"];
                 const std::string name = ds[index]["name"].GetString();
                 const std::string bone = ds[index]["bone"].GetString();
@@ -437,13 +436,6 @@ cocos2d::ClippingNode* MenuContext::createMaskedMenuItem(std::string const& norm
                     }
                     
                     auto sprite = Sprite::createWithSpriteFrameName(image);
-                    CCLOG("image %s", image.c_str());
-                    CCLOG("anchorX %f", anchorX);
-                    CCLOG("anchorY %f", anchorY);
-                    CCLOG("posX %f", posX);
-                    CCLOG("posY %f", posY);
-                    CCLOG("rotationX %f", rotationX);
-                    CCLOG("rotationY %f", rotationY);
                     sprite->setAnchorPoint(Vec2(anchorX, anchorY));
                     sprite->setPosition(Vec2(posX, posY));
                     sprite->setRotationSkewX(rotationX);
@@ -499,7 +491,6 @@ cocos2d::Node* MenuContext::createAvatarMenuItem(std::string const& normalImage,
             // document is ok
             
             std::vector<std::string> configs = this->split(cachedCharacterInformation, '_');
-            CCLOG("configs size %d", configs.size());
             auto faceIndex = configs[configs.size() - 1];
             auto hairIndex = configs[configs.size() - 2];
             int index = 0;
@@ -507,7 +498,6 @@ cocos2d::Node* MenuContext::createAvatarMenuItem(std::string const& normalImage,
             {
                 std::string config = *(it);
                 int configId = atoi(config.c_str());
-                CCLOG("configId %d", configId);
                 const rapidjson::Value& ds = d["data"];
                 const std::string bone = ds[index]["bone"].GetString();
                 
@@ -550,13 +540,6 @@ cocos2d::Node* MenuContext::createAvatarMenuItem(std::string const& normalImage,
                     sprite->setPosition(Vec2(posX, posY));
                     sprite->setRotationSkewX(rotationX);
                     sprite->setRotationSkewY(rotationY);
-                    CCLOG("image %s", image.c_str());
-                    CCLOG("anchorX %f", anchorX);
-                    CCLOG("anchorY %f", anchorY);
-                    CCLOG("posX %f", posX);
-                    CCLOG("posY %f", posY);
-                    CCLOG("rotationX %f", rotationX);
-                    CCLOG("rotationY %f", rotationY);
                     
                     boneNode->addSkin(sprite, true);
                     boneNode->displaySkin(sprite, true);
@@ -951,8 +934,6 @@ void MenuContext::launchGameFromJS(std::string gameName) {
 }
 
 void MenuContext::launchGameFinally(std::string gameName) {
-    CCLOG("gameName %s", gameName.c_str());
-    
     std::string currentLevelStr;
     localStorageGetItem(gameName + CURRENT_LEVEL, &currentLevelStr);
     int currentLevel = 0;
@@ -960,7 +941,6 @@ void MenuContext::launchGameFinally(std::string gameName) {
         currentLevel = std::atoi( currentLevelStr.c_str());
     }
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    CCLOG("updateCoins");
     cocos2d::JniMethodInfo methodInfo;
     if (! cocos2d::JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/cpp/AppActivity", "updateCoins", "(Ljava/lang/String;III)V")) {
         return;
@@ -1183,10 +1163,6 @@ void MenuContext::launchGameFinally(std::string gameName) {
 		else if (gameName == BASICLETTERCASE) {
 			Director::getInstance()->replaceScene(BasicLetterCase::createScene());
 		}
-		else{
-            CCLOG("Failed starting scene: %s", gameName.c_str());
-        }
-        
 }
 
 void MenuContext::transitToScrollableGameMap() {
@@ -1320,13 +1296,10 @@ void MenuContext::showRewards()
 }
 
 void MenuContext::unlockNextStory() {
-    CCLOG("unlock next story");
     std::string unlockedStoryIdOrderStr;
     localStorageGetItem(UNLOCKED_STORY_ID_ORDER, &unlockedStoryIdOrderStr);
     
-    CCLOG("storyIdOrderStr %s", unlockedStoryIdOrderStr.c_str());
     rapidjson::Document d;
-    
     if (false == d.Parse<0>(unlockedStoryIdOrderStr.c_str()).HasParseError()) {
         assert(d.IsArray());
         int unlockStories = NUMBER_OF_STORIES_TO_BE_UNLOCKED;
@@ -1349,7 +1322,6 @@ void MenuContext::unlockNextStory() {
         for (rapidjson::SizeType i = unlockStories; i < d.Size(); i++) {
             std::string storyId = d[i].GetString();
             dArr.PushBack(rapidjson::Value(storyId.c_str(),allocator), allocator);
-            CCLOG("locked story %s", storyId.c_str());
         }
         rapidjson::StringBuffer buffer;
         rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
@@ -1376,18 +1348,15 @@ void MenuContext::showScore() {
 	}
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    CCLOG("Points: %d MaxPoints: %d", _points, _maxPoints);
     int stars = MIN(round(MAX(_points, 0) * 3.0/_maxPoints), 3);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     //TODO: Give coins based on difficulty of game
     if(stars >= 2) {
-        CCLOG("updateCoins");
         cocos2d::JniMethodInfo methodInfo;
         if (! cocos2d::JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/cpp/AppActivity", "updateCoins", "(Ljava/lang/String;III)V")) {
             return;
         }
-        CCLOG("calling updateCoins");
         jstring gameNameArg = methodInfo.env->NewStringUTF(gameName.c_str());
         methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID, gameNameArg, _currentLevel, 2, 1);
         methodInfo.env->DeleteLocalRef(methodInfo.classID);
@@ -1410,9 +1379,6 @@ void MenuContext::showScore() {
             
             int timesRead = d["timesRead"].GetInt();
             bool unlockUsed = d["unlockUsed"].GetBool();
-            
-            CCLOG("unlockUsed %d", unlockUsed);
-            CCLOG("stars %d", stars);
             
             if(!unlockUsed && (timesRead == NUMBER_OF_TIMES_READ_STORY_TO_UNLOCK_NEXT_STORY || stars >= MIN_STAR_TO_UNLOCK_NEXT_STORY)) {
                 //unlock next story
@@ -1590,7 +1556,6 @@ void MenuContext::pronounceHashedText(std::string joinedStr, bool shouldReplaceW
     std::string fileName = MenuContext::to_string(generatedHash);    
     fileName = LangUtil::getInstance()->getPronounciationFileNameForWord(fileName);
     if(FileUtils::getInstance()->isFileExist(fileName)) {
-        CCLOG("fileName to pronounce %s", fileName.c_str());
         MenuContext::_lastAudioId = fileName;
         auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
         audio->playEffect(fileName.c_str());
@@ -1607,7 +1572,6 @@ void MenuContext::pronounceSplitFileFromStory(std::string fileName) {
 
 void MenuContext::pronounceWord(std::string word, bool shouldReplaceWithSpace) {
     if(!MenuContext::_lastAudioId.empty()) {
-        CCLOG("unloadEffect: %s", MenuContext::_lastAudioId.c_str());
         CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect(MenuContext::_lastAudioId.c_str());
     }
     if(shouldReplaceWithSpace)
@@ -1616,37 +1580,7 @@ void MenuContext::pronounceWord(std::string word, bool shouldReplaceWithSpace) {
     }
     word = LangUtil::getInstance()->translateString(word);
     LTKStringUtil::trimString(word);
-    std::string fileName = LangUtil::getInstance()->getPronounciationFileNameForWord(word);
-    if(FileUtils::getInstance()->isFileExist(fileName)) {
-        CCLOG("fileName to pronounce %s", fileName.c_str());
-        MenuContext::_lastAudioId = fileName;
-        auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
-        audio->playEffect(fileName.c_str());
-    }
-//    else if(LangUtil::getInstance()->isTextToSpeechSupported()) {
-//        CCLOG("file doesn't exists with word %s", fileName.c_str());
-//        #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-//            //JSB call to Android TTS Support
-//            cocos2d::JniMethodInfo methodInfo;
-//            if (! cocos2d::JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/javascript/AppActivity", "pronounceWord", "(Ljava/lang/String;)V")) {
-//                return;
-//            }
-//        
-//            std::replace(word.begin(), word.end(), '_', ' ');
-//            jstring wordArg = methodInfo.env->NewStringUTF(word.c_str());
-//            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID,wordArg);
-//            methodInfo.env->DeleteLocalRef(methodInfo.classID);
-//            methodInfo.env->DeleteLocalRef(wordArg);
-//
-//        #endif
-//    }
-    else {
-        if(shouldReplaceWithSpace)
-        {
-            std::replace(word.begin(), word.end(), '_', ' ');
-        }
-        pronounceHashedText(word, shouldReplaceWithSpace);
-    }
+    VoiceMoldManager::shared()->speak(word);
 }
 
 std::vector<cocos2d::Vec2> MenuContext::getPolygonPointsForSprite(cocos2d::Sprite* node, std::string fileName, float threshHold) {
