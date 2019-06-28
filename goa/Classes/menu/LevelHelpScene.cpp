@@ -329,10 +329,11 @@ void LevelHelpScene::onEnterTransitionDidFinish()
     */
     listviewScroll = cocos2d::ui::ListView::create();
     addChild(listviewScroll);
-    listviewScroll->setContentSize({2000, 490});
+    listviewScroll->setContentSize({2000, 420});
     listviewScroll->setAnchorPoint(textField->getAnchorPoint());
     listviewScroll->setBounceEnabled(true);
-    listviewScroll->setPosition(textField->getPosition());
+    // listviewScroll->setPosition(textField->getPosition());
+    listviewScroll->setPosition(Size(textField->getPosition().x, textField->getPosition().y - 30)); // To give some padding at the top, the listView is shifted downwards
 
     _text = Text::create(videoText, "arial", 75);
     _text->setTextColor(Color4B::BLACK);
@@ -483,7 +484,7 @@ void LevelHelpScene::gotoGame(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
                  * an additional label is used with the same width, font
                  * and font size as the text widget.
                 */
-                auto labelText = Label::createWithSystemFont(_helpText, "arial", 110);
+                auto labelText = Label::createWithSystemFont(_helpText, "arial", 75);
                 labelText->setDimensions(2000, 0);
                 Size contentSizeLabel = labelText->getContentSize();
                 _text->setContentSize(contentSizeLabel);
@@ -492,6 +493,11 @@ void LevelHelpScene::gotoGame(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
             else
             {
                 _text->setString(LangUtil::getInstance()->translateString(_videoNames[_currentVideo]));
+                auto labelText = Label::createWithSystemFont(_text->getString(), "arial", 75);
+                labelText->setDimensions(2000, 0);
+                Size contentSizeLabel = labelText->getContentSize();
+                _text->setContentSize(contentSizeLabel);
+                listviewScroll->requestDoLayout();
             }
             this->scheduleOnce(schedule_selector(LevelHelpScene::playNextVideo), 1.0f);
         }

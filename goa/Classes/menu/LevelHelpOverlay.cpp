@@ -75,13 +75,18 @@ void LevelHelpOverlay::gotoGame(Ref* pSender, cocos2d::ui::Widget::TouchEventTyp
                  * an additional label is used with the same width, font 
                  * and font size as the text widget.
                 */
-                auto labelText = Label::createWithSystemFont(_helpText, "arial", 110);
+                auto labelText = Label::createWithSystemFont(_helpText, "arial", 75);
                 labelText->setDimensions(2000, 0);
                 Size contentSizeLabel = labelText->getContentSize();
                 _text->setContentSize(contentSizeLabel);
                 listviewScroll->requestDoLayout();
             } else {
                 _text->setString(LangUtil::getInstance()->translateString(_videoNames[_currentVideo]));
+                auto labelText = Label::createWithSystemFont(_text->getString(), "arial", 75);
+                labelText->setDimensions(2000, 0);
+                Size contentSizeLabel = labelText->getContentSize();
+                _text->setContentSize(contentSizeLabel);
+                listviewScroll->requestDoLayout();
             }
             this->scheduleOnce(schedule_selector(LevelHelpOverlay::playNextVideo), 1.0f);
             
