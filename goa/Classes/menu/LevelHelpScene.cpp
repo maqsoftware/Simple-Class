@@ -475,29 +475,27 @@ void LevelHelpScene::gotoGame(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
             removeChild(getChildByName("bg")->getChildByName("screen_1")->getChildByName("video"));
             getChildByName("bg")->getChildByName("screen_1")->removeChild(_resumeButton);
+            Label* labelText;
             if (_currentVideo + 1 == _videos.size())
             {
                 _text->setString(LangUtil::getInstance()->translateString(_helpText));
-                /*
-                 * To resize the text widget according to the text height
-                 * an additional label is used with the same width, font
-                 * and font size as the text widget.
-                */
-                auto labelText = Label::createWithSystemFont(_helpText, "arial", 75);
-                labelText->setDimensions(2000, 0);
-                Size contentSizeLabel = labelText->getContentSize();
-                _text->setContentSize(contentSizeLabel);
-                listviewScroll->requestDoLayout();
+                labelText = Label::createWithSystemFont(_helpText, "arial", 75);
             }
             else
             {
                 _text->setString(LangUtil::getInstance()->translateString(_videoNames[_currentVideo]));
-                auto labelText = Label::createWithSystemFont(_text->getString(), "arial", 75);
-                labelText->setDimensions(2000, 0);
-                Size contentSizeLabel = labelText->getContentSize();
-                _text->setContentSize(contentSizeLabel);
-                listviewScroll->requestDoLayout();
+                labelText = Label::createWithSystemFont(_text->getString(), "arial", 75);
             }
+            /*
+            * To resize the text widget according to the text height
+            * an additional label is used with the same width, font
+            * and font size as the text widget.
+            */
+            labelText->setDimensions(2000, 0);
+            Size contentSizeLabel = labelText->getContentSize();
+            _text->setContentSize(contentSizeLabel);
+            listviewScroll->requestDoLayout();
+
             this->scheduleOnce(schedule_selector(LevelHelpScene::playNextVideo), 1.0f);
         }
         else
