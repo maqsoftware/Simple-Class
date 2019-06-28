@@ -212,7 +212,7 @@ MenuContext* QuestionHandler::getMenuContext() {
     return _menuContext;
 }
 
-void QuestionHandler::setButtonProperties(Node* button, std::string name, std::string text, const ui::Widget::ccWidgetTouchCallback& callback, const ui::Widget::ccWidgetTouchCallback& soundCallback, size_t length) {
+void QuestionHandler::setButtonProperties(Node *button, std::string name, std::string text, const ui::Widget::ccWidgetTouchCallback &callback, const ui::Widget::ccWidgetTouchCallback &soundCallback, size_t length, const int fontSize){
     auto button1 = static_cast<Button*> (button);
     if(button1) {
         button1->setName(name);
@@ -223,7 +223,7 @@ void QuestionHandler::setButtonProperties(Node* button, std::string name, std::s
                 button1->setTitleColor(QuestionHandler::FONT_COLOR);
                 button1->setTitleFontSize(72);
             } else {
-                auto label = Label::createWithTTF(wrapString(text, length), QuestionHandler::FONT_NAME, QuestionHandler::FONT_SIZE);
+                auto label = Label::createWithTTF(wrapString(text, length), QuestionHandler::FONT_NAME, fontSize);
                 label->setTextColor(Color4B(QuestionHandler::FONT_COLOR));
                 button1->getParent()->addChild(label);
             }
