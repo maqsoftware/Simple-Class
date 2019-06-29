@@ -152,7 +152,6 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
     for (std::vector<Node *>::iterator it = children.begin(); it != children.end(); ++it)
     {
         cocos2d::Node *node = *it;
-        CCLOG("in the main menu home :: %s", node->getName().c_str());
 
         if (node)
         {

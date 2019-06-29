@@ -1,3 +1,12 @@
+/*  
+ * This is class is used for initiating the firebase instance
+ * and some other helper functions needed to log the events.
+ * 
+ * Author: Vishal Maurya
+ * Created: 27-06-2019
+*/
+
+
 #ifndef __FIREBASEHELPER_HPP__
 #define __FIREBASEHELPER_HPP__
 
