@@ -5,11 +5,12 @@
 //  Created by Shyamal.Upadhyaya on 25/04/17.
 //
 //
-
+#define _COCOSCLASS_
 #include "MainMenuHome.hpp"
 #include "../hero/RPGConfig.h"
 #include "MapScene.h"
 #include "../misc/ScaleGuiElements.cpp"
+#include "misc/FirebaseHelper.hpp"
 
 USING_NS_CC;
 
@@ -152,7 +153,7 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
     for (std::vector<Node *>::iterator it = children.begin(); it != children.end(); ++it)
     {
         cocos2d::Node *node = *it;
-        CCLOG("%s", node->getName().c_str());
+        CCLOG("in the main menu home :: %s", node->getName().c_str());
 
         if (node)
         {
@@ -254,6 +255,8 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
 void MainMenuHome::mainMenuSelected(Ref *pSender, ui::Widget::TouchEventType eEventType)
 {
     cocos2d::ui::Button *clickedButton = dynamic_cast<cocos2d::ui::Button *>(pSender);
+    CCLOG("main menu buttons :: %s", (clickedButton->getName()).c_str());
+    firebase_instance.pushToCurrentEvent(clickedButton->getTitleText());
     switch (eEventType)
     {
     case ui::Widget::TouchEventType::BEGAN:
@@ -285,6 +288,7 @@ void MainMenuHome::mainMenuSelected(Ref *pSender, ui::Widget::TouchEventType eEv
 void MainMenuHome::mainMenuMapSelected(Ref *pSender, ui::Widget::TouchEventType eEventType)
 {
     cocos2d::ui::Button *clickedButton = dynamic_cast<cocos2d::ui::Button *>(pSender);
+    firebase_instance.pushToCurrentEvent(clickedButton->getTitleText());
     switch (eEventType)
     {
     case ui::Widget::TouchEventType::BEGAN:
@@ -356,6 +360,7 @@ void MainMenuHome::storyTransition(float dt)
 void MainMenuHome::storySelected(Ref *pSender, ui::Widget::TouchEventType eEventType)
 {
     cocos2d::ui::Button *clickedButton = dynamic_cast<cocos2d::ui::Button *>(pSender);
+    firebase_instance.pushToCurrentEvent(clickedButton->getTitleText());
     switch (eEventType)
     {
     case ui::Widget::TouchEventType::BEGAN:

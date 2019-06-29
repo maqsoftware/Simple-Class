@@ -6,6 +6,8 @@
 //
 //
 
+#define _COCOSCLASS_
+
 #include "MenuContext.h"
 #include "LevelHelpScene.h"
 #include "LevelHelpOverlay.h"
@@ -95,6 +97,11 @@
 #include "../mini_games/BasicLetterCase.h"
 #include "../lang/Lesson.h"
 #include "../misc/ScaleGuiElements.cpp"
+#include "firebase/analytics.h"
+#include "firebase/app.h"
+#include "firebase/database.h"
+#include "misc/FirebaseHelper.hpp"
+#include "time.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -332,6 +339,7 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
             _character->removeFromParent();
             if(_launchCustomEventOnExit) {
                 std::string menuName(EXIT_MENU);
+                CCLOG("on menu exit :: menuName : %s", menuName.c_str());
                 EventCustom event("on_menu_exit");
                 event.setUserData(static_cast<void*>(&menuName));
                 _eventDispatcher->dispatchEvent(&event);
@@ -685,6 +693,8 @@ void MenuContext::pickAlphabet(char targetAlphabet, char chosenAlphabet, bool ch
     std::string targetAlphabetStr (1, targetAlphabet);
     std::string chosenAlphabetStr (1, chosenAlphabet);
 
+    CCLOG("safari analytics manager: targetAlphabet :: %s, chosen alphabet :: %s, gameName :: %s", targetAlphabetStr.c_str(), chosenAlphabetStr.c_str(), gameName.c_str());
+
     SafariAnalyticsManager::getInstance()->insertAnalyticsInfo(targetAlphabetStr.c_str(), chosenAlphabetStr.c_str(), gameName.c_str());
 }
 
@@ -913,6 +923,7 @@ void MenuContext::waitForAudioLoad(std::string audioFileName, std::function<void
 }
 
 void MenuContext::showBook(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType) {
+    CCLOG("Menu context me :: %s", gameName.c_str());
     if(eEventType == cocos2d::ui::Widget::TouchEventType::ENDED) {
         
         std::size_t isStories = gameName.find("storyId");
@@ -928,6 +939,7 @@ void MenuContext::showBook(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 
 
 void MenuContext::showMap(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType) {
+    CCLOG("show map :: %s", MAP_MENU);
     if(eEventType == cocos2d::ui::Widget::TouchEventType::ENDED) {
         if(_launchCustomEventOnExit) {
             std::string menuName(MAP_MENU);
@@ -952,6 +964,10 @@ void MenuContext::launchGameFromJS(std::string gameName) {
 
 void MenuContext::launchGameFinally(std::string gameName) {
     CCLOG("gameName %s", gameName.c_str());
+
+    firebase_instance.setStartTime();
+    string eventName = firebase_instance.replaceWhiteSpaceWithUnderscore(gameName);
+    firebase_instance.pushToCurrentEvent(eventName);
     
     std::string currentLevelStr;
     localStorageGetItem(gameName + CURRENT_LEVEL, &currentLevelStr);
@@ -1190,6 +1206,7 @@ void MenuContext::launchGameFinally(std::string gameName) {
 }
 
 void MenuContext::transitToScrollableGameMap() {
+    CCLOG("exit to main menu with the game :: %s" , gameName.c_str());
     Director::getInstance()->replaceScene(TransitionFade::create(0.5, ScrollableGameMapScene::createScene(), Color3B::BLACK));
 }
 
