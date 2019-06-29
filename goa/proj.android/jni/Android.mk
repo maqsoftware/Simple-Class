@@ -9,7 +9,7 @@ $(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos/audio/include)
 
 FIREBASE_CPP_SDK_DIR := ../../firebase_cpp_sdk
  
-APP_ABI := armeabi-v7a 
+APP_ABI := armeabi-v7a arm64-v8a
 STL := $(firstword $(subst _, ,$(APP_STL)))
 FIREBASE_LIBRARY_PATH := $(FIREBASE_CPP_SDK_DIR)/libs/android/$(TARGET_ARCH_ABI)/$(STL)
  
