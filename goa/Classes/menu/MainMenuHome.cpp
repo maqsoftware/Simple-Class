@@ -256,7 +256,6 @@ void MainMenuHome::mainMenuSelected(Ref *pSender, ui::Widget::TouchEventType eEv
 {
     cocos2d::ui::Button *clickedButton = dynamic_cast<cocos2d::ui::Button *>(pSender);
     CCLOG("main menu buttons :: %s", (clickedButton->getName()).c_str());
-    firebase_instance.pushToCurrentEvent(clickedButton->getName());
     switch (eEventType)
     {
     case ui::Widget::TouchEventType::BEGAN:
@@ -269,6 +268,7 @@ void MainMenuHome::mainMenuSelected(Ref *pSender, ui::Widget::TouchEventType eEv
     case ui::Widget::TouchEventType::ENDED:
     {
 
+        firebase_instance.pushToCurrentEvent(clickedButton->getName());
         addGreyLayer();
         clickedButton->setEnabled(false);
         _gameNameToNavigate = clickedButton->getName();
@@ -288,7 +288,6 @@ void MainMenuHome::mainMenuSelected(Ref *pSender, ui::Widget::TouchEventType eEv
 void MainMenuHome::mainMenuMapSelected(Ref *pSender, ui::Widget::TouchEventType eEventType)
 {
     cocos2d::ui::Button *clickedButton = dynamic_cast<cocos2d::ui::Button *>(pSender);
-    firebase_instance.pushToCurrentEvent(clickedButton->getName());
     switch (eEventType)
     {
     case ui::Widget::TouchEventType::BEGAN:
@@ -301,6 +300,7 @@ void MainMenuHome::mainMenuMapSelected(Ref *pSender, ui::Widget::TouchEventType 
     case ui::Widget::TouchEventType::ENDED:
     {
 
+        firebase_instance.pushToCurrentEvent(clickedButton->getName());
         addGreyLayer();
         clickedButton->setEnabled(false);
         _gameNameToNavigate = clickedButton->getName();
@@ -360,7 +360,6 @@ void MainMenuHome::storyTransition(float dt)
 void MainMenuHome::storySelected(Ref *pSender, ui::Widget::TouchEventType eEventType)
 {
     cocos2d::ui::Button *clickedButton = dynamic_cast<cocos2d::ui::Button *>(pSender);
-    firebase_instance.pushToCurrentEvent(clickedButton->getName());
     switch (eEventType)
     {
     case ui::Widget::TouchEventType::BEGAN:
@@ -369,6 +368,7 @@ void MainMenuHome::storySelected(Ref *pSender, ui::Widget::TouchEventType eEvent
         break;
     case ui::Widget::TouchEventType::ENDED:
     {
+        firebase_instance.pushToCurrentEvent(clickedButton->getName());
         addGreyLayer();
         clickedButton->setEnabled(false);
         _gameNameToNavigate = clickedButton->getName();

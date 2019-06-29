@@ -9,7 +9,7 @@ $(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos/audio/include)
 
 FIREBASE_CPP_SDK_DIR := ../../firebase_cpp_sdk
  
-APP_ABI := armeabi-v7a x86
+APP_ABI := armeabi-v7a 
 STL := $(firstword $(subst _, ,$(APP_STL)))
 FIREBASE_LIBRARY_PATH := $(FIREBASE_CPP_SDK_DIR)/libs/android/$(TARGET_ARCH_ABI)/$(STL)
  
@@ -275,7 +275,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
          ../../Classes/util/CommonLabelTTF.cpp \
          ../../Classes/util/CommonText.cpp \
 		 ../../Classes/util/CommonTextField.cpp \
-		 ../../Classes/util/Speaker.cpp
+		 ../../Classes/util/Speaker.cpp \
+         ../../Classes/FirebaseHelper.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/ext

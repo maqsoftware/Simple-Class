@@ -965,9 +965,11 @@ void MenuContext::launchGameFromJS(std::string gameName) {
 void MenuContext::launchGameFinally(std::string gameName) {
     CCLOG("gameName %s", gameName.c_str());
 
-    firebase_instance.setStartTime();
-    string eventName = firebase_instance.replaceWhiteSpaceWithUnderscore(gameName);
-    firebase_instance.pushToCurrentEvent(eventName);
+    if (gameName != "map" && gameName != "story-catalogue" && gameName != "story")
+    { 
+        string eventName = firebase_instance.replaceWhiteSpaceWithUnderscore(gameName);
+        firebase_instance.pushToCurrentEvent(eventName); 
+    }
     
     std::string currentLevelStr;
     localStorageGetItem(gameName + CURRENT_LEVEL, &currentLevelStr);
