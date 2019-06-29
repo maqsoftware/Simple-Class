@@ -256,7 +256,7 @@ void MainMenuHome::mainMenuSelected(Ref *pSender, ui::Widget::TouchEventType eEv
 {
     cocos2d::ui::Button *clickedButton = dynamic_cast<cocos2d::ui::Button *>(pSender);
     CCLOG("main menu buttons :: %s", (clickedButton->getName()).c_str());
-    firebase_instance.pushToCurrentEvent(clickedButton->getTitleText());
+    firebase_instance.pushToCurrentEvent(clickedButton->getName());
     switch (eEventType)
     {
     case ui::Widget::TouchEventType::BEGAN:
@@ -288,7 +288,7 @@ void MainMenuHome::mainMenuSelected(Ref *pSender, ui::Widget::TouchEventType eEv
 void MainMenuHome::mainMenuMapSelected(Ref *pSender, ui::Widget::TouchEventType eEventType)
 {
     cocos2d::ui::Button *clickedButton = dynamic_cast<cocos2d::ui::Button *>(pSender);
-    firebase_instance.pushToCurrentEvent(clickedButton->getTitleText());
+    firebase_instance.pushToCurrentEvent(clickedButton->getName());
     switch (eEventType)
     {
     case ui::Widget::TouchEventType::BEGAN:
@@ -360,7 +360,7 @@ void MainMenuHome::storyTransition(float dt)
 void MainMenuHome::storySelected(Ref *pSender, ui::Widget::TouchEventType eEventType)
 {
     cocos2d::ui::Button *clickedButton = dynamic_cast<cocos2d::ui::Button *>(pSender);
-    firebase_instance.pushToCurrentEvent(clickedButton->getTitleText());
+    firebase_instance.pushToCurrentEvent(clickedButton->getName());
     switch (eEventType)
     {
     case ui::Widget::TouchEventType::BEGAN:

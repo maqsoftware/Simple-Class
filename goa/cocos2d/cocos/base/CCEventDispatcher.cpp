@@ -335,7 +335,7 @@ void EventDispatcher::resumeEventListenersForTarget(Node* target, bool recursive
             string targetName = firebase_instance.getTargetName(target->getDescription());
             CCLOG("Event occurred :: %s :: target event :: %s", topEvent.first.c_str(), targetName.c_str());
             topEvent.first = firebase_instance.getTargetName(topEvent.first);
-            if (topEvent.first == targetName)
+            if (topEvent.first == targetName || (targetName == "numbers" && topEvent.first == "shapes"))
             { 
                 firebase_instance.setElapsedTime();
                 firebase_instance.logCustomEvent(targetName, "elapsed_time", difftime(firebase_instance.getElapsedTime(), topEvent.second));
