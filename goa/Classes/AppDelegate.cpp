@@ -12,7 +12,6 @@
 #include "audio/include/SimpleAudioEngine.h"
 #include "storage/local-storage/LocalStorage.h"
 #include "firebase/app.h"
-// #include "firebase/analytics.h"
 #include "misc/FirebaseHelper.hpp"
 
 USING_NS_CC;

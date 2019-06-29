@@ -45,9 +45,6 @@ void FirebaseHelper::pushToCurrentEvent(string eventName)
 {
     setStartTime();
     (this->_currentEvent).push({eventName, this->startTime});
-    stack<pair<string, time_t>> ss = _currentEvent;
-    while (!ss.empty())
-    { CCLOG("I AM AT THE TOP :: %s",ss.top().first.c_str()); ss.pop(); }
 }
 
 void FirebaseHelper::setStartTime()
