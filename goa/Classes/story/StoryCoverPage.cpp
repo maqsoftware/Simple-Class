@@ -14,6 +14,7 @@
 #include "StoryCoverPage.hpp"
 #include "StoryPlaying.hpp"
 #include "QuestionHandler.h"
+#include "Managers/VoiceMoldManager.h"
 
 static const std::string STORY_JSON = ".storyJSON";
 static const std::string SOUND_ENABLED_FOR_STORIES = ".soundEnabledForStories";
@@ -105,7 +106,7 @@ void StoryCoverPage::load() {
     
     rapidjson::Document d;
     
-    if (false == d.Parse<0>(contents.c_str()).HasParseError()) {
+    if (!d.Parse<0>(contents.c_str()).HasParseError()) {
         const rapidjson::Value& storyConfigs = d["stories"];
         assert(storyConfigs.IsArray());
         const rapidjson::Value& story = storyConfigs[storyIndex];
@@ -138,9 +139,8 @@ void StoryCoverPage::loadCoverPage(std::string coverPageUrl) {
             std::string textFileUrl = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".json";
             if(!textFileUrl.empty() && FileUtils::getInstance()->isFileExist(textFileUrl)) {
                 std::string jsonData = FileUtils::getInstance()->getStringFromFile(textFileUrl);
-                CCLOG("got data %s", jsonData.c_str());
                 rapidjson::Document coverPageTextDocument;
-                if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
+                if (!coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
                     // document is ok
                     coverPageText = coverPageTextDocument["0"].GetString();
                     coverPageText = LangUtil::getInstance()->translateString(coverPageText);
@@ -162,8 +162,8 @@ void StoryCoverPage::loadCoverPage(std::string coverPageUrl) {
         }
     }
     
-    _soundFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + "/" + _baseDir + "_0.ogg";
-    
+    _jsonFile = "story/" + LangUtil::getInstance()->getLang() + "/" + _baseDir + ".json";
+
     //get configuration
     
     _soundEnabled = "";
@@ -349,20 +349,19 @@ void StoryCoverPage::loadTimings() {
     if(!timeFileUrl.empty() && FileUtils::getInstance()->isFileExist(timeFileUrl))
     {
         std::string jsonData = FileUtils::getInstance()->getStringFromFile(timeFileUrl);
-        CCLOG("got data %s", jsonData.c_str());
         rapidjson::Document coverPageTextDocument;
-        if (false == coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
+        if (!coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError()) {
             // document is ok
-            rapidjson::Value::MemberIterator M;
+            rapidjson::Value::MemberIterator jsonIterator;
             const char *key,*value;
             int i = 0;
-            for (M=coverPageTextDocument.MemberBegin(); M!=coverPageTextDocument.MemberEnd(); M++)
+            for (jsonIterator=coverPageTextDocument.MemberBegin(); jsonIterator!=coverPageTextDocument.MemberEnd(); jsonIterator++)
             {
-                key   = M->name.GetString();
-                value = M->value.GetString();
+                key   = jsonIterator->name.GetString();
+                value = jsonIterator->value.GetString();
                 std::string sValue = value;
                 
-                if(i == 0) {
+                if(true) {
                     _contentPageText = value;
                     
                     if (!_contentPageText.empty() && _contentPageText[_contentPageText.length()-1] == '\n') {
@@ -444,8 +443,21 @@ void StoryCoverPage::highlightWord(float time, cocos2d::ui::Text* text) {
 
 void StoryCoverPage::onEnterTransitionDidFinish() {
     Node::onEnterTransitionDidFinish();
-    this->scheduleOnce(schedule_selector(StoryCoverPage::narrateDialog), 1.0f);
-    this->scheduleOnce(schedule_selector(StoryCoverPage::highlightedNarrateWord), 1.0f);
+    std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
+    rapidjson::Document coverPageTextDocument;
+    if (!coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError())
+    {
+        // document is ok
+        rapidjson::Value::MemberIterator jsonIterator;
+        const char *key, *value;
+        int i = 0;
+        jsonIterator = coverPageTextDocument.MemberBegin();
+        key = jsonIterator->name.GetString();
+        value = jsonIterator->value.GetString();
+        std::string sValue = value;
+        std::string _contentPageText = value;
+        VoiceMoldManager::shared()->speak(_contentPageText);
+    }
 }
 
 void StoryCoverPage::playSound(Ref* pSender, ui::Widget::TouchEventType eEventType)
@@ -476,10 +488,21 @@ void StoryCoverPage::playSound(Ref* pSender, ui::Widget::TouchEventType eEventTy
                 clickedButton->setHighlighted(true);
                 localStorageSetItem(SOUND_ENABLED_FOR_STORIES, _soundEnabled);
                 
-                CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(_soundFile.c_str(), false);
-                CocosDenshion::SimpleAudioEngine::getInstance()->setEffectsVolume(1.0f);
-                this->scheduleOnce(schedule_selector(StoryCoverPage::highlightedNarrateWord), 0.0f);
-                
+                std::string jsonData = FileUtils::getInstance()->getStringFromFile(_jsonFile);
+                rapidjson::Document coverPageTextDocument;
+                if (!coverPageTextDocument.Parse<0>(jsonData.c_str()).HasParseError())
+                {
+                    // document is ok
+                    rapidjson::Value::MemberIterator jsonIterator;
+                    const char *key, *value;
+                    int i = 0;
+                    jsonIterator = coverPageTextDocument.MemberBegin();
+                    key = jsonIterator->name.GetString();
+                    value = jsonIterator->value.GetString();
+                    std::string sValue = value;
+                    std::string _contentPageText = value;
+                    VoiceMoldManager::shared()->speak(_contentPageText);
+                }
             }
             
             break;
@@ -492,6 +515,7 @@ void StoryCoverPage::playSound(Ref* pSender, ui::Widget::TouchEventType eEventTy
     }
     
 }
+
 
 void StoryCoverPage::play(Ref* pSender, ui::Widget::TouchEventType eEventType)
 {

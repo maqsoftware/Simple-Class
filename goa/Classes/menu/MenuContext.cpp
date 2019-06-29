@@ -24,6 +24,7 @@
 #include "../puzzle/DuelScene.h"
 #include "../puzzle/WordBoard.h"
 #include "../puzzle/PegWord.h"
+#include "Managers/VoiceMoldManager.h"
 #include "../mini_games/PatchTheWallScene.h"
 #include "../mini_games/CrossTheBridgeScene.h"
 #include "../mini_games/SmashTheRockScene.h"
@@ -689,6 +690,7 @@ void MenuContext::pickAlphabet(char targetAlphabet, char chosenAlphabet, bool ch
     //    _label->setString("Points: " + to_string(_points));
     std::string targetAlphabetStr (1, targetAlphabet);
     std::string chosenAlphabetStr (1, chosenAlphabet);
+
     SafariAnalyticsManager::getInstance()->insertAnalyticsInfo(targetAlphabetStr.c_str(), chosenAlphabetStr.c_str(), gameName.c_str());
 }
 
@@ -958,11 +960,11 @@ void MenuContext::launchGameFinally(std::string gameName) {
     CCLOG("gameName %s", gameName.c_str());
 
     if (gameName != "map" && gameName != "story-catalogue" && gameName != "story")
-    { 
+    {
         string eventName = firebase_instance.replaceWhiteSpaceWithUnderscore(gameName);
-        firebase_instance.pushToCurrentEvent(eventName); 
+        firebase_instance.pushToCurrentEvent(eventName);
     }
-    
+
     std::string currentLevelStr;
     localStorageGetItem(gameName + CURRENT_LEVEL, &currentLevelStr);
     int currentLevel = 0;
@@ -1617,46 +1619,13 @@ void MenuContext::pronounceSplitFileFromStory(std::string fileName) {
 
 void MenuContext::pronounceWord(std::string word, bool shouldReplaceWithSpace) {
     if(!MenuContext::_lastAudioId.empty()) {
-        CCLOG("unloadEffect: %s", MenuContext::_lastAudioId.c_str());
         CocosDenshion::SimpleAudioEngine::getInstance()->unloadEffect(MenuContext::_lastAudioId.c_str());
     }
-    if(shouldReplaceWithSpace)
-    {
-       std::replace(word.begin(), word.end(), '_', ' ');
-    }
+    // To avoid underscore to be read out loud, the underscore is replaced by space
+    std::replace(word.begin(), word.end(), '_', ' ');
     word = LangUtil::getInstance()->translateString(word);
     LTKStringUtil::trimString(word);
-    std::string fileName = LangUtil::getInstance()->getPronounciationFileNameForWord(word);
-    if(FileUtils::getInstance()->isFileExist(fileName)) {
-        CCLOG("fileName to pronounce %s", fileName.c_str());
-        MenuContext::_lastAudioId = fileName;
-        auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
-        audio->playEffect(fileName.c_str());
-    }
-//    else if(LangUtil::getInstance()->isTextToSpeechSupported()) {
-//        CCLOG("file doesn't exists with word %s", fileName.c_str());
-//        #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-//            //JSB call to Android TTS Support
-//            cocos2d::JniMethodInfo methodInfo;
-//            if (! cocos2d::JniHelper::getStaticMethodInfo(methodInfo, "org/cocos2dx/javascript/AppActivity", "pronounceWord", "(Ljava/lang/String;)V")) {
-//                return;
-//            }
-//        
-//            std::replace(word.begin(), word.end(), '_', ' ');
-//            jstring wordArg = methodInfo.env->NewStringUTF(word.c_str());
-//            methodInfo.env->CallStaticVoidMethod(methodInfo.classID, methodInfo.methodID,wordArg);
-//            methodInfo.env->DeleteLocalRef(methodInfo.classID);
-//            methodInfo.env->DeleteLocalRef(wordArg);
-//
-//        #endif
-//    }
-    else {
-        if(shouldReplaceWithSpace)
-        {
-            std::replace(word.begin(), word.end(), '_', ' ');
-        }
-        pronounceHashedText(word, shouldReplaceWithSpace);
-    }
+    VoiceMoldManager::shared()->speak(word);
 }
 
 std::vector<cocos2d::Vec2> MenuContext::getPolygonPointsForSprite(cocos2d::Sprite* node, std::string fileName, float threshHold) {
