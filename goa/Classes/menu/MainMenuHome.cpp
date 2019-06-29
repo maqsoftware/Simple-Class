@@ -5,7 +5,6 @@
 //  Created by Shyamal.Upadhyaya on 25/04/17.
 //
 //
-#define _COCOSCLASS_
 #include "MainMenuHome.hpp"
 #include "../hero/RPGConfig.h"
 #include "MapScene.h"
