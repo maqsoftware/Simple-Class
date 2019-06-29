@@ -1,8 +1,6 @@
 #ifndef __FIREBASEHELPER_HPP__
 #define __FIREBASEHELPER_HPP__
 
-#define _COCOSCLASS_
-
 #include <vector>
 #include <string>
 #include <utility>
@@ -10,14 +8,10 @@
 #include <stack>
 #include "firebase/app.h"
 #include "firebase/analytics.h"
-
 #include "platform/android/jni/JniHelper.h"
-
-
 
 using namespace std;
 namespace analytics = firebase::analytics;
-
 
 class FirebaseHelper {
 

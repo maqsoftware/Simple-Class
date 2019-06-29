@@ -6,8 +6,6 @@
 //
 //
 
-#define _COCOSCLASS_
-
 #include "MenuContext.h"
 #include "LevelHelpScene.h"
 #include "LevelHelpOverlay.h"
@@ -339,7 +337,6 @@ void MenuContext::expandMenu(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEv
             _character->removeFromParent();
             if(_launchCustomEventOnExit) {
                 std::string menuName(EXIT_MENU);
-                CCLOG("on menu exit :: menuName : %s", menuName.c_str());
                 EventCustom event("on_menu_exit");
                 event.setUserData(static_cast<void*>(&menuName));
                 _eventDispatcher->dispatchEvent(&event);
@@ -692,9 +689,6 @@ void MenuContext::pickAlphabet(char targetAlphabet, char chosenAlphabet, bool ch
     //    _label->setString("Points: " + to_string(_points));
     std::string targetAlphabetStr (1, targetAlphabet);
     std::string chosenAlphabetStr (1, chosenAlphabet);
-
-    CCLOG("safari analytics manager: targetAlphabet :: %s, chosen alphabet :: %s, gameName :: %s", targetAlphabetStr.c_str(), chosenAlphabetStr.c_str(), gameName.c_str());
-
     SafariAnalyticsManager::getInstance()->insertAnalyticsInfo(targetAlphabetStr.c_str(), chosenAlphabetStr.c_str(), gameName.c_str());
 }
 
@@ -923,7 +917,6 @@ void MenuContext::waitForAudioLoad(std::string audioFileName, std::function<void
 }
 
 void MenuContext::showBook(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType) {
-    CCLOG("Menu context me :: %s", gameName.c_str());
     if(eEventType == cocos2d::ui::Widget::TouchEventType::ENDED) {
         
         std::size_t isStories = gameName.find("storyId");
@@ -939,7 +932,6 @@ void MenuContext::showBook(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEven
 
 
 void MenuContext::showMap(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType) {
-    CCLOG("show map :: %s", MAP_MENU);
     if(eEventType == cocos2d::ui::Widget::TouchEventType::ENDED) {
         if(_launchCustomEventOnExit) {
             std::string menuName(MAP_MENU);
@@ -1208,7 +1200,6 @@ void MenuContext::launchGameFinally(std::string gameName) {
 }
 
 void MenuContext::transitToScrollableGameMap() {
-    CCLOG("exit to main menu with the game :: %s" , gameName.c_str());
     Director::getInstance()->replaceScene(TransitionFade::create(0.5, ScrollableGameMapScene::createScene(), Color3B::BLACK));
 }
 

@@ -23,7 +23,6 @@
  ****************************************************************************/
 #include "base/CCEventDispatcher.h"
 #include <algorithm>
-#define _CCEVENTHEADER_
 
 #include "base/CCEventCustom.h"
 #include "base/CCEventListenerTouch.h"
@@ -227,7 +226,6 @@ EventDispatcher::~EventDispatcher()
 
 void EventDispatcher::visitTarget(Node* node, bool isRootNode)
 {
-    // CCLOG("visit Event Dispatcher :::: %s", node->getDescription().c_str());
     node->sortAllChildren();
     
     int i = 0;
@@ -297,7 +295,6 @@ void EventDispatcher::visitTarget(Node* node, bool isRootNode)
 
 void EventDispatcher::pauseEventListenersForTarget(Node* target, bool recursive/* = false */)
 {
-        CCLOG("pause Event Dispatcher :: %s", target->getDescription().c_str());
     auto listenerIter = _nodeListenersMap.find(target);
     if (listenerIter != _nodeListenersMap.end())
     {
@@ -328,12 +325,10 @@ void EventDispatcher::pauseEventListenersForTarget(Node* target, bool recursive/
 
 void EventDispatcher::resumeEventListenersForTarget(Node* target, bool recursive/* = false */)
 {
-        CCLOG("resume Event Dispatcher :: %s", target->getDescription().c_str());
         if (FirebaseHelper::isStarted)
         { 
             auto topEvent = firebase_instance.getTopEvent();
             string targetName = firebase_instance.getTargetName(target->getDescription());
-            CCLOG("Event occurred :: %s :: target event :: %s", topEvent.first.c_str(), targetName.c_str());
             topEvent.first = firebase_instance.getTargetName(topEvent.first);
             if (topEvent.first == targetName || (targetName == "numbers" && topEvent.first == "shapes") || (targetName == "library" && topEvent.first == "story-catalogue"))
             { 
@@ -378,7 +373,6 @@ void EventDispatcher::resumeEventListenersForTarget(Node* target, bool recursive
 
 void EventDispatcher::removeEventListenersForTarget(Node* target, bool recursive/* = false */)
 {
-        // CCLOG("removed Event Dispatcher :: %s", target->getDescription().c_str());
     // Ensure the node is removed from these immediately also.
     // Don't want any dangling pointers or the possibility of dealing with deleted objects..
     _nodePriorityMap.erase(target);
@@ -429,7 +423,6 @@ void EventDispatcher::removeEventListenersForTarget(Node* target, bool recursive
 
 void EventDispatcher::associateNodeAndEventListener(Node* node, EventListener* listener)
 {
-        // CCLOG("associate Event Dispatcher :: %s", node->getDescription().c_str());
     std::vector<EventListener*>* listeners = nullptr;
     auto found = _nodeListenersMap.find(node);
     if (found != _nodeListenersMap.end())
@@ -447,7 +440,6 @@ void EventDispatcher::associateNodeAndEventListener(Node* node, EventListener* l
 
 void EventDispatcher::dissociateNodeAndEventListener(Node* node, EventListener* listener)
 {
-        // CCLOG("dissociate Event Dispatcher :: %s", node->getDescription().c_str());
     std::vector<EventListener*>* listeners = nullptr;
     auto found = _nodeListenersMap.find(node);
     if (found != _nodeListenersMap.end())
@@ -469,9 +461,6 @@ void EventDispatcher::dissociateNodeAndEventListener(Node* node, EventListener* 
 
 void EventDispatcher::addEventListener(EventListener* listener)
 {
-    // Node* node_example = listener->_node;
-    // if (node_example != NULL)
-        // CCLOG("add Event Dispatcher :: %s", node_example->getDescription().c_str());
     if (_inDispatch == 0)
     {
         forceAddEventListener(listener);
@@ -492,9 +481,6 @@ void EventDispatcher::addEventListener(EventListener* listener)
 
 void EventDispatcher::forceAddEventListener(EventListener* listener)
 {
-    // Node* node_example = listener->_node;
-    // if (node_example != NULL)
-        // CCLOG("force add Event Dispatcher :: %s", node_example->getDescription().c_str());
     EventListenerVector* listeners = nullptr;
     EventListener::ListenerID listenerID = listener->getListenerID();
     auto itr = _listenerMap.find(listenerID);
@@ -533,7 +519,6 @@ void EventDispatcher::forceAddEventListener(EventListener* listener)
 
 void EventDispatcher::addEventListenerWithSceneGraphPriority(EventListener* listener, Node* node)
 {
-        // CCLOG("add graph priority Event Dispatcher :: %s", node->getDescription().c_str());
     CCASSERT(listener && node, "Invalid parameters.");
     CCASSERT(!listener->isRegistered(), "The listener has been registered.");
     
@@ -975,7 +960,6 @@ void EventDispatcher::dispatchEvent(Event* event)
 void EventDispatcher::dispatchCustomEvent(const std::string &eventName, void *optionalUserData)
 {
     EventCustom ev(eventName);
-    // CCLOG("Custom event :: %s", eventName.c_str());
     ev.setUserData(optionalUserData);
     dispatchEvent(&ev);
 }
