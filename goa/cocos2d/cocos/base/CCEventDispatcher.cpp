@@ -343,9 +343,6 @@ void EventDispatcher::resumeEventListenersForTarget(Node* target, bool recursive
             }
         }
 
-
-
-
     auto listenerIter = _nodeListenersMap.find(target);
     if (listenerIter != _nodeListenersMap.end())
     {
