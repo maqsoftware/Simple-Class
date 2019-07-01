@@ -96,6 +96,11 @@
 #include "../mini_games/BasicLetterCase.h"
 #include "../lang/Lesson.h"
 #include "../misc/ScaleGuiElements.cpp"
+#include "firebase/analytics.h"
+#include "firebase/app.h"
+#include "firebase/database.h"
+#include "misc/FirebaseHelper.hpp"
+#include "time.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -934,6 +939,13 @@ void MenuContext::launchGameFromJS(std::string gameName) {
 }
 
 void MenuContext::launchGameFinally(std::string gameName) {
+
+    if (gameName != "map" && gameName != "story-catalogue" && gameName != "story")
+    {
+        string eventName = firebase_instance.replaceWhiteSpaceWithUnderscore(gameName);
+        firebase_instance.pushToCurrentEvent(eventName);
+    }
+
     std::string currentLevelStr;
     localStorageGetItem(gameName + CURRENT_LEVEL, &currentLevelStr);
     int currentLevel = 0;
@@ -1163,6 +1175,10 @@ void MenuContext::launchGameFinally(std::string gameName) {
 		else if (gameName == BASICLETTERCASE) {
 			Director::getInstance()->replaceScene(BasicLetterCase::createScene());
 		}
+		else{
+            CCLOG("Failed starting scene: %s", gameName.c_str());
+        }
+        
 }
 
 void MenuContext::transitToScrollableGameMap() {
@@ -1300,6 +1316,7 @@ void MenuContext::unlockNextStory() {
     localStorageGetItem(UNLOCKED_STORY_ID_ORDER, &unlockedStoryIdOrderStr);
     
     rapidjson::Document d;
+    
     if (false == d.Parse<0>(unlockedStoryIdOrderStr.c_str()).HasParseError()) {
         assert(d.IsArray());
         int unlockStories = NUMBER_OF_STORIES_TO_BE_UNLOCKED;

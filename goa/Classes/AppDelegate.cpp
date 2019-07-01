@@ -11,6 +11,8 @@
 #include "HelloDragonBones.h"
 #include "audio/include/SimpleAudioEngine.h"
 #include "storage/local-storage/LocalStorage.h"
+#include "firebase/app.h"
+#include "misc/FirebaseHelper.hpp"
 
 USING_NS_CC;
 using namespace CocosDenshion;
@@ -117,6 +119,9 @@ void AppDelegate::initGLContextAttrs()
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+    // Initialize Firebase for Android.
+    firebase_instance.__initFirebase();
+    
     // initialize director
     auto director = Director::getInstance();
     auto console = director->getConsole()->listenOnTCP(1234);
