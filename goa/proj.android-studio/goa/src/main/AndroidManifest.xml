@@ -28,7 +28,9 @@
         <meta-data
             android:name="android.app.lib_name"
             android:value="MyGame" />
-        <meta-data android:name="firebase_analytics_collection_enabled" android:value="true" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="true" />
 
         <activity
             android:name="org.cocos2dx.cpp.AppActivity"

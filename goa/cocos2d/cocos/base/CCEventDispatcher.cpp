@@ -325,6 +325,11 @@ void EventDispatcher::pauseEventListenersForTarget(Node* target, bool recursive/
 
 void EventDispatcher::resumeEventListenersForTarget(Node* target, bool recursive/* = false */)
 {
+        /* 
+         * To prevent crashing, First it is checked that if there is a running
+         * instance of Firebase then proceed towards logging at the 
+         * exit point otherwise continue.
+        */
         if (FirebaseHelper::isStarted)
         { 
             auto topEvent = firebase_instance.getTopEvent();
