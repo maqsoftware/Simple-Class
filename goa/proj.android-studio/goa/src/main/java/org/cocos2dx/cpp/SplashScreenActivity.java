@@ -36,7 +36,7 @@ import static org.cocos2dx.cpp.AppActivity.sharedPref;
 
 public class SplashScreenActivity extends Activity {
 
-    public static String assetsPath;
+    public static String assetsPath = null;
     Intent intent = null;
     File obbFile;
     ZipFile obbZipFile;
@@ -82,8 +82,7 @@ public class SplashScreenActivity extends Activity {
                         startExtraction();
                     }
                 });
-//      to initialize pathToAppDelegate with the selected path
-        getDataFilePath();
+
         return builder.create();
     }
 
@@ -254,6 +253,8 @@ public class SplashScreenActivity extends Activity {
     private class DownloadFile extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... sUrl) {
+//       to initialize pathToAppDelegate with the selected path
+            getDataFilePath();
             if (isStorageSpaceAvailable()) {
                 unzipFile();
             } else {
