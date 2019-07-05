@@ -41,7 +41,7 @@ GraphemeGrid* Chain::createGraphemeGrid(GLfloat width, GLfloat height, int numRo
 
 Node* Chain::loadNode() {
 	std::string chainSceneType[] = { "monkey","elephant","flamingo" };
-	Chain::_SS = chainSceneType[RandomHelper::random_int(0, 2)];
+	Chain::_SS = chainSceneType[RandomHelper::random_int(1, 2)];
 	if (!Chain::_SS.compare("monkey"))
 	{
 		_node = CSLoader::createNode("chain/chain.csb");
