@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
@@ -35,6 +36,7 @@ import static org.cocos2dx.cpp.AppActivity.sharedPref;
 
 public class SplashScreenActivity extends Activity {
 
+    public static String assetsPath;
     Intent intent = null;
     File obbFile;
     ZipFile obbZipFile;
@@ -161,7 +163,7 @@ public class SplashScreenActivity extends Activity {
     public String getDataFilePath() {
         String internalDataFilePath = null;
         String externalDataFilePath = null;
-        String DataFilePath = null;
+        String dataFilePath = null;
         File[] fileList = getExternalFilesDirs(null);
         for (File file : fileList) {
             if (!file.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Android/data/" + getPackageName() + "/files") &&
@@ -177,11 +179,12 @@ public class SplashScreenActivity extends Activity {
             }
         }
         if (externalDataFilePath == null) {
-            DataFilePath = internalDataFilePath;
+            dataFilePath = internalDataFilePath;
         } else if (sharedPref.getInt(getString(R.string.dataPath), 0) == 2) {
-            DataFilePath = externalDataFilePath;
+            dataFilePath = externalDataFilePath;
         }
-        return DataFilePath;
+        assetsPath = dataFilePath;
+        return dataFilePath;
     }
 
     public File getOBBFilePath(DownloadExpansionFile.XAPKFile xf) {
@@ -219,6 +222,18 @@ public class SplashScreenActivity extends Activity {
         return internalOBBFile;
     }
 
+    public boolean isStorageSpaceAvailable() {
+        long totalExpansionFileSize = 0;
+        // check the storage space of the asset path selected
+        File internalStorageDir = new File(assetsPath);
+        for (DownloadExpansionFile.XAPKFile xf : xAPKs) {
+            if (xf.mIsMain && xf.mFileVersion != mainFileVersion || !xf.mIsMain && xf.mFileVersion != patchFileVersion) {
+                totalExpansionFileSize = xf.mFileSize;
+            }
+        }
+        return totalExpansionFileSize < internalStorageDir.getFreeSpace();
+    }
+
     public int getTotalSize() {
         int totalSize = 0;
         try {
@@ -239,7 +254,22 @@ public class SplashScreenActivity extends Activity {
     private class DownloadFile extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... sUrl) {
-            unzipFile();
+            if (isStorageSpaceAvailable()) {
+                unzipFile();
+            } else {
+                SplashScreenActivity.this.runOnUiThread(new Runnable() {
+                    public void run() {
+                        Toast.makeText(SplashScreenActivity.this, "Insufficient storage space! Please free up your storage to use this application.", Toast.LENGTH_LONG).show();
+                        // Call finish after the toast message disappears
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                SplashScreenActivity.this.finish();
+                            }
+                        }, Toast.LENGTH_LONG);
+                    }
+                });
+            }
             return null;
         }
     }
