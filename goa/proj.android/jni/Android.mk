@@ -7,6 +7,30 @@ $(call import-add-path,$(LOCAL_PATH)/../../cocos2d/external)
 $(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos)
 $(call import-add-path,$(LOCAL_PATH)/../../cocos2d/cocos/audio/include)
 
+FIREBASE_CPP_SDK_DIR := ../../firebase_cpp_sdk
+ 
+APP_ABI := armeabi-v7a arm64-v8a
+STL := $(firstword $(subst _, ,$(APP_STL)))
+FIREBASE_LIBRARY_PATH := $(FIREBASE_CPP_SDK_DIR)/libs/android/$(TARGET_ARCH_ABI)/$(STL)
+ 
+include $(CLEAR_VARS)
+LOCAL_MODULE := firebase_app
+LOCAL_SRC_FILES := $(FIREBASE_LIBRARY_PATH)/libfirebase_app.a
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/$(FIREBASE_CPP_SDK_DIR)/include
+include $(PREBUILT_STATIC_LIBRARY)
+ 
+include $(CLEAR_VARS)
+LOCAL_MODULE := firebase_analytics
+LOCAL_SRC_FILES := $(FIREBASE_LIBRARY_PATH)/libfirebase_analytics.a
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/$(FIREBASE_CPP_SDK_DIR)/include
+include $(PREBUILT_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := firebase_database
+LOCAL_SRC_FILES := $(FIREBASE_LIBRARY_PATH)/libfirebase_database.a
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/$(FIREBASE_CPP_SDK_DIR)/include
+include $(PREBUILT_STATIC_LIBRARY)
+
 LOCAL_MODULE := MyGame_shared
 
 LOCAL_MODULE_FILENAME := libMyGame
@@ -124,6 +148,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
          ../../Classes/lang/WordManager.cpp \
          ../../Classes/lang/Lesson.cpp \
          ../../Classes/lang/StudySession.cpp \
+         ../../Classes/Managers/VoiceMoldManager.cpp \
          ../../Classes/menu/Award.cpp \
          ../../Classes/menu/GameMapScene.cpp \
          ../../Classes/menu/GameScene.cpp \
@@ -251,7 +276,8 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
          ../../Classes/util/CommonLabelTTF.cpp \
          ../../Classes/util/CommonText.cpp \
 		 ../../Classes/util/CommonTextField.cpp \
-		 ../../Classes/util/Speaker.cpp
+		 ../../Classes/util/Speaker.cpp \
+         ../../Classes/FirebaseHelper.cpp
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/ext
@@ -272,6 +298,10 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/../../Classes/ext/util/logger
 LOCAL_STATIC_LIBRARIES := cocos2dx_static
 LOCAL_STATIC_LIBRARIES += cocos_extension_static	
 LOCAL_STATIC_LIBRARIES += cocos_localstorage_static
+
+LOCAL_STATIC_LIBRARIES += firebase_analytics
+LOCAL_STATIC_LIBRARIES += firebase_database
+LOCAL_STATIC_LIBRARIES += firebase_app
 
 # _COCOS_LIB_ANDROID_BEGIN
 # _COCOS_LIB_ANDROID_END

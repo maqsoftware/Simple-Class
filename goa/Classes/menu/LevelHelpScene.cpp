@@ -306,7 +306,7 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             CCLOG("Reached Level screen: %s", _videos[_currentVideo].c_str());
             if (_videos[_currentVideo].substr(fileFound + 1).size() < 9 && _videos[_currentVideo].find("pos.webm") == std::string::npos)
             {
-                videoText = "वर्णमाला";
+                videoText = "Alphabet\n\nवर्णमाला";
             }
             else
             {
@@ -318,19 +318,33 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             videoText = "";
         }
     }
-    
-    _text = Text::create(videoText, "arial", 60);
+
+    /*
+     * The width and height of the listview
+     * is set to the same width and height of
+     * the white portition initially.
+     *
+     * The position is also set to coincide with
+     * the original area the text was displayed.
+    */
+    listviewScroll = cocos2d::ui::ListView::create();
+    addChild(listviewScroll);
+    listviewScroll->setContentSize({2000, 420});
+    listviewScroll->setAnchorPoint(textField->getAnchorPoint());
+    listviewScroll->setBounceEnabled(true);
+    listviewScroll->setPosition(Size(textField->getPosition().x, textField->getPosition().y - 30)); // To give some padding at the top, the listView is shifted downwards
+
+    _text = Text::create(videoText, "arial", 75);
     _text->setTextColor(Color4B::BLACK);
-    auto pos = textField->getPosition();
-    auto wpos = bg->convertToWorldSpace(pos);
-    _text->setPosition(wpos);
     _text->setTextAreaSize(Size(2000, 0));
-    _text->ignoreContentAdaptWithSize(true);
+    _text->ignoreContentAdaptWithSize(false);
     _text->setEnabled(false);
     _text->setTouchEnabled(false);
     _text->setFocusEnabled(false);
 
-    addChild(_text);
+
+    listviewScroll->addChild(_text);
+    listviewScroll->requestDoLayout();
 
     bg->removeChild(textField);
     videoPlayStart();
@@ -461,14 +475,27 @@ void LevelHelpScene::gotoGame(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchE
 
             removeChild(getChildByName("bg")->getChildByName("screen_1")->getChildByName("video"));
             getChildByName("bg")->getChildByName("screen_1")->removeChild(_resumeButton);
+            Label* labelText;
             if (_currentVideo + 1 == _videos.size())
             {
                 _text->setString(LangUtil::getInstance()->translateString(_helpText));
+                labelText = Label::createWithSystemFont(_helpText, "arial", 75);
             }
             else
             {
                 _text->setString(LangUtil::getInstance()->translateString(_videoNames[_currentVideo]));
+                labelText = Label::createWithSystemFont(_text->getString(), "arial", 75);
             }
+            /*
+            * To resize the text widget according to the text height
+            * an additional label is used with the same width, font
+            * and font size as the text widget.
+            */
+            labelText->setDimensions(2000, 0);
+            Size contentSizeLabel = labelText->getContentSize();
+            _text->setContentSize(contentSizeLabel);
+            listviewScroll->requestDoLayout();
+
             this->scheduleOnce(schedule_selector(LevelHelpScene::playNextVideo), 1.0f);
         }
         else

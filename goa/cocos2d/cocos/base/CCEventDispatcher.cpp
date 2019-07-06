@@ -38,6 +38,9 @@
 #include "base/CCDirector.h"
 #include "base/CCEventType.h"
 #include "2d/CCCamera.h"
+#include "../../Classes/misc/FirebaseHelper.hpp"
+#include "firebase/app.h"
+#include "firebase/analytics.h"
 
 #define DUMP_LISTENER_ITEM_PRIORITY_INFO 0
 
@@ -322,6 +325,24 @@ void EventDispatcher::pauseEventListenersForTarget(Node* target, bool recursive/
 
 void EventDispatcher::resumeEventListenersForTarget(Node* target, bool recursive/* = false */)
 {
+        /* 
+         * To prevent crashing, First it is checked that if there is a running
+         * instance of Firebase then proceed towards logging at the 
+         * exit point otherwise continue.
+        */
+        if (FirebaseHelper::isStarted)
+        { 
+            auto topEvent = firebase_instance.getTopEvent();
+            string targetName = firebase_instance.getTargetName(target->getDescription());
+            topEvent.first = firebase_instance.getTargetName(topEvent.first);
+            if (topEvent.first == targetName || (targetName == "numbers" && topEvent.first == "shapes") || (targetName == "library" && topEvent.first == "story-catalogue"))
+            { 
+                firebase_instance.setElapsedTime();
+                firebase_instance.logCustomEvent(targetName, "elapsed_time", difftime(firebase_instance.getElapsedTime(), topEvent.second));
+                firebase_instance.removeFromTopEvent();
+            }
+        }
+
     auto listenerIter = _nodeListenersMap.find(target);
     if (listenerIter != _nodeListenersMap.end())
     {
