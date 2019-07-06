@@ -41,6 +41,9 @@ GraphemeGrid* Chain::createGraphemeGrid(GLfloat width, GLfloat height, int numRo
 
 Node* Chain::loadNode() {
 	std::string chainSceneType[] = { "monkey","elephant","flamingo" };
+	// The spriteFrameCache could not produce a sprite frame for
+	// the monkey part hence to skip that the random integer is 
+	// generated between 1 and 2
 	Chain::_SS = chainSceneType[RandomHelper::random_int(1, 2)];
 	if (!Chain::_SS.compare("monkey"))
 	{
