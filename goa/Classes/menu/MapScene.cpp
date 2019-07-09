@@ -160,28 +160,28 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode) {
                     std::string lName = node->getName();
                     std::string englishName = "";
                     if (lName.compare("City1") == 0) {
-                        lName = "Õð¢»ÜéLUUUU"; // Bengaluru
+                        lName = "बेंगलुरु"; // Bengaluru
                         englishName = "Bengaluru";
                     } else if (lName.compare("City2") == 0) {
-                        lName = "Üæòâ °¢ÁðçÜâ";// Los Angeles
+                        lName = "लॉस एंजेलिस";// Los Angeles
                         englishName = "Los Angeles";
                     } else if (lName.compare("City3") == 0) {
-                        lName = "sêSÅÙ"; // Houston
+                        lName = "ह्यूस्टन"; // Houston
                         englishName = "Houston";
                     } else if (lName.compare("city4") == 0) {
-                        lName = "Ü¢ÇÙ"; // London
+                        lName = "लंडन"; // London
                         englishName = "London";
                     } else if (lName.compare("City5") == 0) {
-                        lName = "ÇæÚ °â âÜæ×"; // Dar es Salaam
+                        lName = "डार एस सलाम"; // Dar es Salaam
                         englishName = "Dar es Salaam";
                     } else if (lName.compare("Camp") == 0) {
-						lName = "·ñ¢UUUÂ"; // Camp
+						lName = "कैंप"; // Camp
                         englishName = "Camp";
 					} else if (lName.compare("Farm House") == 0) {
-						lName ="ÈUUUæ×ü ãæ©â"; // Farm House
+						lName ="फार्म हाउस"; // Farm House
                         englishName = "Farm House";
 					} else if (lName.compare("Mining Town") == 0) {
-						lName ="¹ÙÙ àæãÚ"; // Mining Town
+						lName ="खनन शहर"; // Mining Town
                         englishName = "Mining Town";
 					}
 
@@ -193,7 +193,7 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode) {
                     std::string mapText = this->currentLangUtil->translateString(lName);
                     node->setPosition(Vec2(node->getPosition().x, node->getPosition().y + 40));
                     
-                    cocos2d::Label* label = Label::createWithTTF(mapText,"fonts/Chanakya.ttf", 90);
+                    cocos2d::Label* label = Label::createWithSystemFont(mapText, "arial", 70);
                     label->setPosition(Vec2(node->getPosition().x, node->getPosition().y - 60));
                     label->setColor(Color3B(128, 64, 0));
                     mainLayer->addChild(label);

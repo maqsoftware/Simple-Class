@@ -460,7 +460,7 @@ cocos2d::ui::Button* ScrollableGameMapScene::createButton(const rapidjson::Value
         label->setPosition(Vec2(label->getPositionX(), label->getPositionY()- 300));
         button->setScale(0.5);
         
-        Label *engText = Label::createWithTTF(gameTitleHindi, "fonts/Chanakya.ttf", 140);
+        Label *engText = Label::createWithSystemFont(gameTitleHindi, "arial", 110);
         engText->setPosition(Vec2(label->getPositionX(), label->getPositionY() - 130));
         engText->setColor(titleColor);
         button->addChild(engText);

@@ -1,7 +1,7 @@
 [
   {
     "name": "story-catalogue",
-	"title": "·UUUUãæçÙØô¢",
+	"title": "कहानियों",
     "_title_comment": "कहानियों",
     "unlock": true,
     "cIcon": "gameicons/story_pressed.png",
@@ -13,7 +13,7 @@
   },
   {
     "name": "map",
-	"title": "ãèÚô",
+	"title": "हीरो",
     "_title_comment": "हीरो",
     "cIcon": "gameicons/hero_pressed.png",
     "icon": "gameicons/hero.png",
@@ -35,7 +35,7 @@
   },
   {
     "name": "decomone",
-	"title": "¥ÿæÚ âÁæ¥ô",
+	"title": "अक्षर सजाओ",
     "_title_comment": "अक्षर सजाओ",
     "unlock": true,
     "cIcon": "gameicons/decomone_pressed.png",
@@ -218,7 +218,7 @@
   },
   {
     "name": "EndlessRunner",
-	"title": "Öæ»ô ¥æñÚ Â·UUUUÇ¸ô",
+	"title": "भागो और पकड़ो",
     "_title_comment": "भागो और पकड़ो",
     "unlock": true,
     "cIcon": "gameicons/EndlessRunner_pressed.png",
@@ -329,7 +329,7 @@
   },
   {
     "name": "Alphamon Feed",
-	"title": "Úæÿæâô¢ ·UUUUô ç¹Üæ¥ô",
+	"title": "राक्षसों को खिलाओ",
     "_title_comment": "राक्षसों को खिलाओ",
     "unlock": false,
     "cIcon": "gameicons/Alphamon Feed_pressed.png",
@@ -440,7 +440,7 @@
   },
   {
     "name": "book",
-	"title": "¥ÿæÚô¢  ·UUUè ÜÇ¸æ§ü",
+	"title": "अक्षरों  की लड़ाई",
     "_title_comment": "अक्षरों  की लड़ाई",
     "unlock": false,
     "cIcon": "gameicons/book_pressed.png",
@@ -503,7 +503,7 @@
   },
   {
     "name": "alphamole",
-	"title": "°·UUUU ¥ÁèÕ Úæÿæâ",
+	"title": "एक अजीब राक्षस",
     "_title_comment": "एक अजीब राक्षस",
     "unlock": false,
     "cIcon": "gameicons/alphamole_pressed.png",
@@ -614,7 +614,7 @@
   },
   {
     "name": "Cross The Bridge",
-	"title": "ÂêÜ ·UUUUô ÂæÚ ·UUUUÚô",
+	"title": "पूल को पार करो",
     "_title_comment": "पूल को पार करो",
     "unlock": false,
     "cIcon": "gameicons/Cross The Bridge_pressed.png",
@@ -722,7 +722,7 @@
   },
   {
     "name": "Cannon Ball",
-	"title": "ÌôÂ ·UUUæ »ôÜæ",
+	"title": "तोप का गोला",
     "_title_comment": "तोप का गोला",
     "unlock": false,
     "cIcon": "gameicons/Cannon Ball_pressed.png",
@@ -767,7 +767,7 @@
   },
   {
     "name": "bubble",
-	"title": "ÕéÜÕéÜæ ÈUUUUôÇ¸ô",
+	"title": "बुलबुला फोड़ो",
     "_title_comment": "बुलबुला फोड़ो",
     "unlock": false,
     "cIcon": "gameicons/bubble_pressed.png",
@@ -854,7 +854,7 @@
   },
   {
     "name": "Smash The Rock",
-    "title": "¿^æÙ ÌôÇÙæ",
+    "title": "चट्टान तोडना",
     "_title_comment": "चट्टान तोडना",
     "unlock": false,
     "cIcon": "gameicons/Smash The Rock_pressed.png",
@@ -965,7 +965,7 @@
   },
   {
     "name": "dino",
-    "title": "ß‡æü×æÜæ",
+    "title": "वर्णमाला",
     "_title_comment": "वर्णमाला",
     "unlock": false,
     "cIcon": "gameicons/dino_pressed.png",
@@ -998,7 +998,7 @@
   },
   {
     "name": "Patch The Wall",
-    "title": "ÎèßæÚ ·UUUUô ÍÂÍÂæ°¢",
+    "title": "दीवार को थपथपाएं",
     "_title_comment": "दीवार को थपथपाएं",
     "unlock": false,
     "cIcon": "gameicons/Patch The Wall_pressed.png",
@@ -1045,7 +1045,7 @@
   },
   {
     "name": "basiclettercase",
-    "title": "¥æ§âRUUUè×",
+    "title": "आइसक्रीम",
     "_title_comment": "आइसक्रीम",
     "cIcon": "gameicons/basiclettercase_pressed.png",
     "icon": "gameicons/basiclettercase.png",
@@ -1092,7 +1092,7 @@
   },
   {
     "name": "alphaarrange",
-    "title": "¥ËÈUUUæ ÃØßSÍæ",
+    "title": "अल्फा व्यवस्था",
     "_title_comment": "अल्फा व्यवस्था",
     "unlock": false,
     "cIcon": "gameicons/AlphaArrange_pressed.png",
@@ -1131,7 +1131,7 @@
   },
   {
     "name": "baja",
-	"title": "¿Üæ¥ô",
+	"title": "चलाओ",
     "_title_comment": "चलाओ",
     "unlock": true,
     "cIcon": "gameicons/baja_pressed.png",
@@ -1178,7 +1178,7 @@
   },
   {
     "name": "jasmine",
-	"title": "ÂõÏð ©»æ¥ô",
+	"title": "पौधे उगाओ",
     "_title_comment": "पौधे उगाओ",
     "unlock": true,
     "cIcon": "gameicons/jasmine_pressed.png",
@@ -1225,7 +1225,7 @@
   },
   {
     "name": "chain",
-	"title": "Âàæé Ÿæë¢¹Üæ",
+	"title": "पशु श्रृंखला",
     "_title_comment": "पशु श्रृंखला",
     "unlock": false,
     "cIcon": "gameicons/chain_pressed.png",
@@ -1272,7 +1272,7 @@
   },
   {
     "name": "wembley",
-	"title": "ß‡æü×æÜæ ÈéUUUÅÕæòÜ",
+	"title": "वर्णमाला फुटबॉल",
     "_title_comment": "वर्णमाला फुटबॉल",
     "unlock": false,
     "cIcon": "gameicons/wembley_pressed.png",
@@ -1319,7 +1319,7 @@
   },
   {
     "name": "jazz",
-	"title": "Çþ×",
+	"title": "ड्रम",
     "_title_comment": "ड्रम",
     "unlock": false,
     "cIcon": "gameicons/jazz_pressed.png",
@@ -1366,7 +1366,7 @@
   },
   {
     "name": "shoot",
-	"title": "»ôÜè ×æÚ",
+	"title": "गोली मार",
     "_title_comment": "गोली मार",
     "unlock": false,
     "cIcon": "gameicons/shoot_pressed.png",
@@ -1409,7 +1409,7 @@
   },
   {
     "name": "owl",
-	"title": "ßÌüÙè ©ËÜê",
+	"title": "वर्तनी उल्लू",
     "_title_comment": "वर्तनी उल्लू",
     "unlock": false,
     "cIcon": "gameicons/owl_pressed.png",
@@ -1456,7 +1456,7 @@
   },
   {
     "name": "stack",
-	"title": "àæyÎô¢ ·UUUæ ÉðÚ",
+	"title": "शब्दों का ढेर",
     "_title_comment": "शब्दों का ढेर",
     "unlock": false,
     "cIcon": "gameicons/stack_pressed.png",
@@ -1502,7 +1502,7 @@
   },
   {
     "name": "order",
-	"title": "RUUUU×Õh ·UUUUÚð",
+	"title": "क्रमबद्ध करे",
     "_title_comment": "क्रमबद्ध करे",
     "unlock": false,
     "cIcon": "gameicons/order_pressed.png",
@@ -1548,7 +1548,7 @@
   },
   {
     "name": "dash",
-	"title": "ÂæÙè ·UUUæ Àè¢Åæ",
+	"title": "पानी का छींटा",
     "_title_comment": "पानी का छींटा",
     "unlock": false,
     "cIcon": "gameicons/dash_pressed.png",
@@ -1596,7 +1596,7 @@
   },
   {
     "name": "bingo",
-	"title": "çÕ¢»ô",
+	"title": "बिंगो",
     "_title_comment": "बिंगो",
     "unlock": false,
     "cIcon": "gameicons/bingo_pressed.png",
@@ -1643,7 +1643,7 @@
   },
   {
     "name": "drop",
-	"title": "Õê¢Î",
+	"title": "बूंद",
     "_title_comment": "बूंद",
     "unlock": false,
     "cIcon": "gameicons/drop_pressed.png",
@@ -1690,7 +1690,7 @@
   },
   {
     "name": "train",
-	"title" : "ÚðÜ »æÇè",
+	"title" : "रेल गाडी",
     "_title_comment": "रेल गाडी",
     "unlock": false,
     "cIcon": "gameicons/train_pressed.png",
@@ -1738,7 +1738,7 @@
   },
   {
     "name": "pop",
-	"title": "ÕæÎÜô¢ ·ðUUU ×æŠØ× âð ©Ç¸ô",
+	"title": "बादलों के माध्यम से उड़ो",
     "_title_comment": "बादलों के माध्यम से उड़ो",
     "unlock": false,
     "cIcon": "gameicons/pop_pressed.png",
@@ -1786,7 +1786,7 @@
   },
   {
     "name": "talk",
-	"title": "àæyÎô¢ ·UUUUô ç¹Üæ¥ô",
+	"title": "शब्दों को खिलाओ",
     "_title_comment": "शब्दों को खिलाओ",
     "unlock": false,
     "cIcon": "gameicons/talk_pressed.png",
@@ -1833,7 +1833,7 @@
   },
   {
     "name": "memory",
-	"title": "ØæÎ",
+	"title": "याद",
     "_title_comment": "याद",
     "unlock": false,
     "cIcon": "gameicons/memory_pressed.png",
@@ -1880,7 +1880,7 @@
   },
   {
     "name": "circle",
-	"title": "Â·UUUUÇ¸",
+	"title": "पकड़",
     "_title_comment": "पकड़",
     "unlock": false,
     "cIcon": "gameicons/circle_pressed.png",
@@ -1927,7 +1927,7 @@
   },
   {
     "name": "pillar",
-	"title": "·ðUUU·UUUU ÂÚÌ",
+	"title": "केक परत",
     "_title_comment": "केक परत",
     "unlock": false,
     "cIcon": "gameicons/pillar_pressed.png",
@@ -1974,7 +1974,7 @@
   },
   {
     "name": "balloon",
-	"title": "©Ç¸Ùæ",
+	"title": "उड़ना",
     "_title_comment": "उड़ना",
     "unlock": false,
     "cIcon": "gameicons/balloon_pressed.png",
@@ -2018,7 +2018,7 @@
   },
   {
     "name": "sortit",
-	"title": "RUUUU×Õh ·UUUUÚð¢",
+	"title": "क्रमबद्ध करें",
     "_title_comment": "क्रमबद्ध करें",
     "unlock": true,
     "cIcon": "gameicons/sortit_pressed.png",
@@ -2058,7 +2058,7 @@
   },
   {
     "name": "shape",
-	"title": "ÀðÎ ·UUUè ×Ú{×Ì ·UUUUÚð",
+	"title": "छेद की मरम्मत करे",
     "_title_comment": "छेद की मरम्मत करे",
     "unlock": false,
     "cIcon": "gameicons/shape_pressed.png",
@@ -2100,7 +2100,7 @@
   },
   {
     "name": "Dots",
-	"title": "â¢wØæ çÕ¢Îé",
+	"title": "संख्या बिंदु",
     "_title_comment": "संख्या बिंदु",
     "unlock": false,
     "cIcon": "gameicons/numberdot_pressed.png",
@@ -2141,7 +2141,7 @@
   },
   {
     "name": "popcount",
-	"title": "×ÀÜè ·UUUUô ç»Ùð¢",
+	"title": "मछली को गिनें",
     "_title_comment": "मछली को गिनें",
     "unlock": false,
     "cIcon": "gameicons/popcount_pressed.png",
@@ -2185,7 +2185,7 @@
   },
   {
     "name": "spot",
-	"title": "Âàæé ¹ôÁð¢",
+	"title": "पशु खोजें ",
     "_title_comment": "पशु खोजें ",
     "unlock": false,
     "cIcon": "gameicons/spot_pressed.png",
@@ -2227,7 +2227,7 @@
   },
   {
     "name": "Item",
-	"title": "ÌæÜæÕ ÖÚð¢",
+	"title": "तालाब भरें",
     "_title_comment": "तालाब भरें",
     "unlock": false,
     "cIcon": "gameicons/item_pressed.png",
@@ -2273,7 +2273,7 @@
   },
   {
     "name": "ConnectTheDots",
-	"title": "çÕ¢Îé¥ô ·UUUUô ÁôÇô",
+	"title": "बिंदुओ को जोडो",
     "_title_comment": "बिंदुओ को जोडो",
     "unlock": false,
     "cIcon": "gameicons/coonectthedot_pressed.png",
@@ -2314,7 +2314,7 @@
   },
   {
     "name": "chocolateFactory",
-	"title": "ÎêÏ ·UUUæ ·UUUæÚ¹æÙæ",
+	"title": "दूध का कारखाना",
     "_title_comment": "दूध का कारखाना",
     "unlock": false,
     "cIcon": "gameicons/chocolatefactory_pressed.png",
@@ -2360,7 +2360,7 @@
   },
   {
     "name": "step",
-	"title": "¿Ú‡æô¢ ·UUUUô RUUUU×Õh ·UUUUÚð¢",
+	"title": "चरणों को क्रमबद्ध करें",
     "_title_comment": "चरणों को क्रमबद्ध करें",
     "unlock": false,
     "cIcon": "gameicons/step_pressed.png",
@@ -2405,7 +2405,7 @@
   },
   {
     "name": "Line",
-	"title": "·ñ¢UUUÇè Üæ§Ù",
+	"title": "कैंडी लाइन",
     "_title_comment": "कैंडी लाइन",
     "unlock": false,
     "cIcon": "gameicons/line_pressed.png",
@@ -2447,7 +2447,7 @@
   },
   {
     "name": "mathlearning",
-	"title": "ÁôÇ¸ ƒæÅæß",
+	"title": "जोड़ घटाव",
     "_title_comment": "जोड़ घटाव",
     "unlock": false,
     "cIcon": "gameicons/mathlearning_pressed.png",
@@ -2491,7 +2491,7 @@
   },
   {
     "name": "balloonMath",
-	"title": "ÕéÜÕéÜæ ÈUUUUôÇ¸ô",
+	"title": "बुलबुला फोड़ो",
     "_title_comment": "बुलबुला फोड़ो",
     "unlock": false,
     "cIcon": "gameicons/balloonpop_pressed.png",
@@ -2533,7 +2533,7 @@
   },
   {
     "name": "shop",
-	"title": "ç·UUUUÚæÙð ·UUUè Îé·UUUæÙ",
+	"title": "किराने की दुकान",
     "_title_comment": "किराने की दुकान",
     "unlock": false,
     "cIcon": "gameicons/shopping_pressed.png",
@@ -2575,7 +2575,7 @@
   },
   {
     "name": "Units",
-	"title": "°·UUUU çÂ”ææ ÕÙæ¥ô",
+	"title": "एक पिज्जा बनाओ",
     "_title_comment": "एक पिज्जा बनाओ",
     "unlock": false,
     "cIcon": "gameicons/pizza_pressed.png",
@@ -2617,7 +2617,7 @@
   },
   {
     "name": "atm",
-	"title": "Âñâô¢ ·UUUè ×àæèÙ",
+	"title": "पैसों की मशीन",
     "_title_comment": "पैसों की मशीन",
     "unlock": false,
     "cIcon": "gameicons/ATM_pressed.png",
@@ -2659,7 +2659,7 @@
   },
   {
     "name": "jumpingNumbers",
-	"title": "âÈUUUUÜÌæ ·UUUè âèÉ¸çØæ¢",
+	"title": "सफलता की सीढ़ियां",
     "_title_comment": "सफलता की सीढ़ियां",
     "unlock": false,
     "cIcon": "gameicons/jumping numbers_pressed.png",
@@ -2701,7 +2701,7 @@
   },
   {
     "name": "card",
-	"title": "·UUUæÇü ÁôÇ¸ð¢",
+	"title": "कार्ड जोड़ें",
     "_title_comment": "कार्ड जोड़ें",
     "unlock": false,
     "cIcon": "gameicons/card_pressed.png",
@@ -2743,7 +2743,7 @@
   },
   {
     "name": "Bounce",
-	"title": "¥æ§âRUUUè× ·UUUUô ç»Úæ¥ô",
+	"title": "आइसक्रीम को गिराओ",
     "_title_comment": "आइसक्रीम को गिराओ",
     "unlock": false,
     "cIcon": "gameicons/icecream_pressed.png",
@@ -2771,7 +2771,7 @@
   },
   {
     "name": "BasicMultiplication",
-	"title": "×êÜ »é‡æÙ",
+	"title": "मूल गुणन",
     "_title_comment": "मूल गुणन",
     "unlock": false,
     "cIcon": "gameicons/BasicMultiplication_pressed.png",
@@ -2815,7 +2815,7 @@
   },
   {
     "name": "table",
-	"title": "»é‡ææ",
+	"title": "गुणा",
     "_title_comment": "गुणा",
     "unlock": false,
     "cIcon": "gameicons/table_pressed.png",
@@ -2851,7 +2851,7 @@
   },
   {
     "name": "Kung Fu Alpha",
-	"title": "çÙàææÙ",
+	"title": "निशान",
     "_title_comment": "निशान",
     "unlock": true,
     "cIcon": "gameicons/Kung Fu Alpha_pressed.png",
@@ -2962,7 +2962,7 @@
   },
   {
     "name": "cardraw",
-	"title": "ƒæÚ Áæ¥ô",
+	"title": "घर जाओ",
     "_title_comment": "घर जाओ",
     "unlock": false,
     "cIcon": "gameicons/cardraw_pressed.png",
@@ -3144,7 +3144,7 @@
   },
   {
     "name": "TreasureHunt",
-	"title": "¹¸Á¸æÙð ·UUUè ¹ôÁ",
+	"title": "ख़ज़ाने की खोज",
     "_title_comment": "ख़ज़ाने की खोज",
     "unlock": false,
     "cIcon": "gameicons/TreasureHunt_pressed.png",
@@ -3257,7 +3257,7 @@
   },
   {
     "name": "blastletter",
-	"title": "Õ× çÙçcRUUUUØ ·UUUUÚð¢",
+	"title": "बम निष्क्रिय करें",
     "_title_comment": "बम निष्क्रिय करें",
     "unlock": false,
     "cIcon": "gameicons/blastletter_pressed.png",
@@ -3487,7 +3487,7 @@
   },
   {
     "name": "Door",
-	"title": "¹çÜãæÙ ÎÚßæÁæ",
+	"title": "खलिहान दरवाजा",
     "_title_comment": "खलिहान दरवाजा",
     "unlock": false,
     "cIcon": "gameicons/doors_pressed.png",

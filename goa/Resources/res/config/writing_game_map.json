@@ -1,7 +1,7 @@
 [
   {
     "name": "Kung Fu Alpha",
-    "title": "ÂÌæ Ü»æÙæ$#$Kung Fu Alpha",
+    "title": "पता लगाना$#$Kung Fu Alpha",
 	"_title_comment": "पता लगाना",
     "unlock": true,
     "cIcon": "gameicons/Kung Fu Alpha_pressed.png",
@@ -112,7 +112,7 @@
   },
   {
     "name": "cardraw",
-    "title": "ƒæÚ Áæ¥ô$#$Car Draw",
+    "title": "घर जाओ$#$Car Draw",
 	"_title_comment":"घर जाओ",
     "unlock": true,
     "cIcon": "gameicons/cardraw_pressed.png",
@@ -294,7 +294,7 @@
   },
   {
     "name": "TreasureHunt",
-    "title": "¹¸Á¸æÙð ·UUUè ¹ôÁ$#$Treasure Hunt",
+    "title": "ख़ज़ाने की खोज$#$Treasure Hunt",
 	"_title_comment":"ख़ज़ाने की खोज",
     "unlock": true,
     "cIcon": "gameicons/TreasureHunt_pressed.png",
@@ -407,7 +407,7 @@
   },
   {
     "name": "blastletter",
-    "title": "Õ× çÙçcRUUUUØ ·UUUUÚð¢$#$Blast Letter",
+    "title": "बम निष्क्रिय करें$#$Blast Letter",
 	"_title_comment":"बम निष्क्रिय करें",
     "unlock": true,
     "cIcon": "gameicons/blastletter_pressed.png",
@@ -637,7 +637,7 @@
   },
   {
     "name": "Door",
-    "title": "¹çÜãæÙ ÎÚßæÁæ$#$Door",
+    "title": "खलिहान दरवाजा$#$Door",
 	"_title_comment":"खलिहान दरवाजा",
     "unlock": true,
     "cIcon": "gameicons/doors_pressed.png",

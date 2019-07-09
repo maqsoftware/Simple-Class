@@ -1,7 +1,7 @@
 [
   {
     "name": "cat",
-    "title": "ÀÌ ÂÚ çÕËÜè$#$Cat",
+    "title": "छत पर बिल्ली$#$Cat",
 	"_title_comment":"छत पर बिल्ली",
     "unlock": true,
     "cIcon": "gameicons/cat_pressed.png",
@@ -45,7 +45,7 @@
   },
   {
     "name": "phonicsfree",
-    "title": "àæyÎô¢ ·UUUæ ÉðÚ$#$Phonics Free",
+    "title": "शब्दों का ढेर$#$Phonics Free",
 	"_title_comment":"शब्दों का ढेर",
     "unlock": true,
     "cIcon": "gameicons/Phonicsfree_pressed.png",
@@ -72,7 +72,7 @@
   },
   {
     "name": "alphaphonics",
-    "title": "¥ËÈUUUæ SßÚ ŠßÙè$#$Alpha Phonics",
+    "title": "अल्फा स्वर ध्वनी$#$Alpha Phonics",
 	"_title_comment":"अल्फा स्वर ध्वनी",
     "unlock": true,
     "cIcon": "gameicons/AlphaPhonics_pressed.png",
@@ -161,7 +161,7 @@
   },
   {
     "name": "find",
-    "title": "¹ôÁ$#$Find",
+    "title": "खोज$#$Find",
 	"_title_comment":"खोज",
     "unlock": true,
     "cIcon": "gameicons/find_pressed.png",
