@@ -225,7 +225,7 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode) {
                         if (unlockStr.empty() || unlockStr == "1") {
                             lockAll = true;
                         }
-							button->setEnabled(true);
+                        button->setEnabled(true);
                     } else {
                         button->setEnabled(false);
                     }                    
