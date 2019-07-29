@@ -375,7 +375,7 @@ void ScrollableCatalogue::createBook(int i, int j, int numRows, int numCols, ui:
     int stars = 0;
     rapidjson::Document d;
     if (false == d.Parse<0>(unlockStoryStr.c_str()).HasParseError()) {
-        isStoryLocked = d["locked"].GetBool();
+        isStoryLocked = false;
         stars = d["star"].GetInt();
     }
     std::string starFile = stars >= 1 ? "levelstep/star.png" : "levelstep/star_empty.png";
@@ -414,18 +414,6 @@ void ScrollableCatalogue::createBook(int i, int j, int numRows, int numCols, ui:
     if(imageSprite != NULL) {
         imageNode->addChild(imageSprite);
     }
-    
-    if(!lockAll) {
-        //dont render lock
-    } else {
-        if(isStoryLocked) {
-            Sprite* lockSprite = Sprite::create("template/lock.png");
-            lockSprite->setAnchorPoint(Vec2(0.5,0.5));
-            lockSprite->setPosition(Vec2(imageNode->getPosition().x, imageNode->getPosition().y + 150));
-            imageNode->addChild(lockSprite, 1);
-        }
-    }
-    
     
     std::string titleText = "";
     std::string titleKey = imageFile;
