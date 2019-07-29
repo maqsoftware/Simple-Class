@@ -132,6 +132,9 @@ proj.win32/*.opendb
 # Keystore files
 *.jks
 *.keystore
+**/goa/firebase_cpp_sdk
+**/goa/Classes/firebase
+**/goa/cocos2d/cocos/firebase
 
 # Generated documentation, it can be regenerated using doxygen #
 ######################
