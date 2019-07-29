@@ -375,6 +375,7 @@ void ScrollableCatalogue::createBook(int i, int j, int numRows, int numCols, ui:
     int stars = 0;
     rapidjson::Document d;
     if (false == d.Parse<0>(unlockStoryStr.c_str()).HasParseError()) {
+        // Unlocked all the stories in the Library
         isStoryLocked = false;
         stars = d["star"].GetInt();
     }
