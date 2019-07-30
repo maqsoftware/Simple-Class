@@ -1,7 +1,7 @@
 [
   {
     "name": "baja",
-    "title": "âñÚ$#$Baja",
+    "title": "सैर$#$Baja",
 	"_title_comment":"सैर",
     "unlock": true,
     "cIcon": "gameicons/baja_pressed.png",
@@ -48,7 +48,7 @@
   },
   {
     "name": "jasmine",
-    "title": "ÂõÏð ©»æ¥ô$#$Jasmine",
+    "title": "पौधे उगाओ$#$Jasmine",
 	"_title_comment":"पौधे उगाओ",
     "unlock": true,
     "cIcon": "gameicons/jasmine_pressed.png",
@@ -95,7 +95,7 @@
   },
   {
     "name": "chain",
-    "title": "Âàæé Ÿæë¢¹Üæ$#$Chain",
+    "title": "पशु श्रृंखला$#$Chain",
 	"_title_comment":"पशु श्रृंखला",
     "unlock": true,
     "cIcon": "gameicons/chain_pressed.png",
@@ -142,7 +142,7 @@
   },
   {
     "name": "wembley",
-    "title": "ß‡æü×æÜæ ÈéUUUÅÕæòÜ$#$Wembley",
+    "title": "वर्णमाला फुटबॉल$#$Wembley",
 	"_title_comment":"वर्णमाला फुटबॉल",
     "unlock": true,
     "cIcon": "gameicons/wembley_pressed.png",
@@ -189,7 +189,7 @@
   },
   {
     "name": "jazz",
-    "title": "ÉôÜ$#$Jazz",
+    "title": "ढोल$#$Jazz",
 	"_title_comment":"ढोल",
     "unlock": true,
     "cIcon": "gameicons/jazz_pressed.png",
@@ -236,7 +236,7 @@
   },
   {
     "name": "shoot",
-    "title": "»ôÜè ×æÚ$#$Shoot",
+    "title": "गोली मार$#$Shoot",
 	"_title_comment":"गोली मार",
     "unlock": true,
     "cIcon": "gameicons/shoot_pressed.png",
@@ -279,7 +279,7 @@
   },
   {
     "name": "owl",
-    "title": "ßÌüÙè ©ËÜê$#$Owl",
+    "title": "वर्तनी उल्लू$#$Owl",
 	"_title_comment":"वर्तनी उल्लू",
     "unlock": true,
     "cIcon": "gameicons/owl_pressed.png",
@@ -326,7 +326,7 @@
   },
   {
     "name": "stack",
-    "title": "àæyÎô¢ ·UUUæ ÉðÚ$#$Stack",
+    "title": "शब्दों का ढेर$#$Stack",
 	"_title_comment":"शब्दों का ढेर",
     "unlock": true,
     "cIcon": "gameicons/stack_pressed.png",
@@ -372,7 +372,7 @@
   },
   {
     "name": "order",
-    "title": "¥æòÇüÚ ×ð¢ Ú¹ð¢$#$Order",
+    "title": "ऑर्डर में रखें$#$Order",
 	"_title_comment":"ऑर्डर में रखें",
     "unlock": true,
     "cIcon": "gameicons/order_pressed.png",
@@ -418,7 +418,7 @@
   },
   {
     "name": "dash",
-    "title": "ÂæÙè ·UUUæ Àè¢Åæ$#$Dash",
+    "title": "पानी का छींटा$#$Dash",
 	"_title_comment":"पानी का छींटा",
     "unlock": true,
     "cIcon": "gameicons/dash_pressed.png",
@@ -466,7 +466,7 @@
   },
   {
     "name": "bingo",
-    "title": "çÕ¢»ô$#$Bingo",
+    "title": "बिंगो$#$Bingo",
 	"_title_comment":"बिंगो",
     "unlock": true,
     "cIcon": "gameicons/bingo_pressed.png",
@@ -513,7 +513,7 @@
   },
   {
     "name": "drop",
-    "title": "ç»Úæ¥ô$#$Drop",	
+    "title": "गिराओ$#$Drop",	
 	"_title_comment":"गिराओ",
     "unlock": true,
     "cIcon": "gameicons/drop_pressed.png",
@@ -560,7 +560,7 @@
   },
   {
     "name": "train",
-    "title": "ÚðÜ »æÇè$#$Train",
+    "title": "रेल गाडी$#$Train",
 	"_title_comment":"रेल गाडी",
     "unlock": true,
     "cIcon": "gameicons/train_pressed.png",
@@ -608,7 +608,7 @@
   },
   {
     "name": "pop",
-    "title": "ÕæÎÜô¢ ·ðUUU ×æŠØ× âð ©Ç¸ô$#$Pop",
+    "title": "बादलों के माध्यम से उड़ो$#$Pop",
 	"_title_comment":"बादलों के माध्यम से उड़ो",
     "unlock": true,
     "cIcon": "gameicons/pop_pressed.png",
@@ -656,7 +656,7 @@
   },
   {
     "name": "talk",
-    "title": "àæyÎ ç¹Üæ¥ô$#$Talk",
+    "title": "शब्द खिलाओ$#$Talk",
 	"_title_comment":"शब्द खिलाओ",
     "unlock": true,
     "cIcon": "gameicons/talk_pressed.png",
@@ -703,7 +703,7 @@
   },
   {
     "name": "memory",
-    "title": "ØæÎ$#$Memory",
+    "title": "याद$#$Memory",
 	"_title_comment": "याद",
     "unlock": true,
     "cIcon": "gameicons/memory_pressed.png",
@@ -750,7 +750,7 @@
   },
   {
     "name": "circle",
-    "title": "Â·UUUUÇ¸$#$Circle",
+    "title": "पकड़$#$Circle",
 	"_title_comment": "पकड़",
     "unlock": true,
     "cIcon": "gameicons/circle_pressed.png",
@@ -797,7 +797,7 @@
   },
   {
     "name": "pillar",
-    "title": "·ðUUU·UUUU ÂÚÌ$#$Pillar",
+    "title": "केक परत$#$Pillar",
 	"_title_comment": "केक परत",
     "unlock": true,
     "cIcon": "gameicons/pillar_pressed.png",
@@ -844,7 +844,7 @@
   },
   {
     "name": "balloon",
-    "title": "©Ç¸Ùæ$#$Balloon",
+    "title": "उड़ना$#$Balloon",
 	"_title_comment": "उड़ना",
     "unlock": true,
     "cIcon": "gameicons/balloon_pressed.png",
