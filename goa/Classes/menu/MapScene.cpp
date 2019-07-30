@@ -225,17 +225,8 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode) {
                         if (unlockStr.empty() || unlockStr == "1") {
                             lockAll = true;
                         }
-                        if(!lockAll) {
-                            button->setEnabled(true);
-                        } else {
-                            button->setEnabled(true);
-                            int cLevel = std::atoi(buttonLevel.c_str());
-                            if(cLevel <= unlockLevel) {
-                                button->setEnabled(true);
-                            } else {
-                                button->setEnabled(false);
-                            }
-                        }
+						// unlocked all games in Map Scene
+                        button->setEnabled(true);
                     } else {
                         button->setEnabled(false);
                     }                    
