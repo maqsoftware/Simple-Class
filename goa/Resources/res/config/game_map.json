@@ -440,8 +440,8 @@
   },
   {
     "name": "book",
-	"title": "अक्षरों  की लड़ाई",
-    "_title_comment": "अक्षरों  की लड़ाई",
+	"title": "अक्षरों की लड़ाई",
+    "_title_comment": "अक्षरों की लड़ाई",
     "unlock": false,
     "cIcon": "gameicons/book_pressed.png",
     "icon": "gameicons/book.png",

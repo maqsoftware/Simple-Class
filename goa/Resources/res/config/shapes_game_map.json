@@ -558,8 +558,8 @@
   },
   {
     "name": "Units",
-    "title": "एक  पिज्जा बनाओ$#$Units",
-	"_title_comment":"एक  पिज्जा बनाओ",
+    "title": "एक पिज्जा बनाओ$#$Units",
+	"_title_comment":"एक पिज्जा बनाओ",
     "unlock": true,
     "cIcon": "gameicons/pizza_pressed.png",
     "icon": "gameicons/pizza.png",

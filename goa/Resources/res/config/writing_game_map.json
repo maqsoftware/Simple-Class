@@ -637,8 +637,8 @@
   },
   {
     "name": "Door",
-    "title": "खलिहान दरवाजा$#$Door",
-	"_title_comment":"खलिहान दरवाजा",
+    "title": "खलिहान दरवाज़ा$#$Door",
+	"_title_comment":"खलिहान दरवाज़ा",
     "unlock": true,
     "cIcon": "gameicons/doors_pressed.png",
     "icon": "gameicons/doors.png",
