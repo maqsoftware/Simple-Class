@@ -5,7 +5,7 @@ android {
     buildToolsVersion "28.0.3"
 
     defaultConfig {
-        applicationId "com.maq.xprize.chimple.hindi"
+        applicationId "com.maq.simpleclass"
         minSdkVersion 23
         targetSdkVersion 28
 
@@ -19,6 +19,26 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
+    }
+
+    flavorDimensions 'default'
+
+    productFlavors {
+        english {
+            applicationIdSuffix ".english"
+        }
+
+        hindi {
+            applicationIdSuffix ".hindi"
+        }
+
+        /*urdu {
+
+        }
+
+        bengali {
+
+        }*/
     }
 
     lintOptions {

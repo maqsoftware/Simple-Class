@@ -10,7 +10,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 
-import com.maq.xprize.chimple.hindi.R;
+import com.maq.simpleclass.R;
 
 import java.io.File;
 import java.io.FileOutputStream;

@@ -36,6 +36,7 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -43,22 +44,21 @@ import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.maq.simpleclass.BuildConfig;
 import com.maq.xprize.bali.db.entity.User;
 import com.maq.xprize.bali.repo.UserRepo;
-import com.maq.xprize.chimple.hindi.R;
+import com.maq.simpleclass.R;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
 import java.io.File;
 import java.util.Locale;
 
-import chimple.DownloadExpansionFile;
-
-import static chimple.DownloadExpansionFile.xAPKs;
+import static org.cocos2dx.cpp.DownloadExpansionFile.xAPKs;
 
 public class AppActivity extends Cocos2dxActivity {
     public static final String TAG = "GOA";
-    public static final String AUTHORITY = "com.maq.xprize.bali.provider";
+    public static final String AUTHORITY = "com.maq.simpleclass."+ BuildConfig.FLAVOR + ".provider";
     public static final String MULTIPLE_CHOICE_QUIZ = "MULTIPLE_CHOICE_QUIZ";
     public static final String COINS = "COINS";
     public static final String GAME_NAME = "GAME_NAME";
@@ -458,7 +458,7 @@ public class AppActivity extends Cocos2dxActivity {
         super.onResume();
         Intent intent = new Intent();
         intent.setClassName("com.maq.xprize.bali", "com.maq.xprize.bali.service.TollBroadcastReceiver");
-        intent.putExtra("onResume", "com.maq.xprize.chimple.hindi");
+        intent.putExtra("onResume", getPackageName());
         sendBroadcast(intent);
     }
 
@@ -467,7 +467,7 @@ public class AppActivity extends Cocos2dxActivity {
         super.onPause();
         Intent intent = new Intent();
         intent.setClassName("com.maq.xprize.bali", "com.maq.xprize.bali.service.TollBroadcastReceiver");
-        intent.putExtra("onPause", "com.maq.xprize.chimple.hindi");
+        intent.putExtra("onPause", getPackageName());
         sendBroadcast(intent);
     }
 

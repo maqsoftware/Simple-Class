@@ -27,6 +27,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.maq.simpleclass.BuildConfig;
 import com.maq.xprize.bali.db.entity.UserLog;
 import com.maq.xprize.bali.model.BagOfChoiceQuiz;
 import com.maq.xprize.bali.model.MultipleChoiceQuiz;
@@ -40,7 +41,7 @@ public class LessonContentProvider extends ContentProvider {
     /**
      * The authority of this content provider.
      */
-    public static final String AUTHORITY = "com.maq.xprize.bali.provider";
+    public static final String AUTHORITY = "com.maq.simpleclass."+ BuildConfig.FLAVOR + ".provider";
 
     public static final String MULTIPLE_CHOICE_QUIZ = "MULTIPLE_CHOICE_QUIZ";
     public static final String COL_HELP = "help";

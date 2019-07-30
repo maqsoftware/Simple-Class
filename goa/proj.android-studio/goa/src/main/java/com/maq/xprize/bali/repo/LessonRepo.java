@@ -32,7 +32,7 @@ import com.maq.xprize.bali.db.pojo.EagerUnitPart;
 import com.maq.xprize.bali.db.pojo.FlashCard;
 import com.maq.xprize.bali.model.BagOfChoiceQuiz;
 import com.maq.xprize.bali.model.MultipleChoiceQuiz;
-import com.maq.xprize.chimple.hindi.R;
+import com.maq.simpleclass.R;
 
 import java.util.ArrayList;
 import java.util.Collections;

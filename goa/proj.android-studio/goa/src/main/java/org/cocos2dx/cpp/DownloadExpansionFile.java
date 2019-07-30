@@ -1,4 +1,4 @@
-package chimple;
+package org.cocos2dx.cpp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -31,9 +31,7 @@ import com.google.android.vending.expansion.downloader.Helpers;
 import com.google.android.vending.expansion.downloader.IDownloaderClient;
 import com.google.android.vending.expansion.downloader.IDownloaderService;
 import com.google.android.vending.expansion.downloader.IStub;
-import com.maq.xprize.chimple.hindi.R;
-
-import org.cocos2dx.cpp.AppActivity;
+import com.maq.simpleclass.R;
 
 import java.io.DataInputStream;
 import java.io.File;
@@ -58,7 +56,7 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
     public static final XAPKFile[] xAPKs = {
             new XAPKFile(
                     true, // true signifies a main file
-                    14, // the version of the main obb that is uploaded
+                    15, // the version of the main obb that is uploaded
                     624426836L  // the length of the file in bytes
             ),
             new XAPKFile(

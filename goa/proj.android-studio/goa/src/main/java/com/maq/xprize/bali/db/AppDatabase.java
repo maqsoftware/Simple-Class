@@ -47,7 +47,7 @@ import com.maq.xprize.bali.db.entity.UserLesson;
 import com.maq.xprize.bali.db.entity.UserLog;
 import com.maq.xprize.bali.db.entity.UserUnit;
 import com.maq.xprize.bali.repo.UserRepo;
-import com.maq.xprize.chimple.hindi.R;
+import com.maq.simpleclass.R;
 
 import java.io.BufferedReader;
 import java.io.IOException;
