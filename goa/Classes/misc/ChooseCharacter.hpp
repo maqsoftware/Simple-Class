@@ -27,8 +27,8 @@
 #define BOY_TEXT "boy_text"
 #define GIRL_TEXT "girl_text"
 #define CHOOSE_CHARACTER_TEXT "choose Character"
-#define BOY_LABEL_TEXT "ÜÇ¸·UUUæ"
-#define GIRL_LABEL_TEXT "ÜÇ¸·UUUè"
+#define BOY_LABEL_TEXT "लड़का"
+#define GIRL_LABEL_TEXT "लड़की"
 
 
 class ChooseCharacter : public cocos2d::Layer {

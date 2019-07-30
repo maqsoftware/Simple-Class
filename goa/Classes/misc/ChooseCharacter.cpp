@@ -121,10 +121,10 @@ void ChooseCharacter::processChildNodes(cocos2d::Node *rootNode) {
     if(boyText != NULL) {
         cocos2d::ui::Text* boyLabel = dynamic_cast<cocos2d::ui::Text *>(boyText);
         if(boyLabel != NULL) {
-            std::string boyText = "ÜÇ¸·UUUæ";
+            std::string boyText = "लड़का";
             boyLabel->setString(boyText);
-            boyLabel->setFontSize(150);
-            boyLabel->setFontName("fonts/Chanakya.ttf");
+            boyLabel->setFontSize(130);
+            boyLabel->setFontName("arial");
             boyLabel->setTextColor(Color4B::WHITE);
             
         }
@@ -134,10 +134,10 @@ void ChooseCharacter::processChildNodes(cocos2d::Node *rootNode) {
     if(boyText != NULL) {
         cocos2d::ui::Text* girlLabel = dynamic_cast<cocos2d::ui::Text *>(girlText);
         if(girlLabel != NULL) {
-            std::string girlText = "ÜÇ¸·UUUè";
+            std::string girlText = "लड़की";
             girlLabel->setString(girlText);
-            girlLabel->setFontSize(150);
-            girlLabel->setFontName("fonts/Chanakya.ttf");
+            girlLabel->setFontSize(130);
+            girlLabel->setFontName("arial");
             girlLabel->setTextColor(Color4B::WHITE);
             
         }
