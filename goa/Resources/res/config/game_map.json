@@ -1,8 +1,7 @@
 [
   {
     "name": "story-catalogue",
-	"title": "कहानियों",
-    "_title_comment": "कहानियों",
+    "title": "Stories",
     "unlock": true,
     "cIcon": "gameicons/story_pressed.png",
     "icon": "gameicons/story.png",
@@ -13,8 +12,7 @@
   },
   {
     "name": "map",
-	"title": "हीरो",
-    "_title_comment": "हीरो",
+    "title": "Hero",
     "cIcon": "gameicons/hero_pressed.png",
     "icon": "gameicons/hero.png",
     "multiPlayer": false,
@@ -35,8 +33,7 @@
   },
   {
     "name": "decomone",
-	"title": "अक्षर सजाओ",
-    "_title_comment": "अक्षर सजाओ",
+    "title": "Decorate the Alphabet",
     "unlock": true,
     "cIcon": "gameicons/decomone_pressed.png",
     "icon": "gameicons/decomone.png",
@@ -218,8 +215,7 @@
   },
   {
     "name": "EndlessRunner",
-	"title": "भागो और पकड़ो",
-    "_title_comment": "भागो और पकड़ो",
+    "title": "Run and Catch",
     "unlock": true,
     "cIcon": "gameicons/EndlessRunner_pressed.png",
     "icon": "gameicons/EndlessRunner.png",
@@ -329,8 +325,7 @@
   },
   {
     "name": "Alphamon Feed",
-	"title": "राक्षसों को खिलाओ",
-    "_title_comment": "राक्षसों को खिलाओ",
+    "title": "Feed the Monsters",
     "unlock": false,
     "cIcon": "gameicons/Alphamon Feed_pressed.png",
     "icon": "gameicons/Alphamon Feed.png",
@@ -440,8 +435,7 @@
   },
   {
     "name": "book",
-	"title": "अक्षरों की लड़ाई",
-    "_title_comment": "अक्षरों की लड़ाई",
+    "title": "Alphabet Fight",
     "unlock": false,
     "cIcon": "gameicons/book_pressed.png",
     "icon": "gameicons/book.png",
@@ -503,8 +497,7 @@
   },
   {
     "name": "alphamole",
-	"title": "एक अजीब राक्षस",
-    "_title_comment": "एक अजीब राक्षस",
+    "title": "Whack a Monster",
     "unlock": false,
     "cIcon": "gameicons/alphamole_pressed.png",
     "icon": "gameicons/alphamole.png",
@@ -614,8 +607,7 @@
   },
   {
     "name": "Cross The Bridge",
-	"title": "पूल को पार करो",
-    "_title_comment": "पूल को पार करो",
+    "title": "Cross the Bridge",
     "unlock": false,
     "cIcon": "gameicons/Cross The Bridge_pressed.png",
     "icon": "gameicons/Cross The Bridge.png",
@@ -722,8 +714,7 @@
   },
   {
     "name": "Cannon Ball",
-	"title": "तोप का गोला",
-    "_title_comment": "तोप का गोला",
+    "title": "Cannon Ball",
     "unlock": false,
     "cIcon": "gameicons/Cannon Ball_pressed.png",
     "icon": "gameicons/Cannon Ball.png",
@@ -767,8 +758,7 @@
   },
   {
     "name": "bubble",
-	"title": "बुलबुला फोड़ो",
-    "_title_comment": "बुलबुला फोड़ो",
+    "title": "Pop the Bubble",
     "unlock": false,
     "cIcon": "gameicons/bubble_pressed.png",
     "icon": "gameicons/bubble.png",
@@ -854,8 +844,7 @@
   },
   {
     "name": "Smash The Rock",
-    "title": "चट्टान तोडना",
-    "_title_comment": "चट्टान तोडना",
+    "title": "Rock Smash",
     "unlock": false,
     "cIcon": "gameicons/Smash The Rock_pressed.png",
     "icon": "gameicons/Smash The Rock.png",
@@ -965,8 +954,7 @@
   },
   {
     "name": "dino",
-    "title": "वर्णमाला",
-    "_title_comment": "वर्णमाला",
+    "title": "Alphabet",
     "unlock": false,
     "cIcon": "gameicons/dino_pressed.png",
     "icon": "gameicons/dino.png",
@@ -998,8 +986,7 @@
   },
   {
     "name": "Patch The Wall",
-    "title": "दीवार को थपथपाएं",
-    "_title_comment": "दीवार को थपथपाएं",
+    "title": "Patch the Wall",
     "unlock": false,
     "cIcon": "gameicons/Patch The Wall_pressed.png",
     "icon": "gameicons/Patch The Wall.png",
@@ -1045,8 +1032,7 @@
   },
   {
     "name": "basiclettercase",
-    "title": "आइसक्रीम",
-    "_title_comment": "आइसक्रीम",
+    "title": "icecream",
     "cIcon": "gameicons/basiclettercase_pressed.png",
     "icon": "gameicons/basiclettercase.png",
     "multiPlayer": false,
@@ -1092,8 +1078,7 @@
   },
   {
     "name": "alphaarrange",
-    "title": "अल्फा व्यवस्था",
-    "_title_comment": "अल्फा व्यवस्था",
+    "title": "Alpha Arrange",
     "unlock": false,
     "cIcon": "gameicons/AlphaArrange_pressed.png",
     "icon": "gameicons/AlphaArrange.png",
@@ -1131,8 +1116,7 @@
   },
   {
     "name": "baja",
-	"title": "चलाओ",
-    "_title_comment": "चलाओ",
+    "title": "Drive",
     "unlock": true,
     "cIcon": "gameicons/baja_pressed.png",
     "icon": "gameicons/baja.png",
@@ -1178,8 +1162,7 @@
   },
   {
     "name": "jasmine",
-	"title": "पौधे उगाओ",
-    "_title_comment": "पौधे उगाओ",
+    "title": "Grow the Plants",
     "unlock": true,
     "cIcon": "gameicons/jasmine_pressed.png",
     "icon": "gameicons/jasmine.png",
@@ -1225,8 +1208,7 @@
   },
   {
     "name": "chain",
-	"title": "पशु श्रृंखला",
-    "_title_comment": "पशु श्रृंखला",
+    "title": "Animal Chain",
     "unlock": false,
     "cIcon": "gameicons/chain_pressed.png",
     "icon": "gameicons/chain.png",
@@ -1272,8 +1254,7 @@
   },
   {
     "name": "wembley",
-	"title": "वर्णमाला फुटबॉल",
-    "_title_comment": "वर्णमाला फुटबॉल",
+    "title": "Alphabet Football",
     "unlock": false,
     "cIcon": "gameicons/wembley_pressed.png",
     "icon": "gameicons/wembley.png",
@@ -1319,8 +1300,7 @@
   },
   {
     "name": "jazz",
-	"title": "ड्रम",
-    "_title_comment": "ड्रम",
+    "title": "Drums",
     "unlock": false,
     "cIcon": "gameicons/jazz_pressed.png",
     "icon": "gameicons/jazz.png",
@@ -1366,8 +1346,7 @@
   },
   {
     "name": "shoot",
-	"title": "गोली मार",
-    "_title_comment": "गोली मार",
+    "title": "Shoot",
     "unlock": false,
     "cIcon": "gameicons/shoot_pressed.png",
     "icon": "gameicons/shoot.png",
@@ -1409,8 +1388,7 @@
   },
   {
     "name": "owl",
-	"title": "वर्तनी उल्लू",
-    "_title_comment": "वर्तनी उल्लू",
+    "title": "Spelling Owl",
     "unlock": false,
     "cIcon": "gameicons/owl_pressed.png",
     "icon": "gameicons/owl.png",
@@ -1456,8 +1434,7 @@
   },
   {
     "name": "stack",
-	"title": "शब्दों का ढेर",
-    "_title_comment": "शब्दों का ढेर",
+    "title": "Stack the Words",
     "unlock": false,
     "cIcon": "gameicons/stack_pressed.png",
     "icon": "gameicons/stack.png",
@@ -1502,8 +1479,7 @@
   },
   {
     "name": "order",
-	"title": "क्रमबद्ध करे",
-    "_title_comment": "क्रमबद्ध करे",
+    "title": "Arrange in Order",
     "unlock": false,
     "cIcon": "gameicons/order_pressed.png",
     "icon": "gameicons/order.png",
@@ -1548,8 +1524,7 @@
   },
   {
     "name": "dash",
-	"title": "पानी का छींटा",
-    "_title_comment": "पानी का छींटा",
+    "title": "Dash",
     "unlock": false,
     "cIcon": "gameicons/dash_pressed.png",
     "icon": "gameicons/dash.png",
@@ -1596,8 +1571,7 @@
   },
   {
     "name": "bingo",
-	"title": "बिंगो",
-    "_title_comment": "बिंगो",
+    "title": "Bingo",
     "unlock": false,
     "cIcon": "gameicons/bingo_pressed.png",
     "icon": "gameicons/bingo.png",
@@ -1643,8 +1617,7 @@
   },
   {
     "name": "drop",
-	"title": "बूंद",
-    "_title_comment": "बूंद",
+    "title": "Drop",
     "unlock": false,
     "cIcon": "gameicons/drop_pressed.png",
     "icon": "gameicons/drop.png",
@@ -1690,8 +1663,7 @@
   },
   {
     "name": "train",
-	"title" : "रेल गाडी",
-    "_title_comment": "रेल गाडी",
+    "title": "Train",
     "unlock": false,
     "cIcon": "gameicons/train_pressed.png",
     "icon": "gameicons/train.png",
@@ -1738,8 +1710,7 @@
   },
   {
     "name": "pop",
-	"title": "बादलों के माध्यम से उड़ो",
-    "_title_comment": "बादलों के माध्यम से उड़ो",
+    "title": "Fly Through Clouds",
     "unlock": false,
     "cIcon": "gameicons/pop_pressed.png",
     "icon": "gameicons/pop.png",
@@ -1786,8 +1757,7 @@
   },
   {
     "name": "talk",
-	"title": "शब्दों को खिलाओ",
-    "_title_comment": "शब्दों को खिलाओ",
+    "title": "Feed the Words",
     "unlock": false,
     "cIcon": "gameicons/talk_pressed.png",
     "icon": "gameicons/talk.png",
@@ -1833,8 +1803,7 @@
   },
   {
     "name": "memory",
-	"title": "याद",
-    "_title_comment": "याद",
+    "title": "Memory",
     "unlock": false,
     "cIcon": "gameicons/memory_pressed.png",
     "icon": "gameicons/memory.png",
@@ -1880,8 +1849,7 @@
   },
   {
     "name": "circle",
-	"title": "पकड़",
-    "_title_comment": "पकड़",
+    "title": "Catch",
     "unlock": false,
     "cIcon": "gameicons/circle_pressed.png",
     "icon": "gameicons/circle.png",
@@ -1927,8 +1895,7 @@
   },
   {
     "name": "pillar",
-	"title": "केक परत",
-    "_title_comment": "केक परत",
+    "title": "Layer the Cake",
     "unlock": false,
     "cIcon": "gameicons/pillar_pressed.png",
     "icon": "gameicons/pillar.png",
@@ -1974,8 +1941,7 @@
   },
   {
     "name": "balloon",
-	"title": "उड़ना",
-    "_title_comment": "उड़ना",
+    "title": "Fly",
     "unlock": false,
     "cIcon": "gameicons/balloon_pressed.png",
     "icon": "gameicons/balloon.png",
@@ -2018,8 +1984,7 @@
   },
   {
     "name": "sortit",
-	"title": "क्रमबद्ध करें",
-    "_title_comment": "क्रमबद्ध करें",
+    "title": "Sort It",
     "unlock": true,
     "cIcon": "gameicons/sortit_pressed.png",
     "icon": "gameicons/sortit.png",
@@ -2058,8 +2023,7 @@
   },
   {
     "name": "shape",
-	"title": "छेद की मरम्मत करे",
-    "_title_comment": "छेद की मरम्मत करे",
+    "title": "Patch the Holes",
     "unlock": false,
     "cIcon": "gameicons/shape_pressed.png",
     "icon": "gameicons/shape.png",
@@ -2100,8 +2064,7 @@
   },
   {
     "name": "Dots",
-	"title": "संख्या बिंदु",
-    "_title_comment": "संख्या बिंदु",
+    "title": "Number Dots",
     "unlock": false,
     "cIcon": "gameicons/numberdot_pressed.png",
     "icon": "gameicons/numberdot.png",
@@ -2141,8 +2104,7 @@
   },
   {
     "name": "popcount",
-	"title": "मछली को गिनें",
-    "_title_comment": "मछली को गिनें",
+    "title": "Count the fish",
     "unlock": false,
     "cIcon": "gameicons/popcount_pressed.png",
     "icon": "gameicons/popcount.png",
@@ -2185,8 +2147,7 @@
   },
   {
     "name": "spot",
-	"title": "पशु खोजें ",
-    "_title_comment": "पशु खोजें ",
+    "title": "Spot the Animals",
     "unlock": false,
     "cIcon": "gameicons/spot_pressed.png",
     "icon": "gameicons/spot.png",
@@ -2227,8 +2188,7 @@
   },
   {
     "name": "Item",
-	"title": "तालाब भरें",
-    "_title_comment": "तालाब भरें",
+    "title": "Fill the Pond",
     "unlock": false,
     "cIcon": "gameicons/item_pressed.png",
     "icon": "gameicons/item.png",
@@ -2273,8 +2233,7 @@
   },
   {
     "name": "ConnectTheDots",
-	"title": "बिंदुओ को जोडो",
-    "_title_comment": "बिंदुओ को जोडो",
+    "title": "Connect the Dots",
     "unlock": false,
     "cIcon": "gameicons/coonectthedot_pressed.png",
     "icon": "gameicons/coonectthedot.png",
@@ -2314,8 +2273,7 @@
   },
   {
     "name": "chocolateFactory",
-	"title": "दूध का कारखाना",
-    "_title_comment": "दूध का कारखाना",
+    "title": "Milk Factory",
     "unlock": false,
     "cIcon": "gameicons/chocolatefactory_pressed.png",
     "icon": "gameicons/chocolatefactory.png",
@@ -2360,8 +2318,7 @@
   },
   {
     "name": "step",
-	"title": "चरणों को क्रमबद्ध करें",
-    "_title_comment": "चरणों को क्रमबद्ध करें",
+    "title": "Arrange the Steps",
     "unlock": false,
     "cIcon": "gameicons/step_pressed.png",
     "icon": "gameicons/step.png",
@@ -2405,8 +2362,7 @@
   },
   {
     "name": "Line",
-	"title": "कैंडी लाइन",
-    "_title_comment": "कैंडी लाइन",
+    "title": "Candy Line",
     "unlock": false,
     "cIcon": "gameicons/line_pressed.png",
     "icon": "gameicons/line.png",
@@ -2447,8 +2403,7 @@
   },
   {
     "name": "mathlearning",
-	"title": "जोड़ घटाव",
-    "_title_comment": "जोड़ घटाव",
+    "title": "Addition Subtraction",
     "unlock": false,
     "cIcon": "gameicons/mathlearning_pressed.png",
     "icon": "gameicons/mathlearning.png",
@@ -2491,8 +2446,7 @@
   },
   {
     "name": "balloonMath",
-	"title": "बुलबुला फोड़ो",
-    "_title_comment": "बुलबुला फोड़ो",
+    "title": "Pop the Balloon",
     "unlock": false,
     "cIcon": "gameicons/balloonpop_pressed.png",
     "icon": "gameicons/balloonpop.png",
@@ -2533,8 +2487,7 @@
   },
   {
     "name": "shop",
-	"title": "किराने की दुकान",
-    "_title_comment": "किराने की दुकान",
+    "title": "Grocery Shop",
     "unlock": false,
     "cIcon": "gameicons/shopping_pressed.png",
     "icon": "gameicons/shopping.png",
@@ -2575,8 +2528,7 @@
   },
   {
     "name": "Units",
-	"title": "एक पिज्जा बनाओ",
-    "_title_comment": "एक पिज्जा बनाओ",
+    "title": "Make a Pizza",
     "unlock": false,
     "cIcon": "gameicons/pizza_pressed.png",
     "icon": "gameicons/pizza.png",
@@ -2617,8 +2569,7 @@
   },
   {
     "name": "atm",
-	"title": "पैसों की मशीन",
-    "_title_comment": "पैसों की मशीन",
+    "title": "Money Machine",
     "unlock": false,
     "cIcon": "gameicons/ATM_pressed.png",
     "icon": "gameicons/ATM.png",
@@ -2659,8 +2610,7 @@
   },
   {
     "name": "jumpingNumbers",
-	"title": "सफलता की सीढ़ियां",
-    "_title_comment": "सफलता की सीढ़ियां",
+    "title": "Stepping Stones",
     "unlock": false,
     "cIcon": "gameicons/jumping numbers_pressed.png",
     "icon": "gameicons/jumping numbers.png",
@@ -2701,8 +2651,7 @@
   },
   {
     "name": "card",
-	"title": "कार्ड जोड़ें",
-    "_title_comment": "कार्ड जोड़ें",
+    "title": "Add the Cards",
     "unlock": false,
     "cIcon": "gameicons/card_pressed.png",
     "icon": "gameicons/card.png",
@@ -2743,8 +2692,7 @@
   },
   {
     "name": "Bounce",
-	"title": "आइसक्रीम को गिराओ",
-    "_title_comment": "आइसक्रीम को गिराओ",
+    "title": "Drop the Icecream",
     "unlock": false,
     "cIcon": "gameicons/icecream_pressed.png",
     "icon": "gameicons/icecream.png",
@@ -2771,8 +2719,7 @@
   },
   {
     "name": "BasicMultiplication",
-	"title": "मूल गुणन",
-    "_title_comment": "मूल गुणन",
+    "title": "Basic Multiplication",
     "unlock": false,
     "cIcon": "gameicons/BasicMultiplication_pressed.png",
     "icon": "gameicons/BasicMultiplication.png",
@@ -2815,8 +2762,7 @@
   },
   {
     "name": "table",
-	"title": "गुणा",
-    "_title_comment": "गुणा",
+    "title": "Multiply",
     "unlock": false,
     "cIcon": "gameicons/table_pressed.png",
     "icon": "gameicons/table.png",
@@ -2851,8 +2797,7 @@
   },
   {
     "name": "Kung Fu Alpha",
-	"title": "निशान",
-    "_title_comment": "निशान",
+    "title": "Trace",
     "unlock": true,
     "cIcon": "gameicons/Kung Fu Alpha_pressed.png",
     "icon": "gameicons/Kung Fu Alpha.png",
@@ -2962,8 +2907,7 @@
   },
   {
     "name": "cardraw",
-	"title": "घर जाओ",
-    "_title_comment": "घर जाओ",
+    "title": "Go Home",
     "unlock": false,
     "cIcon": "gameicons/cardraw_pressed.png",
     "icon": "gameicons/cardraw.png",
@@ -3144,8 +3088,7 @@
   },
   {
     "name": "TreasureHunt",
-	"title": "ख़ज़ाने की खोज",
-    "_title_comment": "ख़ज़ाने की खोज",
+    "title": "Treasure Hunt",
     "unlock": false,
     "cIcon": "gameicons/TreasureHunt_pressed.png",
     "icon": "gameicons/TreasureHunt.png",
@@ -3257,8 +3200,7 @@
   },
   {
     "name": "blastletter",
-	"title": "बम निष्क्रिय करें",
-    "_title_comment": "बम निष्क्रिय करें",
+    "title": "Defuse the Bomb",
     "unlock": false,
     "cIcon": "gameicons/blastletter_pressed.png",
     "icon": "gameicons/blastletter.png",
@@ -3487,8 +3429,7 @@
   },
   {
     "name": "Door",
-	"title": "खलिहान दरवाजा",
-    "_title_comment": "खलिहान दरवाजा",
+    "title": "Barn Door",
     "unlock": false,
     "cIcon": "gameicons/doors_pressed.png",
     "icon": "gameicons/doors.png",
