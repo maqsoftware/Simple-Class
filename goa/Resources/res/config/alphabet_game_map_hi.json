@@ -308,7 +308,7 @@
     "autoLevel": true,
     "rewards": {
       "10": {
-        "unlock": "bookbook"
+        "unlock": "book"
       },
       "4": {
         "badge": "c/tasty_mango"

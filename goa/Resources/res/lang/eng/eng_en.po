@@ -189,6 +189,9 @@ msgstr "Adverbs describe adjectives, verbs, or another adverb. \n"
 msgid "alphabet"
 msgstr "Alphabet"
 
+msgid "alphabet-info"
+msgstr "Alphabet"
+
 #: 
 msgid "antonym"
 msgstr "Two words are opposites of each other if their meanings are totally different from each other.\n"
