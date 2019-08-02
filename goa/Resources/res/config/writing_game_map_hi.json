@@ -2,7 +2,7 @@
   {
     "name": "Kung Fu Alpha",
     "title": "ट्रेस$#$Trace",
-	"_title_comment": "पता लगाना",
+    "_title_comment": "पता लगाना",
     "unlock": true,
     "cIcon": "gameicons/Kung Fu Alpha_pressed.png",
     "icon": "gameicons/Kung Fu Alpha.png",
@@ -112,8 +112,8 @@
   },
   {
     "name": "cardraw",
-    "title": "घर जाओ$#$Car Draw",
-	"_title_comment":"घर जाओ",
+    "title": "अक्षर बनाओ$#$Letter Writing",
+    "_title_comment": "घर जाओ",
     "unlock": true,
     "cIcon": "gameicons/cardraw_pressed.png",
     "icon": "gameicons/cardraw.png",
@@ -295,7 +295,7 @@
   {
     "name": "TreasureHunt",
     "title": "ख़ज़ाने की खोज$#$Treasure Hunt",
-	"_title_comment":"ख़ज़ाने की खोज",
+    "_title_comment": "ख़ज़ाने की खोज",
     "unlock": true,
     "cIcon": "gameicons/TreasureHunt_pressed.png",
     "icon": "gameicons/TreasureHunt.png",
@@ -407,8 +407,8 @@
   },
   {
     "name": "blastletter",
-    "title": "बम निष्क्रिय करें$#$Blast Letter",
-	"_title_comment":"बम निष्क्रिय करें",
+    "title": "बम को शांत करो$#$Defuse the Bomb",
+    "_title_comment": "बम निष्क्रिय करें",
     "unlock": true,
     "cIcon": "gameicons/blastletter_pressed.png",
     "icon": "gameicons/blastletter.png",
@@ -637,8 +637,8 @@
   },
   {
     "name": "Door",
-    "title": "खलिहान दरवाज़ा$#$Door",
-	"_title_comment":"खलिहान दरवाज़ा",
+    "title": "खलिहान दरवाज़ा$#$Barn Door",
+    "_title_comment": "खलिहान दरवाज़ा",
     "unlock": true,
     "cIcon": "gameicons/doors_pressed.png",
     "icon": "gameicons/doors.png",

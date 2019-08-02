@@ -465,7 +465,7 @@
   },
   {
     "name": "alphamole",
-    "title": "Whack a Monster",
+    "title": "Hit a Monster",
     "unlock": false,
     "cIcon": "gameicons/alphamole_pressed.png",
     "icon": "gameicons/alphamole.png",
@@ -726,7 +726,7 @@
   },
   {
     "name": "bubble",
-    "title": "Pop the Bubble",
+    "title": "Bubble Pop",
     "unlock": false,
     "cIcon": "gameicons/bubble_pressed.png",
     "icon": "gameicons/bubble.png",
@@ -812,7 +812,7 @@
   },
   {
     "name": "Smash The Rock",
-    "title": "Rock Smash",
+    "title": "Smash the Rock",
     "unlock": false,
     "cIcon": "gameicons/Smash The Rock_pressed.png",
     "icon": "gameicons/Smash The Rock.png",
@@ -1000,7 +1000,7 @@
   },
   {
     "name": "basiclettercase",
-    "title": "icecream",
+    "title": "Ice-cream",
     "cIcon": "gameicons/basiclettercase_pressed.png",
     "icon": "gameicons/basiclettercase.png",
     "multiPlayer": false,

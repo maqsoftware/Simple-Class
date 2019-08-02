@@ -2,7 +2,7 @@
   {
     "name": "decomone",
     "title": "अक्षर सजाओ$#$Decorate the Alphabet",
-	"_title_comment": "अक्षर सजाओ",
+    "_title_comment": "अक्षर सजाओ",
     "unlock": true,
     "cIcon": "gameicons/decomone_pressed.png",
     "icon": "gameicons/decomone.png",
@@ -184,7 +184,7 @@
   },
   {
     "name": "EndlessRunner",
-	"title":"भागो और पकड़ो$#$Run and catch",
+    "title": "भागो और पकड़ो$#$Run and Catch",
     "_title_comment": "भागो और पकड़ो",
     "unlock": true,
     "cIcon": "gameicons/EndlessRunner_pressed.png",
@@ -295,8 +295,8 @@
   },
   {
     "name": "Alphamon Feed",
-    "title": "राक्षसों को खिलाओ$#$Feed the monsters",
-	"_title_comment": "राक्षसों को खिलाओ",
+    "title": "राक्षस को खिलाओ$#$Feed the Monsters",
+    "_title_comment": "राक्षसों को खिलाओ",
     "unlock": true,
     "cIcon": "gameicons/Alphamon Feed_pressed.png",
     "icon": "gameicons/Alphamon Feed.png",
@@ -406,8 +406,8 @@
   },
   {
     "name": "book",
-    "title": "अक्षर की लड़ाई$#$Alphabet fight",
-	"_title_comment": "अक्षर की लड़ाई",
+    "title": "अक्षर की लड़ाई$#$Alphabet Fight",
+    "_title_comment": "अक्षर की लड़ाई",
     "unlock": true,
     "cIcon": "gameicons/book_pressed.png",
     "icon": "gameicons/book.png",
@@ -469,8 +469,8 @@
   },
   {
     "name": "alphamole",
-    "title": "राक्षस को मारो $#$Alphamole",
-	"_title_comment":"राक्षस को मारो ",
+    "title": "राक्षस को मारो $#$Hit a Monster",
+    "_title_comment": "राक्षस को मारो ",
     "unlock": true,
     "cIcon": "gameicons/alphamole_pressed.png",
     "icon": "gameicons/alphamole.png",
@@ -580,7 +580,7 @@
   },
   {
     "name": "Cross The Bridge",
-	"title": "पूल को पार करो$#$Cross The Bridge",
+    "title": "पूल को पार करो$#$Cross the Bridge",
     "_title_comment": "पूल को पार करो",
     "unlock": true,
     "cIcon": "gameicons/Cross The Bridge_pressed.png",
@@ -688,7 +688,7 @@
   },
   {
     "name": "Cannon Ball",
-	"title":"तोप का गोला$#$Cannon Ball",
+    "title": "तोप का गोला$#$Cannon Ball",
     "_title_comment": "तोप का गोला",
     "unlock": true,
     "cIcon": "gameicons/Cannon Ball_pressed.png",
@@ -733,7 +733,7 @@
   },
   {
     "name": "bubble",
-	"title": "बुलबुला फोड़ो$#$Bubble Pop",
+    "title": "बुलबुला फोड़ो$#$Bubble Pop",
     "_title_comment": "बुलबुला फोड़ो",
     "unlock": true,
     "cIcon": "gameicons/bubble_pressed.png",
@@ -820,7 +820,7 @@
   },
   {
     "name": "Smash The Rock",
-	"title": "चट्टान तोड़ो$#$Smash The Rock",
+    "title": "चट्टान तोड़ो$#$Smash the Rock",
     "_title_comment": "चट्टान तोड़ो",
     "unlock": true,
     "cIcon": "gameicons/Smash The Rock_pressed.png",
@@ -931,7 +931,7 @@
   },
   {
     "name": "dino",
-	"title": "वर्णमाला$#$Alphabet",
+    "title": "वर्णमाला$#$Alphabet",
     "_title_comment": "वर्णमाला",
     "unlock": true,
     "cIcon": "gameicons/dino_pressed.png",
@@ -964,7 +964,7 @@
   },
   {
     "name": "Patch The Wall",
-	"title": "दीवार को थपथपाए$#$Patch The Wall",
+    "title": "दीवार की मरम्मत $#$Patch the Wall",
     "_title_comment": "दीवार को थपथपाए",
     "unlock": true,
     "cIcon": "gameicons/Patch The Wall_pressed.png",
@@ -1011,7 +1011,7 @@
   },
   {
     "name": "basiclettercase",
-	"title": "आइसक्रीम$#$Ice-cream",
+    "title": "आइसक्रीम$#$Ice-cream",
     "_title_comment": "आइसक्रीम",
     "cIcon": "gameicons/basiclettercase_pressed.png",
     "icon": "gameicons/basiclettercase.png",
@@ -1058,7 +1058,7 @@
   },
   {
     "name": "alphaarrange",
-	"title": "अल्फा व्यवस्था$#$Alpha Arrange",
+    "title": "वर्णो की व्यवस्था$#$Alpha Arrange",
     "_title_comment": "अल्फा व्यवस्था",
     "unlock": true,
     "cIcon": "gameicons/AlphaArrange_pressed.png",
