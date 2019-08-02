@@ -118,3 +118,8 @@ def get_titles_name_json(ref_json, check_json, xlsx_file):
             sheet.write(rowCount, 3, check_object_title[0])
             rowCount = rowCount+1
     wb.close()
+
+get_titles_name_json('original/alphabet_game_map_en.json', 'original/alphabet_game_map_hi.json', 'excels/alphabet_titles.xlsx')
+get_titles_name_json('original/grammar_game_map_en.json', 'original/grammar_game_map_hi.json', 'excels/grammar_titles.xlsx')
+get_titles_name_json('original/shapes_game_map_en.json', 'original/shapes_game_map_hi.json', 'excels/shapes__titles.xlsx')
+get_titles_name_json('original/writing_game_map_en.json', 'original/writing_game_map_hi.json', 'excels/writing_titles.xlsx')
