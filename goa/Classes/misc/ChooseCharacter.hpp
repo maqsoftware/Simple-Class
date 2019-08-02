@@ -26,30 +26,29 @@
 #define GIRL_BUTTON "girl_button"
 #define BOY_TEXT "boy_text"
 #define GIRL_TEXT "girl_text"
-#define CHOOSE_CHARACTER_TEXT "choose Character"
-#define BOY_LABEL_TEXT "लड़का"
-#define GIRL_LABEL_TEXT "लड़की"
+#define CHOOSE_CHARACTER_TEXT_EN "Select gender"
+#define BOY_LABEL_TEXT_EN "BOY"
+#define GIRL_LABEL_TEXT_EN "GIRL"
+#define CHOOSE_CHARACTER_TEXT_LOC "Select gender\n    लिंग चुनिए"
+#define BOY_LABEL_TEXT_LOC "\n\n Boy\nलड़का"
+#define GIRL_LABEL_TEXT_LOC "\n\n Girl\nलड़की"
 
-
-class ChooseCharacter : public cocos2d::Layer {
+class ChooseCharacter : public cocos2d::Layer
+{
 public:
-    
-    static cocos2d::Scene* createScene(const std::string& island);
-    static ChooseCharacter* create(const std::string& island);
-    
-CC_CONSTRUCTOR_ACCESS:
-    virtual bool init(const std::string& island);
+    static cocos2d::Scene *createScene(const std::string &island);
+    static ChooseCharacter *create(const std::string &island);
+
+    CC_CONSTRUCTOR_ACCESS : virtual bool init(const std::string &island);
     ChooseCharacter();
     virtual ~ChooseCharacter();
-    
+
 private:
     std::string island;
-    MenuContext* menuContext;    
+    MenuContext *menuContext;
     void load();
     void processChildNodes(cocos2d::Node *rootNode);
-    void characterSelected(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
-    
+    void characterSelected(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType);
 };
-
 
 #endif /* ChooseCharacter_hpp */

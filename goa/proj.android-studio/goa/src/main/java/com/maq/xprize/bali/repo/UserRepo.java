@@ -21,7 +21,7 @@ import android.content.SharedPreferences;
 
 import com.maq.xprize.bali.db.AppDatabase;
 import com.maq.xprize.bali.db.entity.User;
-import com.maq.xprize.chimple.hindi.R;
+import com.maq.simpleclass.R;
 
 public class UserRepo {
     public static int updateCoins(Context context, int coins) {

@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.maq.xprize.chimple.hindi.R;
+import com.maq.simpleclass.R;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

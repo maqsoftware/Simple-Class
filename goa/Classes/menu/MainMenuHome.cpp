@@ -10,6 +10,7 @@
 #include "MapScene.h"
 #include "../misc/ScaleGuiElements.cpp"
 #include "misc/FirebaseHelper.hpp"
+#include "LevelHelpScene.h"
 
 USING_NS_CC;
 
@@ -79,7 +80,7 @@ bool MainMenuHome::init()
     //    }
 
     cocos2d::ui::Button *backButton = createBackButton();
-    ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(backButton);
+    ScaleUIElement<cocos2d::ui::Button *>::scaleGuiElements(backButton);
 
     backButton->setPosition(Vec2(origin.x + 150, origin.y + visibleSize.height - 150));
     this->addChild(backButton);
@@ -175,11 +176,11 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
 
                 if (button->getName() == "alphabet" || button->getName() == "writing" || button->getName() == "grammar")
                 {
-                    button->setPosition(Vec2 (buttonPosition.x, buttonPosition.y - 40));
+                    button->setPosition(Vec2(buttonPosition.x, buttonPosition.y - 40));
                 }
                 else if (button->getName() == "map" || button->getName() == "library" || button->getName() == "shapes")
                 {
-                    button->setPosition(Vec2 (buttonPosition.x, buttonPosition.y - 70));
+                    button->setPosition(Vec2(buttonPosition.x, buttonPosition.y - 70));
                 }
 
                 if (button->getName() == "library")
@@ -203,21 +204,42 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
 
                 if (textTitle)
                 {
-                    std::string translatedString = this->currentLangUtil->translateString(textTitle->getName());
+                    std::string translatedString;
+                    std::string fileName = "config/main_menu_title.json";
+                    bool isBilingual = localeCode != "en";
                     string gameName = textTitle->getName().c_str();
                     string mainMenuEnglishText = "";
+                    int engLabelOffset = isBilingual ? 0 : 50; // to remove the extra space between image and text
                     if (gameName == "alphabet")
-                        mainMenuEnglishText = "Alphabet";
+                    {
+                        mainMenuEnglishText = readTitleFromJson(fileName, 0, false);
+                        translatedString = readTitleFromJson(fileName, 0, isBilingual);
+                    }
                     else if (gameName == "shapes")
-                        mainMenuEnglishText = "Numbers";
+                    {
+                        mainMenuEnglishText = readTitleFromJson(fileName, 1, false);
+                        translatedString = readTitleFromJson(fileName, 1, isBilingual);
+                    }
                     else if (gameName == "writing")
-                        mainMenuEnglishText = "Writing";
+                    {
+                        mainMenuEnglishText = readTitleFromJson(fileName, 2, false);
+                        translatedString = readTitleFromJson(fileName, 2, isBilingual);
+                    }
                     else if (gameName == "library")
-                        mainMenuEnglishText = "Library";
+                    {
+                        mainMenuEnglishText = readTitleFromJson(fileName, 3, false);
+                        translatedString = readTitleFromJson(fileName, 3, isBilingual);
+                    }
                     else if (gameName == "grammar")
-                        mainMenuEnglishText = "Grammar";
+                    {
+                        mainMenuEnglishText = readTitleFromJson(fileName, 4, false);
+                        translatedString = readTitleFromJson(fileName, 4, isBilingual);
+                    }
                     else if (gameName == "map")
-                        mainMenuEnglishText = "Map";
+                    {
+                        mainMenuEnglishText = readTitleFromJson(fileName, 5, false);
+                        translatedString = readTitleFromJson(fileName, 5, isBilingual);
+                    }
 
                     textTitle->setText(mainMenuEnglishText);
                     textTitle->setTextHorizontalAlignment(TextHAlignment::CENTER);
@@ -232,21 +254,41 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
 
                     if (gameName == "alphabet" || gameName == "writing" || gameName == "grammar")
                     {
-                        textTitle->setPosition(Vec2 (englishTextPosition.x, englishTextPosition.y + 130));
+                        textTitle->setPosition(Vec2(englishTextPosition.x, englishTextPosition.y + 130 - engLabelOffset));
                     }
                     else if (gameName == "map" || gameName == "library" || gameName == "shapes")
                     {
-                        textTitle->setPosition(Vec2 (englishTextPosition.x, englishTextPosition.y + 100));
+                        textTitle->setPosition(Vec2(englishTextPosition.x, englishTextPosition.y + 100 - engLabelOffset));
                     }
 
-
-                    Label *mainMenuHindiText = Label::createWithSystemFont(translatedString, "arial", 70);
-                    mainMenuHindiText->setPosition(Vec2(textTitle->getPositionX(), textTitle->getPositionY() - 90));
-                    mainMenuHindiText->setColor(Color3B::WHITE);
-                    this->addChild(mainMenuHindiText);
+                    if (isBilingual)
+                    {
+                        Label *mainMenuLocaleText = Label::createWithSystemFont(translatedString, "arial", 70);
+                        mainMenuLocaleText->setPosition(Vec2(textTitle->getPositionX(), textTitle->getPositionY() - 90));
+                        mainMenuLocaleText->setColor(Color3B::WHITE);
+                        this->addChild(mainMenuLocaleText);
+                    }
                 }
             }
         }
+    }
+}
+
+std::string MainMenuHome::readTitleFromJson(std::string fileName, int pos, bool isBilingual)
+{
+    std::string contents = FileUtils::getInstance()->getStringFromFile(fileName);
+    rapidjson::Document mapPlaces;
+    if (!mapPlaces.Parse<0>(contents.c_str()).HasParseError()) // to validate the structure of JSON file
+    {
+        if (isBilingual)
+        {
+            const rapidjson::Value &placeNameLoc = mapPlaces[localeCode.c_str()]; // get the list of locale specific strings
+            assert(placeNameLoc.IsArray());
+            return placeNameLoc[pos].GetString();
+        }
+        const rapidjson::Value &placeNameEng = mapPlaces["en"];
+        assert(placeNameEng.IsArray());
+        return placeNameEng[pos].GetString();
     }
 }
 

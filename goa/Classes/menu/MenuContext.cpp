@@ -150,7 +150,7 @@ bool MenuContext::init(Node* main) {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-    _menuButton = Button::create("menu/menu.png", "menu/menu.png", "menu/menu.png", Widget::TextureResType::LOCAL);
+    _menuButton = Button::create("menu/menu_" + localeCode + ".png", "menu/menu_" + localeCode + ".png", "menu/menu_" + localeCode + ".png", Widget::TextureResType::LOCAL);
     _menuButton->addTouchEventListener(CC_CALLBACK_2(MenuContext::expandMenu, this));
     if(gameName == "menu") {
         _menuButton->setPosition(Vec2((NUMBER_OF_BUTTONS_COLS - 0.5) * visibleSize.width / NUMBER_OF_BUTTONS_COLS, visibleSize.height + 50 - (0.5) * (visibleSize.height + 50) / (NUMBER_OF_BUTTONS_ROWS + 1)));        
@@ -729,18 +729,18 @@ void MenuContext::increasePoints(int points) {
 }
 
 void MenuContext::happyFace() {
-    _menuButton->loadTextureNormal("menu/happy.png");
+    _menuButton->loadTextureNormal("menu/happy_" + localeCode +".png");
     
     ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
 }
 
 void MenuContext::sadFace() {
-    _menuButton->loadTextureNormal("menu/frown.png");
+    _menuButton->loadTextureNormal("menu/frown_" + localeCode +".png");
     ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
 }
 
 void MenuContext::normalFace() {
-    _menuButton->loadTextureNormal("menu/menu.png");
+    _menuButton->loadTextureNormal("menu/menu_" + localeCode +".png");
     ScaleUIElement<cocos2d::ui::Button*>::scaleGuiElements(_menuButton);
 }
 

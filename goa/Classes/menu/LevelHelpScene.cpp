@@ -84,7 +84,7 @@ bool LevelHelpScene::initWithGame(std::string gameName)
         gameName = "story-catalogue";
     }
 
-    std::string contents = FileUtils::getInstance()->getStringFromFile("config/game_levels.json");
+    std::string contents = FileUtils::getInstance()->getStringFromFile("config/game_levels_" + localeCode + ".json");
 
     rapidjson::Document d;
 

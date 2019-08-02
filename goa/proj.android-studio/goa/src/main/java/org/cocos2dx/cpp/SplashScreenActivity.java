@@ -20,16 +20,15 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.google.android.vending.expansion.downloader.Helpers;
-import com.maq.xprize.chimple.hindi.R;
+import com.maq.simpleclass.R;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.zip.ZipFile;
 
-import chimple.DownloadExpansionFile;
 import utils.Zip;
 
-import static chimple.DownloadExpansionFile.xAPKs;
+import static org.cocos2dx.cpp.DownloadExpansionFile.xAPKs;
 import static org.cocos2dx.cpp.AppActivity.pathToAppDelegate;
 import static org.cocos2dx.cpp.AppActivity.sharedPref;
 
