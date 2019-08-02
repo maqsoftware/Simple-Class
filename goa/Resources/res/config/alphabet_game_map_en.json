@@ -465,11 +465,7 @@
   },
   {
     "name": "alphamole",
-<<<<<<< HEAD
     "title": "Hit a Monster",
-=======
-    "title": "Whack a Monster",
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/alphamole_pressed.png",
     "icon": "gameicons/alphamole.png",
@@ -730,11 +726,7 @@
   },
   {
     "name": "bubble",
-<<<<<<< HEAD
     "title": "Bubble Pop",
-=======
-    "title": "Pop the Bubble",
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/bubble_pressed.png",
     "icon": "gameicons/bubble.png",
@@ -820,11 +812,7 @@
   },
   {
     "name": "Smash The Rock",
-<<<<<<< HEAD
     "title": "Smash the Rock",
-=======
-    "title": "Rock Smash",
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/Smash The Rock_pressed.png",
     "icon": "gameicons/Smash The Rock.png",
@@ -1012,11 +1000,7 @@
   },
   {
     "name": "basiclettercase",
-<<<<<<< HEAD
     "title": "Ice-cream",
-=======
-    "title": "icecream",
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "cIcon": "gameicons/basiclettercase_pressed.png",
     "icon": "gameicons/basiclettercase.png",
     "multiPlayer": false,
@@ -1098,8 +1082,4 @@
     "menuPlist": "icecreamlevel/icecreamlevel.plist",
     "menuPng": "icecreamlevel/icecreamlevel.png"
   }
-<<<<<<< HEAD
 ]
-=======
-]
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91

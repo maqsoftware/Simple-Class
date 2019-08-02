@@ -111,11 +111,7 @@
   },
   {
     "name": "cardraw",
-<<<<<<< HEAD
     "title": "Letter Writing",
-=======
-    "title": "Go Home",
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/cardraw_pressed.png",
     "icon": "gameicons/cardraw.png",
@@ -813,8 +809,4 @@
     "menuPlist": "doorslevel/doorslevel.plist",
     "menuPng": "doorslevel/doorslevel.png"
   }
-<<<<<<< HEAD
 ]
-=======
-]
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91

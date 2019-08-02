@@ -121,11 +121,7 @@
   },
   {
     "name": "popcount",
-<<<<<<< HEAD
     "title": "Count the Fish",
-=======
-    "title": "Count the fish",
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/popcount_pressed.png",
     "icon": "gameicons/popcount.png",
@@ -590,11 +586,7 @@
   },
   {
     "name": "atm",
-<<<<<<< HEAD
     "title": "ATM",
-=======
-    "title": "Money Machine",
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/ATM_pressed.png",
     "icon": "gameicons/ATM.png",
@@ -717,11 +709,7 @@
   },
   {
     "name": "Bounce",
-<<<<<<< HEAD
     "title": "Drop the Ice-cream",
-=======
-    "title": "Drop the Icecream",
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/icecream_pressed.png",
     "icon": "gameicons/icecream.png",
@@ -823,10 +811,5 @@
     "maingroundJson": "tablelevel/mainground.json",
     "menuPlist": "tablelevel/tablelevel.plist",
     "menuPng": "tablelevel/tablelevel.png"
-<<<<<<< HEAD
   }
 ]
-=======
-  }  
-]
->>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
