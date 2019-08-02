@@ -2,7 +2,11 @@
   {
     "name": "decomone",
     "title": "अक्षर सजाओ$#$Decorate the Alphabet",
+<<<<<<< HEAD:goa/Resources/res/config/alphabet_game_map_hi.json
     "_title_comment": "अक्षर सजाओ",
+=======
+	"_title_comment": "अक्षर सजाओ",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91:goa/Resources/res/config/alphabet_game_map.json
     "unlock": true,
     "cIcon": "gameicons/decomone_pressed.png",
     "icon": "gameicons/decomone.png",
@@ -184,7 +188,11 @@
   },
   {
     "name": "EndlessRunner",
+<<<<<<< HEAD:goa/Resources/res/config/alphabet_game_map_hi.json
     "title": "भागो और पकड़ो$#$Run and Catch",
+=======
+	"title":"भागो और पकड़ो$#$Run and catch",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91:goa/Resources/res/config/alphabet_game_map.json
     "_title_comment": "भागो और पकड़ो",
     "unlock": true,
     "cIcon": "gameicons/EndlessRunner_pressed.png",
@@ -295,8 +303,13 @@
   },
   {
     "name": "Alphamon Feed",
+<<<<<<< HEAD:goa/Resources/res/config/alphabet_game_map_hi.json
     "title": "राक्षस को खिलाओ$#$Feed the Monsters",
     "_title_comment": "राक्षसों को खिलाओ",
+=======
+    "title": "राक्षसों को खिलाओ$#$Feed the monsters",
+	"_title_comment": "राक्षसों को खिलाओ",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91:goa/Resources/res/config/alphabet_game_map.json
     "unlock": true,
     "cIcon": "gameicons/Alphamon Feed_pressed.png",
     "icon": "gameicons/Alphamon Feed.png",
@@ -406,8 +419,13 @@
   },
   {
     "name": "book",
+<<<<<<< HEAD:goa/Resources/res/config/alphabet_game_map_hi.json
     "title": "अक्षर की लड़ाई$#$Alphabet Fight",
     "_title_comment": "अक्षर की लड़ाई",
+=======
+    "title": "अक्षर की लड़ाई$#$Alphabet fight",
+	"_title_comment": "अक्षर की लड़ाई",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91:goa/Resources/res/config/alphabet_game_map.json
     "unlock": true,
     "cIcon": "gameicons/book_pressed.png",
     "icon": "gameicons/book.png",
@@ -733,7 +751,11 @@
   },
   {
     "name": "bubble",
+<<<<<<< HEAD:goa/Resources/res/config/alphabet_game_map_hi.json
     "title": "बुलबुला फोड़ो$#$Bubble Pop",
+=======
+	"title": "बुलबुला फोड़ो$#$Bubble Pop",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91:goa/Resources/res/config/alphabet_game_map.json
     "_title_comment": "बुलबुला फोड़ो",
     "unlock": true,
     "cIcon": "gameicons/bubble_pressed.png",
@@ -931,7 +953,11 @@
   },
   {
     "name": "dino",
+<<<<<<< HEAD:goa/Resources/res/config/alphabet_game_map_hi.json
     "title": "वर्णमाला$#$Alphabet",
+=======
+	"title": "वर्णमाला$#$Alphabet",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91:goa/Resources/res/config/alphabet_game_map.json
     "_title_comment": "वर्णमाला",
     "unlock": true,
     "cIcon": "gameicons/dino_pressed.png",
@@ -1011,7 +1037,11 @@
   },
   {
     "name": "basiclettercase",
+<<<<<<< HEAD:goa/Resources/res/config/alphabet_game_map_hi.json
     "title": "आइसक्रीम$#$Ice-cream",
+=======
+	"title": "आइसक्रीम$#$Ice-cream",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91:goa/Resources/res/config/alphabet_game_map.json
     "_title_comment": "आइसक्रीम",
     "cIcon": "gameicons/basiclettercase_pressed.png",
     "icon": "gameicons/basiclettercase.png",

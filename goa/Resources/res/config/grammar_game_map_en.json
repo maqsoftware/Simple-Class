@@ -409,7 +409,11 @@
   },
   {
     "name": "dash",
+<<<<<<< HEAD
     "title": "Letter Jumping",
+=======
+    "title": "Dash",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/dash_pressed.png",
     "icon": "gameicons/dash.png",
@@ -445,6 +449,10 @@
         "unlockMin": "map",
         "min": "4"
       }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     },
     "backgroundJson": "dashlevel/background.json",
     "foregroundJson": "dashlevel/foreground.json",
@@ -501,7 +509,11 @@
   },
   {
     "name": "drop",
+<<<<<<< HEAD
     "title": "Drop the Letter",
+=======
+    "title": "Drop",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/drop_pressed.png",
     "icon": "gameicons/drop.png",
@@ -594,7 +606,11 @@
   },
   {
     "name": "pop",
+<<<<<<< HEAD
     "title": "Fly through Clouds",
+=======
+    "title": "Fly Through Clouds",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/pop_pressed.png",
     "icon": "gameicons/pop.png",
@@ -641,7 +657,11 @@
   },
   {
     "name": "talk",
+<<<<<<< HEAD
     "title": "Feed Words",
+=======
+    "title": "Feed the Words",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91
     "unlock": false,
     "cIcon": "gameicons/talk_pressed.png",
     "icon": "gameicons/talk.png",
@@ -866,4 +886,8 @@
     "menuPlist": "plevelscreen/plevelscreen.plist",
     "menuPng": "plevelscreen/plevelscreen.png"
   }
+<<<<<<< HEAD
 ]
+=======
+]
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91

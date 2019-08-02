@@ -2,7 +2,11 @@
   {
     "name": "Kung Fu Alpha",
     "title": "ट्रेस$#$Trace",
+<<<<<<< HEAD:goa/Resources/res/config/writing_game_map_hi.json
     "_title_comment": "पता लगाना",
+=======
+	"_title_comment": "पता लगाना",
+>>>>>>> 98c8e60a36a7bda1821929316d0dd79078ecde91:goa/Resources/res/config/writing_game_map.json
     "unlock": true,
     "cIcon": "gameicons/Kung Fu Alpha_pressed.png",
     "icon": "gameicons/Kung Fu Alpha.png",
