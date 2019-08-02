@@ -50,8 +50,7 @@ def replace_title_ref_(ref_json, check_json, dest_file):
     title referred from ref_json file.
     ref_json: file from where name,title for each object will be referred
     check_json: file which titles needed to be checked
-    dest_file: destination file which will store contain updated objects
-    <name> <en_json_title> <hi_json_title_eng>
+    dest_file: destination file which will store contain updated objectsSS
 
     Example:
         replace_title_ref_('alphabet_game_map_en.json', 'alphabet_game_map_hi.json', 'alphabet_game_map_hi_new.json')
