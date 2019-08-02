@@ -162,45 +162,47 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode)
                 {
                     std::string lName = node->getName();
                     std::string englishName = "";
+                    bool isBilingual = localeCode != "en";
+                    std::string fileName = "config/map_places.json";
                     if (lName.compare("City1") == 0)
                     {
-                        lName = "बेंगलुरु"; // Bengaluru
-                        englishName = "Bengaluru";
+                        englishName = MainMenuHome::readTitleFromJson(fileName, 0, false);
+                        lName = MainMenuHome::readTitleFromJson(fileName, 0, isBilingual);
                     }
                     else if (lName.compare("City2") == 0)
                     {
-                        lName = "लॉस एंजेलिस"; // Los Angeles
-                        englishName = "Los Angeles";
+                        englishName = MainMenuHome::readTitleFromJson(fileName, 1, false);
+                        lName = MainMenuHome::readTitleFromJson(fileName, 1, isBilingual);
                     }
                     else if (lName.compare("City3") == 0)
                     {
-                        lName = "ह्यूस्टन"; // Houston
-                        englishName = "Houston";
+                        englishName = MainMenuHome::readTitleFromJson(fileName, 2, false);
+                        lName = MainMenuHome::readTitleFromJson(fileName, 2, isBilingual);
                     }
                     else if (lName.compare("city4") == 0)
                     {
-                        lName = "लंडन"; // London
-                        englishName = "London";
+                        englishName = MainMenuHome::readTitleFromJson(fileName, 3, false);
+                        lName = MainMenuHome::readTitleFromJson(fileName, 3, isBilingual);
                     }
                     else if (lName.compare("City5") == 0)
                     {
-                        lName = "डार एस सलाम"; // Dar es Salaam
-                        englishName = "Dar es Salaam";
+                        englishName = MainMenuHome::readTitleFromJson(fileName, 4, false);
+                        lName = MainMenuHome::readTitleFromJson(fileName, 4, isBilingual);
                     }
                     else if (lName.compare("Camp") == 0)
                     {
-                        lName = "कैंप"; // Camp
-                        englishName = "Camp";
+                        englishName = MainMenuHome::readTitleFromJson(fileName, 5, false);
+                        lName = MainMenuHome::readTitleFromJson(fileName, 5, isBilingual);
                     }
                     else if (lName.compare("Farm House") == 0)
                     {
-                        lName = "फार्म हाउस"; // Farm House
-                        englishName = "Farm House";
+                        englishName = MainMenuHome::readTitleFromJson(fileName, 6, false);
+                        lName = MainMenuHome::readTitleFromJson(fileName, 6, isBilingual);
                     }
                     else if (lName.compare("Mining Town") == 0)
                     {
-                        lName = "खनन शहर"; // Mining Town
-                        englishName = "Mining Town";
+                        englishName = MainMenuHome::readTitleFromJson(fileName, 7, false);
+                        lName = MainMenuHome::readTitleFromJson(fileName, 7, isBilingual);
                     }
 
                     /* 
@@ -211,7 +213,7 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode)
                     std::string mapText = this->currentLangUtil->translateString(lName);
                     node->setPosition(Vec2(node->getPosition().x, node->getPosition().y + 40));
 
-                    if (localeCode != "en")
+                    if (isBilingual)
                     {
                         cocos2d::Label *label = Label::createWithSystemFont(mapText, "arial", 70);
                         label->setPosition(Vec2(node->getPosition().x, node->getPosition().y - 60));

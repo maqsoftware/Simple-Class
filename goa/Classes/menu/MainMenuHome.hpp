@@ -29,42 +29,42 @@
 #define MAIN_HOME_NUMBER_OF_BUTTONS_ROWS 2
 #define MAIN_HOME_NUMBER_OF_BUTTONS_COLS 6
 
-
 class MenuContext;
 
-typedef std::map<std::string, cocos2d::Scene*> map_type;
+typedef std::map<std::string, cocos2d::Scene *> map_type;
 
-class MainMenuHome : public cocos2d::Node {
+class MainMenuHome : public cocos2d::Node
+{
 public:
-    static cocos2d::Scene* createScene();
+    static cocos2d::Scene *createScene();
+    static std::string readTitleFromJson(std::string fileName, int pos, bool isBilingual);
     CREATE_FUNC(MainMenuHome);
-    
-CC_CONSTRUCTOR_ACCESS:
-    virtual bool init();
+
+    CC_CONSTRUCTOR_ACCESS : virtual bool init();
     MainMenuHome();
     virtual ~MainMenuHome();
-    
+
 protected:
-    MenuContext* menuContext;
-    cocos2d::LayerColor* _greyLayer;
+    MenuContext *menuContext;
+    cocos2d::LayerColor *_greyLayer;
     std::string _gameNameToNavigate;
     float _leftMostX = 0.0f;
     float _rightMostX = 0.0f;
-    LangUtil* currentLangUtil;
-    
+    LangUtil *currentLangUtil;
+
     void addGreyLayer();
     bool greyLayerTouched(cocos2d::Touch *touch, cocos2d::Event *event);
     void bindEvents(cocos2d::Node *rootNode);
-    void mainMenuSelected(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
-    void mainMenuMapSelected(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+    void mainMenuSelected(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+    void mainMenuMapSelected(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType);
     void transition(float dt);
     void transitionToMap(float dt);
-    
-    cocos2d::ui::Button* createButton();
+
+    cocos2d::ui::Button *createButton();
     void storyTransition(float dt);
-    void storySelected(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
-    cocos2d::ui::Button* createBackButton();
-    void backButtonPressed(cocos2d::Ref* pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+    void storySelected(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType);
+    cocos2d::ui::Button *createBackButton();
+    void backButtonPressed(cocos2d::Ref *pSender, cocos2d::ui::Widget::TouchEventType eEventType);
 };
 
 #endif /* MainMenuHome_hpp */
