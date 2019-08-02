@@ -205,38 +205,40 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                 if (textTitle)
                 {
                     std::string translatedString;
+                    std::string fileName = "config/main_menu_title.json";
+                    bool isBilingual = localeCode != "en";
                     string gameName = textTitle->getName().c_str();
                     string mainMenuEnglishText = "";
-                    int engLabelOffset = localeCode != "en" ? 0 : 50; // to remove the extra space between image and text
+                    int engLabelOffset = isBilingual ? 0 : 50; // to remove the extra space between image and text
                     if (gameName == "alphabet")
                     {
-                        mainMenuEnglishText = "Alphabet";
-                        translatedString = "वर्णमाला";
+                        mainMenuEnglishText = readTitleFromJson(fileName, 0, false);
+                        translatedString = readTitleFromJson(fileName, 0, isBilingual);
                     }
                     else if (gameName == "shapes")
                     {
-                        mainMenuEnglishText = "Numbers";
-                        translatedString = "अंक";
+                        mainMenuEnglishText = readTitleFromJson(fileName, 1, false);
+                        translatedString = readTitleFromJson(fileName, 1, isBilingual);
                     }
                     else if (gameName == "writing")
                     {
-                        mainMenuEnglishText = "Writing";
-                        translatedString = "लेखन";
+                        mainMenuEnglishText = readTitleFromJson(fileName, 2, false);
+                        translatedString = readTitleFromJson(fileName, 2, isBilingual);
                     }
                     else if (gameName == "library")
                     {
-                        mainMenuEnglishText = "Library";
-                        translatedString = "पुस्तकालय";
+                        mainMenuEnglishText = readTitleFromJson(fileName, 3, false);
+                        translatedString = readTitleFromJson(fileName, 3, isBilingual);
                     }
                     else if (gameName == "grammar")
                     {
-                        mainMenuEnglishText = "Words";
-                        translatedString = "शब्द";
+                        mainMenuEnglishText = readTitleFromJson(fileName, 4, false);
+                        translatedString = readTitleFromJson(fileName, 4, isBilingual);
                     }
                     else if (gameName == "map")
                     {
-                        mainMenuEnglishText = "Map";
-                        translatedString = "नक्शा";
+                        mainMenuEnglishText = readTitleFromJson(fileName, 5, false);
+                        translatedString = readTitleFromJson(fileName, 5, isBilingual);
                     }
 
                     textTitle->setText(mainMenuEnglishText);
@@ -259,7 +261,7 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                         textTitle->setPosition(Vec2(englishTextPosition.x, englishTextPosition.y + 100 - engLabelOffset));
                     }
 
-                    if (localeCode != "en")
+                    if (isBilingual)
                     {
                         Label *mainMenuLocaleText = Label::createWithSystemFont(translatedString, "arial", 70);
                         mainMenuLocaleText->setPosition(Vec2(textTitle->getPositionX(), textTitle->getPositionY() - 90));
@@ -269,6 +271,24 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                 }
             }
         }
+    }
+}
+
+std::string MainMenuHome::readTitleFromJson(std::string fileName, int pos, bool isBilingual)
+{
+    std::string contents = FileUtils::getInstance()->getStringFromFile(fileName);
+    rapidjson::Document mapPlaces;
+    if (!mapPlaces.Parse<0>(contents.c_str()).HasParseError()) // to validate the structure of JSON file
+    {
+        if (isBilingual)
+        {
+            const rapidjson::Value &placeNameLoc = mapPlaces[localeCode.c_str()]; // get the list of locale specific strings
+            assert(placeNameLoc.IsArray());
+            return placeNameLoc[pos].GetString();
+        }
+        const rapidjson::Value &placeNameEng = mapPlaces["en"];
+        assert(placeNameEng.IsArray());
+        return placeNameEng[pos].GetString();
     }
 }
 
