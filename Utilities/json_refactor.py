@@ -1,13 +1,16 @@
+"""
+This script update the hindi and english titles of the games in the JSON
+"""
 import json
 import xlrd
 
 
 def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_index=1, sheet_name='Sheet 1'):
     """
-    This function create a new json file which contains english part of the
+    This function create a new JSON file which contains English part of the
     title referred from ref_excel file.
-    ref_excel: excel file from where name,title for each object will be referred
-    curr_json: json file in which titles needed to be replace
+    ref_excel: Excel file from where name,title for each object will be referred
+    curr_json: JSON file in which titles needed to be replace
     new_json: destination file which will store contain updated titles
 
     Example:
@@ -16,6 +19,7 @@ def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_i
     """
     # Read the Excel sheet to create a dictionary
     # newtitle_dict:{name: new_title}
+    dem_char = '$#$'
     wb = xlrd.open_workbook(ref_excel)
     sheet = wb.sheet_by_name(sheet_name)
     rowCount = sheet.nrows
@@ -51,28 +55,31 @@ def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_i
             if check_object_name in newtitle_dict:
                 ref_object_title = newtitle_dict[check_object_name]
                 if json_locale != 'en':
-                    check_object_title = each_check_object['title'].split('$#$')
+                    check_object_title = each_check_object['title'].split(dem_char)
                     check_object_title[title_index] = ref_object_title
-                    new_check_object_title = '$#$'.join(check_object_title)
+                    new_check_object_title = dem_char.join(check_object_title)
                 else:
                     new_check_object_title = ref_object_title
                 each_check_object['title'] = new_check_object_title
             check_json_data[i] = each_check_object
+    # Create a new JSON file with updated name
     with open(new_json, 'w', encoding='utf-8') as new_jsonfile:
         json.dump(check_json_data, new_jsonfile, ensure_ascii=False, indent=2)
 
-# English titles in _en and _hi jsons 
-replace_title_ref_('mismatched_titles.xlsx', 'original/alphabet_game_map_hi.json', 'en_updated/alphabet_game_map_hi.json', 'hi', sheet_name='alphabet')
-replace_title_ref_('mismatched_titles.xlsx', 'original/alphabet_game_map_en.json', 'en_updated/alphabet_game_map_en.json',  sheet_name='alphabet')
-replace_title_ref_('mismatched_titles.xlsx', 'original/grammar_game_map_hi.json', 'en_updated/grammar_game_map_hi.json', 'hi', sheet_name='grammar')
-replace_title_ref_('mismatched_titles.xlsx', 'original/grammar_game_map_en.json', 'en_updated/grammar_game_map_en.json',  sheet_name='grammar')
-replace_title_ref_('mismatched_titles.xlsx', 'original/shapes_game_map_hi.json', 'en_updated/shapes_game_map_hi.json', 'hi', sheet_name='shapes')
-replace_title_ref_('mismatched_titles.xlsx', 'original/shapes_game_map_en.json', 'en_updated/shapes_game_map_en.json',  sheet_name='shapes')
-replace_title_ref_('mismatched_titles.xlsx', 'original/writing_game_map_hi.json', 'en_updated/writing_game_map_hi.json', 'hi', sheet_name='writing')
-replace_title_ref_('mismatched_titles.xlsx', 'original/writing_game_map_en.json', 'en_updated/writing_game_map_en.json',  sheet_name='writing')
+# English titles in _en and _hi jsons
+mismatched_titles_excel = 'mismatched_titles.xlsx'
+replace_title_ref_(mismatched_titles_excel, 'original/alphabet_game_map_hi.json', 'en_updated/alphabet_game_map_hi.json', 'hi', sheet_name='alphabet')
+replace_title_ref_(mismatched_titles_excel, 'original/alphabet_game_map_en.json', 'en_updated/alphabet_game_map_en.json',  sheet_name='alphabet')
+replace_title_ref_(mismatched_titles_excel, 'original/grammar_game_map_hi.json', 'en_updated/grammar_game_map_hi.json', 'hi', sheet_name='grammar')
+replace_title_ref_(mismatched_titles_excel, 'original/grammar_game_map_en.json', 'en_updated/grammar_game_map_en.json',  sheet_name='grammar')
+replace_title_ref_(mismatched_titles_excel, 'original/shapes_game_map_hi.json', 'en_updated/shapes_game_map_hi.json', 'hi', sheet_name='shapes')
+replace_title_ref_(mismatched_titles_excel, 'original/shapes_game_map_en.json', 'en_updated/shapes_game_map_en.json',  sheet_name='shapes')
+replace_title_ref_(mismatched_titles_excel, 'original/writing_game_map_hi.json', 'en_updated/writing_game_map_hi.json', 'hi', sheet_name='writing')
+replace_title_ref_(mismatched_titles_excel, 'original/writing_game_map_en.json', 'en_updated/writing_game_map_en.json',  sheet_name='writing')
 
-# Hindi titles _hi jsons 
-replace_title_ref_('game_titles.xlsx', 'en_updated/alphabet_game_map_hi.json', 'hi_updated/alphabet_game_map_hi.json', 'hi', title_index=0,  sheet_name='alphabet')
-replace_title_ref_('game_titles.xlsx', 'en_updated/grammar_game_map_hi.json', 'hi_updated/grammar_game_map_hi.json', 'hi', title_index=0, sheet_name='grammar')
-replace_title_ref_('game_titles.xlsx', 'en_updated/shapes_game_map_hi.json', 'hi_updated/shapes_game_map_hi.json', 'hi', title_index=0, sheet_name='shapes')
-replace_title_ref_('game_titles.xlsx', 'en_updated/writing_game_map_hi.json', 'hi_updated/writing_game_map_hi.json', 'hi', title_index=0, sheet_name='writing')
+# Hindi titles _hi jsons
+hindi_titles_excel = 'game_titles.xlsx'
+replace_title_ref_(hindi_titles_excel, 'en_updated/alphabet_game_map_hi.json', 'hi_updated/alphabet_game_map_hi.json', 'hi', title_index=0,  sheet_name='alphabet')
+replace_title_ref_(hindi_titles_excel, 'en_updated/grammar_game_map_hi.json', 'hi_updated/grammar_game_map_hi.json', 'hi', title_index=0, sheet_name='grammar')
+replace_title_ref_(hindi_titles_excel, 'en_updated/shapes_game_map_hi.json', 'hi_updated/shapes_game_map_hi.json', 'hi', title_index=0, sheet_name='shapes')
+replace_title_ref_(hindi_titles_excel, 'en_updated/writing_game_map_hi.json', 'hi_updated/writing_game_map_hi.json', 'hi', title_index=0, sheet_name='writing')
