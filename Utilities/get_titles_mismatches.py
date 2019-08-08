@@ -67,7 +67,7 @@ def replace_title_ref_(ref_json, check_json, dest_file):
     ident_key = 'name'
     target_key = 'title'
     ref_json_dict = dict()
-    # Creating map from the English JSON file
+    # Create map from the English JSON file
     with open(ref_json, 'r', encoding='utf-8-sig') as ref_file:
         ref_json_data = json.load(ref_file)
         for each_object in ref_json_data:
@@ -90,7 +90,7 @@ def replace_title_ref_(ref_json, check_json, dest_file):
         json.dump(check_json_data, destfile, ensure_ascii=False, indent=2)
 
 
-def get_titles_name_json(ref_json, check_json, xlsx_file, sheet_name = "Sheet 1"):
+def get_titles_name_json(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"):
     """
     This function create an Excel sheet which contain name and title from ref_json, english and hindi separated title
     from the check_json file

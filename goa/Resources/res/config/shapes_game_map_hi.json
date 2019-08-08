@@ -516,7 +516,7 @@
   },
   {
     "name": "shop",
-    "title": "किराने की दुकान$#$Grocery Shop",
+    "title": "सब्जी मंडी$#$Grocery Shop",
     "_title_comment": "किराने की दुकान",
     "unlock": true,
     "cIcon": "gameicons/shopping_pressed.png",
@@ -558,7 +558,7 @@
   },
   {
     "name": "Units",
-    "title": "पिज्जा बनाओ$#$Make a Pizza",
+    "title": "पिज़्ज़ा बनाओ$#$Make a Pizza",
     "_title_comment": "एक पिज्जा बनाओ",
     "unlock": true,
     "cIcon": "gameicons/pizza_pressed.png",
@@ -726,7 +726,7 @@
   },
   {
     "name": "Bounce",
-    "title": "आइसक्रीम$#$Drop the Ice-cream",
+    "title": "आइसक्रीम गिराओ$#$Drop the Ice-cream",
     "_title_comment": "आइसक्रीम",
     "unlock": true,
     "cIcon": "gameicons/icecream_pressed.png",

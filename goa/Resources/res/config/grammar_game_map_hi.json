@@ -607,7 +607,7 @@
   },
   {
     "name": "pop",
-    "title": "बादलों मै उड़ो$#$Fly through Clouds",
+    "title": "बादलों में उड़ो$#$Fly through Clouds",
     "_title_comment": "बादलों के माध्यम से उड़ो",
     "unlock": true,
     "cIcon": "gameicons/pop_pressed.png",
@@ -796,7 +796,7 @@
   },
   {
     "name": "pillar",
-    "title": "केक परत$#$Layer the Cake",
+    "title": "केक परत$#$Cake Layer",
     "_title_comment": "केक परत",
     "unlock": true,
     "cIcon": "gameicons/pillar_pressed.png",
