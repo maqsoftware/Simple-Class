@@ -1,6 +1,4 @@
-
-Last updated: August 7, 2019
-
+Last updated: August 8, 2019
 
 ## Pre-requisites
 1. Install the latest version of [Android Studio](https://developer.android.com/studio).
@@ -28,12 +26,12 @@ Last updated: August 7, 2019
 5. Copy the content of _proj.android\libs_ folder into _proj.android-studio\goa\src\main\jniLibs_ folder. __Note__: Copy only _.so_ files.
 6. Start Android Studio and import _proj.android-studio_ folder into it.
 7. Download the OBB file from the latest GitHub release and follow the instructions provided there.
-8. To change the app locale just select the desired language from the build variant.
+8. To change the app locale, just select the desired language from the build variant.
 9. Set the `localeCode` in [LevelHelpScene.h](https://github.com/maqsoftware/Simple-Class/blob/master/goa/Classes/menu/LevelHelpScene.h) file as per the build variant.
 10. Build the project.
 
 ## Activate/Deactivate Kiosk Mode
-By default, the Kiosk mode is enabled. So all games are open. To disable Kiosk mode, set the KIOSK variable in 
+By default, the Kiosk mode is enabled. So all the games are open. To disable Kiosk mode, set the KIOSK variable in 
 `goa/Classes/menu/ScrollableGameMapScene.cpp` to false
 
 ```cpp
@@ -43,10 +41,10 @@ static const bool KIOSK = false;
 ## FAQs
 1. How can I resolve an error encountered after running the "setup.py" script while installing cocos?
 
-    > To resolve an error encountered after running the “setup.py” script while installing cocos, check to see whether you have Python 3 installed. If you do have Python 3 installed, uninstall it and try running setup.py again.
+    > To resolve an error encountered after running the “setup.py” script while installing cocos, check to see whether you have Python 3 installed. Check whether you have Python 3 installed, uninstall it and try running setup.py again.
 
 2. The application throws _keystore_ file not found error. How do I fix this?
-	> _keystore_ file is used to digitally sign an Android application and hence, it is not provided with the project. One must create their own _keystore_ file using the [Android KeyTool](https://developer.android.com/studio/publish/app-signing) which comes with the Android Studio itself in order to sign the APK.
+	> _keystore_ file is used to digitally sign an Android application and hence, it is not provided with the project. One must create their own _keystore_ file using the [Android KeyTool](https://developer.android.com/studio/publish/app-signing) which comes with the Android Studio in order to sign the APK.
 
 3. How to fix missing google-services.json file error?
 	> Put google-services.json file in [app](https://github.com/maqsoftware/Pehla-School/tree/newmaster/pehlaschool/proj.android-studio/app) folder. It is there in Firebase console after the app project has been created.
