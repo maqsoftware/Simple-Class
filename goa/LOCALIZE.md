@@ -9,7 +9,7 @@ This is used for creating scene assets representing the monster characters used 
  	
 * To build application with a new locale, add a new productFlavor in [build.gradle](https://github.com/maqsoftware/Simple-Class/blob/master/goa/proj.android-studio/goa/build.gradle) file.
 * Localize all the tutorial videos that are present in [help](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/lang/eng/help) section.
-* The [lang](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/lang/eng) folder contains a ***eng_en.po*** file, which contains strings in the `msgstr` tags should also be localized and the new file should be saved as ***eng_[lang].po***.
+* The [lang](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/lang/eng) folder contains a ***eng_en.po*** file, which contains strings in the `msgstr` tags, should also be localized and the new file should be saved as ***eng_[lang].po***.
 
   ```	
   msgid "text"	
