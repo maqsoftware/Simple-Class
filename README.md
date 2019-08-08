@@ -1,9 +1,9 @@
 THIS IS THE HINDI LOCALIZATION OF Simple Class.
-Simple Class is a free, award-winning learning app. Designed for ages 3-10, Simple Class engages students with 80 different learning activities, including interactive games, stories, and puzzles.
-Lessons specifically designed as games teach children reading and writing, math, science, puzzles, and coding while keeping learning fun. Level completion and bonus badges gamify each step of the learning process, ensuring advances in learning are accompanied by feelings of achievement. Simple Class is always free—there are no ads or subscriptions. Go to http://chimple.org/ for more information.
+Simple Class is a free, award-winning learning app. Designed for children of ages 3-10 years, Simple Class engages students with 80 different learning activities, including interactive games, stories and puzzles.
+Lessons specifically designed as games teach children reading and writing, math, science, puzzles, and coding while keeping the learning process fun-filled. Level completion and bonus badges gamify each step of the learning process, ensuring advances in learning are accompanied by the feelings of achievement. Simple Class is always free—there are no ads or subscriptions. Go to http://chimple.org/ for more information.
 
 Simple Class helps kids:
-Learn on their own: Kids learn using 80 fun different activities in a variety of subject areas.
+Learn on their own: Kids learn using 80 different fun activities in a variety of subject areas.
 Stay interested: Kids learn through games, tying early learning to achievement and not work.
 Personalize instructions: Kids choose from a variety of lessons in reading and writing, math, science, puzzles, and coding. The app includes 13 alphabet sessions, 5 writing sessions, 19 sentences sessions,20 numbers sessions, 15 stories, and 8 map activities.
 Read without distractions: Simple Class works offline, without ads, allowing children to focus on the current lesson.
