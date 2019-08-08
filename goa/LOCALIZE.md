@@ -1,4 +1,4 @@
-Last updated: August 6, 2019
+Last updated: August 8, 2019
 
 ## Prerequisites
 Install Cocos Studio for [Mac](http://cocos2d-x.org/filedown/CocosForMac-v3.10.dmg) or [Windows](http://cocos2d-x.org/filedown/CocosForWin-v3.10.exe)
@@ -7,16 +7,16 @@ This is used for creating scene assets representing the monster characters used 
 
 ## Steps to localize only instructions
  	
-* To build application with a new locale add a new productFlavor in ***[build.gradle](https://github.com/maqsoftware/Simple-Class/blob/master/goa/proj.android-studio/goa/build.gradle)*** file.
-* Localize all the tutorial videos that are present in ***[help](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/lang/eng/help)*** section.
-* The ***[lang](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/lang/eng)*** folder contains a ***eng_en.po*** file, which contains strings in the `msgstr` tags that should also be localized and the new file should be saved as ***eng_[lang].po***.
+* To build application with a new locale, add a new productFlavor in [build.gradle](https://github.com/maqsoftware/Simple-Class/blob/master/goa/proj.android-studio/goa/build.gradle) file.
+* Localize all the tutorial videos that are present in [help](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/lang/eng/help) section.
+* The [lang](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/lang/eng) folder contains a ***eng_en.po*** file, which contains strings in the `msgstr` tags should also be localized and the new file should be saved as ***eng_[lang].po***.
 
   ```	
   msgid "text"	
   msgstr "text in local language"
   ```
   After editing the ***.po*** file, a ***.mo*** file should be generated using an external utility ([sample](https://po2mo.net/)).
-* The ***[config](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/config)*** folder contains JSON files that can be localized.
+* The [config](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/config) folder contains JSON files that can be localized.
  	* Update the `title` in _alphabet_game_map_en.json_, _shapes_game_map_en.json_, _words_game_map_en.json_, and _writing_game_map_en.json_
 	* The help instruction is contained in the ***game_levels_en.json*** file with `help` as the key for each section.	
       ```json	
@@ -30,12 +30,15 @@ This is used for creating scene assets representing the monster characters used 
           }	
         ]	
       ```
-    * Save all the JSON files in ***[config](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/config)*** folder and append the ***lang*** code in their names for example _grammar_game_map_sw.json_.
+    * Save all the JSON files in [config](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/config) folder and append the ***lang*** code in their names. For example _grammar_game_map_sw.json_.
+* Add a new `localeCode` in [LevelHelpScene.h](https://github.com/maqsoftware/Simple-Class/blob/master/goa/Classes/menu/LevelHelpScene.h) file as per the build variant.
+* Update the TTS locale settings according to the new language in [VoiceMoldManager.java](https://github.com/maqsoftware/Simple-Class/blob/master/goa/proj.android-studio/goa/src/main/java/org/cocos2dx/cpp/VoiceMoldManager.java).
+* Add locale specific splash screen in [chimpleloading](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/chimpleloading) folder.
     
 
 
 ## Steps to localize entire app content
-- Create a new folder under Resources/res/lang/. Lets say the folder name is xyz
+- Create a new folder under Resources/res/lang/. Let's say the folder name is xyz
 
 - Record letter pronunciation voice files for all letters in the language and save in **sounds** folder *ex a.ogg*
 
@@ -47,7 +50,7 @@ This is used for creating scene assets representing the monster characters used 
 
 - Generate a fnt (font) file from ttf font of the language using any convertor such as [BMGlyph](https://www.bmglyph.com) or [Glyph Designer](https://www.71squared.com/glyphdesigner) or [Hiero](https://github.com/libgdx/libgdx/wiki/Hiero)
 
-- In `goa/Classes/hero/RPGConfig.h` add the language like this:
+- In `goa/Classes/hero/RPGConfig.h`, add the language like this:
   ```cpp
   enum SupportedLanguages
   {
@@ -60,7 +63,7 @@ This is used for creating scene assets representing the monster characters used 
   };
   ```
 
-- Create a new subclass of **LangUtil** in `goa/Classes/lang/XyzUtil.cpp` like `goa/Classes/lang/SwahiliUtil.cpp`. Override each method with language specific details such as number of letters in alphabet, etc
+- Create a new subclass of **LangUtil** in `goa/Classes/lang/XyzUtil.cpp` like `goa/Classes/lang/SwahiliUtil.cpp`. Override each method with language specific details such as number of letters in an alphabet, etc.
 
 - In `goa/Classes/lang/LangUtil.cpp`:
 	Add a new switch case in line 58 like this:
@@ -83,4 +86,4 @@ This is used for creating scene assets representing the monster characters used 
   - Translate each story by translating the 2 json files:
     - Story.json *ex Adhabu_Punishment.json*
     - Story.questions.json *ex Adhabu_Punishment.questions.json*
-  - Record the voice over for each story and save in **Story** folder with prefix of page number. *For ex, Adhabu_Punishment/Adhabu_Punishment_0.ogg, Adhabu_Punishment/Adhabu_Punishment_1.ogg*
+  - Record the voice-over for each story and save in **Story** folder with prefix of page number. *For ex, Adhabu_Punishment/Adhabu_Punishment_0.ogg, Adhabu_Punishment/Adhabu_Punishment_1.ogg*
