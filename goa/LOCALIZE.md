@@ -7,7 +7,7 @@ This is used for creating scene assets representing the monster characters used 
 
 ## Steps to localize only instructions
  	
-* To build application with a new locale, add a new productFlavor in [build.gradle](https://github.com/maqsoftware/Simple-Class/blob/master/goa/proj.android-studio/goa/build.gradle) file.
+* To build the application with a new locale, add a new `productFlavor` in [build.gradle](https://github.com/maqsoftware/Simple-Class/blob/master/goa/proj.android-studio/goa/build.gradle) file.
 * Localize all the tutorial videos that are present in [help](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/lang/eng/help) section.
 * The [lang](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/lang/eng) folder contains a ***eng_en.po*** file, which contains strings in the `msgstr` tags, should also be localized and the new file should be saved as ***eng_[lang].po***.
 
@@ -17,7 +17,7 @@ This is used for creating scene assets representing the monster characters used 
   ```
   After editing the ***.po*** file, a ***.mo*** file should be generated using an external utility ([sample](https://po2mo.net/)).
 * The [config](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/config) folder contains JSON files that can be localized.
- 	* Update the `title` in _alphabet_game_map_en.json_, _shapes_game_map_en.json_, _words_game_map_en.json_, and _writing_game_map_en.json_
+ 	* Update `title` in _alphabet_game_map_en.json_, _shapes_game_map_en.json_, _words_game_map_en.json_, and _writing_game_map_en.json_
 	* The help instruction is contained in the ***game_levels_en.json*** file with `help` as the key for each section.	
       ```json	
       "miningbg": [	
@@ -31,11 +31,10 @@ This is used for creating scene assets representing the monster characters used 
         ]	
       ```
     * Save all the JSON files in [config](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/config) folder and append the ***lang*** code in their names. For example _grammar_game_map_sw.json_.
-* Add a new `localeCode` in [LevelHelpScene.h](https://github.com/maqsoftware/Simple-Class/blob/master/goa/Classes/menu/LevelHelpScene.h) file as per the build variant.
-* Update the TTS locale settings according to the new language in [VoiceMoldManager.java](https://github.com/maqsoftware/Simple-Class/blob/master/goa/proj.android-studio/goa/src/main/java/org/cocos2dx/cpp/VoiceMoldManager.java).
-* Add locale specific splash screen in [chimpleloading](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/chimpleloading) folder.
-    
-
+* Update the `localeCode` in [LevelHelpScene.h](https://github.com/maqsoftware/Simple-Class/blob/master/goa/Classes/menu/LevelHelpScene.h) file as per the desired build variant.
+* Update the TTS locale settings according to the new locale in [VoiceMoldManager.java](https://github.com/maqsoftware/Simple-Class/blob/master/goa/proj.android-studio/goa/src/main/java/org/cocos2dx/cpp/VoiceMoldManager.java).
+* Add splash screen image in [chimpleloading](https://github.com/maqsoftware/Simple-Class/tree/master/goa/Resources/res/chimpleloading) folder with translated text.
+* Add locale specific icon and extraction images in [src](https://github.com/maqsoftware/Simple-Class/tree/master/goa/proj.android-studio/goa/src) folder.
 
 ## Steps to localize entire app content
 - Create a new folder under Resources/res/lang/. Let's say the folder name is xyz
