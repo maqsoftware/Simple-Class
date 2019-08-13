@@ -1,4 +1,4 @@
-Last updated: August 8, 2019
+Last updated: August 12, 2019
 
 ## Pre-requisites
 1. Install the latest version of [Android Studio](https://developer.android.com/studio).
@@ -23,9 +23,9 @@ Last updated: August 8, 2019
 2. Overwrite the directory *tools* in ANDROID_SDK_ROOT with C:\tools
 3. `cd goa`
 4. `cocos compile -p android`
-5. Copy the content of _proj.android\libs_ folder into _proj.android-studio\goa\src\main\jniLibs_ folder. __Note__: Copy only _.so_ files.
+5. Copy the content of _proj.android\libs_ folder into _proj.android-studio\goa\src\locale\jniLibs_ folder. For example for English build copy to _proj.android-studio\goa\src\english\jniLibs_ __Note__: Copy only _.so_ files.
 6. Start Android Studio and import _proj.android-studio_ folder into it.
-7. Download the OBB file from the latest GitHub release and follow the instructions provided there.
+7. Download the OBB file from the latest GitHub [release](https://github.com/maqsoftware/Simple-Class/releases) and follow the instructions provided there.
 8. To change the app locale, just select the desired language from the build variant.
 9. Set the `localeCode` in [LevelHelpScene.h](https://github.com/maqsoftware/Simple-Class/blob/master/goa/Classes/menu/LevelHelpScene.h) file as per the build variant.
 10. Build the project.
@@ -47,7 +47,7 @@ static const bool KIOSK = false;
 	> _keystore_ file is used to digitally sign an Android application and hence, it is not provided with the project. One must create their own _keystore_ file using the [Android KeyTool](https://developer.android.com/studio/publish/app-signing) which comes with the Android Studio in order to sign the APK.
 
 3. How to fix missing google-services.json file error?
-	> Put google-services.json file in [app](https://github.com/maqsoftware/Pehla-School/tree/newmaster/pehlaschool/proj.android-studio/app) folder. It is there in Firebase console after the app project has been created.
+	> Put google-services.json file in [app](https://github.com/maqsoftware/Simple-Class/tree/master/goa/proj.android-studio/goa/src) folder. It is there in Firebase console after the app project has been created.
 
 4. How to enable the _Build variant_ option in the _Build_ menu?
 	> The _Build variant_ option is enabled only when the module's gradle file is opened.
