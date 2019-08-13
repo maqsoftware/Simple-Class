@@ -1,4 +1,4 @@
-Last updated: August 8, 2019
+Last updated: August 13, 2019
 
 ## Prerequisites
 Install Cocos Studio for [Mac](http://cocos2d-x.org/filedown/CocosForMac-v3.10.dmg) or [Windows](http://cocos2d-x.org/filedown/CocosForWin-v3.10.exe)
