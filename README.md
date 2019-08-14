@@ -17,7 +17,7 @@ _Simple Class helps kids:_
 **Explore the world around them**: The app’s stories cover a variety of engaging topics, including everyday life, animals, friendship, and sports.
 
 **ONE TIME SET UP INSTRUCTIONS:**
-1. Download APK to your local computer.
+1. Download the APK to your local computer.
 2. Download the OBB file from this [Google Drive location](https://drive.google.com/drive/folders/1byKCP_X8PGe45UOWBzowIsm8nVn8TkMP?usp=sharing).
 3. Copy APK file from your local computer to the target mobile device where you would like to install the application.
 4. Navigate to *Android/obb* folder in *Internal Storage*.
