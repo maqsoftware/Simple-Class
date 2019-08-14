@@ -1,4 +1,4 @@
-Last updated: August 12, 2019
+Last updated: August 14, 2019
 
 ## Pre-requisites
 1. Install the latest version of [Android Studio](https://developer.android.com/studio).
@@ -18,6 +18,8 @@ Last updated: August 12, 2019
     1. ANDROID_SDK_ROOT: Enter the directory from Step 1.4 above
     2. NDK_ROOT: C:\ndk\android-ndk-r12b
     3. ANT_ROOT: C:\ant\apache-ant-x.xx.x\bin
+9. Download [Firebase CPP SDK](https://firebase.google.com/download/cpp) and unzip in goa folder. Copy and past firebase folder from firebase_cpp_sdk\include to cocos2d\cocos folder.
+
 ## Installation steps for all apps
 1. Make sure an Android device is connected with USB debug permissions set.
 2. Overwrite the directory *tools* in ANDROID_SDK_ROOT with C:\tools
@@ -41,7 +43,7 @@ static const bool KIOSK = false;
 ## FAQs
 1. How can I resolve an error encountered after running the "setup.py" script while installing cocos?
 
-    > To resolve an error encountered after running the “setup.py” script while installing cocos, check to see whether you have Python 3 installed. Check whether you have Python 3 installed, uninstall it and try running setup.py again.
+    > To resolve an error encountered after running the “setup.py” script while installing cocos, check whether you have Python 3 installed. If you do have Python 3 installed, uninstall it and try running setup.py again.
 
 2. The application throws _keystore_ file not found error. How do I fix this?
 	> _keystore_ file is used to digitally sign an Android application and hence, it is not provided with the project. One must create their own _keystore_ file using the [Android KeyTool](https://developer.android.com/studio/publish/app-signing) which comes with the Android Studio in order to sign the APK.
