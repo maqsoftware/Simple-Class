@@ -8,6 +8,7 @@
 
 #include "Award.h"
 #include "ScoreBoardContext.h"
+
 USING_NS_CC;
 
 cocos2d::Scene *Award::createScene()
