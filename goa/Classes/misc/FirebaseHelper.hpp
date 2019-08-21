@@ -38,7 +38,7 @@ class FirebaseHelper {
         void logEventBasedOnTime(pair <string, time_t>, long double);
         string replaceWhiteSpaceWithUnderscore(string);
         void __initFirebase();
-        void logCustomEvent(string, string, double);
+        void logCustomEvent(string, string, string, string, double);
         string getTargetName(string);
         string getLowerCase(string);
 

@@ -338,7 +338,7 @@ void EventDispatcher::resumeEventListenersForTarget(Node* target, bool recursive
             if (topEvent.first == targetName || (targetName == "numbers" && topEvent.first == "shapes") || (targetName == "library" && topEvent.first == "story-catalogue"))
             { 
                 firebase_instance.setElapsedTime();
-                firebase_instance.logCustomEvent(targetName, "elapsed_time", difftime(firebase_instance.getElapsedTime(), topEvent.second));
+                firebase_instance.logCustomEvent("playGame", "game", targetName, "elapsed_time", difftime(firebase_instance.getElapsedTime(), topEvent.second));
                 firebase_instance.removeFromTopEvent();
             }
         }
