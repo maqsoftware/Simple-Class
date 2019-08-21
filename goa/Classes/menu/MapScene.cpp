@@ -163,7 +163,7 @@ void MapScene::processChildNodes(cocos2d::Node *rootNode)
                     std::string lName = node->getName();
                     std::string englishName = "";
                     bool isBilingual = localeCode != "en";
-                    std::string fileName = "config/map_places.json";
+                    std::string fileName = "map_places";
                     if (lName.compare("City1") == 0)
                     {
                         englishName = MainMenuHome::readTitleFromJson(fileName, 0, false);

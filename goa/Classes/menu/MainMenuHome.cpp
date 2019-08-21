@@ -205,7 +205,7 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
                 if (textTitle)
                 {
                     std::string translatedString;
-                    std::string fileName = "config/main_menu_title.json";
+                    std::string fileName = "main_menu_title";
                     bool isBilingual = localeCode != "en";
                     string gameName = textTitle->getName().c_str();
                     string mainMenuEnglishText = "";
@@ -276,17 +276,17 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
 
 std::string MainMenuHome::readTitleFromJson(std::string fileName, int pos, bool isBilingual)
 {
-    std::string contents = FileUtils::getInstance()->getStringFromFile(fileName);
+    std::string contents = FileUtils::getInstance()->getStringFromFile("config/locale.json");
     rapidjson::Document mapPlaces;
     if (!mapPlaces.Parse<0>(contents.c_str()).HasParseError()) // to validate the structure of JSON file
     {
         if (isBilingual)
         {
-            const rapidjson::Value &placeNameLoc = mapPlaces[localeCode.c_str()]; // get the list of locale specific strings
+            const rapidjson::Value &placeNameLoc = mapPlaces[fileName.c_str()][localeCode.c_str()]; // get the list of locale specific strings
             assert(placeNameLoc.IsArray());
             return placeNameLoc[pos].GetString();
         }
-        const rapidjson::Value &placeNameEng = mapPlaces["en"];
+        const rapidjson::Value &placeNameEng = mapPlaces[fileName.c_str()]["en"];
         assert(placeNameEng.IsArray());
         return placeNameEng[pos].GetString();
     }
