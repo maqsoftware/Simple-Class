@@ -7,7 +7,7 @@ import xlrd
 
 def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_index=1, sheet_name='Sheet 1'):
     """
-    This function create a new JSON file which contains English part of the
+    This function creates a new JSON file which contains English part of the
     title referred from ref_excel file.
     ref_excel: Excel file from where name,title for each object will be referred
     curr_json: JSON file in where titles needed to be replace
@@ -89,5 +89,6 @@ for locale in locales:
 
 # Update the Hindi titles in the Hindi JSONs files
 hindi_titles_excel = 'game_titles.xlsx'
+hi_index = 1
 for file in files:
     replace_title_ref_(hindi_titles_excel, updated_en+file+'_'+locales[hi_index]+'.json', updated_hi+file+'_'+locales[hi_index]+'.json', locale, 1, sheets[i])
