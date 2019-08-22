@@ -1,5 +1,5 @@
 """
-This script update the hindi and english titles of the games in the JSON
+This script updates the Hindi and English titles of the games in the JSON
 """
 import json
 import xlrd
@@ -9,9 +9,9 @@ def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_i
     """
     This function creates a new JSON file which contains English part of the
     title referred from ref_excel file.
-    ref_excel: Excel file from where name,title for each object will be referred
+    ref_excel: Excel file from where name, title for each object will be referred
     curr_json: JSON file in where titles needed to be replace
-    new_json: destination file which will store contain updated titles
+    new_json: destination file which will store updated titles
 
     Example:
         replace_title_ref_('mismatched_titles.xlsx', 'original/alphabet_game_map_hi.json', 'updated/alphabet_game_map_hi.json', 'hi', sheet_name='alphabet')
