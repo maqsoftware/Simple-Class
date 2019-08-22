@@ -28,12 +28,12 @@ def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_i
     # Read the Excel sheet to create a dictionary
     wb = xlrd.open_workbook(ref_excel)
     sheet = wb.sheet_by_name(sheet_name)
-    rowCount = sheet.nrows
-    colCount = sheet.ncols
+    row_count = sheet.nrows
+    col_count = sheet.ncols
     # Get the column index of identity and new title column in Excel
     name_index = -1
     newtitle_index = -1
-    for i in range(colCount):
+    for i in range(col_count):
         if name_index == -1 and ident_key == sheet.cell_value(0, i):
             name_index = i
         if newtitle_index == -1 and src_key == sheet.cell_value(0, i):
@@ -43,11 +43,11 @@ def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_i
     print('Sheet: ', sheet_name)
     print('name_index: ', name_index)
     print('newtitle_index: ', newtitle_index)
-    print('Rows count: ', rowCount)
-    print('Columns count: ', colCount)
+    print('Rows count: ', row_count)
+    print('Columns count: ', col_count)
     newtitle_dict = dict()
     # Create a dictionary between the identity key and the new value
-    for i in range(1, rowCount):
+    for i in range(1, row_count):
         ref_name = sheet.cell_value(i, name_index)
         ref_title = sheet.cell_value(i, newtitle_index)
         if len(ref_name) > 0:
@@ -74,20 +74,21 @@ def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_i
     with open(new_json, 'w', encoding='utf-8') as new_jsonfile:
         json.dump(check_json_data, new_jsonfile, ensure_ascii=False, indent=2)
 
+file_root = 'original/'
+updated_en = 'en_updated/'
+updated_hi = 'hi_updated/'
+locales = ['en', 'hi']
+files = ['alphabet_game_map', 'grammar_game_map', 'shapes_game_map', 'writing_game_map']
+sheets = ['alphabet', 'grammar', 'shapes', 'writing']
+
 # Update the English titles in all the JSONs files
 mismatched_titles_excel = 'mismatched_titles.xlsx'
-replace_title_ref_(mismatched_titles_excel, 'original/alphabet_game_map_hi.json', 'en_updated/alphabet_game_map_hi.json', 'hi', sheet_name='alphabet')
-replace_title_ref_(mismatched_titles_excel, 'original/alphabet_game_map_en.json', 'en_updated/alphabet_game_map_en.json',  sheet_name='alphabet')
-replace_title_ref_(mismatched_titles_excel, 'original/grammar_game_map_hi.json', 'en_updated/grammar_game_map_hi.json', 'hi', sheet_name='grammar')
-replace_title_ref_(mismatched_titles_excel, 'original/grammar_game_map_en.json', 'en_updated/grammar_game_map_en.json',  sheet_name='grammar')
-replace_title_ref_(mismatched_titles_excel, 'original/shapes_game_map_hi.json', 'en_updated/shapes_game_map_hi.json', 'hi', sheet_name='shapes')
-replace_title_ref_(mismatched_titles_excel, 'original/shapes_game_map_en.json', 'en_updated/shapes_game_map_en.json',  sheet_name='shapes')
-replace_title_ref_(mismatched_titles_excel, 'original/writing_game_map_hi.json', 'en_updated/writing_game_map_hi.json', 'hi', sheet_name='writing')
-replace_title_ref_(mismatched_titles_excel, 'original/writing_game_map_en.json', 'en_updated/writing_game_map_en.json',  sheet_name='writing')
+for locale in locales:
+    for i in range(0, len(files)):
+        replace_title_ref_(mismatched_titles_excel, file_root+files[i]+'_'+locale+'.json', updated_en+files[i]+'_'+locale+'.json', locale, 1, sheets[i])
 
 # Update the Hindi titles in the Hindi JSONs files
 hindi_titles_excel = 'game_titles.xlsx'
-replace_title_ref_(hindi_titles_excel, 'en_updated/alphabet_game_map_hi.json', 'hi_updated/alphabet_game_map_hi.json', 'hi', title_index=0,  sheet_name='alphabet')
-replace_title_ref_(hindi_titles_excel, 'en_updated/grammar_game_map_hi.json', 'hi_updated/grammar_game_map_hi.json', 'hi', title_index=0, sheet_name='grammar')
-replace_title_ref_(hindi_titles_excel, 'en_updated/shapes_game_map_hi.json', 'hi_updated/shapes_game_map_hi.json', 'hi', title_index=0, sheet_name='shapes')
-replace_title_ref_(hindi_titles_excel, 'en_updated/writing_game_map_hi.json', 'hi_updated/writing_game_map_hi.json', 'hi', title_index=0, sheet_name='writing')
+hi_index = 1
+for file in files:
+    replace_title_ref_(hindi_titles_excel, updated_en+file+'_'+locales[hi_index]+'.json', updated_hi+file+'_'+locales[hi_index]+'.json', locale, 1, sheets[i])

@@ -1,6 +1,7 @@
 """
-This script has functions to create Excel for mismatched titles, replace titles from
-JSON reference, and Excel with all the titles from Hindi JSON file
+This script has functions to create Excel sheets for the mismatched titles,
+to replace titles from JSON reference file and also contains an Excel function
+with titles from Hindi JSON file
 """
 import json
 import xlsxwriter
@@ -8,11 +9,11 @@ import xlsxwriter
 
 def get_title_miss_matches(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"):
     """
-    This function create an excel sheet which contains all the miss-matched
+    This function creates an Excel sheet which contains all the mismatched
     titles in the check_json file.
-    ref_json: JSON file from where name,title for each object will be referred
-    check_json: JSON file which titles needed to be checked
-    xlsx_file: Excel file that will be contains all the mismatched titles
+    ref_json: JSON file from where name, title for each object will be referred
+    check_json: JSON file where titles needed to be checked
+    xlsx_file: Excel file that will contain all the mismatched titles
     <name> <en_json_title> <hi_json_title_eng>
 
     Example:
@@ -23,18 +24,17 @@ def get_title_miss_matches(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"
     target_key = 'title'
     wb = xlsxwriter.Workbook(xlsx_file)
     ref_json_dict = dict()
-    # Open the json and create a map with the ident_key
+    # Open the JSON and create a map with the ident_key
     with open(ref_json, 'r', encoding='utf-8-sig') as ref_file:
         ref_json_data = json.load(ref_file)
         for each_object in ref_json_data:
             ref_json_dict[each_object[ident_key]] = each_object
     sheet = wb.add_worksheet(sheet_name)
-    rowCount = 0
-    sheet.write(rowCount, 0, 'name')
-    sheet.write(rowCount, 1, 'en_json_title')
-    sheet.write(rowCount, 2, 'hi_json_title_eng')
-    # sheet.write(rowCount, 3, 'hi_json_title_hi')
-    rowCount = rowCount+2
+    row_count = 0
+    sheet.write(row_count, 0, 'name')
+    sheet.write(row_count, 1, 'en_json_title')
+    sheet.write(row_count, 2, 'hi_json_title_eng')
+    row_count = row_count+2
     # Write to Excel file all the mismatched titles
     with open(check_json, 'r', encoding='utf-8-sig') as check_file:
         check_json_data = json.load(check_file)
@@ -44,26 +44,25 @@ def get_title_miss_matches(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"
             ref_object = ref_json_dict[check_object_name]
             ref_object_title = ref_object[target_key]
             if ref_object_title != check_object_title[1]:
-                sheet.write(rowCount, 0, check_object_name)
-                sheet.write(rowCount, 1, ref_object_title)
-                sheet.write(rowCount, 2, check_object_title[1])
-                rowCount = rowCount+1
-            # sheet.write(rowCount, 3, check_object_title[0])
+                sheet.write(row_count, 0, check_object_name)
+                sheet.write(row_count, 1, ref_object_title)
+                sheet.write(row_count, 2, check_object_title[1])
+                row_count = row_count+1
     wb.close()
 
 
 def replace_title_ref_(ref_json, check_json, dest_file):
     """
-    This function create a new json file which contains english part of the
+    This function creates a new JSON file which contains english part of the
     title referred from ref_json file.
     ref_json: JSON file from where name,title for each object will be referred
-    check_json: JSON file which titles needed to be checked
-    dest_file: destination JSON file which will store contain updated objects
+    check_json: JSON file where titles needed to be checked
+    dest_file: destination JSON file which will contains updated objects
 
     Example:
         replace_title_ref_('alphabet_game_map_en.json', 'alphabet_game_map_hi.json', 'alphabet_game_map_hi_new.json')
     """
-    demchar = '$#$'
+    dem_char = '$#$'
     ident_key = 'name'
     target_key = 'title'
     ref_json_dict = dict()
@@ -79,10 +78,10 @@ def replace_title_ref_(ref_json, check_json, dest_file):
         for i in range(length):
             each_check_object = check_json_data[i]
             check_object_name = each_check_object[ident_key]
-            check_object_title = each_check_object[target_key].split(demchar)
+            check_object_title = each_check_object[target_key].split(dem_char)
             ref_object = ref_json_dict[check_object_name]
             ref_object_title = ref_object[target_key]
-            new_check_object_title = check_object_title[0]+ident_key+ref_object_title
+            new_check_object_title = check_object_title[0] + ident_key + ref_object_title
             each_check_object[target_key] = new_check_object_title
             check_json_data[i] = each_check_object
     # Create a new JSON file from the file
@@ -92,11 +91,11 @@ def replace_title_ref_(ref_json, check_json, dest_file):
 
 def get_titles_name_json(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"):
     """
-    This function create an Excel sheet which contain name and title from ref_json, english and hindi separated title
+    This function creates an Excel sheet which contains name and titles from ref_json, english and hindi separated title
     from the check_json file
-    ref_json: file from where name,title for each object will be referred
-    check_json: file which titles needed to be checked
-    xlsx_file: excel file that will be contains the mentioned field from above
+    ref_json: file from where name, title for each object will be referred
+    check_json: file where titles needed to be checked
+    xlsx_file: Excel file that will be contain, the above mentioned field
 
     <name> <en_json_title> <hi_json_title_eng> <hi_json_title_hi>
 
@@ -115,12 +114,12 @@ def get_titles_name_json(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"):
             ref_json_dict[each_object[ident_key]] = each_object
     sheet = wb.add_worksheet(sheet_name)
 
-    rowCount = 0
-    sheet.write(rowCount, 0, 'name')
-    sheet.write(rowCount, 1, 'en_json_title')
-    sheet.write(rowCount, 2, 'hi_json_title_eng')
-    sheet.write(rowCount, 3, 'hi_json_title_hi')
-    rowCount = rowCount+2
+    row_count = 0
+    sheet.write(row_count, 0, 'name')
+    sheet.write(row_count, 1, 'en_json_title')
+    sheet.write(row_count, 2, 'hi_json_title_eng')
+    sheet.write(row_count, 3, 'hi_json_title_hi')
+    row_count = row_count+2
     # Write to Excel file all the titles in the JSON file
     with open(check_json, 'r', encoding='utf-8-sig') as check_file:
         check_json_data = json.load(check_file)
@@ -129,14 +128,18 @@ def get_titles_name_json(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"):
             check_object_title = each_check_object[target_key].split(dem_char)
             ref_object = ref_json_dict[check_object_name]
             ref_object_title = ref_object[target_key]
-            sheet.write(rowCount, 0, check_object_name)
-            sheet.write(rowCount, 1, ref_object_title)
-            sheet.write(rowCount, 2, check_object_title[1])
-            sheet.write(rowCount, 3, check_object_title[0])
-            rowCount = rowCount+1
+            sheet.write(row_count, 0, check_object_name)
+            sheet.write(row_count, 1, ref_object_title)
+            sheet.write(row_count, 2, check_object_title[1])
+            sheet.write(row_count, 3, check_object_title[0])
+            row_count = row_count+1
     wb.close()
 
-get_titles_name_json('original/alphabet_game_map_en.json', 'original/alphabet_game_map_hi.json', 'excels/alphabet_titles.xlsx')
-get_titles_name_json('original/grammar_game_map_en.json', 'original/grammar_game_map_hi.json', 'excels/grammar_titles.xlsx')
-get_titles_name_json('original/shapes_game_map_en.json', 'original/shapes_game_map_hi.json', 'excels/shapes__titles.xlsx')
-get_titles_name_json('original/writing_game_map_en.json', 'original/writing_game_map_hi.json', 'excels/writing_titles.xlsx')
+locales = ['en', 'hi']
+file_root = 'original/'
+excel_path = 'check_excels/'
+files = ['alphabet_game_map', 'grammar_game_map', 'shapes_game_map', 'writing_game_map']
+for file in files:
+    get_titles_name_json(file_root+file+'_'+locales[0]+'.json', file_root+file+'_'+locales[1]+'.json', excel_path+file+'.xlsx')
+for file in files:
+    get_title_miss_matches(file_root+file+'_'+locales[0]+'.json', file_root+file+'_'+locales[1]+'.json', excel_path+file+'.xlsx')
