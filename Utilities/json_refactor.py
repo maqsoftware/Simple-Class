@@ -10,7 +10,7 @@ def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_i
     This function create a new JSON file which contains English part of the
     title referred from ref_excel file.
     ref_excel: Excel file from where name,title for each object will be referred
-    curr_json: JSON file in which titles needed to be replace
+    curr_json: JSON file in where titles needed to be replace
     new_json: destination file which will store contain updated titles
 
     Example:
@@ -52,7 +52,7 @@ def replace_title_ref_(ref_excel, curr_json, new_json, json_locale='en', title_i
         ref_title = sheet.cell_value(i, newtitle_index)
         if len(ref_name) > 0:
             newtitle_dict[ref_name] = ref_title
-    # Read the json file and replace the english part of the title
+    # Read the JSON file and replace the english part of the title
     # with new title using the dictionary
     with open(curr_json, 'r', encoding='utf-8-sig') as curr_file:
         check_json_data = json.load(curr_file)
@@ -85,10 +85,9 @@ sheets = ['alphabet', 'grammar', 'shapes', 'writing']
 mismatched_titles_excel = 'mismatched_titles.xlsx'
 for locale in locales:
     for i in range(0, len(files)):
-        replace_title_ref_(mismatched_titles_excel, file_root+files[i]+'_'+locale+'.json', updated_en+files[i]+'_'+locale+'.json', locale, 1, sheets[i])
+        replace_title_ref_(mismatched_titles_excel, file_root+files[i]+'_'+locale+'.json', updated_en+files[i]+'_'+locale+'.json', locale, 0, sheets[i])
 
 # Update the Hindi titles in the Hindi JSONs files
 hindi_titles_excel = 'game_titles.xlsx'
-hi_index = 1
 for file in files:
     replace_title_ref_(hindi_titles_excel, updated_en+file+'_'+locales[hi_index]+'.json', updated_hi+file+'_'+locales[hi_index]+'.json', locale, 1, sheets[i])
