@@ -516,7 +516,7 @@
   },
   {
     "name": "shop",
-    "title": "सब्जी मंडी$#$Grocery Shop",
+    "title": "सब्ज़ी मंडी$#$Grocery Shop",
     "_title_comment": "किराने की दुकान",
     "unlock": true,
     "cIcon": "gameicons/shopping_pressed.png",
