@@ -34,7 +34,7 @@ def get_title_miss_matches(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"
     sheet.write(row_count, 0, 'name')
     sheet.write(row_count, 1, 'en_json_title')
     sheet.write(row_count, 2, 'hi_json_title_eng')
-    row_count = row_count+2
+    row_count = row_count + 2
     # Write to Excel file all the mismatched titles
     with open(check_json, 'r', encoding='utf-8-sig') as check_file:
         check_json_data = json.load(check_file)
@@ -47,7 +47,7 @@ def get_title_miss_matches(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"
                 sheet.write(row_count, 0, check_object_name)
                 sheet.write(row_count, 1, ref_object_title)
                 sheet.write(row_count, 2, check_object_title[1])
-                row_count = row_count+1
+                row_count = row_count + 1
     wb.close()
 
 
@@ -132,7 +132,7 @@ def get_titles_name_json(ref_json, check_json, xlsx_file, sheet_name="Sheet 1"):
             sheet.write(row_count, 1, ref_object_title)
             sheet.write(row_count, 2, check_object_title[1])
             sheet.write(row_count, 3, check_object_title[0])
-            row_count = row_count+1
+            row_count = row_count + 1
     wb.close()
 
 locales = ['en', 'hi']
