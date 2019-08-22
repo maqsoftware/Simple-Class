@@ -36,14 +36,14 @@ string FirebaseHelper::getLowerCase(string eventName)
     return allLowerCase;
 }
 
-void FirebaseHelper::logCustomEvent(string eventName, string parameter_name_1, string  parameter_value_1, string parameter_name_2, double parameter_value_2)
+void FirebaseHelper::logCustomEvent(string eventName, string gameName, string  gameNameValue, string elapsedTime, double elapsedTimeDuration)
 {
     using namespace firebase::analytics;
 
     // create parameter to send game name and elapsed time
     const Parameter game_parameters[] = {
-        Parameter(parameter_name_1.c_str(), parameter_value_1.c_str()),
-        Parameter(parameter_name_2.c_str(), parameter_value_2),
+        Parameter(gameName.c_str(), gameNameValue.c_str()),
+        Parameter(elapsedTime.c_str(), elapsedTimeDuration),
     };
     firebase::analytics::LogEvent(eventName.c_str(), game_parameters, sizeof(game_parameters)/sizeof(game_parameters[0]));
 }
