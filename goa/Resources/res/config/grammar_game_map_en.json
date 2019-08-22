@@ -409,7 +409,7 @@
   },
   {
     "name": "dash",
-    "title": "Dash",
+    "title": "Letter Jumping",
     "unlock": false,
     "cIcon": "gameicons/dash_pressed.png",
     "icon": "gameicons/dash.png",
@@ -445,7 +445,6 @@
         "unlockMin": "map",
         "min": "4"
       }
-
     },
     "backgroundJson": "dashlevel/background.json",
     "foregroundJson": "dashlevel/foreground.json",
@@ -502,7 +501,7 @@
   },
   {
     "name": "drop",
-    "title": "Drop",
+    "title": "Drop the Letter",
     "unlock": false,
     "cIcon": "gameicons/drop_pressed.png",
     "icon": "gameicons/drop.png",
@@ -595,7 +594,7 @@
   },
   {
     "name": "pop",
-    "title": "Fly Through Clouds",
+    "title": "Fly through Clouds",
     "unlock": false,
     "cIcon": "gameicons/pop_pressed.png",
     "icon": "gameicons/pop.png",
@@ -642,7 +641,7 @@
   },
   {
     "name": "talk",
-    "title": "Feed the Words",
+    "title": "Feed Words",
     "unlock": false,
     "cIcon": "gameicons/talk_pressed.png",
     "icon": "gameicons/talk.png",
@@ -780,7 +779,7 @@
   },
   {
     "name": "pillar",
-    "title": "Layer the Cake",
+    "title": "Cake Layer",
     "unlock": false,
     "cIcon": "gameicons/pillar_pressed.png",
     "icon": "gameicons/pillar.png",

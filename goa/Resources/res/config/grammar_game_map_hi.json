@@ -1,8 +1,8 @@
 [
   {
     "name": "baja",
-    "title": "सैर$#$Baja",
-	"_title_comment":"सैर",
+    "title": "गाड़ी चलाओ$#$Drive",
+    "_title_comment": "सैर",
     "unlock": true,
     "cIcon": "gameicons/baja_pressed.png",
     "icon": "gameicons/baja.png",
@@ -48,8 +48,8 @@
   },
   {
     "name": "jasmine",
-    "title": "पौधे उगाओ$#$Jasmine",
-	"_title_comment":"पौधे उगाओ",
+    "title": "पौधे उगाओ$#$Grow the Plants",
+    "_title_comment": "पौधे उगाओ",
     "unlock": true,
     "cIcon": "gameicons/jasmine_pressed.png",
     "icon": "gameicons/jasmine.png",
@@ -95,8 +95,8 @@
   },
   {
     "name": "chain",
-    "title": "पशु श्रृंखला$#$Chain",
-	"_title_comment":"पशु श्रृंखला",
+    "title": "पशु श्रृंखला$#$Animal Chain",
+    "_title_comment": "पशु श्रृंखला",
     "unlock": true,
     "cIcon": "gameicons/chain_pressed.png",
     "icon": "gameicons/chain.png",
@@ -142,8 +142,8 @@
   },
   {
     "name": "wembley",
-    "title": "वर्णमाला फुटबॉल$#$Wembley",
-	"_title_comment":"वर्णमाला फुटबॉल",
+    "title": "वर्णमाला फुटबॉल$#$Alphabet Football",
+    "_title_comment": "वर्णमाला फुटबॉल",
     "unlock": true,
     "cIcon": "gameicons/wembley_pressed.png",
     "icon": "gameicons/wembley.png",
@@ -189,8 +189,8 @@
   },
   {
     "name": "jazz",
-    "title": "ढोल$#$Jazz",
-	"_title_comment":"ढोल",
+    "title": "ढोल$#$Drums",
+    "_title_comment": "ढोल",
     "unlock": true,
     "cIcon": "gameicons/jazz_pressed.png",
     "icon": "gameicons/jazz.png",
@@ -236,8 +236,8 @@
   },
   {
     "name": "shoot",
-    "title": "गोली मार$#$Shoot",
-	"_title_comment":"गोली मार",
+    "title": "गोली मारो$#$Shoot",
+    "_title_comment": "गोली मार",
     "unlock": true,
     "cIcon": "gameicons/shoot_pressed.png",
     "icon": "gameicons/shoot.png",
@@ -279,8 +279,8 @@
   },
   {
     "name": "owl",
-    "title": "वर्तनी उल्लू$#$Owl",
-	"_title_comment":"वर्तनी उल्लू",
+    "title": "वर्तनी उल्लू$#$Spelling Owl",
+    "_title_comment": "वर्तनी उल्लू",
     "unlock": true,
     "cIcon": "gameicons/owl_pressed.png",
     "icon": "gameicons/owl.png",
@@ -326,8 +326,8 @@
   },
   {
     "name": "stack",
-    "title": "शब्दों का ढेर$#$Stack",
-	"_title_comment":"शब्दों का ढेर",
+    "title": "शब्दों का ढेर$#$Stack the Words",
+    "_title_comment": "शब्दों का ढेर",
     "unlock": true,
     "cIcon": "gameicons/stack_pressed.png",
     "icon": "gameicons/stack.png",
@@ -372,8 +372,8 @@
   },
   {
     "name": "order",
-    "title": "ऑर्डर में रखें$#$Order",
-	"_title_comment":"ऑर्डर में रखें",
+    "title": "व्यवस्थित करो$#$Arrange in Order",
+    "_title_comment": "ऑर्डर में रखें",
     "unlock": true,
     "cIcon": "gameicons/order_pressed.png",
     "icon": "gameicons/order.png",
@@ -418,8 +418,8 @@
   },
   {
     "name": "dash",
-    "title": "पानी का छींटा$#$Dash",
-	"_title_comment":"पानी का छींटा",
+    "title": "अक्षर कूद$#$Letter Jumping",
+    "_title_comment": "पानी का छींटा",
     "unlock": true,
     "cIcon": "gameicons/dash_pressed.png",
     "icon": "gameicons/dash.png",
@@ -455,7 +455,6 @@
         "unlockMin": "map",
         "min": "4"
       }
-
     },
     "backgroundJson": "dashlevel/background.json",
     "foregroundJson": "dashlevel/foreground.json",
@@ -467,7 +466,7 @@
   {
     "name": "bingo",
     "title": "बिंगो$#$Bingo",
-	"_title_comment":"बिंगो",
+    "_title_comment": "बिंगो",
     "unlock": true,
     "cIcon": "gameicons/bingo_pressed.png",
     "icon": "gameicons/bingo.png",
@@ -513,8 +512,8 @@
   },
   {
     "name": "drop",
-    "title": "गिराओ$#$Drop",	
-	"_title_comment":"गिराओ",
+    "title": "अक्षर गिराओ$#$Drop the Letter",
+    "_title_comment": "गिराओ",
     "unlock": true,
     "cIcon": "gameicons/drop_pressed.png",
     "icon": "gameicons/drop.png",
@@ -560,8 +559,8 @@
   },
   {
     "name": "train",
-    "title": "रेल गाडी$#$Train",
-	"_title_comment":"रेल गाडी",
+    "title": "रेल गाड़ी$#$Train",
+    "_title_comment": "रेल गाडी",
     "unlock": true,
     "cIcon": "gameicons/train_pressed.png",
     "icon": "gameicons/train.png",
@@ -608,8 +607,8 @@
   },
   {
     "name": "pop",
-    "title": "बादलों के माध्यम से उड़ो$#$Pop",
-	"_title_comment":"बादलों के माध्यम से उड़ो",
+    "title": "बादलों में उड़ो$#$Fly through Clouds",
+    "_title_comment": "बादलों के माध्यम से उड़ो",
     "unlock": true,
     "cIcon": "gameicons/pop_pressed.png",
     "icon": "gameicons/pop.png",
@@ -656,8 +655,8 @@
   },
   {
     "name": "talk",
-    "title": "शब्द खिलाओ$#$Talk",
-	"_title_comment":"शब्द खिलाओ",
+    "title": "शब्द खिलाओ$#$Feed Words",
+    "_title_comment": "शब्द खिलाओ",
     "unlock": true,
     "cIcon": "gameicons/talk_pressed.png",
     "icon": "gameicons/talk.png",
@@ -703,8 +702,8 @@
   },
   {
     "name": "memory",
-    "title": "याद$#$Memory",
-	"_title_comment": "याद",
+    "title": "याददाश्त$#$Memory",
+    "_title_comment": "याद",
     "unlock": true,
     "cIcon": "gameicons/memory_pressed.png",
     "icon": "gameicons/memory.png",
@@ -750,8 +749,8 @@
   },
   {
     "name": "circle",
-    "title": "पकड़$#$Circle",
-	"_title_comment": "पकड़",
+    "title": "कैच$#$Catch",
+    "_title_comment": "पकड़",
     "unlock": true,
     "cIcon": "gameicons/circle_pressed.png",
     "icon": "gameicons/circle.png",
@@ -797,8 +796,8 @@
   },
   {
     "name": "pillar",
-    "title": "केक परत$#$Pillar",
-	"_title_comment": "केक परत",
+    "title": "केक परत$#$Cake Layer",
+    "_title_comment": "केक परत",
     "unlock": true,
     "cIcon": "gameicons/pillar_pressed.png",
     "icon": "gameicons/pillar.png",
@@ -844,8 +843,8 @@
   },
   {
     "name": "balloon",
-    "title": "उड़ना$#$Balloon",
-	"_title_comment": "उड़ना",
+    "title": "उड़ो$#$Fly",
+    "_title_comment": "उड़ना",
     "unlock": true,
     "cIcon": "gameicons/balloon_pressed.png",
     "icon": "gameicons/balloon.png",

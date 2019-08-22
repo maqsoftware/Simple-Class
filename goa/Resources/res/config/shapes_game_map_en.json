@@ -121,7 +121,7 @@
   },
   {
     "name": "popcount",
-    "title": "Count the fish",
+    "title": "Count the Fish",
     "unlock": false,
     "cIcon": "gameicons/popcount_pressed.png",
     "icon": "gameicons/popcount.png",
@@ -586,7 +586,7 @@
   },
   {
     "name": "atm",
-    "title": "Money Machine",
+    "title": "ATM",
     "unlock": false,
     "cIcon": "gameicons/ATM_pressed.png",
     "icon": "gameicons/ATM.png",
@@ -709,7 +709,7 @@
   },
   {
     "name": "Bounce",
-    "title": "Drop the Icecream",
+    "title": "Drop the Ice-cream",
     "unlock": false,
     "cIcon": "gameicons/icecream_pressed.png",
     "icon": "gameicons/icecream.png",
@@ -811,5 +811,5 @@
     "maingroundJson": "tablelevel/mainground.json",
     "menuPlist": "tablelevel/tablelevel.plist",
     "menuPng": "tablelevel/tablelevel.png"
-  }  
+  }
 ]

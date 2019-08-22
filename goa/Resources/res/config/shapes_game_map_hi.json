@@ -1,8 +1,8 @@
 [
   {
     "name": "sortit",
-    "title": "क्रमबद्ध$#$Sort It",
-	"_title_comment":"क्रमबद्ध",
+    "title": "क्रमबद्ध करो$#$Sort It",
+    "_title_comment": "क्रमबद्ध",
     "unlock": true,
     "cIcon": "gameicons/sortit_pressed.png",
     "icon": "gameicons/sortit.png",
@@ -41,8 +41,8 @@
   },
   {
     "name": "shape",
-    "title": "छेदों को भरें$#$Shape",
-	"_title_comment":"छेदों को भरें",
+    "title": "गड्ढे भरो$#$Patch the Holes",
+    "_title_comment": "छेदों को भरें",
     "unlock": true,
     "cIcon": "gameicons/shape_pressed.png",
     "icon": "gameicons/shape.png",
@@ -83,8 +83,8 @@
   },
   {
     "name": "Dots",
-    "title": "नंबर डॉट्स$#$Dots",
-	"_title_comment":"नंबर डॉट्स",
+    "title": "नंबर बिंदु$#$Number Dots",
+    "_title_comment": "नंबर डॉट्स",
     "unlock": true,
     "cIcon": "gameicons/numberdot_pressed.png",
     "icon": "gameicons/numberdot.png",
@@ -124,8 +124,8 @@
   },
   {
     "name": "popcount",
-    "title": "मछली को गिनें$#$Pop Count",
-	"_title_comment":"मछली को गिनें",
+    "title": "मछली गिनो$#$Count the Fish",
+    "_title_comment": "मछली को गिनें",
     "unlock": true,
     "cIcon": "gameicons/popcount_pressed.png",
     "icon": "gameicons/popcount.png",
@@ -168,8 +168,8 @@
   },
   {
     "name": "spot",
-    "title": "पशु पहचाने$#$Spot",
-	"_title_comment":"पशु पहचाने",
+    "title": "पशु पहचानो$#$Spot the Animals",
+    "_title_comment": "पशु पहचाने",
     "unlock": true,
     "cIcon": "gameicons/spot_pressed.png",
     "icon": "gameicons/spot.png",
@@ -210,8 +210,8 @@
   },
   {
     "name": "Item",
-    "title": "तालाब भर दो$#$Item",
-	"_title_comment":"तालाब भर दो",
+    "title": "तालाब भरो$#$Fill the Pond",
+    "_title_comment": "तालाब भर दो",
     "unlock": true,
     "cIcon": "gameicons/item_pressed.png",
     "icon": "gameicons/item.png",
@@ -256,8 +256,8 @@
   },
   {
     "name": "ConnectTheDots",
-    "title": "बिंदुओ को जोडो$#$Connect The Dots",
-	"_title_comment":"बिंदुओ को जोडो",
+    "title": "बिंदुओ को जोडो$#$Connect the Dots",
+    "_title_comment": "बिंदुओ को जोडो",
     "unlock": true,
     "cIcon": "gameicons/coonectthedot_pressed.png",
     "icon": "gameicons/coonectthedot.png",
@@ -297,8 +297,8 @@
   },
   {
     "name": "chocolateFactory",
-    "title": "दूध का कारखाना$#$Chocolate Factory",
-	"_title_comment":"दूध का कारखाना",
+    "title": "दूध का कारखाना$#$Milk Factory",
+    "_title_comment": "दूध का कारखाना",
     "unlock": true,
     "cIcon": "gameicons/chocolatefactory_pressed.png",
     "icon": "gameicons/chocolatefactory.png",
@@ -343,8 +343,8 @@
   },
   {
     "name": "step",
-    "title": "चरणों को व्यव्सिथत करें$#$Step",
-	"_title_comment":"चरणों को व्यव्सिथत करें",
+    "title": "सीढीया व्यव्सिथत करो$#$Arrange the Steps",
+    "_title_comment": "चरणों को व्यव्सिथत करें",
     "unlock": true,
     "cIcon": "gameicons/step_pressed.png",
     "icon": "gameicons/step.png",
@@ -388,8 +388,8 @@
   },
   {
     "name": "Line",
-    "title": "कैंडी लाइन$#$Line",
-	"_title_comment":"कैंडी लाइन",
+    "title": "कैंडी लाइन$#$Candy Line",
+    "_title_comment": "कैंडी लाइन",
     "unlock": true,
     "cIcon": "gameicons/line_pressed.png",
     "icon": "gameicons/line.png",
@@ -430,8 +430,8 @@
   },
   {
     "name": "mathlearning",
-    "title": "जोड़ घटाव$#$Math Learning",
-	"_title_comment":"जोड़ घटाव",
+    "title": "जोड़ना घटाना$#$Addition Subtraction",
+    "_title_comment": "जोड़ घटाव",
     "unlock": true,
     "cIcon": "gameicons/mathlearning_pressed.png",
     "icon": "gameicons/mathlearning.png",
@@ -474,7 +474,7 @@
   },
   {
     "name": "balloonMath",
-	"title":"गुब्बारा फोड़ें$#$Balloon Math",
+    "title": "गुब्बारा फोड़ो  $#$Pop the Balloon",
     "_title_comment": "गुब्बारा फोड़ें",
     "unlock": true,
     "cIcon": "gameicons/balloonpop_pressed.png",
@@ -516,8 +516,8 @@
   },
   {
     "name": "shop",
-    "title": "किराने की दुकान$#$Shop",
-	"_title_comment":"किराने की दुकान",
+    "title": "सब्ज़ी मंडी$#$Grocery Shop",
+    "_title_comment": "किराने की दुकान",
     "unlock": true,
     "cIcon": "gameicons/shopping_pressed.png",
     "icon": "gameicons/shopping.png",
@@ -558,8 +558,8 @@
   },
   {
     "name": "Units",
-    "title": "एक पिज्जा बनाओ$#$Units",
-	"_title_comment":"एक पिज्जा बनाओ",
+    "title": "पिज़्ज़ा बनाओ$#$Make a Pizza",
+    "_title_comment": "एक पिज्जा बनाओ",
     "unlock": true,
     "cIcon": "gameicons/pizza_pressed.png",
     "icon": "gameicons/pizza.png",
@@ -600,8 +600,8 @@
   },
   {
     "name": "atm",
-    "title": "पैसों की मशीन$#$Atm",
-	"_title_comment":"पैसों की मशीन",
+    "title": "एटीएम$#$ATM",
+    "_title_comment": "पैसों की मशीन",
     "unlock": true,
     "cIcon": "gameicons/ATM_pressed.png",
     "icon": "gameicons/ATM.png",
@@ -642,8 +642,8 @@
   },
   {
     "name": "jumpingNumbers",
-    "title": "कूदे $#$Jump",
-	"_title_comment":"कूदे ",
+    "title": "कूद के आगे बढ़ो$#$Stepping Stones",
+    "_title_comment": "कूदे ",
     "unlock": true,
     "cIcon": "gameicons/jumping numbers_pressed.png",
     "icon": "gameicons/jumping numbers.png",
@@ -684,7 +684,7 @@
   },
   {
     "name": "card",
-	"title":"कार्ड जोड़ें$#$Card",
+    "title": "कार्ड जोड़ो$#$Add the Cards",
     "_title_comment": "कार्ड जोड़ें",
     "unlock": true,
     "cIcon": "gameicons/card_pressed.png",
@@ -726,8 +726,8 @@
   },
   {
     "name": "Bounce",
-    "title": "आइसक्रीम$#$Ice-Cream",
-	"_title_comment":"आइसक्रीम",
+    "title": "आइसक्रीम गिराओ$#$Drop the Ice-cream",
+    "_title_comment": "आइसक्रीम",
     "unlock": true,
     "cIcon": "gameicons/icecream_pressed.png",
     "icon": "gameicons/icecream.png",
@@ -754,8 +754,8 @@
   },
   {
     "name": "BasicMultiplication",
-    "title": "मूल गुणन$#$Multiplication",
-	"_title_comment":"मूल गुणन",
+    "title": "मूल गुणन$#$Basic Multiplication",
+    "_title_comment": "मूल गुणन",
     "unlock": true,
     "cIcon": "gameicons/BasicMultiplication_pressed.png",
     "icon": "gameicons/BasicMultiplication.png",
@@ -798,8 +798,8 @@
   },
   {
     "name": "table",
-    "title": "गुणा$#$Table",
-	"_title_comment":"गुणा",
+    "title": "गुणा करो$#$Multiply",
+    "_title_comment": "गुणा",
     "unlock": true,
     "cIcon": "gameicons/table_pressed.png",
     "icon": "gameicons/table.png",
@@ -831,5 +831,5 @@
     "maingroundJson": "tablelevel/mainground.json",
     "menuPlist": "tablelevel/tablelevel.plist",
     "menuPng": "tablelevel/tablelevel.png"
-  }  
+  }
 ]
