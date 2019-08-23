@@ -62,7 +62,7 @@ public class DownloadExpansionFile extends Activity implements IDownloaderClient
             new XAPKFile(
                     false, // false signifies a patch file
                     16, // the version of the patch that is uploaded
-                    22841L  // the length of the file in bytes
+                    38689L  // the length of the file in bytes
             )
     };
     /* expansion service*/
