@@ -306,7 +306,7 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             CCLOG("Reached Level screen: %s", _videos[_currentVideo].c_str());
             if (_videos[_currentVideo].substr(fileFound + 1).size() < 9 && _videos[_currentVideo].find("pos.webm") == std::string::npos)
             {
-                bool isBilingual = localeCode!="en";
+                bool isBilingual = localeCode != "en";
                 videoText = MainMenuHome::readTitleFromJson("misc", 0, isBilingual);
             }
             else
