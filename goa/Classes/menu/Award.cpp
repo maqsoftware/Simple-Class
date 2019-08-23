@@ -287,6 +287,7 @@ void Award::objectsAddInTabContainer(cocos2d::Node *parent, std::string tile, st
 
 void Award::rewardsBackground(cocos2d::Node *parent, std::string tile, cocos2d::Color3B color)
 {
+	bool isBilingual = localeCode != "en";
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	auto scrollView6 = ui::ScrollView::create();
 	scrollView6->setDirection(ui::ScrollView::Direction::HORIZONTAL);
@@ -298,7 +299,8 @@ void Award::rewardsBackground(cocos2d::Node *parent, std::string tile, cocos2d::
 	backgroundSpriteMapTile->setPosition(Vec2(3 * visibleSize.width / 2, visibleSize.height / 2));
 	scrollView6->addChild(backgroundSpriteMapTile);
 	scrollView6->setInnerContainerSize(Size(visibleSize.width, visibleSize.height * 0.8));
-	std::string headLabel = LangUtil::getInstance()->translateString("You have not earned any rewards yet.\n\nआपने अभी तक कोई पुरस्कार अर्जित नहीं किया है।");
+	std::string earnedString = MainMenuHome::readTitleFromJson("misc", 1, isBilingual);
+	std::string headLabel = LangUtil::getInstance()->translateString(earnedString);
 	auto targetLabel = Label::createWithSystemFont(headLabel, "arial", 90);
 	targetLabel->setColor(color);
 	targetLabel->setPositionX(visibleSize.width / 2);

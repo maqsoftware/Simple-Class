@@ -15,8 +15,8 @@
              "levels": [
                         1
                         ],
-             "help": "Welcome to Chimple!\n\nचिम्पल में आपका स्वागत है।",
-			 "_help_comment": "चिम्पल में आपका स्वागत है।",
+             "help": "Welcome to Simple Class!\n\nसिम्पल क्लास में आपका स्वागत है।",
+			 "_help_comment": "सिम्पल क्लास में आपका स्वागत है।",
              "video": "MainMenuHome_help.webm"
              }
   ],    
@@ -25,8 +25,8 @@
       "levels": [
         1
       ],
-      "help": "Welcome to Chimple!\n\nचिम्पल में आपका स्वागत है।",
-	  "_help_comment": "चिम्पल में आपका स्वागत है।",
+      "help": "Welcome to Simple Class!\n\nसिम्पल क्लास में आपका स्वागत है।",
+	  "_help_comment": "सिम्पल क्लास में आपका स्वागत है।",
       "video": "menu_help.webm"
     }
   ],    
