@@ -7,7 +7,7 @@
 		"en": ["Bengaluru", "Los Angeles", "Houston", "London", "Dar es Salaam", "Camp", "Farm House", "Mining Town"],
 		"hi": ["बेंगलुरु", "लॉस एंजेलिस", "ह्यूस्टन", "लंडन", "डार एस सलाम", "कैंप", "फार्म हाउस", "खनन शहर"]
 	},
-	"string":{
+	"misc":{
 		"en": ["Alphabet", "You have not earned any rewards yet."],
 		"hi": ["Alphabet\n\nवर्णमाला", "You have not earned any rewards yet.\n\nआपने अभी तक कोई पुरस्कार अर्जित नहीं किया है।"]
 	}

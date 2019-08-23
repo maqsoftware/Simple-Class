@@ -307,7 +307,7 @@ void LevelHelpScene::onEnterTransitionDidFinish()
             if (_videos[_currentVideo].substr(fileFound + 1).size() < 9 && _videos[_currentVideo].find("pos.webm") == std::string::npos)
             {
                 bool isBilingual = localeCode!="en";
-                videoText = MainMenuHome::readTitleFromJson("strings", 0, isBilingual);
+                videoText = MainMenuHome::readTitleFromJson("misc", 0, isBilingual);
             }
             else
             {

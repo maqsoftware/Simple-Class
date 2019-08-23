@@ -299,7 +299,7 @@ void Award::rewardsBackground(cocos2d::Node *parent, std::string tile, cocos2d::
 	backgroundSpriteMapTile->setPosition(Vec2(3 * visibleSize.width / 2, visibleSize.height / 2));
 	scrollView6->addChild(backgroundSpriteMapTile);
 	scrollView6->setInnerContainerSize(Size(visibleSize.width, visibleSize.height * 0.8));
-	std::string earnedstring = MainMenuHome::readTitleFromJson("strings", 1, isBilingual);
+	std::string earnedstring = MainMenuHome::readTitleFromJson("misc", 1, isBilingual);
 	std::string headLabel = LangUtil::getInstance()->translateString(earnedstring);
 	auto targetLabel = Label::createWithSystemFont(headLabel, "arial", 90);
 	targetLabel->setColor(color);

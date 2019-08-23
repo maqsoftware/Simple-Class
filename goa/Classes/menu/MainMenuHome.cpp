@@ -276,7 +276,7 @@ void MainMenuHome::bindEvents(cocos2d::Node *rootNode)
 
 std::string MainMenuHome::readTitleFromJson(std::string fileName, int pos, bool isBilingual)
 {
-    std::string contents = FileUtils::getInstance()->getStringFromFile("config/locale.json");
+    std::string contents = FileUtils::getInstance()->getStringFromFile("config/misc_strings.json");
     rapidjson::Document mapPlaces;
     if (!mapPlaces.Parse<0>(contents.c_str()).HasParseError()) // to validate the structure of JSON file
     {
