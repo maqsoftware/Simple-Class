@@ -43,6 +43,7 @@ import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.Toast;
+import android.media.AudioManager;
 
 import com.maq.simpleclass.BuildConfig;
 import com.maq.xprize.bali.db.entity.User;
@@ -85,6 +86,7 @@ public class AppActivity extends Cocos2dxActivity {
     private static Context _context;
     private static String currentGameName;
     private static boolean supportForTTSEnabled = false;
+    AudioManager audioManager;
 
     static {
         System.out.println("Loaded library");
@@ -390,6 +392,11 @@ public class AppActivity extends Cocos2dxActivity {
                 }
             }
         });
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        int maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);                     //maximum value of stream media.
+        if (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) < maxVolume / 2) {                  //check if the audio is less than 50%
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume / 2, 0);                  //set the audio to 50% when app start.
+        }
     }
 
     private void needExtraction() {
