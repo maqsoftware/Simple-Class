@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.maq.simpleclass"
     android:installLocation="preferExternal"
-    android:versionCode="16"
-    android:versionName="5.2.1">
+    android:versionCode="17"
+    android:versionName="5.2.2">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-feature android:glEsVersion="0x00020000" />
@@ -31,6 +31,11 @@
         <meta-data
             android:name="firebase_analytics_collection_enabled"
             android:value="true" />
+
+        <!-- Disable SSAID collection -->
+        <meta-data
+            android:name="google_analytics_ssaid_collection_enabled"
+            android:value="false" />
 
         <activity
             android:name="org.cocos2dx.cpp.AppActivity"
