@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.maq.simpleclass"
     android:installLocation="preferExternal"
-    android:versionCode="17"
-    android:versionName="5.2.2">
+    android:versionCode="18"
+    android:versionName="5.2.3">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-feature android:glEsVersion="0x00020000" />
